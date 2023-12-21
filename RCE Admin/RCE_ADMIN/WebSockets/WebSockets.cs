@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using WebSocketSharp;
@@ -197,7 +197,7 @@ namespace RCE_ADMIN.WebSockets
                 {
                     SendCommand("global.say <color=green>[EVENT]</color> Patrol Helicopter Is Inbound, Run!");
                 }
-            } 
+            }
 
             //kills logging (in game)
             string ikill_ = packet.Message;
@@ -237,63 +237,67 @@ namespace RCE_ADMIN.WebSockets
                 }
             }
 
-            //kills logging (discord)
-            string kill_ = packet.Message;
-            if (kill_.Contains("killed") && !kill_.Contains("cactus"))
-            {
-                string result = GetFirstSixNumbers(kill_);
-                string result2 = GetFirstSevenNumbers(kill_);
-                string result3 = getFirstEightNumbers(kill_);
-                string result4 = getFirstFiveNumbers(kill_);
-                string k = kill_.Replace(" was killed by ", "** Was Killed By **");
-                if (result != null)
+            if (!string.IsNullOrEmpty(Settings.KillFeedWebhookUrl)) {
+                //kills logging (discord)
+                string kill_ = packet.Message;
+                if (kill_.Contains("killed") && !kill_.Contains("cactus"))
                 {
-                    SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(k, "A Scientist")));
+                    string result = GetFirstSixNumbers(kill_);
+                    string result2 = GetFirstSevenNumbers(kill_);
+                    string result3 = getFirstEightNumbers(kill_);
+                    string result4 = getFirstFiveNumbers(kill_);
+                    string k = kill_.Replace(" was killed by ", "** Was Killed By **");
+                    if (result != null)
+                    {
+                        SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(k, "A Scientist")));
+                    }
+                    else if (result2 != null)
+                    {
+                        SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(k, "A Scientist")));
+                    }
+                    else if (result3 != null)
+                    {
+                        SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(k, "A Scientist")));
+                    }
+                    else if (result4 != null)
+                    {
+                        SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(k, "A Scientist")));
+                    }
+                    else
+                    {
+                        SendDiscordWebhook(true, string.Format("**{0}**", k));
+                    }
                 }
-                else if (result2 != null)
+                else if (kill_.Contains("died"))
                 {
-                    SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(k, "A Scientist")));
-                }
-                else if (result3 != null)
-                {
-                    SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(k, "A Scientist")));
-                }
-                else if (result4 != null)
-                {
-                    SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(k, "A Scientist")));
-                }
-                else
-                {
-                    SendDiscordWebhook(true, string.Format("**{0}**", k));
+                    if (!kill_.Contains("died (Generic)"))
+                    {
+                        SendDiscordWebhook(true, string.Format("**{0}**", kill_.Replace(" died ", "** Died **")));
+                    }
                 }
             }
-            else if (kill_.Contains("died"))
+            if (!string.IsNullOrEmpty(Settings.EventWebhookUrl))
             {
-                if (!kill_.Contains("died (Generic)"))
+                //events logging (discord)
+                string event_ = packet.Message;
+                if (event_.Contains("[event]"))
                 {
-                    SendDiscordWebhook(true, string.Format("**{0}**", kill_.Replace(" died ", "** Died **")));
-                }
-            }
-
-            //events logging (discord)
-            string event_ = packet.Message;
-            if (event_.Contains("[event]"))
-            {
-                if (event_.Contains("Spawning assets/prefabs/npc/ch47/ch47scientists.entity.prefab for assets/bundled/prefabs/world/event_cargoheli.prefab"))
-                {
-                    SendDiscordWebhook(false, "**Chinook** Is Dropping A Crate");
-                }
-                else if (event_.Contains("Spawning assets/content/vehicles/boats/cargoship/cargoshipdynamic2.prefab for assets/bundled/prefabs/world/event_cargoship.prefab") || event_.Contains("Spawning assets/content/vehicles/boats/cargoship/cargoshipdynamic1.prefab for assets/bundled/prefabs/world/event_cargoship.prefab") || event_.Contains("Spawning assets/content/vehicles/boats/cargoship/cargoshipdynamic.prefab for assets/bundled/prefabs/world/event_cargoship.prefab"))
-                {
-                    SendDiscordWebhook(false, "**Cargo** Is Inbound!");
-                }
-                else if (event_.Contains("Spawning assets/prefabs/npc/cargo plane/cargo_plane.prefab for assets/bundled/prefabs/world/event_airdrop.prefab"))
-                {
-                    SendDiscordWebhook(false, "An **Air Drop** Is Inbound!");
-                }
-                else if (event_.Contains("Spawning assets/prefabs/npc/patrol helicopter/patrolhelicopter.prefab for assets/bundled/prefabs/world/event_helicopter.prefab"))
-                {
-                    SendDiscordWebhook(false, "**Patrol Helicopter** Is Inbound!");
+                    if (event_.Contains("Spawning assets/prefabs/npc/ch47/ch47scientists.entity.prefab for assets/bundled/prefabs/world/event_cargoheli.prefab"))
+                    {
+                        SendDiscordWebhook(false, "**Chinook** Is Dropping A Crate");
+                    }
+                    else if (event_.Contains("Spawning assets/content/vehicles/boats/cargoship/cargoshipdynamic2.prefab for assets/bundled/prefabs/world/event_cargoship.prefab") || event_.Contains("Spawning assets/content/vehicles/boats/cargoship/cargoshipdynamic1.prefab for assets/bundled/prefabs/world/event_cargoship.prefab") || event_.Contains("Spawning assets/content/vehicles/boats/cargoship/cargoshipdynamic.prefab for assets/bundled/prefabs/world/event_cargoship.prefab"))
+                    {
+                        SendDiscordWebhook(false, "**Cargo** Is Inbound!");
+                    }
+                    else if (event_.Contains("Spawning assets/prefabs/npc/cargo plane/cargo_plane.prefab for assets/bundled/prefabs/world/event_airdrop.prefab"))
+                    {
+                        SendDiscordWebhook(false, "An **Air Drop** Is Inbound!");
+                    }
+                    else if (event_.Contains("Spawning assets/prefabs/npc/patrol helicopter/patrolhelicopter.prefab for assets/bundled/prefabs/world/event_helicopter.prefab"))
+                    {
+                        SendDiscordWebhook(false, "**Patrol Helicopter** Is Inbound!");
+                    }
                 }
             }
             ServerConsole.AddNewEntry(packet.Message);
