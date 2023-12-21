@@ -29,14 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxConnection = new DevExpress.XtraEditors.GroupControl();
             this.buttonDisconnect = new DevExpress.XtraEditors.SimpleButton();
             this.buttonConnect = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxCredentials = new DevExpress.XtraEditors.GroupControl();
+            this.eventsWebhookUrl = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.HowToButton = new DevExpress.XtraEditors.SimpleButton();
             this.buttonSave = new DevExpress.XtraEditors.SimpleButton();
             this.checkBoxShowPassword = new DevExpress.XtraEditors.CheckEdit();
             this.labelPassword = new DevExpress.XtraEditors.LabelControl();
@@ -83,11 +86,13 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.HowToButton = new DevExpress.XtraEditors.SimpleButton();
+            this.killfeedsWebhookUrl = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxConnection)).BeginInit();
             this.groupBoxConnection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).BeginInit();
             this.groupBoxCredentials.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventsWebhookUrl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxShowPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxPort.Properties)).BeginInit();
@@ -106,15 +111,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.killfeedsWebhookUrl.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxConnection
             // 
             this.groupBoxConnection.Controls.Add(this.buttonDisconnect);
             this.groupBoxConnection.Controls.Add(this.buttonConnect);
-            this.groupBoxConnection.Location = new System.Drawing.Point(503, 3);
+            this.groupBoxConnection.Location = new System.Drawing.Point(679, 3);
             this.groupBoxConnection.Name = "groupBoxConnection";
-            this.groupBoxConnection.Size = new System.Drawing.Size(344, 98);
+            this.groupBoxConnection.Size = new System.Drawing.Size(168, 98);
             this.groupBoxConnection.TabIndex = 1;
             this.groupBoxConnection.Text = "Connection";
             // 
@@ -122,7 +128,7 @@
             // 
             this.buttonDisconnect.Location = new System.Drawing.Point(6, 65);
             this.buttonDisconnect.Name = "buttonDisconnect";
-            this.buttonDisconnect.Size = new System.Drawing.Size(332, 23);
+            this.buttonDisconnect.Size = new System.Drawing.Size(154, 23);
             this.buttonDisconnect.TabIndex = 1;
             this.buttonDisconnect.Text = "Disconnect";
             this.buttonDisconnect.Click += new System.EventHandler(this.buttonDisconnect_Click);
@@ -131,13 +137,17 @@
             // 
             this.buttonConnect.Location = new System.Drawing.Point(6, 39);
             this.buttonConnect.Name = "buttonConnect";
-            this.buttonConnect.Size = new System.Drawing.Size(332, 23);
+            this.buttonConnect.Size = new System.Drawing.Size(154, 23);
             this.buttonConnect.TabIndex = 0;
             this.buttonConnect.Text = "Connect";
             this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
             // 
             // groupBoxCredentials
             // 
+            this.groupBoxCredentials.Controls.Add(this.killfeedsWebhookUrl);
+            this.groupBoxCredentials.Controls.Add(this.labelControl10);
+            this.groupBoxCredentials.Controls.Add(this.eventsWebhookUrl);
+            this.groupBoxCredentials.Controls.Add(this.labelControl9);
             this.groupBoxCredentials.Controls.Add(this.HowToButton);
             this.groupBoxCredentials.Controls.Add(this.buttonSave);
             this.groupBoxCredentials.Controls.Add(this.checkBoxShowPassword);
@@ -149,13 +159,39 @@
             this.groupBoxCredentials.Controls.Add(this.textBoxAddress);
             this.groupBoxCredentials.Location = new System.Drawing.Point(11, 3);
             this.groupBoxCredentials.Name = "groupBoxCredentials";
-            this.groupBoxCredentials.Size = new System.Drawing.Size(344, 176);
+            this.groupBoxCredentials.Size = new System.Drawing.Size(662, 235);
             this.groupBoxCredentials.TabIndex = 0;
             this.groupBoxCredentials.Text = "Credentials";
             // 
+            // eventsWebhookUrl
+            // 
+            this.eventsWebhookUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.eventsWebhookUrl.Location = new System.Drawing.Point(136, 119);
+            this.eventsWebhookUrl.Name = "eventsWebhookUrl";
+            this.eventsWebhookUrl.Size = new System.Drawing.Size(515, 20);
+            this.eventsWebhookUrl.TabIndex = 1;
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(11, 122);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(103, 13);
+            this.labelControl9.TabIndex = 8;
+            this.labelControl9.Text = "Events Webhook URL";
+            // 
+            // HowToButton
+            // 
+            this.HowToButton.Location = new System.Drawing.Point(417, 197);
+            this.HowToButton.Name = "HowToButton";
+            this.HowToButton.Size = new System.Drawing.Size(234, 23);
+            this.HowToButton.TabIndex = 8;
+            this.HowToButton.Text = "How To Find RCON Password";
+            this.HowToButton.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(14, 139);
+            this.buttonSave.Location = new System.Drawing.Point(11, 197);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(87, 23);
             this.buttonSave.TabIndex = 7;
@@ -164,7 +200,7 @@
             // 
             // checkBoxShowPassword
             // 
-            this.checkBoxShowPassword.Location = new System.Drawing.Point(70, 116);
+            this.checkBoxShowPassword.Location = new System.Drawing.Point(198, 199);
             this.checkBoxShowPassword.Name = "checkBoxShowPassword";
             this.checkBoxShowPassword.Properties.Caption = "Show Password";
             this.checkBoxShowPassword.Size = new System.Drawing.Size(101, 20);
@@ -173,7 +209,7 @@
             // 
             // labelPassword
             // 
-            this.labelPassword.Location = new System.Drawing.Point(11, 92);
+            this.labelPassword.Location = new System.Drawing.Point(11, 96);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(46, 13);
             this.labelPassword.TabIndex = 5;
@@ -181,7 +217,7 @@
             // 
             // labelPort
             // 
-            this.labelPort.Location = new System.Drawing.Point(11, 66);
+            this.labelPort.Location = new System.Drawing.Point(11, 70);
             this.labelPort.Name = "labelPort";
             this.labelPort.Size = new System.Drawing.Size(20, 13);
             this.labelPort.TabIndex = 4;
@@ -189,7 +225,7 @@
             // 
             // labelAddress
             // 
-            this.labelAddress.Location = new System.Drawing.Point(11, 40);
+            this.labelAddress.Location = new System.Drawing.Point(11, 44);
             this.labelAddress.Name = "labelAddress";
             this.labelAddress.Size = new System.Drawing.Size(39, 13);
             this.labelAddress.TabIndex = 3;
@@ -197,24 +233,24 @@
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(70, 89);
+            this.textBoxPassword.Location = new System.Drawing.Point(136, 94);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Properties.UseSystemPasswordChar = true;
-            this.textBoxPassword.Size = new System.Drawing.Size(268, 20);
+            this.textBoxPassword.Size = new System.Drawing.Size(515, 20);
             this.textBoxPassword.TabIndex = 2;
             // 
             // textBoxPort
             // 
-            this.textBoxPort.Location = new System.Drawing.Point(70, 63);
+            this.textBoxPort.Location = new System.Drawing.Point(136, 68);
             this.textBoxPort.Name = "textBoxPort";
-            this.textBoxPort.Size = new System.Drawing.Size(268, 20);
+            this.textBoxPort.Size = new System.Drawing.Size(515, 20);
             this.textBoxPort.TabIndex = 1;
             // 
             // textBoxAddress
             // 
-            this.textBoxAddress.Location = new System.Drawing.Point(70, 37);
+            this.textBoxAddress.Location = new System.Drawing.Point(136, 42);
             this.textBoxAddress.Name = "textBoxAddress";
-            this.textBoxAddress.Size = new System.Drawing.Size(268, 20);
+            this.textBoxAddress.Size = new System.Drawing.Size(515, 20);
             this.textBoxAddress.TabIndex = 0;
             // 
             // buttonBroadcast
@@ -268,7 +304,7 @@
             this.richTextBoxConsole.Location = new System.Drawing.Point(3, 3);
             this.richTextBoxConsole.Name = "richTextBoxConsole";
             this.richTextBoxConsole.ReadOnly = true;
-            this.richTextBoxConsole.Size = new System.Drawing.Size(852, 337);
+            this.richTextBoxConsole.Size = new System.Drawing.Size(854, 337);
             this.richTextBoxConsole.TabIndex = 0;
             this.richTextBoxConsole.Text = "";
             // 
@@ -280,14 +316,14 @@
             this.dataGridViewPlayers.AllowUserToResizeRows = false;
             this.dataGridViewPlayers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.dataGridViewPlayers.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPlayers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Number,
@@ -297,35 +333,35 @@
             this.Address,
             this.TimeConnected});
             this.dataGridViewPlayers.ContextMenuStrip = this.contextMenuStrip1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewPlayers.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewPlayers.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewPlayers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewPlayers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.dataGridViewPlayers.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewPlayers.MultiSelect = false;
             this.dataGridViewPlayers.Name = "dataGridViewPlayers";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewPlayers.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridViewPlayers.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridViewPlayers.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewPlayers.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewPlayers.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.dataGridViewPlayers.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -333,7 +369,7 @@
             this.dataGridViewPlayers.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.dataGridViewPlayers.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
             this.dataGridViewPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPlayers.Size = new System.Drawing.Size(858, 481);
+            this.dataGridViewPlayers.Size = new System.Drawing.Size(860, 481);
             this.dataGridViewPlayers.TabIndex = 0;
             // 
             // Number
@@ -471,7 +507,7 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(860, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(862, 0);
             // 
             // barDockControlBottom
             // 
@@ -479,7 +515,7 @@
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 510);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(860, 22);
+            this.barDockControlBottom.Size = new System.Drawing.Size(862, 22);
             // 
             // barDockControlLeft
             // 
@@ -493,7 +529,7 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(860, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(862, 0);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 510);
             // 
@@ -506,7 +542,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(860, 510);
+            this.xtraTabControl1.Size = new System.Drawing.Size(862, 510);
             this.xtraTabControl1.TabIndex = 5;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -518,7 +554,7 @@
             this.xtraTabPage1.Controls.Add(this.groupBoxConnection);
             this.xtraTabPage1.Controls.Add(this.groupBoxCredentials);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(858, 481);
+            this.xtraTabPage1.Size = new System.Drawing.Size(860, 481);
             this.xtraTabPage1.Text = "Connection";
             // 
             // xtraTabPage2
@@ -527,7 +563,7 @@
             this.xtraTabPage2.Controls.Add(this.groupControl1);
             this.xtraTabPage2.Controls.Add(this.richTextBoxConsole);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(858, 481);
+            this.xtraTabPage2.Size = new System.Drawing.Size(860, 481);
             this.xtraTabPage2.Text = "Console";
             // 
             // groupControl2
@@ -578,7 +614,7 @@
             this.xtraTabPage3.Controls.Add(this.labelControl3);
             this.xtraTabPage3.Controls.Add(this.dataGridViewPlayers);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(858, 481);
+            this.xtraTabPage3.Size = new System.Drawing.Size(860, 481);
             this.xtraTabPage3.Text = "Players";
             // 
             // labelControl8
@@ -683,14 +719,22 @@
             this.labelControl3.TabIndex = 1;
             this.labelControl3.Text = "#";
             // 
-            // HowToButton
+            // killfeedsWebhookUrl
             // 
-            this.HowToButton.Location = new System.Drawing.Point(107, 139);
-            this.HowToButton.Name = "HowToButton";
-            this.HowToButton.Size = new System.Drawing.Size(231, 23);
-            this.HowToButton.TabIndex = 8;
-            this.HowToButton.Text = "How To Find RCON Password";
-            this.HowToButton.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.killfeedsWebhookUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.killfeedsWebhookUrl.Location = new System.Drawing.Point(136, 145);
+            this.killfeedsWebhookUrl.Name = "killfeedsWebhookUrl";
+            this.killfeedsWebhookUrl.Size = new System.Drawing.Size(515, 20);
+            this.killfeedsWebhookUrl.TabIndex = 9;
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Location = new System.Drawing.Point(11, 148);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(104, 13);
+            this.labelControl10.TabIndex = 10;
+            this.labelControl10.Text = "Killfeed Webhook URL";
             // 
             // Form1
             // 
@@ -698,7 +742,7 @@
             this.Appearance.Options.UseForeColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(860, 532);
+            this.ClientSize = new System.Drawing.Size(862, 532);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
@@ -716,6 +760,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).EndInit();
             this.groupBoxCredentials.ResumeLayout(false);
             this.groupBoxCredentials.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventsWebhookUrl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxShowPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxPort.Properties)).EndInit();
@@ -736,6 +781,7 @@
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
             this.xtraTabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.killfeedsWebhookUrl.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -793,5 +839,9 @@
         private System.Windows.Forms.ToolStripMenuItem banPlayerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyNameToolStripMenuItem;
         private DevExpress.XtraEditors.SimpleButton HowToButton;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.TextEdit eventsWebhookUrl;
+        private DevExpress.XtraEditors.TextEdit killfeedsWebhookUrl;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
     }
 }

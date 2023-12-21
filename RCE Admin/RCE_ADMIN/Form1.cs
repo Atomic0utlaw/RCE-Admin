@@ -6,6 +6,7 @@ using DevExpress;
 using RCE_ADMIN.Interface;
 using RCE_ADMIN.WebSockets;
 using System.Diagnostics;
+using DevExpress.Utils;
 
 namespace RCE_ADMIN
 {
@@ -30,6 +31,8 @@ namespace RCE_ADMIN
             textBoxAddress.Text = Settings.ServerAddress;
             textBoxPort.Text = Settings.ServerPort;
             textBoxPassword.Text = Settings.ServerPassword;
+            eventsWebhookUrl.Text = Settings.EventWebhookUrl;
+            killfeedsWebhookUrl.Text = Settings.KillFeedWebhookUrl;
             ServerConsole.Disable();
         }
         public void CopyFromDT(int i)
@@ -79,10 +82,14 @@ namespace RCE_ADMIN
         {
             textBoxPassword.Properties.UseSystemPasswordChar = !checkBoxShowPassword.Checked;
         }
+        public void save_settings()
+        {
+            Settings.Write(new Settings(textBoxAddress.Text, textBoxPort.Text, textBoxPassword.Text, eventsWebhookUrl.Text, killfeedsWebhookUrl.Text));
+            Settings = Settings.Read();
+        }
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            Settings.Write(new Settings(textBoxAddress.Text, textBoxPort.Text, textBoxPassword.Text));
-            Settings = Settings.Read();
+            save_settings();
         }
         private void buttonConnect_Click(object sender, EventArgs e)
         {
@@ -108,7 +115,7 @@ namespace RCE_ADMIN
                 WebSocketsWrapper.SendCommand(textBoxCommand.Text);
             textBoxBroadcast.Text = "";
         }
-        private void textBoxBroadcast_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBoxBroadcast_KeyPress(object sender, KeyPressEventArgs e) 
         {
             if ((ConsoleKey)e.KeyChar == ConsoleKey.Enter)
                 WebSocketsWrapper.Send($"global.say {textBoxBroadcast.Text}");
@@ -144,6 +151,26 @@ namespace RCE_ADMIN
         {
             Process.Start("https://prnt.sc/Qc-uU0PHiPx8");
             XtraMessageBox.Show(string.Format("Go To Your Servers Console On GPortal{0}Press CTRL, SHIFT & I To Open Inspect Element{0}Click On The ngapi/ Requests Until You Find The One With The Sameish Output At The Screenshot We Just Opened{0}Follow The Screenshot For The RCON Password!", Environment.NewLine), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+        }
+
+        private void checkButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            save_settings();
+        }
+
+        private void checkButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            save_settings();
+        }
+
+        private void checkButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            save_settings();
+        }
+
+        private void checkButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            save_settings();
         }
     }
 }
