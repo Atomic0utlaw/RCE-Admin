@@ -37,6 +37,8 @@
             this.buttonDisconnect = new DevExpress.XtraEditors.SimpleButton();
             this.buttonConnect = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxCredentials = new DevExpress.XtraEditors.GroupControl();
+            this.killfeedsWebhookUrl = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.eventsWebhookUrl = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.HowToButton = new DevExpress.XtraEditors.SimpleButton();
@@ -64,6 +66,12 @@
             this.copyNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kickPlayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.banPlayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.toolStripStatusLabelRight = new DevExpress.XtraBars.BarStaticItem();
@@ -86,12 +94,20 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.killfeedsWebhookUrl = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.addToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxConnection)).BeginInit();
             this.groupBoxConnection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).BeginInit();
             this.groupBoxCredentials.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.killfeedsWebhookUrl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventsWebhookUrl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxShowPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxPassword.Properties)).BeginInit();
@@ -111,7 +127,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.killfeedsWebhookUrl.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxConnection
@@ -162,6 +177,23 @@
             this.groupBoxCredentials.Size = new System.Drawing.Size(662, 235);
             this.groupBoxCredentials.TabIndex = 0;
             this.groupBoxCredentials.Text = "Credentials";
+            // 
+            // killfeedsWebhookUrl
+            // 
+            this.killfeedsWebhookUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.killfeedsWebhookUrl.Location = new System.Drawing.Point(136, 145);
+            this.killfeedsWebhookUrl.Name = "killfeedsWebhookUrl";
+            this.killfeedsWebhookUrl.Size = new System.Drawing.Size(515, 20);
+            this.killfeedsWebhookUrl.TabIndex = 9;
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Location = new System.Drawing.Point(11, 148);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(104, 13);
+            this.labelControl10.TabIndex = 10;
+            this.labelControl10.Text = "Killfeed Webhook URL";
             // 
             // eventsWebhookUrl
             // 
@@ -279,6 +311,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxBroadcast.Location = new System.Drawing.Point(9, 56);
             this.textBoxBroadcast.Name = "textBoxBroadcast";
+            this.textBoxBroadcast.Properties.MaxLength = 10000;
             this.textBoxBroadcast.Size = new System.Drawing.Size(334, 20);
             this.textBoxBroadcast.TabIndex = 3;
             this.textBoxBroadcast.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxBroadcast_KeyPress);
@@ -289,6 +322,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxCommand.Location = new System.Drawing.Point(9, 57);
             this.textBoxCommand.Name = "textBoxCommand";
+            this.textBoxCommand.Properties.MaxLength = 10000;
             this.textBoxCommand.Size = new System.Drawing.Size(334, 20);
             this.textBoxCommand.TabIndex = 1;
             this.textBoxCommand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCommand_KeyPress);
@@ -420,10 +454,16 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyNameToolStripMenuItem,
             this.kickPlayerToolStripMenuItem,
-            this.banPlayerToolStripMenuItem});
+            this.banPlayerToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4,
+            this.toolStripSeparator2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 170);
             // 
             // copyNameToolStripMenuItem
             // 
@@ -455,6 +495,66 @@
             this.banPlayerToolStripMenuItem.Text = "Ban Player";
             this.banPlayerToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.banPlayerToolStripMenuItem.Click += new System.EventHandler(this.banPlayerToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.removeToolStripMenuItem});
+            this.toolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
+            this.toolStripMenuItem1.Text = "VIP";
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.addToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.addToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.removeToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.removeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem1,
+            this.removeToolStripMenuItem1});
+            this.toolStripMenuItem2.ForeColor = System.Drawing.Color.White;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(112, 22);
+            this.toolStripMenuItem2.Text = "Moderator";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem2,
+            this.removeToolStripMenuItem2});
+            this.toolStripMenuItem3.ForeColor = System.Drawing.Color.White;
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(112, 22);
+            this.toolStripMenuItem3.Text = "Admin";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem3,
+            this.removeToolStripMenuItem3});
+            this.toolStripMenuItem4.ForeColor = System.Drawing.Color.White;
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(112, 22);
+            this.toolStripMenuItem4.Text = "Owner";
             // 
             // barManager1
             // 
@@ -547,7 +647,8 @@
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
             this.xtraTabPage2,
-            this.xtraTabPage3});
+            this.xtraTabPage3,
+            this.xtraTabPage4});
             // 
             // xtraTabPage1
             // 
@@ -719,22 +820,75 @@
             this.labelControl3.TabIndex = 1;
             this.labelControl3.Text = "#";
             // 
-            // killfeedsWebhookUrl
+            // addToolStripMenuItem1
             // 
-            this.killfeedsWebhookUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.killfeedsWebhookUrl.Location = new System.Drawing.Point(136, 145);
-            this.killfeedsWebhookUrl.Name = "killfeedsWebhookUrl";
-            this.killfeedsWebhookUrl.Size = new System.Drawing.Size(515, 20);
-            this.killfeedsWebhookUrl.TabIndex = 9;
+            this.addToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.addToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.addToolStripMenuItem1.Name = "addToolStripMenuItem1";
+            this.addToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem1.Text = "Add";
+            this.addToolStripMenuItem1.Click += new System.EventHandler(this.addToolStripMenuItem1_Click);
             // 
-            // labelControl10
+            // removeToolStripMenuItem1
             // 
-            this.labelControl10.Location = new System.Drawing.Point(11, 148);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(104, 13);
-            this.labelControl10.TabIndex = 10;
-            this.labelControl10.Text = "Killfeed Webhook URL";
+            this.removeToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.removeToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.removeToolStripMenuItem1.Name = "removeToolStripMenuItem1";
+            this.removeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.removeToolStripMenuItem1.Text = "Remove";
+            this.removeToolStripMenuItem1.Click += new System.EventHandler(this.removeToolStripMenuItem1_Click);
+            // 
+            // addToolStripMenuItem2
+            // 
+            this.addToolStripMenuItem2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.addToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
+            this.addToolStripMenuItem2.Name = "addToolStripMenuItem2";
+            this.addToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem2.Text = "Add";
+            this.addToolStripMenuItem2.Click += new System.EventHandler(this.addToolStripMenuItem2_Click);
+            // 
+            // removeToolStripMenuItem2
+            // 
+            this.removeToolStripMenuItem2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.removeToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
+            this.removeToolStripMenuItem2.Name = "removeToolStripMenuItem2";
+            this.removeToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.removeToolStripMenuItem2.Text = "Remove";
+            this.removeToolStripMenuItem2.Click += new System.EventHandler(this.removeToolStripMenuItem2_Click);
+            // 
+            // addToolStripMenuItem3
+            // 
+            this.addToolStripMenuItem3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.addToolStripMenuItem3.ForeColor = System.Drawing.Color.White;
+            this.addToolStripMenuItem3.Name = "addToolStripMenuItem3";
+            this.addToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem3.Text = "Add";
+            this.addToolStripMenuItem3.Click += new System.EventHandler(this.addToolStripMenuItem3_Click);
+            // 
+            // removeToolStripMenuItem3
+            // 
+            this.removeToolStripMenuItem3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.removeToolStripMenuItem3.ForeColor = System.Drawing.Color.White;
+            this.removeToolStripMenuItem3.Name = "removeToolStripMenuItem3";
+            this.removeToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.removeToolStripMenuItem3.Text = "Remove";
+            this.removeToolStripMenuItem3.Click += new System.EventHandler(this.removeToolStripMenuItem3_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(109, 6);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(109, 6);
+            // 
+            // xtraTabPage4
+            // 
+            this.xtraTabPage4.Name = "xtraTabPage4";
+            this.xtraTabPage4.Size = new System.Drawing.Size(860, 481);
+            this.xtraTabPage4.Text = "Info / Updates";
             // 
             // Form1
             // 
@@ -760,6 +914,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).EndInit();
             this.groupBoxCredentials.ResumeLayout(false);
             this.groupBoxCredentials.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.killfeedsWebhookUrl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventsWebhookUrl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxShowPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxPassword.Properties)).EndInit();
@@ -781,7 +936,6 @@
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
             this.xtraTabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.killfeedsWebhookUrl.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -843,5 +997,20 @@
         private DevExpress.XtraEditors.TextEdit eventsWebhookUrl;
         private DevExpress.XtraEditors.TextEdit killfeedsWebhookUrl;
         private DevExpress.XtraEditors.LabelControl labelControl10;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
     }
 }

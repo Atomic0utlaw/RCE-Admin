@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using WebSocketSharp;
@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using DevExpress.Internal.WinApi.Windows.UI.Notifications;
 using System.Net;
 using System.Collections.Specialized;
+using System.Collections.Generic;
 
 namespace RCE_ADMIN.WebSockets
 {
@@ -94,7 +95,7 @@ namespace RCE_ADMIN.WebSockets
             using (var client = new WebClient())
             {
                 var data = new NameValueCollection();
-                data["content"] = message;
+                data["content"] = string.Format("{0}{1}__Feeds Provided By ***RCE Admin***__", message, Environment.NewLine);
                 var response = client.UploadValues(killfeed ? Settings.KillFeedWebhookUrl : Settings.EventWebhookUrl, "POST", data);
                 string responseText = Encoding.UTF8.GetString(response);
             }
@@ -162,6 +163,23 @@ namespace RCE_ADMIN.WebSockets
                                            .Replace("patrolhelicopter", "Patrol Helicopter")
                                            .Replace("autoturret_deployed", "Auto Turret");
             return replacedString;
+        }
+
+        static Dictionary<string, string> replacements = new Dictionary<string, string>
+        {
+            { " was killed by ", "** Was Killed By **" },
+            { "sentry.scientist.static", "Sentry Turret" },
+            { "patrolhelicopter", "Patrol Helicopter" },
+            { "autoturret_deployed", "Auto Turret" },
+            { " died ", "** Died **" }
+        };
+        static string ReplaceText(string input, Dictionary<string, string> replacements)
+        {
+            foreach (var replacement in replacements)
+            {
+                input = input.Replace(replacement.Key, replacement.Value);
+            }
+            return input;
         }
         private static void WebSocket_OnMessage(object sender, MessageEventArgs e)
         {
@@ -242,37 +260,13 @@ namespace RCE_ADMIN.WebSockets
                 string kill_ = packet.Message;
                 if (kill_.Contains("killed") && !kill_.Contains("cactus"))
                 {
-                    string result = GetFirstSixNumbers(kill_);
-                    string result2 = GetFirstSevenNumbers(kill_);
-                    string result3 = getFirstEightNumbers(kill_);
-                    string result4 = getFirstFiveNumbers(kill_);
-                    string k = kill_.Replace(" was killed by ", "** Was Killed By **");
-                    if (result != null)
-                    {
-                        SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(k, "A Scientist")));
-                    }
-                    else if (result2 != null)
-                    {
-                        SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(k, "A Scientist")));
-                    }
-                    else if (result3 != null)
-                    {
-                        SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(k, "A Scientist")));
-                    }
-                    else if (result4 != null)
-                    {
-                        SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(k, "A Scientist")));
-                    }
-                    else
-                    {
-                        SendDiscordWebhook(true, string.Format("**{0}**", k));
-                    }
+                    SendDiscordWebhook(true, string.Format("**{0}**", ReplaceText(kill_, replacements)));
                 }
                 else if (kill_.Contains("died"))
                 {
                     if (!kill_.Contains("died (Generic)"))
                     {
-                        SendDiscordWebhook(true, string.Format("**{0}**", kill_.Replace(" died ", "** Died **")));
+                        SendDiscordWebhook(true, string.Format("**{0}**", ReplaceText(kill_, replacements)));
                     }
                 }
             }

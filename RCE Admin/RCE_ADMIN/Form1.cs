@@ -172,5 +172,45 @@ namespace RCE_ADMIN
         {
             save_settings();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("VIPID [0]", GetFromDT(1)));
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("RemoveVIP [0]", GetFromDT(1)));
+        }
+
+        private void addToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("ModeratorID [0]", GetFromDT(1)));
+        }
+
+        private void removeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("RemoveModerator [0]", GetFromDT(1)));
+        }
+
+        private void addToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("AdminID [0]", GetFromDT(1)));
+        }
+
+        private void removeToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("RemoveAdmin [0]", GetFromDT(1)));
+        }
+
+        private void addToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("OwnerID [0]", GetFromDT(1)));
+        }
+
+        private void removeToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("RemoveOwner [0]", GetFromDT(1)));
+        }
     }
 }
