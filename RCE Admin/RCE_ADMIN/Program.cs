@@ -18,7 +18,7 @@ namespace RCE_ADMIN
         static async Task Main() 
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-            string currentVersion = "v1.2";
+            string currentVersion = "v1.3";
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "AutoUpdateApp");
             HttpResponseMessage response = await client.GetAsync($"https://api.github.com/repos/KyleFardy/RCE-Admin/releases/latest");
