@@ -1,7 +1,7 @@
 # Welcome To RCE Admin!
 __This Is An Admin / Moderator Tool For Rust Console Servers__
 
-If You Need Any Help, Reach Out To Me Via Discord : **kylefardy**
+If You Need Any Help, Reach Out To Me Via Discord : [Discord Server](https://discord.com/invite/4wQyrjvCQS)
 <details>
   <summary>Screenshots</summary>
   
