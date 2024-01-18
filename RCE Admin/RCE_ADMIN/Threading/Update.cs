@@ -26,6 +26,7 @@ namespace RCE_ADMIN.Threading
             while (WebSocketsWrapper.IsConnected())
             {
                 WebSocketsWrapper.SendCommand("playerlist");
+                WebSocketsWrapper.SendCommand("serverinfo");
                 Thread.Sleep(TimeSpan.FromSeconds(10));
             }
         }

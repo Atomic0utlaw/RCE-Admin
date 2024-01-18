@@ -18,7 +18,6 @@ namespace RCE_ADMIN
         static async Task Main() 
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-            string currentVersion = "v1.3";
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "AutoUpdateApp");
             HttpResponseMessage response = await client.GetAsync($"https://api.github.com/repos/KyleFardy/RCE-Admin/releases/latest");
@@ -27,9 +26,9 @@ namespace RCE_ADMIN
             {
                 JObject releaseInfo = JObject.Parse(await response.Content.ReadAsStringAsync());
                 string latestVersion = releaseInfo["tag_name"].ToString();
-                if (latestVersion != currentVersion)
+                if (latestVersion != Settings.Version)
                 {
-                    XtraMessageBox.Show($"There Is An Update Available\n\nCurrent Version : {currentVersion}\nNew Version : {latestVersion}\n\nStarting Download Now!", "RCE Admin - Updater", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show($"There Is An Update Available\n\nCurrent Version : {Settings.Version}\nNew Version : {latestVersion}\n\nStarting Download Now!", "RCE Admin - Updater", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     using (var downloadClient = new HttpClient())
                     {
 

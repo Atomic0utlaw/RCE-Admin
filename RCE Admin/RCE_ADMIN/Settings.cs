@@ -7,7 +7,7 @@ namespace RCE_ADMIN
 {
     public class Settings
     {
-        private static readonly string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "config.json");
+        private static readonly string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "Settings/config.json");
 
         [JsonProperty("ServerAddress")]
         public string ServerAddress { get; set; }
@@ -24,15 +24,22 @@ namespace RCE_ADMIN
         [JsonProperty("KillFeedWebhookUrl")]
         public string KillFeedWebhookUrl { get; set; }
 
+        [JsonProperty("ChatWebhookUrl")]
+        public string ChatWebhookUrl { get; set; }
+
         [JsonProperty("InGameName")]
         public string InGameName { get; set; }
-        public Settings(string server_address, string server_port, string server_password, string events_webhook_url, string killfeed_webhook_url, string in_game_name)
+
+        [JsonProperty("Version")]
+        public static string Version = "v1.4";
+        public Settings(string server_address, string server_port, string server_password, string events_webhook_url, string killfeed_webhook_url, string chat_webhook_url, string in_game_name)
         {
             ServerAddress = server_address;
             ServerPort = server_port;
             ServerPassword = server_password;
             EventWebhookUrl = events_webhook_url;
             KillFeedWebhookUrl = killfeed_webhook_url;
+            ChatWebhookUrl = chat_webhook_url;
             InGameName = in_game_name;
         }
         public static void Write(Settings settings)
@@ -47,7 +54,7 @@ namespace RCE_ADMIN
             if (!File.Exists(FilePath))
             {
                 XtraMessageBox.Show("Couldn't Find A Configuration File, A New One Will Be Created", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Write(new Settings("localhost", "28016", "password", null, null, null));
+                Write(new Settings("localhost", "28016", "password", null, null, null, null));
             }
             var settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(FilePath));
             return settings;

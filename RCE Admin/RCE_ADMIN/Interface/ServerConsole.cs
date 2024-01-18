@@ -9,6 +9,8 @@ namespace RCE_ADMIN.Interface
         public static void AddNewEntry(string text)
         {
             if (text == "playerlist") { return; }
+            if (text.Contains("Hostname") || text.Contains("serverinfo")) { return; }
+            if (text.Contains("NOTE PANEL") || text.Contains("[CHAT]")) { return; }
             if (Form1.Console.InvokeRequired)
             {
                 Form1.Console.Invoke(new MethodInvoker(delegate {

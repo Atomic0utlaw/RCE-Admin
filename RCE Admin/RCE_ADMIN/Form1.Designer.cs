@@ -557,6 +557,8 @@ namespace RCE_ADMIN
             this.waterPuumpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wireToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.hazzyMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fullKitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.teleportToYouToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.teleporToThemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -583,9 +585,42 @@ namespace RCE_ADMIN
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl6 = new DevExpress.XtraEditors.GroupControl();
+            this.customKit2AddItemamnt = new DevExpress.XtraEditors.SpinEdit();
+            this.customKit2AddItem = new DevExpress.XtraEditors.TextEdit();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.customKit2Box = new DevExpress.XtraEditors.ListBoxControl();
+            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
+            this.customKit1AddItemamnt = new DevExpress.XtraEditors.SpinEdit();
+            this.customKit1AddItem = new DevExpress.XtraEditors.TextEdit();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.customKit1Box = new DevExpress.XtraEditors.ListBoxControl();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
-            this.hazzyMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fullKitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.latestVer = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.curVer = new DevExpress.XtraEditors.LabelControl();
+            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.richTextBoxChangelog = new System.Windows.Forms.RichTextBox();
+            this.groupControl7 = new DevExpress.XtraEditors.GroupControl();
+            this.customKit3AddItemamnt = new DevExpress.XtraEditors.SpinEdit();
+            this.customKit3AddItem = new DevExpress.XtraEditors.TextEdit();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.customKit3Box = new DevExpress.XtraEditors.ListBoxControl();
+            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton8 = new DevExpress.XtraEditors.SimpleButton();
+            this.kitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customKit1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customKit2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customKit3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chatWebhookUrl = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxConnection)).BeginInit();
             this.groupBoxConnection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).BeginInit();
@@ -611,6 +646,28 @@ namespace RCE_ADMIN
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
+            this.xtraTabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).BeginInit();
+            this.groupControl6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit2AddItemamnt.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit2AddItem.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit2Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
+            this.groupControl5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit1AddItemamnt.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit1AddItem.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit1Box)).BeginInit();
+            this.xtraTabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
+            this.groupControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
+            this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).BeginInit();
+            this.groupControl7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit3AddItemamnt.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit3AddItem.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit3Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chatWebhookUrl.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxConnection
@@ -643,6 +700,8 @@ namespace RCE_ADMIN
             // 
             // groupBoxCredentials
             // 
+            this.groupBoxCredentials.Controls.Add(this.chatWebhookUrl);
+            this.groupBoxCredentials.Controls.Add(this.labelControl12);
             this.groupBoxCredentials.Controls.Add(this.inGameName);
             this.groupBoxCredentials.Controls.Add(this.labelControl11);
             this.groupBoxCredentials.Controls.Add(this.killfeedsWebhookUrl);
@@ -660,7 +719,7 @@ namespace RCE_ADMIN
             this.groupBoxCredentials.Controls.Add(this.textBoxAddress);
             this.groupBoxCredentials.Location = new System.Drawing.Point(11, 3);
             this.groupBoxCredentials.Name = "groupBoxCredentials";
-            this.groupBoxCredentials.Size = new System.Drawing.Size(662, 263);
+            this.groupBoxCredentials.Size = new System.Drawing.Size(662, 304);
             this.groupBoxCredentials.TabIndex = 0;
             this.groupBoxCredentials.Text = "Credentials";
             // 
@@ -668,14 +727,14 @@ namespace RCE_ADMIN
             // 
             this.inGameName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.inGameName.Location = new System.Drawing.Point(136, 172);
+            this.inGameName.Location = new System.Drawing.Point(136, 198);
             this.inGameName.Name = "inGameName";
             this.inGameName.Size = new System.Drawing.Size(515, 20);
             this.inGameName.TabIndex = 11;
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(11, 174);
+            this.labelControl11.Location = new System.Drawing.Point(11, 200);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(95, 13);
             this.labelControl11.TabIndex = 12;
@@ -717,7 +776,7 @@ namespace RCE_ADMIN
             // 
             // HowToButton
             // 
-            this.HowToButton.Location = new System.Drawing.Point(417, 229);
+            this.HowToButton.Location = new System.Drawing.Point(417, 266);
             this.HowToButton.Name = "HowToButton";
             this.HowToButton.Size = new System.Drawing.Size(234, 23);
             this.HowToButton.TabIndex = 8;
@@ -726,7 +785,7 @@ namespace RCE_ADMIN
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(11, 229);
+            this.buttonSave.Location = new System.Drawing.Point(11, 266);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(87, 23);
             this.buttonSave.TabIndex = 7;
@@ -735,7 +794,7 @@ namespace RCE_ADMIN
             // 
             // checkBoxShowPassword
             // 
-            this.checkBoxShowPassword.Location = new System.Drawing.Point(198, 231);
+            this.checkBoxShowPassword.Location = new System.Drawing.Point(198, 268);
             this.checkBoxShowPassword.Name = "checkBoxShowPassword";
             this.checkBoxShowPassword.Properties.Caption = "Show Password";
             this.checkBoxShowPassword.Size = new System.Drawing.Size(101, 20);
@@ -896,14 +955,16 @@ namespace RCE_ADMIN
             this.dataGridViewPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPlayers.Size = new System.Drawing.Size(860, 481);
             this.dataGridViewPlayers.TabIndex = 0;
+            this.dataGridViewPlayers.SelectionChanged += new System.EventHandler(this.dataGridViewPlayers_SelectionChanged);
             this.dataGridViewPlayers.Click += new System.EventHandler(this.dataGridViewPlayers_Click);
             // 
             // Number
             // 
+            this.Number.FillWeight = 40F;
             this.Number.HeaderText = "#";
             this.Number.Name = "Number";
             this.Number.ReadOnly = true;
-            this.Number.Width = 50;
+            this.Number.Width = 40;
             // 
             // PlayerName
             // 
@@ -954,13 +1015,14 @@ namespace RCE_ADMIN
             this.toolStripMenuItem4,
             this.toolStripSeparator2,
             this.giveItemsToolStripMenuItem,
+            this.kitsToolStripMenuItem,
             this.toolStripMenuItem7,
             this.toolStripSeparator3,
             this.teleportToYouToolStripMenuItem,
             this.teleporToThemToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(140, 264);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(140, 286);
             // 
             // copyNameToolStripMenuItem
             // 
@@ -1187,7 +1249,7 @@ namespace RCE_ADMIN
             this.attachmentsToolStripMenuItem});
             this.weaponToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.weaponToolStripMenuItem.Name = "weaponToolStripMenuItem";
-            this.weaponToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.weaponToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.weaponToolStripMenuItem.Text = "Weapon";
             // 
             // boneClubToolStripMenuItem
@@ -1695,7 +1757,7 @@ namespace RCE_ADMIN
             this.smallWaterCatcherToolStripMenuItem});
             this.constructionToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.constructionToolStripMenuItem.Name = "constructionToolStripMenuItem";
-            this.constructionToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.constructionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.constructionToolStripMenuItem.Text = "Construction";
             // 
             // concreteBarricadeToolStripMenuItem
@@ -2129,7 +2191,7 @@ namespace RCE_ADMIN
             this.workbenchLevel3ToolStripMenuItem});
             this.itemsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
-            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.itemsToolStripMenuItem.Text = "Items";
             // 
             // barbequeToolStripMenuItem
@@ -2506,7 +2568,7 @@ namespace RCE_ADMIN
             this.woodToolStripMenuItem});
             this.resourcesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.resourcesToolStripMenuItem.Name = "resourcesToolStripMenuItem";
-            this.resourcesToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.resourcesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.resourcesToolStripMenuItem.Text = "Resources";
             // 
             // boneFragmentsToolStripMenuItem
@@ -2789,7 +2851,7 @@ namespace RCE_ADMIN
             this.woodenArmorToolStripMenuItem1});
             this.attireToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.attireToolStripMenuItem.Name = "attireToolStripMenuItem";
-            this.attireToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.attireToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.attireToolStripMenuItem.Text = "Attire";
             // 
             // hideToolStripMenuItem
@@ -3458,7 +3520,7 @@ namespace RCE_ADMIN
             this.suupplySignalToolStripMenuItem});
             this.toolToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
-            this.toolToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.toolToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.toolToolStripMenuItem.Text = "Tool";
             // 
             // salvagedAceToolStripMenuItem
@@ -3660,7 +3722,7 @@ namespace RCE_ADMIN
             this.medicalSyringeToolStripMenuItem});
             this.medicalToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.medicalToolStripMenuItem.Name = "medicalToolStripMenuItem";
-            this.medicalToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.medicalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.medicalToolStripMenuItem.Text = "Medical";
             // 
             // antiRadiationPillsToolStripMenuItem
@@ -3711,7 +3773,7 @@ namespace RCE_ADMIN
             this.meatToolStripMenuItem});
             this.foodToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.foodToolStripMenuItem.Name = "foodToolStripMenuItem";
-            this.foodToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.foodToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.foodToolStripMenuItem.Text = "Food";
             // 
             // eatablesToolStripMenuItem
@@ -4846,7 +4908,7 @@ namespace RCE_ADMIN
             this.speargunSpearToolStripMenuItem});
             this.ammunitionToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.ammunitionToolStripMenuItem.Name = "ammunitionToolStripMenuItem";
-            this.ammunitionToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.ammunitionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ammunitionToolStripMenuItem.Text = "Ammunition";
             // 
             // gLBuckshotToolStripMenuItem
@@ -5067,7 +5129,7 @@ namespace RCE_ADMIN
             this.homemadeLandmineToolStripMenuItem});
             this.trapsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.trapsToolStripMenuItem.Name = "trapsToolStripMenuItem";
-            this.trapsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.trapsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.trapsToolStripMenuItem.Text = "Traps";
             // 
             // flameTurretToolStripMenuItem
@@ -5125,7 +5187,7 @@ namespace RCE_ADMIN
             this.noteToolStripMenuItem});
             this.miscToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.miscToolStripMenuItem.Name = "miscToolStripMenuItem";
-            this.miscToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.miscToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.miscToolStripMenuItem.Text = "Misc";
             // 
             // doorKeyToolStripMenuItem
@@ -5215,7 +5277,7 @@ namespace RCE_ADMIN
             this.techTrshToolStripMenuItem});
             this.compoToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.compoToolStripMenuItem.Name = "compoToolStripMenuItem";
-            this.compoToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.compoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.compoToolStripMenuItem.Text = "Component";
             // 
             // fuseToolStripMenuItem
@@ -5392,7 +5454,7 @@ namespace RCE_ADMIN
             this.combinerToolStripMenuItem});
             this.electricalToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.electricalToolStripMenuItem.Name = "electricalToolStripMenuItem";
-            this.electricalToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.electricalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.electricalToolStripMenuItem.Text = "Electrical";
             // 
             // auutoToolStripMenuItem
@@ -5712,7 +5774,7 @@ namespace RCE_ADMIN
             this.wireToolToolStripMenuItem});
             this.moreElectricalToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.moreElectricalToolStripMenuItem.Name = "moreElectricalToolStripMenuItem";
-            this.moreElectricalToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.moreElectricalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.moreElectricalToolStripMenuItem.Text = "More Electricl";
             // 
             // memoryCellToolStripMenuItem
@@ -5851,6 +5913,24 @@ namespace RCE_ADMIN
             this.toolStripMenuItem7.Size = new System.Drawing.Size(139, 22);
             this.toolStripMenuItem7.Text = "Starts";
             // 
+            // hazzyMPToolStripMenuItem
+            // 
+            this.hazzyMPToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.hazzyMPToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.hazzyMPToolStripMenuItem.Name = "hazzyMPToolStripMenuItem";
+            this.hazzyMPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hazzyMPToolStripMenuItem.Text = "Hazzy MP";
+            this.hazzyMPToolStripMenuItem.Click += new System.EventHandler(this.hazzyMPToolStripMenuItem_Click);
+            // 
+            // fullKitToolStripMenuItem
+            // 
+            this.fullKitToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.fullKitToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.fullKitToolStripMenuItem.Name = "fullKitToolStripMenuItem";
+            this.fullKitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fullKitToolStripMenuItem.Text = "Full Kit";
+            this.fullKitToolStripMenuItem.Click += new System.EventHandler(this.fullKitToolStripMenuItem_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -5964,6 +6044,7 @@ namespace RCE_ADMIN
             this.xtraTabPage1,
             this.xtraTabPage2,
             this.xtraTabPage3,
+            this.xtraTabPage5,
             this.xtraTabPage4});
             // 
             // xtraTabPage1
@@ -6054,9 +6135,9 @@ namespace RCE_ADMIN
             this.labelControl8.Appearance.Options.UseTextOptions = true;
             this.labelControl8.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl8.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl8.Location = new System.Drawing.Point(602, 0);
+            this.labelControl8.Location = new System.Drawing.Point(590, 0);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(199, 21);
+            this.labelControl8.Size = new System.Drawing.Size(203, 21);
             this.labelControl8.TabIndex = 6;
             this.labelControl8.Text = "TIME CONNECTED";
             // 
@@ -6071,7 +6152,7 @@ namespace RCE_ADMIN
             this.labelControl7.Appearance.Options.UseTextOptions = true;
             this.labelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl7.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl7.Location = new System.Drawing.Point(451, 0);
+            this.labelControl7.Location = new System.Drawing.Point(439, 0);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(151, 21);
             this.labelControl7.TabIndex = 5;
@@ -6088,7 +6169,7 @@ namespace RCE_ADMIN
             this.labelControl6.Appearance.Options.UseTextOptions = true;
             this.labelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl6.Location = new System.Drawing.Point(402, 0);
+            this.labelControl6.Location = new System.Drawing.Point(390, 0);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(49, 21);
             this.labelControl6.TabIndex = 4;
@@ -6105,7 +6186,7 @@ namespace RCE_ADMIN
             this.labelControl5.Appearance.Options.UseTextOptions = true;
             this.labelControl5.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl5.Location = new System.Drawing.Point(227, 0);
+            this.labelControl5.Location = new System.Drawing.Point(215, 0);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(175, 21);
             this.labelControl5.TabIndex = 3;
@@ -6122,7 +6203,7 @@ namespace RCE_ADMIN
             this.labelControl4.Appearance.Options.UseTextOptions = true;
             this.labelControl4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl4.Location = new System.Drawing.Point(52, 0);
+            this.labelControl4.Location = new System.Drawing.Point(40, 0);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(175, 21);
             this.labelControl4.TabIndex = 2;
@@ -6141,38 +6222,391 @@ namespace RCE_ADMIN
             this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl3.Location = new System.Drawing.Point(0, 0);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(52, 21);
+            this.labelControl3.Size = new System.Drawing.Size(40, 21);
             this.labelControl3.TabIndex = 1;
             this.labelControl3.Text = "#";
             // 
+            // xtraTabPage5
+            // 
+            this.xtraTabPage5.Controls.Add(this.groupControl7);
+            this.xtraTabPage5.Controls.Add(this.groupControl6);
+            this.xtraTabPage5.Controls.Add(this.groupControl5);
+            this.xtraTabPage5.Name = "xtraTabPage5";
+            this.xtraTabPage5.Size = new System.Drawing.Size(860, 481);
+            this.xtraTabPage5.Text = "Custom Kits";
+            // 
+            // groupControl6
+            // 
+            this.groupControl6.Controls.Add(this.customKit2AddItemamnt);
+            this.groupControl6.Controls.Add(this.customKit2AddItem);
+            this.groupControl6.Controls.Add(this.panel2);
+            this.groupControl6.Controls.Add(this.customKit2Box);
+            this.groupControl6.Controls.Add(this.simpleButton5);
+            this.groupControl6.Controls.Add(this.simpleButton6);
+            this.groupControl6.Location = new System.Drawing.Point(310, 3);
+            this.groupControl6.Name = "groupControl6";
+            this.groupControl6.Size = new System.Drawing.Size(248, 475);
+            this.groupControl6.TabIndex = 13;
+            this.groupControl6.Text = "Custom Kit 2";
+            // 
+            // customKit2AddItemamnt
+            // 
+            this.customKit2AddItemamnt.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.customKit2AddItemamnt.Location = new System.Drawing.Point(166, 346);
+            this.customKit2AddItemamnt.MenuManager = this.barManager1;
+            this.customKit2AddItemamnt.Name = "customKit2AddItemamnt";
+            this.customKit2AddItemamnt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.customKit2AddItemamnt.Size = new System.Drawing.Size(71, 20);
+            this.customKit2AddItemamnt.TabIndex = 12;
+            // 
+            // customKit2AddItem
+            // 
+            this.customKit2AddItem.Location = new System.Drawing.Point(13, 346);
+            this.customKit2AddItem.MenuManager = this.barManager1;
+            this.customKit2AddItem.Name = "customKit2AddItem";
+            this.customKit2AddItem.Size = new System.Drawing.Size(147, 20);
+            this.customKit2AddItem.TabIndex = 11;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.panel2.Location = new System.Drawing.Point(13, 416);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(224, 10);
+            this.panel2.TabIndex = 5;
+            // 
+            // customKit2Box
+            // 
+            this.customKit2Box.Location = new System.Drawing.Point(13, 34);
+            this.customKit2Box.Name = "customKit2Box";
+            this.customKit2Box.Size = new System.Drawing.Size(224, 290);
+            this.customKit2Box.TabIndex = 1;
+            this.customKit2Box.MouseDown += new System.Windows.Forms.MouseEventHandler(this.customKit2Box_MouseDown);
+            // 
+            // simpleButton5
+            // 
+            this.simpleButton5.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton5.Appearance.Options.UseFont = true;
+            this.simpleButton5.Location = new System.Drawing.Point(13, 440);
+            this.simpleButton5.Name = "simpleButton5";
+            this.simpleButton5.Size = new System.Drawing.Size(224, 26);
+            this.simpleButton5.TabIndex = 10;
+            this.simpleButton5.Text = "Save Kit";
+            this.simpleButton5.Click += new System.EventHandler(this.simpleButton5_Click);
+            // 
+            // simpleButton6
+            // 
+            this.simpleButton6.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton6.Appearance.Options.UseFont = true;
+            this.simpleButton6.Location = new System.Drawing.Point(13, 372);
+            this.simpleButton6.Name = "simpleButton6";
+            this.simpleButton6.Size = new System.Drawing.Size(224, 26);
+            this.simpleButton6.TabIndex = 9;
+            this.simpleButton6.Text = "Add Item";
+            this.simpleButton6.Click += new System.EventHandler(this.simpleButton6_Click);
+            // 
+            // groupControl5
+            // 
+            this.groupControl5.Controls.Add(this.customKit1AddItemamnt);
+            this.groupControl5.Controls.Add(this.customKit1AddItem);
+            this.groupControl5.Controls.Add(this.panel1);
+            this.groupControl5.Controls.Add(this.customKit1Box);
+            this.groupControl5.Controls.Add(this.simpleButton4);
+            this.groupControl5.Controls.Add(this.simpleButton3);
+            this.groupControl5.Location = new System.Drawing.Point(12, 3);
+            this.groupControl5.Name = "groupControl5";
+            this.groupControl5.Size = new System.Drawing.Size(248, 475);
+            this.groupControl5.TabIndex = 4;
+            this.groupControl5.Text = "Custom Kit 1";
+            // 
+            // customKit1AddItemamnt
+            // 
+            this.customKit1AddItemamnt.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.customKit1AddItemamnt.Location = new System.Drawing.Point(166, 346);
+            this.customKit1AddItemamnt.MenuManager = this.barManager1;
+            this.customKit1AddItemamnt.Name = "customKit1AddItemamnt";
+            this.customKit1AddItemamnt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.customKit1AddItemamnt.Size = new System.Drawing.Size(71, 20);
+            this.customKit1AddItemamnt.TabIndex = 12;
+            // 
+            // customKit1AddItem
+            // 
+            this.customKit1AddItem.Location = new System.Drawing.Point(13, 346);
+            this.customKit1AddItem.MenuManager = this.barManager1;
+            this.customKit1AddItem.Name = "customKit1AddItem";
+            this.customKit1AddItem.Size = new System.Drawing.Size(147, 20);
+            this.customKit1AddItem.TabIndex = 11;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.panel1.Location = new System.Drawing.Point(13, 416);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(224, 10);
+            this.panel1.TabIndex = 5;
+            // 
+            // customKit1Box
+            // 
+            this.customKit1Box.Location = new System.Drawing.Point(13, 34);
+            this.customKit1Box.Name = "customKit1Box";
+            this.customKit1Box.Size = new System.Drawing.Size(224, 290);
+            this.customKit1Box.TabIndex = 1;
+            this.customKit1Box.MouseDown += new System.Windows.Forms.MouseEventHandler(this.customKit1Box_MouseDown);
+            // 
+            // simpleButton4
+            // 
+            this.simpleButton4.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton4.Appearance.Options.UseFont = true;
+            this.simpleButton4.Location = new System.Drawing.Point(13, 440);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(224, 26);
+            this.simpleButton4.TabIndex = 10;
+            this.simpleButton4.Text = "Save Kit";
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton3.Appearance.Options.UseFont = true;
+            this.simpleButton3.Location = new System.Drawing.Point(13, 372);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(224, 26);
+            this.simpleButton3.TabIndex = 9;
+            this.simpleButton3.Text = "Add Item";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            // 
             // xtraTabPage4
             // 
+            this.xtraTabPage4.Controls.Add(this.groupControl4);
+            this.xtraTabPage4.Controls.Add(this.groupControl3);
             this.xtraTabPage4.Name = "xtraTabPage4";
             this.xtraTabPage4.Size = new System.Drawing.Size(860, 481);
             this.xtraTabPage4.Text = "Info / Updates";
             // 
-            // hazzyMPToolStripMenuItem
+            // groupControl4
             // 
-            this.hazzyMPToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.hazzyMPToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.hazzyMPToolStripMenuItem.Name = "hazzyMPToolStripMenuItem";
-            this.hazzyMPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.hazzyMPToolStripMenuItem.Text = "Hazzy MP";
-            this.hazzyMPToolStripMenuItem.Click += new System.EventHandler(this.hazzyMPToolStripMenuItem_Click);
+            this.groupControl4.Controls.Add(this.simpleButton2);
+            this.groupControl4.Controls.Add(this.latestVer);
+            this.groupControl4.Controls.Add(this.simpleButton1);
+            this.groupControl4.Controls.Add(this.curVer);
+            this.groupControl4.Location = new System.Drawing.Point(12, 3);
+            this.groupControl4.Name = "groupControl4";
+            this.groupControl4.Size = new System.Drawing.Size(248, 206);
+            this.groupControl4.TabIndex = 3;
+            this.groupControl4.Text = "Version";
             // 
-            // fullKitToolStripMenuItem
+            // simpleButton2
             // 
-            this.fullKitToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.fullKitToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.fullKitToolStripMenuItem.Name = "fullKitToolStripMenuItem";
-            this.fullKitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fullKitToolStripMenuItem.Text = "Full Kit";
-            this.fullKitToolStripMenuItem.Click += new System.EventHandler(this.fullKitToolStripMenuItem_Click);
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Location = new System.Drawing.Point(13, 157);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(224, 34);
+            this.simpleButton2.TabIndex = 9;
+            this.simpleButton2.Text = "Discord Server";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
+            // latestVer
+            // 
+            this.latestVer.AllowHtmlString = true;
+            this.latestVer.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.latestVer.Appearance.Options.UseFont = true;
+            this.latestVer.Location = new System.Drawing.Point(15, 66);
+            this.latestVer.Name = "latestVer";
+            this.latestVer.Size = new System.Drawing.Size(148, 19);
+            this.latestVer.TabIndex = 5;
+            this.latestVer.Text = "Latest Version : <b>N/A</b>";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Location = new System.Drawing.Point(13, 113);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(224, 34);
+            this.simpleButton1.TabIndex = 8;
+            this.simpleButton1.Text = "Github Repo";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click_1);
+            // 
+            // curVer
+            // 
+            this.curVer.AllowHtmlString = true;
+            this.curVer.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.curVer.Appearance.Options.UseFont = true;
+            this.curVer.Location = new System.Drawing.Point(15, 41);
+            this.curVer.Name = "curVer";
+            this.curVer.Size = new System.Drawing.Size(160, 19);
+            this.curVer.TabIndex = 4;
+            this.curVer.Text = "Current Version : <b>N/A</b>";
+            // 
+            // groupControl3
+            // 
+            this.groupControl3.Controls.Add(this.richTextBoxChangelog);
+            this.groupControl3.Location = new System.Drawing.Point(266, 3);
+            this.groupControl3.Name = "groupControl3";
+            this.groupControl3.Size = new System.Drawing.Size(591, 473);
+            this.groupControl3.TabIndex = 2;
+            this.groupControl3.Text = "Changelog";
+            // 
+            // richTextBoxChangelog
+            // 
+            this.richTextBoxChangelog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.richTextBoxChangelog.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxChangelog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxChangelog.ForeColor = System.Drawing.Color.White;
+            this.richTextBoxChangelog.Location = new System.Drawing.Point(2, 27);
+            this.richTextBoxChangelog.Name = "richTextBoxChangelog";
+            this.richTextBoxChangelog.ReadOnly = true;
+            this.richTextBoxChangelog.Size = new System.Drawing.Size(587, 444);
+            this.richTextBoxChangelog.TabIndex = 1;
+            this.richTextBoxChangelog.Text = "";
+            // 
+            // groupControl7
+            // 
+            this.groupControl7.Controls.Add(this.customKit3AddItemamnt);
+            this.groupControl7.Controls.Add(this.customKit3AddItem);
+            this.groupControl7.Controls.Add(this.panel3);
+            this.groupControl7.Controls.Add(this.customKit3Box);
+            this.groupControl7.Controls.Add(this.simpleButton7);
+            this.groupControl7.Controls.Add(this.simpleButton8);
+            this.groupControl7.Location = new System.Drawing.Point(601, 3);
+            this.groupControl7.Name = "groupControl7";
+            this.groupControl7.Size = new System.Drawing.Size(248, 475);
+            this.groupControl7.TabIndex = 14;
+            this.groupControl7.Text = "Custom Kit 33";
+            // 
+            // customKit3AddItemamnt
+            // 
+            this.customKit3AddItemamnt.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.customKit3AddItemamnt.Location = new System.Drawing.Point(166, 346);
+            this.customKit3AddItemamnt.MenuManager = this.barManager1;
+            this.customKit3AddItemamnt.Name = "customKit3AddItemamnt";
+            this.customKit3AddItemamnt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.customKit3AddItemamnt.Size = new System.Drawing.Size(71, 20);
+            this.customKit3AddItemamnt.TabIndex = 12;
+            // 
+            // customKit3AddItem
+            // 
+            this.customKit3AddItem.Location = new System.Drawing.Point(13, 346);
+            this.customKit3AddItem.MenuManager = this.barManager1;
+            this.customKit3AddItem.Name = "customKit3AddItem";
+            this.customKit3AddItem.Size = new System.Drawing.Size(147, 20);
+            this.customKit3AddItem.TabIndex = 11;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.panel3.Location = new System.Drawing.Point(13, 416);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(224, 10);
+            this.panel3.TabIndex = 5;
+            // 
+            // customKit3Box
+            // 
+            this.customKit3Box.Location = new System.Drawing.Point(13, 34);
+            this.customKit3Box.Name = "customKit3Box";
+            this.customKit3Box.Size = new System.Drawing.Size(224, 290);
+            this.customKit3Box.TabIndex = 1;
+            this.customKit3Box.MouseDown += new System.Windows.Forms.MouseEventHandler(this.customKit3Box_MouseDown);
+            // 
+            // simpleButton7
+            // 
+            this.simpleButton7.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton7.Appearance.Options.UseFont = true;
+            this.simpleButton7.Location = new System.Drawing.Point(13, 440);
+            this.simpleButton7.Name = "simpleButton7";
+            this.simpleButton7.Size = new System.Drawing.Size(224, 26);
+            this.simpleButton7.TabIndex = 10;
+            this.simpleButton7.Text = "Save Kit";
+            this.simpleButton7.Click += new System.EventHandler(this.simpleButton7_Click);
+            // 
+            // simpleButton8
+            // 
+            this.simpleButton8.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton8.Appearance.Options.UseFont = true;
+            this.simpleButton8.Location = new System.Drawing.Point(13, 372);
+            this.simpleButton8.Name = "simpleButton8";
+            this.simpleButton8.Size = new System.Drawing.Size(224, 26);
+            this.simpleButton8.TabIndex = 9;
+            this.simpleButton8.Text = "Add Item";
+            this.simpleButton8.Click += new System.EventHandler(this.simpleButton8_Click);
+            // 
+            // kitsToolStripMenuItem
+            // 
+            this.kitsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.customKit1ToolStripMenuItem,
+            this.customKit2ToolStripMenuItem,
+            this.customKit3ToolStripMenuItem});
+            this.kitsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.kitsToolStripMenuItem.Name = "kitsToolStripMenuItem";
+            this.kitsToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.kitsToolStripMenuItem.Text = "Kits";
+            // 
+            // customKit1ToolStripMenuItem
+            // 
+            this.customKit1ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.customKit1ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.customKit1ToolStripMenuItem.Name = "customKit1ToolStripMenuItem";
+            this.customKit1ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customKit1ToolStripMenuItem.Text = "Custom Kit 1";
+            this.customKit1ToolStripMenuItem.Click += new System.EventHandler(this.customKit1ToolStripMenuItem_Click_1);
+            // 
+            // customKit2ToolStripMenuItem
+            // 
+            this.customKit2ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.customKit2ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.customKit2ToolStripMenuItem.Name = "customKit2ToolStripMenuItem";
+            this.customKit2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customKit2ToolStripMenuItem.Text = "Custom Kit 2";
+            this.customKit2ToolStripMenuItem.Click += new System.EventHandler(this.customKit2ToolStripMenuItem_Click);
+            // 
+            // customKit3ToolStripMenuItem
+            // 
+            this.customKit3ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.customKit3ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.customKit3ToolStripMenuItem.Name = "customKit3ToolStripMenuItem";
+            this.customKit3ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customKit3ToolStripMenuItem.Text = "Custom Kit 3";
+            this.customKit3ToolStripMenuItem.Click += new System.EventHandler(this.customKit3ToolStripMenuItem_Click);
+            // 
+            // chatWebhookUrl
+            // 
+            this.chatWebhookUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chatWebhookUrl.Location = new System.Drawing.Point(136, 172);
+            this.chatWebhookUrl.Name = "chatWebhookUrl";
+            this.chatWebhookUrl.Size = new System.Drawing.Size(515, 20);
+            this.chatWebhookUrl.TabIndex = 13;
+            // 
+            // labelControl12
+            // 
+            this.labelControl12.Location = new System.Drawing.Point(11, 174);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(93, 13);
+            this.labelControl12.TabIndex = 14;
+            this.labelControl12.Text = "Chat Webhook URL";
             // 
             // Form1
             // 
             this.ActiveGlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.Appearance.ForeColor = System.Drawing.Color.White;
+            this.Appearance.Options.UseBackColor = true;
             this.Appearance.Options.UseForeColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -6187,6 +6621,7 @@ namespace RCE_ADMIN
             this.InactiveGlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.SurfaceMaterial = DevExpress.XtraEditors.SurfaceMaterial.Acrylic;
             this.Text = "RCE Admin";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
@@ -6219,6 +6654,29 @@ namespace RCE_ADMIN
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
             this.xtraTabPage3.ResumeLayout(false);
+            this.xtraTabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).EndInit();
+            this.groupControl6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customKit2AddItemamnt.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit2AddItem.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit2Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
+            this.groupControl5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customKit1AddItemamnt.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit1AddItem.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit1Box)).EndInit();
+            this.xtraTabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
+            this.groupControl4.ResumeLayout(false);
+            this.groupControl4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
+            this.groupControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).EndInit();
+            this.groupControl7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customKit3AddItemamnt.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit3AddItem.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit3Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chatWebhookUrl.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -6264,12 +6722,6 @@ namespace RCE_ADMIN
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Number;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PlayerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SteamId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ping;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeConnected;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem kickPlayerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem banPlayerToolStripMenuItem;
@@ -6776,5 +7228,46 @@ namespace RCE_ADMIN
         private System.Windows.Forms.ToolStripMenuItem teleporToThemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hazzyMPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fullKitToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox richTextBoxChangelog;
+        private DevExpress.XtraEditors.GroupControl groupControl4;
+        private DevExpress.XtraEditors.LabelControl curVer;
+        private DevExpress.XtraEditors.GroupControl groupControl3;
+        private DevExpress.XtraEditors.LabelControl latestVer;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PlayerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SteamId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ping;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeConnected;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage5;
+        private DevExpress.XtraEditors.GroupControl groupControl5;
+        private System.Windows.Forms.Panel panel1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton4;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.ListBoxControl customKit1Box;
+        private DevExpress.XtraEditors.GroupControl groupControl6;
+        private DevExpress.XtraEditors.SpinEdit customKit2AddItemamnt;
+        private DevExpress.XtraEditors.TextEdit customKit2AddItem;
+        private System.Windows.Forms.Panel panel2;
+        private DevExpress.XtraEditors.ListBoxControl customKit2Box;
+        private DevExpress.XtraEditors.SimpleButton simpleButton5;
+        private DevExpress.XtraEditors.SimpleButton simpleButton6;
+        private DevExpress.XtraEditors.SpinEdit customKit1AddItemamnt;
+        private DevExpress.XtraEditors.TextEdit customKit1AddItem;
+        private DevExpress.XtraEditors.GroupControl groupControl7;
+        private DevExpress.XtraEditors.SpinEdit customKit3AddItemamnt;
+        private DevExpress.XtraEditors.TextEdit customKit3AddItem;
+        private System.Windows.Forms.Panel panel3;
+        private DevExpress.XtraEditors.ListBoxControl customKit3Box;
+        private DevExpress.XtraEditors.SimpleButton simpleButton7;
+        private DevExpress.XtraEditors.SimpleButton simpleButton8;
+        private System.Windows.Forms.ToolStripMenuItem kitsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customKit1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customKit2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customKit3ToolStripMenuItem;
+        private DevExpress.XtraEditors.TextEdit chatWebhookUrl;
+        private DevExpress.XtraEditors.LabelControl labelControl12;
     }
 }

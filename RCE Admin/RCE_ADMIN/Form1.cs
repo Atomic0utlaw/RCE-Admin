@@ -8,6 +8,16 @@ using RCE_ADMIN.WebSockets;
 using System.Diagnostics;
 using DevExpress.Utils;
 using System.Drawing;
+using System.Net.Http;
+using System.Threading.Tasks;
+using static DevExpress.XtraEditors.RoundedSkinPanel;
+using Newtonsoft.Json;
+using System.IO;
+using System.Net;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Collections.Generic;
+using static RCE_ADMIN.Form1;
 
 namespace RCE_ADMIN
 {
@@ -18,6 +28,7 @@ namespace RCE_ADMIN
         public static RichTextBox Console;
         public static BarStaticItem Counter;
         public static DataGridView Players;
+        public static int selectedPlayer = -1;
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +40,42 @@ namespace RCE_ADMIN
                 contextMenuStrip1.Show(this, new Point(e.X, e.Y));
             }
         }
-        private void Form1_Load(object sender, EventArgs e)
+
+        static async Task<string[]> GetLatestReleaseChangelog()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Add("User-Agent", "RCE Admin");
+                var releaseResponse = await httpClient.GetStringAsync("https://api.github.com/repos/KyleFardy/RCE-Admin/releases/latest");
+                var releaseData = JsonConvert.DeserializeObject<ReleaseData>(releaseResponse);
+                return new string[] { releaseData.Version, releaseData.Body };
+            }
+        }
+        public class ServerInfo
+        {
+            [JsonProperty("Hostname")]
+            public static string Hostname { get; set; }
+
+            [JsonProperty("Players")]
+            public static int Players { get; set; }
+
+            [JsonProperty("Queued")]
+            public static int Queued { get; set; }
+
+            [JsonProperty("Joining")]
+            public static int Joining { get; set; }
+
+            [JsonProperty("GameTime")]
+            public static string GameTime { get; set; }
+        }
+        public class ReleaseData
+        {
+            [JsonProperty("body")]
+            public string Body { get; set; }
+            [JsonProperty("tag_name")]
+            public string Version { get; set; }
+        }
+        private async void Form1_Load(object sender, EventArgs e)
         {
             Settings = Settings.Read();
             Status = toolStripStatusLabelRight;
@@ -41,8 +87,52 @@ namespace RCE_ADMIN
             textBoxPassword.Text = Settings.ServerPassword;
             eventsWebhookUrl.Text = Settings.EventWebhookUrl;
             killfeedsWebhookUrl.Text = Settings.KillFeedWebhookUrl;
+            chatWebhookUrl.Text = Settings.ChatWebhookUrl;
             inGameName.Text = Settings.InGameName;
             ServerConsole.Disable();
+            string[] update_info = await GetLatestReleaseChangelog();
+            richTextBoxChangelog.Text = update_info[1];
+            curVer.Text = string.Format("Current Version : <br>{0}</b>", Settings.Version);
+            latestVer.Text = string.Format("Latest Version : <br>{0}</b>", update_info[0]);
+            LoadKit(1);
+            LoadKit(2);
+            LoadKit(3);
+        }
+        private void LoadKit(int kit)
+        {
+            string json = string.Format("Kits/custom_kit{0}.json", kit);
+            List<Kit> custom_kit = new List<Kit>();
+            if (File.Exists(json))
+            {
+                custom_kit = JsonConvert.DeserializeObject<List<Kit>>(File.ReadAllText(json));
+            }
+            switch (kit)
+            {
+                case 1:
+                    customKit1Box.Items.Clear();
+                    break;
+                case 2:
+                    customKit2Box.Items.Clear();
+                    break;
+                case 3:
+                    customKit2Box.Items.Clear();
+                    break;
+            }
+            foreach (var itemData in custom_kit)
+            {
+                switch (kit)
+                {
+                    case 1:
+                        customKit1Box.Items.Add($"{itemData.Item}:{itemData.Amount}");
+                    break;
+                    case 2:
+                        customKit2Box.Items.Add($"{itemData.Item}:{itemData.Amount}");
+                    break;
+                    case 3:
+                        customKit2Box.Items.Add($"{itemData.Item}:{itemData.Amount}");
+                    break;
+                }
+            }
         }
         public void CopyFromDT(int i)
         {
@@ -59,10 +149,10 @@ namespace RCE_ADMIN
             }
             catch (NullReferenceException)
             {
-                XtraMessageBox.Show("Refresh The List To Obtain The Clients Information!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                XtraMessageBox.Show("Refresh The List To Obtain The Clients Information!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
-        public string GetFromDT(int i)
+        public static string GetFromDT(int i)
         {
             try
             {
@@ -72,14 +162,22 @@ namespace RCE_ADMIN
                 }
                 else
                 {
-                    XtraMessageBox.Show("Refresh The List To Obtain The Clients Information!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    XtraMessageBox.Show("Refresh The List To Obtain The Clients Information!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     return null;
                 }
             }
             catch (NullReferenceException)
             {
-                XtraMessageBox.Show("Refresh The List To Obtain The Clients Information!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                XtraMessageBox.Show("Refresh The List To Obtain The Clients Information!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return null;
+            }
+        }
+
+        public void SetInfo()
+        {
+            if (!string.IsNullOrEmpty(ServerInfo.Hostname))
+            {
+                this.Text = "RCE Admin - " + ServerInfo.Hostname;
             }
         }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -93,17 +191,20 @@ namespace RCE_ADMIN
         }
         public void save_settings()
         {
-            Settings.Write(new Settings(textBoxAddress.Text, textBoxPort.Text, textBoxPassword.Text, eventsWebhookUrl.Text, killfeedsWebhookUrl.Text, inGameName.Text));
+            Settings.Write(new Settings(textBoxAddress.Text, textBoxPort.Text, textBoxPassword.Text, eventsWebhookUrl.Text, killfeedsWebhookUrl.Text, chatWebhookUrl.Text, inGameName.Text));
             Settings = Settings.Read();
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
             save_settings();
         }
-        private void buttonConnect_Click(object sender, EventArgs e)
+        private async void buttonConnect_Click(object sender, EventArgs e)
         {
             WebSocketsWrapper.Connect();
+            await Task.Delay(3000);
+            SetInfo();
         }
+
         private void buttonDisconnect_Click(object sender, EventArgs e)
         {
             WebSocketsWrapper.Disconnect();
@@ -1891,62 +1992,62 @@ namespace RCE_ADMIN
 
         private void gLBuckshotToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.grenadelauncher.buckshot");
+            give_item_to_player(GetFromDT(1), "ammo.grenadelauncher.buckshot", 32);
         }
 
         private void hEGrenadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.grenadelauncher.he");
+            give_item_to_player(GetFromDT(1), "ammo.grenadelauncher.he", 32);
         }
 
         private void mmSmoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.grenadelauncher.smoke");
+            give_item_to_player(GetFromDT(1), "ammo.grenadelauncher.smoke", 32);
         }
 
         private void handmadeShellToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.handmade.shell");
+            give_item_to_player(GetFromDT(1), "ammo.handmade.shell", 64);
         }
 
         private void nailguunNailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.nailgun.nails");
+            give_item_to_player(GetFromDT(1), "ammo.nailgun.nails", 64);
         }
 
         private void pistolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.pistol");
+            give_item_to_player(GetFromDT(1), "ammo.pistol", 128);
         }
 
         private void incendiaryPistolBulletToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.pistol.fire");
+            give_item_to_player(GetFromDT(1), "ammo.pistol.fire", 128);
         }
 
         private void highVelocityPistolBluuuetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.pistol.hv");
+            give_item_to_player(GetFromDT(1), "ammo.pistol.hv", 128);
         }
 
         private void rifleAmmoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.rifle");
+            give_item_to_player(GetFromDT(1), "ammo.rifle", 128);
         }
 
         private void explosive556RifleAmmoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.rifle.explosive");
+            give_item_to_player(GetFromDT(1), "ammo.rifle.explosive", 128);
         }
 
         private void hV556RifleAmmoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.rifle.hv");
+            give_item_to_player(GetFromDT(1), "ammo.rifle.hv", 128);
         }
 
         private void inccccccendiary556RifleAmmoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.rifle.incendiary");
+            give_item_to_player(GetFromDT(1), "ammo.rifle.incendiary", 128);
         }
 
         private void rocketToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1966,37 +2067,37 @@ namespace RCE_ADMIN
 
         private void guageBuckshotToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.shotgun");
+            give_item_to_player(GetFromDT(1), "ammo.shotgun", 64);
         }
 
         private void guuageIncendiaryShellToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.shotgun.fire");
+            give_item_to_player(GetFromDT(1), "ammo.shotgun.fire", 64);
         }
 
         private void guageSluugToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "ammo.shotgun.slug");
+            give_item_to_player(GetFromDT(1), "ammo.shotgun.slug", 64);
         }
 
         private void boneArrowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "arrow.bone");
+            give_item_to_player(GetFromDT(1), "arrow.bone", 64);
         }
 
         private void fireArrowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "arrow.fire");
+            give_item_to_player(GetFromDT(1), "arrow.fire", 64);
         }
 
         private void highVelocityArrowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "arrow.hv");
+            give_item_to_player(GetFromDT(1), "arrow.hv", 64);
         }
 
         private void woodenArrowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            give_item_to_player(GetFromDT(1), "arrow.wooden");
+            give_item_to_player(GetFromDT(1), "arrow.wooden", 64);
         }
 
         private void speargunSpearToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2388,7 +2489,39 @@ namespace RCE_ADMIN
             else
                 XtraMessageBox.Show(string.Format("Cant Teleport To {0} As You Have Not Set Your In Game Name!", GetFromDT(1)), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
+        class PSNRequest
+        {
+            public string onlineId;
+            public bool reserveIfAvailable = false;
+        }
+        public static string CheckPSN(string PSN)
+        {
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://accounts.api.playstation.com/api/v1/accounts/onlineIds");
+            req.ContentType = "application/json";
+            req.Method = WebRequestMethods.Http.Post;
+            PSNRequest o = new PSNRequest();
+            o.onlineId = PSN;
+            string json = JsonConvert.SerializeObject(o);
+            using (var streamWriter = new StreamWriter(req.GetRequestStream()))
+            {
+                streamWriter.Write(json);
+            }
+            try
+            {
+                var resp = (HttpWebResponse)req.GetResponse();
+                return null;
+            }
+            catch (WebException e)
+            {
+                using (WebResponse resp = e.Response)
+                {
+                    using (var reader = new StreamReader(resp.GetResponseStream()))
+                    {
+                        return reader.ReadToEnd();
+                    }
+                }
+            }
+        }
         private void hazzyMPToolStripMenuItem_Click(object sender, EventArgs e)
         {
             give_item_to_player(GetFromDT(1), "hazmatsuit");
@@ -2402,7 +2535,25 @@ namespace RCE_ADMIN
             give_item_to_player(GetFromDT(1), "chainsaw");
             give_item_to_player(GetFromDT(1), "lowgradefuel", 50);
         }
-
+        public static void give_full_kit(string name)
+        {
+            give_item_to_player(name, "rifle.ak");
+            give_item_to_player(name, "weapon.mod.holosight");
+            give_item_to_player(name, "weapon.mod.lasersight");
+            give_item_to_player(name, "ammo.rifle", 128);
+            give_item_to_player(name, "syringe.medical", 6);
+            give_item_to_player(name, "bandage", 10);
+            give_item_to_player(name, "metal.facemask");
+            give_item_to_player(name, "metal.plate.torso");
+            give_item_to_player(name, "tactical.gloves");
+            give_item_to_player(name, "pants");
+            give_item_to_player(name, "hoodie");
+            give_item_to_player(name, "roadsign.kilt");
+            give_item_to_player(name, "shoes.boots");
+            give_item_to_player(name, "jackhammer");
+            give_item_to_player(name, "chainsaw");
+            give_item_to_player(name, "lowgradefuel", 50);
+        }
         private void fullKitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             give_item_to_player(GetFromDT(1), "rifle.ak");
@@ -2421,6 +2572,316 @@ namespace RCE_ADMIN
             give_item_to_player(GetFromDT(1), "jackhammer");
             give_item_to_player(GetFromDT(1), "chainsaw");
             give_item_to_player(GetFromDT(1), "lowgradefuel", 50);
+        }
+
+        private void simpleButton1_Click_1(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/KyleFardy/RCE-Admin");
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://discord.com/invite/4wQyrjvCQS");
+        }
+
+        private void dataGridViewPlayers_SelectionChanged(object sender, EventArgs e)
+        {
+            if (Players.SelectedRows.Count > 0)
+            {
+                selectedPlayer = Players.SelectedRows[0].Index;
+            }
+        }
+
+        private void customKit1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        public class RustItem
+        {
+            public string Id { get; set; }
+            public string Image { get; set; }
+            public string DisplayName { get; set; }
+            public string ShortName { get; set; }
+            public string Category { get; set; }
+        }
+        static string FetchRustItems()
+        {
+            using (WebClient webClient = new WebClient())
+            {
+                try
+                {
+                    return webClient.DownloadString("https://cdn.void-dev.co/items.json");
+                }
+                catch
+                {
+                    return string.Empty;
+                }
+            }
+        }
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            if (customKit1AddItemamnt.Value <= 0)
+            {
+                XtraMessageBox.Show("Please Enter An Amount!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                string jsonContent = FetchRustItems();
+                if (!string.IsNullOrEmpty(jsonContent))
+                {
+                    List<RustItem> items = JsonConvert.DeserializeObject<List<RustItem>>(jsonContent);
+                    RustItem matchingItem = items.Find(item => item.ShortName == customKit1AddItem.Text);
+                    if (matchingItem != null)
+                    {
+                        customKit1Box.Items.Add(
+                            string.Format(
+                                "{0}:{1}",
+                                matchingItem.ShortName,
+                                customKit1AddItemamnt.Value
+                            )
+                        );
+                        customKit1AddItem.Text = string.Empty;
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show(string.Format("{0} Is Not A Valid Item!", customKit1AddItem.Text), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                    XtraMessageBox.Show("There Was An Error Fetching The Rust Item List!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void customKit1Box_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int selectedIndex = customKit1Box.IndexFromPoint(e.Location);
+                if (selectedIndex != ListBox.NoMatches)
+                {
+                    customKit1Box.Items.RemoveAt(selectedIndex);
+                }
+            }
+        }
+
+        private void customKit2Box_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int selectedIndex = customKit2Box.IndexFromPoint(e.Location);
+                if (selectedIndex != ListBox.NoMatches)
+                {
+                    customKit2Box.Items.RemoveAt(selectedIndex);
+                }
+            }
+        }
+
+        private void customKit3Box_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int selectedIndex = customKit3Box.IndexFromPoint(e.Location);
+                if (selectedIndex != ListBox.NoMatches)
+                {
+                    customKit3Box.Items.RemoveAt(selectedIndex);
+                }
+            }
+        }
+
+        private void simpleButton6_Click(object sender, EventArgs e)
+        {
+            if (customKit2AddItemamnt.Value <= 0)
+            {
+                XtraMessageBox.Show("Please Enter An Amount!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                string jsonContent = FetchRustItems();
+                if (!string.IsNullOrEmpty(jsonContent))
+                {
+                    List<RustItem> items = JsonConvert.DeserializeObject<List<RustItem>>(jsonContent);
+                    RustItem matchingItem = items.Find(item => item.ShortName == customKit2AddItem.Text);
+                    if (matchingItem != null)
+                    {
+                        customKit2Box.Items.Add(
+                            string.Format(
+                                "{0}:{1}",
+                                matchingItem.ShortName,
+                                customKit2AddItemamnt.Value
+                            )
+                        );
+                        customKit2AddItem.Text = string.Empty;
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show(string.Format("{0} Is Not A Valid Item!", customKit2AddItem.Text), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                    XtraMessageBox.Show("There Was An Error Fetching The Rust Item List!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void simpleButton7_Click(object sender, EventArgs e)
+        {
+            if (customKit3AddItemamnt.Value <= 0)
+            {
+                XtraMessageBox.Show("Please Enter An Amount!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                string jsonContent = FetchRustItems();
+                if (!string.IsNullOrEmpty(jsonContent))
+                {
+                    List<RustItem> items = JsonConvert.DeserializeObject<List<RustItem>>(jsonContent);
+                    RustItem matchingItem = items.Find(item => item.ShortName == customKit3AddItem.Text);
+                    if (matchingItem != null)
+                    {
+                        customKit3Box.Items.Add(
+                            string.Format(
+                                "{0}:{1}",
+                                matchingItem.ShortName,
+                                customKit3AddItemamnt.Value
+                            )
+                        );
+                        customKit3AddItem.Text = string.Empty;
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show(string.Format("{0} Is Not A Valid Item!", customKit3AddItem.Text), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                    XtraMessageBox.Show("There Was An Error Fetching The Rust Item List!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public class Kit
+        {
+            public string Item { get; set; }
+            public int Amount { get; set; }
+        }
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            List<Kit> itemsData = new List<Kit>();
+            foreach (var listBoxItem in customKit1Box.Items)
+            {
+                string[] parts = listBoxItem.ToString().Split(':');
+                if (parts.Length == 2)
+                {
+                    if (int.TryParse(parts[1], out int amount))
+                    {
+                        itemsData.Add(new Kit { Item = parts[0], Amount = amount });
+                    }
+                }
+            }
+            string jsonContent = JsonConvert.SerializeObject(itemsData, Formatting.Indented);
+            File.WriteAllText("Kits/custom_kit1.json", jsonContent);
+            XtraMessageBox.Show("Custom Kit 1 Has Been Saved!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void simpleButton5_Click(object sender, EventArgs e)
+        {
+            List<Kit> itemsData = new List<Kit>();
+            foreach (var listBoxItem in customKit2Box.Items)
+            {
+                string[] parts = listBoxItem.ToString().Split(':');
+                if (parts.Length == 2)
+                {
+                    if (int.TryParse(parts[1], out int amount))
+                    {
+                        itemsData.Add(new Kit { Item = parts[0], Amount = amount });
+                    }
+                }
+            }
+            string jsonContent = JsonConvert.SerializeObject(itemsData, Formatting.Indented);
+            File.WriteAllText("Kits/custom_kit2.json", jsonContent);
+            XtraMessageBox.Show("Custom Kit 2 Has Been Saved!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void simpleButton8_Click(object sender, EventArgs e)
+        {
+            List<Kit> itemsData = new List<Kit>();
+            foreach (var listBoxItem in customKit3Box.Items)
+            {
+                string[] parts = listBoxItem.ToString().Split(':');
+                if (parts.Length == 2)
+                {
+                    if (int.TryParse(parts[1], out int amount))
+                    {
+                        itemsData.Add(new Kit { Item = parts[0], Amount = amount });
+                    }
+                }
+            }
+            string jsonContent = JsonConvert.SerializeObject(itemsData, Formatting.Indented);
+            File.WriteAllText("Kits/custom_kit3.json", jsonContent);
+            XtraMessageBox.Show("Custom Kit 3 Has Been Saved!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void customKit1ToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            if (TryLoadKit("Kits/custom_kit1.json", out List<Kit> custom_kit))
+            {
+                foreach (var itemData in custom_kit)
+                {
+                    give_item_to_player(GetFromDT(1), itemData.Item, itemData.Amount);
+                }
+            }
+            else
+            {
+                XtraMessageBox.Show("Failed To Give Custom Kit 1, Have You Created One?", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        bool TryLoadKit(string filePath, out List<Kit> kits)
+        {
+            kits = new List<Kit>();
+
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    return false;
+                }
+
+                string jsonContent = File.ReadAllText(filePath);
+                kits = JsonConvert.DeserializeObject<List<Kit>>(jsonContent);
+
+                return kits != null && kits.Count > 0;
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error Reading Kit!\nReason : {ex.Message}", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        private void customKit2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (TryLoadKit("Kits/custom_kit2.json", out List<Kit> custom_kit))
+            {
+                foreach (var itemData in custom_kit)
+                {
+                    give_item_to_player(GetFromDT(1), itemData.Item, itemData.Amount);
+                }
+            }
+            else
+            {
+                XtraMessageBox.Show("Failed To Give Custom Kit 2, Have You Created One?", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void customKit3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (TryLoadKit("Kits/custom_kit3.json", out List<Kit> custom_kit))
+            {
+                foreach (var itemData in custom_kit)
+                {
+                    give_item_to_player(GetFromDT(1), itemData.Item, itemData.Amount);
+                }
+            }
+            else
+            {
+                XtraMessageBox.Show("Failed To Give Custom Kit 3, Have You Created One?", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ using DevExpress.Internal.WinApi.Windows.UI.Notifications;
 using System.Net;
 using System.Collections.Specialized;
 using System.Collections.Generic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace RCE_ADMIN.WebSockets
 {
@@ -90,13 +91,24 @@ namespace RCE_ADMIN.WebSockets
         static void SendDiscordWebhook(bool killfeed, string message)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-
             Settings = Settings.Read();
             using (var client = new WebClient())
             {
                 var data = new NameValueCollection();
-                data["content"] = string.Format("{0}{1}__Feeds Provided By ***RCE Admin***__", message, Environment.NewLine);
+                data["content"] = string.Format("{0}{1}Feeds Provided By [**RCE Admin**](https://github.com/KyleFardy/RCE-Admin/)", message, Environment.NewLine);
                 var response = client.UploadValues(killfeed ? Settings.KillFeedWebhookUrl : Settings.EventWebhookUrl, "POST", data);
+                string responseText = Encoding.UTF8.GetString(response);
+            }
+        }
+        static void SendDiscordWebhookChat(string message)
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            Settings = Settings.Read();
+            using (var client = new WebClient())
+            {
+                var data = new NameValueCollection();
+                data["content"] = message;
+                var response = client.UploadValues(Settings.ChatWebhookUrl, "POST", data);
                 string responseText = Encoding.UTF8.GetString(response);
             }
         }
@@ -181,6 +193,30 @@ namespace RCE_ADMIN.WebSockets
             }
             return input;
         }
+        static string RemoveColorTags(string input)
+        {
+            string pattern = @"<color\s*=\s*#?[0-9A-Fa-f]{6}|[A-Za-z]+>";
+            string result = Regex.Replace(input, pattern, string.Empty);
+            return result.Replace("</color>", "").Replace("</>", "").Replace("</ ", " ").Replace(">", "");
+        }
+        public static double ConvertToDouble(string Value)
+        {
+            if (Value == null)
+            {
+                return 0;
+            }
+            else
+            {
+                double OutVal;
+                double.TryParse(Value, out OutVal);
+
+                if (double.IsNaN(OutVal) || double.IsInfinity(OutVal))
+                {
+                    return 0;
+                }
+                return OutVal;
+            }
+        }
         private static void WebSocket_OnMessage(object sender, MessageEventArgs e)
         {
             var packet = JsonConvert.DeserializeObject<Packet>(e.Data);
@@ -194,6 +230,59 @@ namespace RCE_ADMIN.WebSockets
 
             Settings = Settings.Read();
 
+            //server info
+            string sinfo = packet.Message;
+            if (sinfo.Contains("Hostname"))
+            {
+                var server_info = JsonConvert.DeserializeAnonymousType(sinfo, new { 
+                    Hostname = "", 
+                    Players = 0,
+                    Queued = 0,
+                    Joining = 0,
+                    GameTime = ""
+                });
+                Form1.ServerInfo.Hostname = RemoveColorTags(server_info.Hostname);
+                Form1.ServerInfo.Players = server_info.Players;
+                Form1.ServerInfo.Queued = server_info.Queued;
+                Form1.ServerInfo.Joining = server_info.Joining;
+
+                double totalSecondsInDay = 24 * 60 * 60;
+                double totalSeconds = ConvertToDouble(server_info.GameTime) * totalSecondsInDay;
+                DateTime midnight = DateTime.Today;
+                DateTime full24HourTime = midnight.AddSeconds(totalSeconds);
+                Form1.ServerInfo.GameTime = full24HourTime.ToString("HH:mm:ss");
+            }
+
+            //in game chat (via notes)
+            string notemsg = packet.Message;
+            if (notemsg.Contains("[NOTE PANEL]"))
+            {
+                string pattern = @"\[ (.*?) \] changed name from \[ (.*?) \] to \[ (.*?) \]";
+                Match match = Regex.Match(notemsg.Replace("\n", "").Replace("\r", "").Replace("[NOTE PANEL] ", ""), pattern);
+                if (match.Success)
+                {
+                    string username = match.Groups[1].Value;
+                    string oldMessage = match.Groups[2].Value;
+                    string newMessage = match.Groups[3].Value;
+                    if (!string.Equals(oldMessage, newMessage) && !string.IsNullOrEmpty(newMessage) && !string.IsNullOrWhiteSpace(newMessage))
+                    {
+                        if (!string.IsNullOrEmpty(Settings.ChatWebhookUrl))
+                        {
+                            SendDiscordWebhookChat(string.Format("**{0}** : {1}", username, newMessage));
+                        }
+                        SendCommand(string.Format("global.say <color=green>[CHAT]</color> <color=#153eff>{0}</color> : {1}", username, newMessage));
+
+                    }
+                    else
+                    {
+                        ServerConsole.AddNewEntry("No match found or old and new names are the same.");
+                    }
+                }
+                else
+                {
+                    ServerConsole.AddNewEntry("No match found.");
+                }
+            }
 
             //events logging (in game)
             string ievent_ = packet.Message;

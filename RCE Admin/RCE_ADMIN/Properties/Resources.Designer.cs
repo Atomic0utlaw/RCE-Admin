@@ -63,9 +63,29 @@ namespace RCE_ADMIN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PSN {
+            get {
+                object obj = ResourceManager.GetObject("PSN", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap rust_logo {
             get {
                 object obj = ResourceManager.GetObject("rust_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap XBOX {
+            get {
+                object obj = ResourceManager.GetObject("XBOX", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

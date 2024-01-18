@@ -113,6 +113,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\XBOX.png" />
+    <None Include="Resources\PSN.png" />
     <Content Include="rust_logo.ico" />
     <None Include="Resources\rust_logo.png" />
     <EmbeddedResource Include="Dependencies\Newtonsoft.Json.dll" />
