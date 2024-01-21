@@ -6,6 +6,7 @@ using RCE_ADMIN.WebSockets.CustomPackets;
 using static System.Net.Mime.MediaTypeNames;
 using DevExpress.XtraEditors.SyntaxEditor;
 using Newtonsoft.Json;
+using RCE_ADMIN.Callbacks;
 
 namespace RCE_ADMIN.Interface
 {
@@ -27,6 +28,8 @@ namespace RCE_ADMIN.Interface
             for (var i = 0; i < list.Count; i++)
             {
                 var player = list[i];
+                var playerRepository = new PlayerDatabase("players.db");
+                playerRepository.SavePlayer(player);
                 TimeSpan timeSpan = TimeSpan.FromSeconds(player.ConnectedSeconds);
                 AddNewEntry(i + 1, player.DisplayName, (int)player.Health, player.Address, player.Ping, string.Format("{0} Hour(s), {1} Min(s), {2} Sec(s)", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds));
             }

@@ -31,6 +31,7 @@ namespace RCE_ADMIN
         public string InGameName { get; set; }
 
         [JsonProperty("Version")]
+        [JsonIgnore]
         public static string Version = "v1.5";
         public Settings(string server_address, string server_port, string server_password, string events_webhook_url, string killfeed_webhook_url, string chat_webhook_url, string in_game_name)
         {
@@ -44,9 +45,13 @@ namespace RCE_ADMIN
         }
         public static void Write(Settings settings)
         {
+            Settings.Version = "v1.5";
+
             if (!File.Exists(FilePath))
                 File.Create(FilePath).Close();
+
             File.WriteAllText(FilePath, JsonConvert.SerializeObject(settings, Formatting.Indented));
+
             XtraMessageBox.Show("Successfully Saved Settings!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         public static Settings Read()
