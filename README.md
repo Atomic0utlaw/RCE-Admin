@@ -5,11 +5,15 @@ If You Need Any Help, Reach Out To Me Via Discord : [Discord Server](https://dis
 <details>
   <summary>Screenshots</summary>
   
-  ![SS1](https://img001.prntscr.com/file/img001/FfsLtM9aRzCr-FO06I3_5g.jpeg)
+  ![SS1](https://i.ibb.co/NV2B7v4/Screenshot-1.png)
   
-  ![SS2](https://img001.prntscr.com/file/img001/1ricdIiETa2a8zaori7l3g.jpeg)
+  ![SS2](https://i.ibb.co/pZ8tXY5/Screenshot-2.png)
   
-  ![SS3](https://img001.prntscr.com/file/img001/LR0_PkVWRYedjHtyBm1I2Q.jpeg)
+  ![SS3](https://i.ibb.co/LS2XWb4/Screenshot-3.png)
+  
+  ![SS4](https://i.ibb.co/wQ1DqSF/Screenshot-4.png)
+  
+  ![SS5](https://i.ibb.co/vQNJkLL/Screenshot-5.png)
 </details>
 
 Tool Connects Via RCON,
