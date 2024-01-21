@@ -18,6 +18,11 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Collections.Generic;
 using static RCE_ADMIN.Form1;
+using System.Data.SQLite;
+using Dapper;
+using DevExpress.Utils.Extensions;
+using System.Data;
+using RCE_ADMIN.Callbacks;
 
 namespace RCE_ADMIN
 {
@@ -97,6 +102,12 @@ namespace RCE_ADMIN
             LoadKit(1);
             LoadKit(2);
             LoadKit(3);
+            load_players();
+        }
+        public void load_players()
+        {
+
+            new PlayerDatabase("players.db").GetAllPlayers(allPlayersDataTable);
         }
         private void LoadKit(int kit)
         {
@@ -2724,36 +2735,21 @@ namespace RCE_ADMIN
 
         private void simpleButton7_Click(object sender, EventArgs e)
         {
-            if (customKit3AddItemamnt.Value <= 0)
+            List<Kit> itemsData = new List<Kit>();
+            foreach (var listBoxItem in customKit3Box.Items)
             {
-                XtraMessageBox.Show("Please Enter An Amount!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                string jsonContent = FetchRustItems();
-                if (!string.IsNullOrEmpty(jsonContent))
+                string[] parts = listBoxItem.ToString().Split(':');
+                if (parts.Length == 2)
                 {
-                    List<RustItem> items = JsonConvert.DeserializeObject<List<RustItem>>(jsonContent);
-                    RustItem matchingItem = items.Find(item => item.ShortName == customKit3AddItem.Text);
-                    if (matchingItem != null)
+                    if (int.TryParse(parts[1], out int amount))
                     {
-                        customKit3Box.Items.Add(
-                            string.Format(
-                                "{0}:{1}",
-                                matchingItem.ShortName,
-                                customKit3AddItemamnt.Value
-                            )
-                        );
-                        customKit3AddItem.Text = string.Empty;
-                    }
-                    else
-                    {
-                        XtraMessageBox.Show(string.Format("{0} Is Not A Valid Item!", customKit3AddItem.Text), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        itemsData.Add(new Kit { Item = parts[0], Amount = amount });
                     }
                 }
-                else
-                    XtraMessageBox.Show("There Was An Error Fetching The Rust Item List!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            string jsonContent = JsonConvert.SerializeObject(itemsData, Formatting.Indented);
+            File.WriteAllText("Kits/custom_kit3.json", jsonContent);
+            XtraMessageBox.Show("Custom Kit 3 Has Been Saved!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         public class Kit
         {
@@ -2800,21 +2796,36 @@ namespace RCE_ADMIN
 
         private void simpleButton8_Click(object sender, EventArgs e)
         {
-            List<Kit> itemsData = new List<Kit>();
-            foreach (var listBoxItem in customKit3Box.Items)
+            if (customKit3AddItemamnt.Value <= 0)
             {
-                string[] parts = listBoxItem.ToString().Split(':');
-                if (parts.Length == 2)
+                XtraMessageBox.Show("Please Enter An Amount!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                string jsonContent = FetchRustItems();
+                if (!string.IsNullOrEmpty(jsonContent))
                 {
-                    if (int.TryParse(parts[1], out int amount))
+                    List<RustItem> items = JsonConvert.DeserializeObject<List<RustItem>>(jsonContent);
+                    RustItem matchingItem = items.Find(item => item.ShortName == customKit3AddItem.Text);
+                    if (matchingItem != null)
                     {
-                        itemsData.Add(new Kit { Item = parts[0], Amount = amount });
+                        customKit3Box.Items.Add(
+                            string.Format(
+                                "{0}:{1}",
+                                matchingItem.ShortName,
+                                customKit3AddItemamnt.Value
+                            )
+                        );
+                        customKit3AddItem.Text = string.Empty;
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show(string.Format("{0} Is Not A Valid Item!", customKit3AddItem.Text), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                else
+                    XtraMessageBox.Show("There Was An Error Fetching The Rust Item List!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            string jsonContent = JsonConvert.SerializeObject(itemsData, Formatting.Indented);
-            File.WriteAllText("Kits/custom_kit3.json", jsonContent);
-            XtraMessageBox.Show("Custom Kit 3 Has Been Saved!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void customKit1ToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -2882,6 +2893,11 @@ namespace RCE_ADMIN
             {
                 XtraMessageBox.Show("Failed To Give Custom Kit 3, Have You Created One?", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void simpleButton9_Click(object sender, EventArgs e)
+        {
+            load_players();
         }
     }
 }

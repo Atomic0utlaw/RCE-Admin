@@ -31,14 +31,20 @@ namespace RCE_ADMIN
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxConnection = new DevExpress.XtraEditors.GroupControl();
             this.buttonDisconnect = new DevExpress.XtraEditors.SimpleButton();
             this.buttonConnect = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxCredentials = new DevExpress.XtraEditors.GroupControl();
+            this.chatWebhookUrl = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.inGameName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.killfeedsWebhookUrl = new DevExpress.XtraEditors.TextEdit();
@@ -556,6 +562,10 @@ namespace RCE_ADMIN
             this.reactiveTargetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waterPuumpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wireToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customKit1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customKit2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customKit3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.hazzyMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fullKitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -579,6 +589,21 @@ namespace RCE_ADMIN
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl8 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
+            this.allPlayersDataTable = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.simpleButton9 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -586,6 +611,13 @@ namespace RCE_ADMIN
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl7 = new DevExpress.XtraEditors.GroupControl();
+            this.customKit3AddItemamnt = new DevExpress.XtraEditors.SpinEdit();
+            this.customKit3AddItem = new DevExpress.XtraEditors.TextEdit();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.customKit3Box = new DevExpress.XtraEditors.ListBoxControl();
+            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton8 = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl6 = new DevExpress.XtraEditors.GroupControl();
             this.customKit2AddItemamnt = new DevExpress.XtraEditors.SpinEdit();
             this.customKit2AddItem = new DevExpress.XtraEditors.TextEdit();
@@ -608,23 +640,11 @@ namespace RCE_ADMIN
             this.curVer = new DevExpress.XtraEditors.LabelControl();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.richTextBoxChangelog = new System.Windows.Forms.RichTextBox();
-            this.groupControl7 = new DevExpress.XtraEditors.GroupControl();
-            this.customKit3AddItemamnt = new DevExpress.XtraEditors.SpinEdit();
-            this.customKit3AddItem = new DevExpress.XtraEditors.TextEdit();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.customKit3Box = new DevExpress.XtraEditors.ListBoxControl();
-            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton8 = new DevExpress.XtraEditors.SimpleButton();
-            this.kitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customKit1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customKit2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customKit3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chatWebhookUrl = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxConnection)).BeginInit();
             this.groupBoxConnection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).BeginInit();
             this.groupBoxCredentials.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chatWebhookUrl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inGameName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.killfeedsWebhookUrl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventsWebhookUrl.Properties)).BeginInit();
@@ -646,7 +666,15 @@ namespace RCE_ADMIN
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl8)).BeginInit();
+            this.groupControl8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.allPlayersDataTable)).BeginInit();
             this.xtraTabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).BeginInit();
+            this.groupControl7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit3AddItemamnt.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit3AddItem.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit3Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).BeginInit();
             this.groupControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customKit2AddItemamnt.Properties)).BeginInit();
@@ -662,12 +690,6 @@ namespace RCE_ADMIN
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).BeginInit();
-            this.groupControl7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customKit3AddItemamnt.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customKit3AddItem.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customKit3Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chatWebhookUrl.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxConnection
@@ -722,6 +744,23 @@ namespace RCE_ADMIN
             this.groupBoxCredentials.Size = new System.Drawing.Size(662, 304);
             this.groupBoxCredentials.TabIndex = 0;
             this.groupBoxCredentials.Text = "Credentials";
+            // 
+            // chatWebhookUrl
+            // 
+            this.chatWebhookUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chatWebhookUrl.Location = new System.Drawing.Point(136, 172);
+            this.chatWebhookUrl.Name = "chatWebhookUrl";
+            this.chatWebhookUrl.Size = new System.Drawing.Size(515, 20);
+            this.chatWebhookUrl.TabIndex = 13;
+            // 
+            // labelControl12
+            // 
+            this.labelControl12.Location = new System.Drawing.Point(11, 174);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(93, 13);
+            this.labelControl12.TabIndex = 14;
+            this.labelControl12.Text = "Chat Webhook URL";
             // 
             // inGameName
             // 
@@ -901,14 +940,14 @@ namespace RCE_ADMIN
             this.dataGridViewPlayers.AllowUserToResizeRows = false;
             this.dataGridViewPlayers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.dataGridViewPlayers.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPlayers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Number,
@@ -917,35 +956,35 @@ namespace RCE_ADMIN
             this.Ping,
             this.Address,
             this.TimeConnected});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewPlayers.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewPlayers.Dock = System.Windows.Forms.DockStyle.Fill;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewPlayers.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewPlayers.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridViewPlayers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.dataGridViewPlayers.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewPlayers.MultiSelect = false;
             this.dataGridViewPlayers.Name = "dataGridViewPlayers";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewPlayers.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridViewPlayers.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridViewPlayers.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewPlayers.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewPlayers.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.dataGridViewPlayers.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -953,7 +992,7 @@ namespace RCE_ADMIN
             this.dataGridViewPlayers.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.dataGridViewPlayers.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
             this.dataGridViewPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPlayers.Size = new System.Drawing.Size(860, 481);
+            this.dataGridViewPlayers.Size = new System.Drawing.Size(860, 212);
             this.dataGridViewPlayers.TabIndex = 0;
             this.dataGridViewPlayers.SelectionChanged += new System.EventHandler(this.dataGridViewPlayers_SelectionChanged);
             this.dataGridViewPlayers.Click += new System.EventHandler(this.dataGridViewPlayers_Click);
@@ -1249,7 +1288,7 @@ namespace RCE_ADMIN
             this.attachmentsToolStripMenuItem});
             this.weaponToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.weaponToolStripMenuItem.Name = "weaponToolStripMenuItem";
-            this.weaponToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.weaponToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.weaponToolStripMenuItem.Text = "Weapon";
             // 
             // boneClubToolStripMenuItem
@@ -1564,7 +1603,7 @@ namespace RCE_ADMIN
             this.waterpipeShotguunToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.waterpipeShotguunToolStripMenuItem.Name = "waterpipeShotguunToolStripMenuItem";
             this.waterpipeShotguunToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.waterpipeShotguunToolStripMenuItem.Text = "Waterpipe Shotguun";
+            this.waterpipeShotguunToolStripMenuItem.Text = "Waterpipe Shotgun";
             this.waterpipeShotguunToolStripMenuItem.Click += new System.EventHandler(this.waterpipeShotguunToolStripMenuItem_Click);
             // 
             // customSMGToolStripMenuItem
@@ -1757,7 +1796,7 @@ namespace RCE_ADMIN
             this.smallWaterCatcherToolStripMenuItem});
             this.constructionToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.constructionToolStripMenuItem.Name = "constructionToolStripMenuItem";
-            this.constructionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.constructionToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.constructionToolStripMenuItem.Text = "Construction";
             // 
             // concreteBarricadeToolStripMenuItem
@@ -2191,7 +2230,7 @@ namespace RCE_ADMIN
             this.workbenchLevel3ToolStripMenuItem});
             this.itemsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
-            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.itemsToolStripMenuItem.Text = "Items";
             // 
             // barbequeToolStripMenuItem
@@ -2335,7 +2374,7 @@ namespace RCE_ADMIN
             this.hitchTrouughToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.hitchTrouughToolStripMenuItem.Name = "hitchTrouughToolStripMenuItem";
             this.hitchTrouughToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.hitchTrouughToolStripMenuItem.Text = "Hitch && Trouugh";
+            this.hitchTrouughToolStripMenuItem.Text = "Hitch & Trough";
             this.hitchTrouughToolStripMenuItem.Click += new System.EventHandler(this.hitchTrouughToolStripMenuItem_Click);
             // 
             // kayakToolStripMenuItem
@@ -2505,7 +2544,7 @@ namespace RCE_ADMIN
             this.waterPuurifierToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.waterPuurifierToolStripMenuItem.Name = "waterPuurifierToolStripMenuItem";
             this.waterPuurifierToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.waterPuurifierToolStripMenuItem.Text = "Water Puurifier";
+            this.waterPuurifierToolStripMenuItem.Text = "Water Purifier";
             this.waterPuurifierToolStripMenuItem.Click += new System.EventHandler(this.waterPuurifierToolStripMenuItem_Click);
             // 
             // workbenchLevel1ToolStripMenuItem
@@ -2568,7 +2607,7 @@ namespace RCE_ADMIN
             this.woodToolStripMenuItem});
             this.resourcesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.resourcesToolStripMenuItem.Name = "resourcesToolStripMenuItem";
-            this.resourcesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resourcesToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.resourcesToolStripMenuItem.Text = "Resources";
             // 
             // boneFragmentsToolStripMenuItem
@@ -2851,7 +2890,7 @@ namespace RCE_ADMIN
             this.woodenArmorToolStripMenuItem1});
             this.attireToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.attireToolStripMenuItem.Name = "attireToolStripMenuItem";
-            this.attireToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.attireToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.attireToolStripMenuItem.Text = "Attire";
             // 
             // hideToolStripMenuItem
@@ -3520,7 +3559,7 @@ namespace RCE_ADMIN
             this.suupplySignalToolStripMenuItem});
             this.toolToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
-            this.toolToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.toolToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.toolToolStripMenuItem.Text = "Tool";
             // 
             // salvagedAceToolStripMenuItem
@@ -3722,7 +3761,7 @@ namespace RCE_ADMIN
             this.medicalSyringeToolStripMenuItem});
             this.medicalToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.medicalToolStripMenuItem.Name = "medicalToolStripMenuItem";
-            this.medicalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.medicalToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.medicalToolStripMenuItem.Text = "Medical";
             // 
             // antiRadiationPillsToolStripMenuItem
@@ -3773,7 +3812,7 @@ namespace RCE_ADMIN
             this.meatToolStripMenuItem});
             this.foodToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.foodToolStripMenuItem.Name = "foodToolStripMenuItem";
-            this.foodToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.foodToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.foodToolStripMenuItem.Text = "Food";
             // 
             // eatablesToolStripMenuItem
@@ -4487,7 +4526,7 @@ namespace RCE_ADMIN
             this.buurnedToolStripMenuItem});
             this.bearToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.bearToolStripMenuItem.Name = "bearToolStripMenuItem";
-            this.bearToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.bearToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.bearToolStripMenuItem.Text = "Bear";
             // 
             // rawToolStripMenuItem
@@ -4495,7 +4534,7 @@ namespace RCE_ADMIN
             this.rawToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.rawToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.rawToolStripMenuItem.Name = "rawToolStripMenuItem";
-            this.rawToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.rawToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.rawToolStripMenuItem.Text = "Raw";
             this.rawToolStripMenuItem.Click += new System.EventHandler(this.rawToolStripMenuItem_Click);
             // 
@@ -4504,7 +4543,7 @@ namespace RCE_ADMIN
             this.cookedToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.cookedToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.cookedToolStripMenuItem.Name = "cookedToolStripMenuItem";
-            this.cookedToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.cookedToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.cookedToolStripMenuItem.Text = "Cooked";
             this.cookedToolStripMenuItem.Click += new System.EventHandler(this.cookedToolStripMenuItem_Click);
             // 
@@ -4513,8 +4552,8 @@ namespace RCE_ADMIN
             this.buurnedToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.buurnedToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.buurnedToolStripMenuItem.Name = "buurnedToolStripMenuItem";
-            this.buurnedToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.buurnedToolStripMenuItem.Text = "Buurned";
+            this.buurnedToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.buurnedToolStripMenuItem.Text = "Burned";
             this.buurnedToolStripMenuItem.Click += new System.EventHandler(this.buurnedToolStripMenuItem_Click);
             // 
             // chickenToolStripMenuItem
@@ -4526,7 +4565,7 @@ namespace RCE_ADMIN
             this.burnedToolStripMenuItem});
             this.chickenToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.chickenToolStripMenuItem.Name = "chickenToolStripMenuItem";
-            this.chickenToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.chickenToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.chickenToolStripMenuItem.Text = "Chicken";
             // 
             // rawToolStripMenuItem1
@@ -4565,7 +4604,7 @@ namespace RCE_ADMIN
             this.buurnedToolStripMenuItem1});
             this.dearToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.dearToolStripMenuItem.Name = "dearToolStripMenuItem";
-            this.dearToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.dearToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.dearToolStripMenuItem.Text = "Dear";
             // 
             // rawToolStripMenuItem2
@@ -4573,7 +4612,7 @@ namespace RCE_ADMIN
             this.rawToolStripMenuItem2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.rawToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
             this.rawToolStripMenuItem2.Name = "rawToolStripMenuItem2";
-            this.rawToolStripMenuItem2.Size = new System.Drawing.Size(119, 22);
+            this.rawToolStripMenuItem2.Size = new System.Drawing.Size(115, 22);
             this.rawToolStripMenuItem2.Text = "Raw";
             this.rawToolStripMenuItem2.Click += new System.EventHandler(this.rawToolStripMenuItem2_Click);
             // 
@@ -4582,7 +4621,7 @@ namespace RCE_ADMIN
             this.cookedToolStripMenuItem2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.cookedToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
             this.cookedToolStripMenuItem2.Name = "cookedToolStripMenuItem2";
-            this.cookedToolStripMenuItem2.Size = new System.Drawing.Size(119, 22);
+            this.cookedToolStripMenuItem2.Size = new System.Drawing.Size(115, 22);
             this.cookedToolStripMenuItem2.Text = "Cooked";
             this.cookedToolStripMenuItem2.Click += new System.EventHandler(this.cookedToolStripMenuItem2_Click);
             // 
@@ -4591,8 +4630,8 @@ namespace RCE_ADMIN
             this.buurnedToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.buurnedToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
             this.buurnedToolStripMenuItem1.Name = "buurnedToolStripMenuItem1";
-            this.buurnedToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
-            this.buurnedToolStripMenuItem1.Text = "Buurned";
+            this.buurnedToolStripMenuItem1.Size = new System.Drawing.Size(115, 22);
+            this.buurnedToolStripMenuItem1.Text = "Burned";
             this.buurnedToolStripMenuItem1.Click += new System.EventHandler(this.buurnedToolStripMenuItem1_Click);
             // 
             // fishToolStripMenuItem
@@ -4612,7 +4651,7 @@ namespace RCE_ADMIN
             this.ywlloePerchToolStripMenuItem});
             this.fishToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.fishToolStripMenuItem.Name = "fishToolStripMenuItem";
-            this.fishToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.fishToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.fishToolStripMenuItem.Text = "Fish";
             // 
             // anchovyToolStripMenuItem
@@ -4724,7 +4763,7 @@ namespace RCE_ADMIN
             this.buurnedToolStripMenuItem4});
             this.horseToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
             this.horseToolStripMenuItem1.Name = "horseToolStripMenuItem1";
-            this.horseToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
+            this.horseToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
             this.horseToolStripMenuItem1.Text = "Horse";
             // 
             // rawToolStripMenuItem3
@@ -4771,15 +4810,15 @@ namespace RCE_ADMIN
             this.buurnedToolStripMenuItem2});
             this.huumanToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.huumanToolStripMenuItem.Name = "huumanToolStripMenuItem";
-            this.huumanToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
-            this.huumanToolStripMenuItem.Text = "Huuman";
+            this.huumanToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.huumanToolStripMenuItem.Text = "Human";
             // 
             // rawToolStripMenuItem4
             // 
             this.rawToolStripMenuItem4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.rawToolStripMenuItem4.ForeColor = System.Drawing.Color.White;
             this.rawToolStripMenuItem4.Name = "rawToolStripMenuItem4";
-            this.rawToolStripMenuItem4.Size = new System.Drawing.Size(119, 22);
+            this.rawToolStripMenuItem4.Size = new System.Drawing.Size(115, 22);
             this.rawToolStripMenuItem4.Text = "Raw";
             this.rawToolStripMenuItem4.Click += new System.EventHandler(this.rawToolStripMenuItem4_Click);
             // 
@@ -4788,7 +4827,7 @@ namespace RCE_ADMIN
             this.cToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.cToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.cToolStripMenuItem.Name = "cToolStripMenuItem";
-            this.cToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.cToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.cToolStripMenuItem.Text = "Cooked";
             this.cToolStripMenuItem.Click += new System.EventHandler(this.cToolStripMenuItem_Click);
             // 
@@ -4797,8 +4836,8 @@ namespace RCE_ADMIN
             this.buurnedToolStripMenuItem2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.buurnedToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
             this.buurnedToolStripMenuItem2.Name = "buurnedToolStripMenuItem2";
-            this.buurnedToolStripMenuItem2.Size = new System.Drawing.Size(119, 22);
-            this.buurnedToolStripMenuItem2.Text = "Buurned";
+            this.buurnedToolStripMenuItem2.Size = new System.Drawing.Size(115, 22);
+            this.buurnedToolStripMenuItem2.Text = "Burned";
             this.buurnedToolStripMenuItem2.Click += new System.EventHandler(this.buurnedToolStripMenuItem2_Click);
             // 
             // boarToolStripMenuItem
@@ -4810,7 +4849,7 @@ namespace RCE_ADMIN
             this.buurnedToolStripMenuItem3});
             this.boarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.boarToolStripMenuItem.Name = "boarToolStripMenuItem";
-            this.boarToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.boarToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.boarToolStripMenuItem.Text = "Boar";
             // 
             // rawToolStripMenuItem5
@@ -4849,7 +4888,7 @@ namespace RCE_ADMIN
             this.burnedToolStripMenuItem2});
             this.wolfToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.wolfToolStripMenuItem.Name = "wolfToolStripMenuItem";
-            this.wolfToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.wolfToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.wolfToolStripMenuItem.Text = "Wolf";
             // 
             // rawToolStripMenuItem6
@@ -4908,7 +4947,7 @@ namespace RCE_ADMIN
             this.speargunSpearToolStripMenuItem});
             this.ammunitionToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.ammunitionToolStripMenuItem.Name = "ammunitionToolStripMenuItem";
-            this.ammunitionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ammunitionToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.ammunitionToolStripMenuItem.Text = "Ammunition";
             // 
             // gLBuckshotToolStripMenuItem
@@ -4953,7 +4992,7 @@ namespace RCE_ADMIN
             this.nailguunNailsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.nailguunNailsToolStripMenuItem.Name = "nailguunNailsToolStripMenuItem";
             this.nailguunNailsToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.nailguunNailsToolStripMenuItem.Text = "Nailguun Nails";
+            this.nailguunNailsToolStripMenuItem.Text = "Nailgun Nails";
             this.nailguunNailsToolStripMenuItem.Click += new System.EventHandler(this.nailguunNailsToolStripMenuItem_Click);
             // 
             // pistolToolStripMenuItem
@@ -5129,7 +5168,7 @@ namespace RCE_ADMIN
             this.homemadeLandmineToolStripMenuItem});
             this.trapsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.trapsToolStripMenuItem.Name = "trapsToolStripMenuItem";
-            this.trapsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.trapsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.trapsToolStripMenuItem.Text = "Traps";
             // 
             // flameTurretToolStripMenuItem
@@ -5187,7 +5226,7 @@ namespace RCE_ADMIN
             this.noteToolStripMenuItem});
             this.miscToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.miscToolStripMenuItem.Name = "miscToolStripMenuItem";
-            this.miscToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.miscToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.miscToolStripMenuItem.Text = "Misc";
             // 
             // doorKeyToolStripMenuItem
@@ -5277,7 +5316,7 @@ namespace RCE_ADMIN
             this.techTrshToolStripMenuItem});
             this.compoToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.compoToolStripMenuItem.Name = "compoToolStripMenuItem";
-            this.compoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.compoToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.compoToolStripMenuItem.Text = "Component";
             // 
             // fuseToolStripMenuItem
@@ -5454,7 +5493,7 @@ namespace RCE_ADMIN
             this.combinerToolStripMenuItem});
             this.electricalToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.electricalToolStripMenuItem.Name = "electricalToolStripMenuItem";
-            this.electricalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.electricalToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.electricalToolStripMenuItem.Text = "Electrical";
             // 
             // auutoToolStripMenuItem
@@ -5544,7 +5583,7 @@ namespace RCE_ADMIN
             this.buuttonToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.buuttonToolStripMenuItem.Name = "buuttonToolStripMenuItem";
             this.buuttonToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.buuttonToolStripMenuItem.Text = "Buutton";
+            this.buuttonToolStripMenuItem.Text = "Button";
             this.buuttonToolStripMenuItem.Click += new System.EventHandler(this.buuttonToolStripMenuItem_Click);
             // 
             // couunterToolStripMenuItem
@@ -5774,7 +5813,7 @@ namespace RCE_ADMIN
             this.wireToolToolStripMenuItem});
             this.moreElectricalToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.moreElectricalToolStripMenuItem.Name = "moreElectricalToolStripMenuItem";
-            this.moreElectricalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.moreElectricalToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.moreElectricalToolStripMenuItem.Text = "More Electricl";
             // 
             // memoryCellToolStripMenuItem
@@ -5903,6 +5942,44 @@ namespace RCE_ADMIN
             this.wireToolToolStripMenuItem.Text = "Wire Tool";
             this.wireToolToolStripMenuItem.Click += new System.EventHandler(this.wireToolToolStripMenuItem_Click);
             // 
+            // kitsToolStripMenuItem
+            // 
+            this.kitsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.customKit1ToolStripMenuItem,
+            this.customKit2ToolStripMenuItem,
+            this.customKit3ToolStripMenuItem});
+            this.kitsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.kitsToolStripMenuItem.Name = "kitsToolStripMenuItem";
+            this.kitsToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.kitsToolStripMenuItem.Text = "Kits";
+            // 
+            // customKit1ToolStripMenuItem
+            // 
+            this.customKit1ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.customKit1ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.customKit1ToolStripMenuItem.Name = "customKit1ToolStripMenuItem";
+            this.customKit1ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.customKit1ToolStripMenuItem.Text = "Custom Kit 1";
+            this.customKit1ToolStripMenuItem.Click += new System.EventHandler(this.customKit1ToolStripMenuItem_Click_1);
+            // 
+            // customKit2ToolStripMenuItem
+            // 
+            this.customKit2ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.customKit2ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.customKit2ToolStripMenuItem.Name = "customKit2ToolStripMenuItem";
+            this.customKit2ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.customKit2ToolStripMenuItem.Text = "Custom Kit 2";
+            this.customKit2ToolStripMenuItem.Click += new System.EventHandler(this.customKit2ToolStripMenuItem_Click);
+            // 
+            // customKit3ToolStripMenuItem
+            // 
+            this.customKit3ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.customKit3ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.customKit3ToolStripMenuItem.Name = "customKit3ToolStripMenuItem";
+            this.customKit3ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.customKit3ToolStripMenuItem.Text = "Custom Kit 3";
+            this.customKit3ToolStripMenuItem.Click += new System.EventHandler(this.customKit3ToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -5918,7 +5995,7 @@ namespace RCE_ADMIN
             this.hazzyMPToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.hazzyMPToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.hazzyMPToolStripMenuItem.Name = "hazzyMPToolStripMenuItem";
-            this.hazzyMPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hazzyMPToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.hazzyMPToolStripMenuItem.Text = "Hazzy MP";
             this.hazzyMPToolStripMenuItem.Click += new System.EventHandler(this.hazzyMPToolStripMenuItem_Click);
             // 
@@ -5927,7 +6004,7 @@ namespace RCE_ADMIN
             this.fullKitToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.fullKitToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.fullKitToolStripMenuItem.Name = "fullKitToolStripMenuItem";
-            this.fullKitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fullKitToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.fullKitToolStripMenuItem.Text = "Full Kit";
             this.fullKitToolStripMenuItem.Click += new System.EventHandler(this.fullKitToolStripMenuItem_Click);
             // 
@@ -6113,6 +6190,7 @@ namespace RCE_ADMIN
             // 
             // xtraTabPage3
             // 
+            this.xtraTabPage3.Controls.Add(this.groupControl8);
             this.xtraTabPage3.Controls.Add(this.labelControl8);
             this.xtraTabPage3.Controls.Add(this.labelControl7);
             this.xtraTabPage3.Controls.Add(this.labelControl6);
@@ -6123,6 +6201,241 @@ namespace RCE_ADMIN
             this.xtraTabPage3.Name = "xtraTabPage3";
             this.xtraTabPage3.Size = new System.Drawing.Size(860, 481);
             this.xtraTabPage3.Text = "Players";
+            // 
+            // groupControl8
+            // 
+            this.groupControl8.Controls.Add(this.labelControl18);
+            this.groupControl8.Controls.Add(this.labelControl13);
+            this.groupControl8.Controls.Add(this.labelControl14);
+            this.groupControl8.Controls.Add(this.labelControl15);
+            this.groupControl8.Controls.Add(this.labelControl16);
+            this.groupControl8.Controls.Add(this.labelControl17);
+            this.groupControl8.Controls.Add(this.allPlayersDataTable);
+            this.groupControl8.Controls.Add(this.simpleButton9);
+            this.groupControl8.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupControl8.Location = new System.Drawing.Point(0, 216);
+            this.groupControl8.Name = "groupControl8";
+            this.groupControl8.Size = new System.Drawing.Size(860, 265);
+            this.groupControl8.TabIndex = 8;
+            this.groupControl8.Text = "All Players (Online/Offline)";
+            // 
+            // labelControl18
+            // 
+            this.labelControl18.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.labelControl18.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl18.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl18.Appearance.Options.UseBackColor = true;
+            this.labelControl18.Appearance.Options.UseFont = true;
+            this.labelControl18.Appearance.Options.UseForeColor = true;
+            this.labelControl18.Appearance.Options.UseTextOptions = true;
+            this.labelControl18.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl18.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl18.Location = new System.Drawing.Point(0, 27);
+            this.labelControl18.Name = "labelControl18";
+            this.labelControl18.Size = new System.Drawing.Size(40, 21);
+            this.labelControl18.TabIndex = 12;
+            this.labelControl18.Text = "#";
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.labelControl13.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl13.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl13.Appearance.Options.UseBackColor = true;
+            this.labelControl13.Appearance.Options.UseFont = true;
+            this.labelControl13.Appearance.Options.UseForeColor = true;
+            this.labelControl13.Appearance.Options.UseTextOptions = true;
+            this.labelControl13.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl13.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl13.Location = new System.Drawing.Point(590, 27);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(203, 21);
+            this.labelControl13.TabIndex = 11;
+            this.labelControl13.Text = "TIME CONNECTED";
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.labelControl14.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl14.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl14.Appearance.Options.UseBackColor = true;
+            this.labelControl14.Appearance.Options.UseFont = true;
+            this.labelControl14.Appearance.Options.UseForeColor = true;
+            this.labelControl14.Appearance.Options.UseTextOptions = true;
+            this.labelControl14.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl14.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl14.Location = new System.Drawing.Point(439, 27);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(151, 21);
+            this.labelControl14.TabIndex = 10;
+            this.labelControl14.Text = "IP ADDRESS";
+            // 
+            // labelControl15
+            // 
+            this.labelControl15.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.labelControl15.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl15.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl15.Appearance.Options.UseBackColor = true;
+            this.labelControl15.Appearance.Options.UseFont = true;
+            this.labelControl15.Appearance.Options.UseForeColor = true;
+            this.labelControl15.Appearance.Options.UseTextOptions = true;
+            this.labelControl15.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl15.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl15.Location = new System.Drawing.Point(390, 27);
+            this.labelControl15.Name = "labelControl15";
+            this.labelControl15.Size = new System.Drawing.Size(49, 21);
+            this.labelControl15.TabIndex = 9;
+            this.labelControl15.Text = "PING";
+            // 
+            // labelControl16
+            // 
+            this.labelControl16.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.labelControl16.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl16.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl16.Appearance.Options.UseBackColor = true;
+            this.labelControl16.Appearance.Options.UseFont = true;
+            this.labelControl16.Appearance.Options.UseForeColor = true;
+            this.labelControl16.Appearance.Options.UseTextOptions = true;
+            this.labelControl16.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl16.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl16.Location = new System.Drawing.Point(215, 27);
+            this.labelControl16.Name = "labelControl16";
+            this.labelControl16.Size = new System.Drawing.Size(175, 21);
+            this.labelControl16.TabIndex = 8;
+            this.labelControl16.Text = "HEALTH";
+            // 
+            // labelControl17
+            // 
+            this.labelControl17.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.labelControl17.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl17.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl17.Appearance.Options.UseBackColor = true;
+            this.labelControl17.Appearance.Options.UseFont = true;
+            this.labelControl17.Appearance.Options.UseForeColor = true;
+            this.labelControl17.Appearance.Options.UseTextOptions = true;
+            this.labelControl17.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl17.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl17.Location = new System.Drawing.Point(40, 27);
+            this.labelControl17.Name = "labelControl17";
+            this.labelControl17.Size = new System.Drawing.Size(175, 21);
+            this.labelControl17.TabIndex = 7;
+            this.labelControl17.Text = "NAME";
+            // 
+            // allPlayersDataTable
+            // 
+            this.allPlayersDataTable.AllowUserToDeleteRows = false;
+            this.allPlayersDataTable.AllowUserToOrderColumns = true;
+            this.allPlayersDataTable.AllowUserToResizeColumns = false;
+            this.allPlayersDataTable.AllowUserToResizeRows = false;
+            this.allPlayersDataTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.allPlayersDataTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.allPlayersDataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.allPlayersDataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.allPlayersDataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6});
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.allPlayersDataTable.DefaultCellStyle = dataGridViewCellStyle14;
+            this.allPlayersDataTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.allPlayersDataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.allPlayersDataTable.Location = new System.Drawing.Point(2, 27);
+            this.allPlayersDataTable.MultiSelect = false;
+            this.allPlayersDataTable.Name = "allPlayersDataTable";
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.allPlayersDataTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            this.allPlayersDataTable.RowHeadersVisible = false;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White;
+            this.allPlayersDataTable.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            this.allPlayersDataTable.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.allPlayersDataTable.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.allPlayersDataTable.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.allPlayersDataTable.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
+            this.allPlayersDataTable.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.allPlayersDataTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.allPlayersDataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.allPlayersDataTable.Size = new System.Drawing.Size(856, 236);
+            this.allPlayersDataTable.TabIndex = 6;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.FillWeight = 40F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "#";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 175;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Health";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 175;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Ping";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "IP Address";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Time Connected";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 200;
+            // 
+            // simpleButton9
+            // 
+            this.simpleButton9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton9.Location = new System.Drawing.Point(787, 2);
+            this.simpleButton9.Name = "simpleButton9";
+            this.simpleButton9.Size = new System.Drawing.Size(69, 20);
+            this.simpleButton9.TabIndex = 5;
+            this.simpleButton9.Text = "Refresh";
+            this.simpleButton9.Click += new System.EventHandler(this.simpleButton9_Click);
             // 
             // labelControl8
             // 
@@ -6235,6 +6548,81 @@ namespace RCE_ADMIN
             this.xtraTabPage5.Size = new System.Drawing.Size(860, 481);
             this.xtraTabPage5.Text = "Custom Kits";
             // 
+            // groupControl7
+            // 
+            this.groupControl7.Controls.Add(this.customKit3AddItemamnt);
+            this.groupControl7.Controls.Add(this.customKit3AddItem);
+            this.groupControl7.Controls.Add(this.panel3);
+            this.groupControl7.Controls.Add(this.customKit3Box);
+            this.groupControl7.Controls.Add(this.simpleButton7);
+            this.groupControl7.Controls.Add(this.simpleButton8);
+            this.groupControl7.Location = new System.Drawing.Point(601, 3);
+            this.groupControl7.Name = "groupControl7";
+            this.groupControl7.Size = new System.Drawing.Size(248, 462);
+            this.groupControl7.TabIndex = 14;
+            this.groupControl7.Text = "Custom Kit 3";
+            // 
+            // customKit3AddItemamnt
+            // 
+            this.customKit3AddItemamnt.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.customKit3AddItemamnt.Location = new System.Drawing.Point(166, 326);
+            this.customKit3AddItemamnt.MenuManager = this.barManager1;
+            this.customKit3AddItemamnt.Name = "customKit3AddItemamnt";
+            this.customKit3AddItemamnt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.customKit3AddItemamnt.Size = new System.Drawing.Size(71, 20);
+            this.customKit3AddItemamnt.TabIndex = 12;
+            // 
+            // customKit3AddItem
+            // 
+            this.customKit3AddItem.Location = new System.Drawing.Point(13, 326);
+            this.customKit3AddItem.MenuManager = this.barManager1;
+            this.customKit3AddItem.Name = "customKit3AddItem";
+            this.customKit3AddItem.Size = new System.Drawing.Size(147, 20);
+            this.customKit3AddItem.TabIndex = 11;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.panel3.Location = new System.Drawing.Point(13, 396);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(224, 10);
+            this.panel3.TabIndex = 5;
+            // 
+            // customKit3Box
+            // 
+            this.customKit3Box.Location = new System.Drawing.Point(13, 34);
+            this.customKit3Box.Name = "customKit3Box";
+            this.customKit3Box.Size = new System.Drawing.Size(224, 272);
+            this.customKit3Box.TabIndex = 1;
+            this.customKit3Box.MouseDown += new System.Windows.Forms.MouseEventHandler(this.customKit3Box_MouseDown);
+            // 
+            // simpleButton7
+            // 
+            this.simpleButton7.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton7.Appearance.Options.UseFont = true;
+            this.simpleButton7.Location = new System.Drawing.Point(13, 420);
+            this.simpleButton7.Name = "simpleButton7";
+            this.simpleButton7.Size = new System.Drawing.Size(224, 26);
+            this.simpleButton7.TabIndex = 10;
+            this.simpleButton7.Text = "Save Kit";
+            this.simpleButton7.Click += new System.EventHandler(this.simpleButton7_Click);
+            // 
+            // simpleButton8
+            // 
+            this.simpleButton8.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton8.Appearance.Options.UseFont = true;
+            this.simpleButton8.Location = new System.Drawing.Point(13, 352);
+            this.simpleButton8.Name = "simpleButton8";
+            this.simpleButton8.Size = new System.Drawing.Size(224, 26);
+            this.simpleButton8.TabIndex = 9;
+            this.simpleButton8.Text = "Add Item";
+            this.simpleButton8.Click += new System.EventHandler(this.simpleButton8_Click);
+            // 
             // groupControl6
             // 
             this.groupControl6.Controls.Add(this.customKit2AddItemamnt);
@@ -6245,7 +6633,7 @@ namespace RCE_ADMIN
             this.groupControl6.Controls.Add(this.simpleButton6);
             this.groupControl6.Location = new System.Drawing.Point(310, 3);
             this.groupControl6.Name = "groupControl6";
-            this.groupControl6.Size = new System.Drawing.Size(248, 475);
+            this.groupControl6.Size = new System.Drawing.Size(248, 462);
             this.groupControl6.TabIndex = 13;
             this.groupControl6.Text = "Custom Kit 2";
             // 
@@ -6256,7 +6644,7 @@ namespace RCE_ADMIN
             0,
             0,
             0});
-            this.customKit2AddItemamnt.Location = new System.Drawing.Point(166, 346);
+            this.customKit2AddItemamnt.Location = new System.Drawing.Point(166, 326);
             this.customKit2AddItemamnt.MenuManager = this.barManager1;
             this.customKit2AddItemamnt.Name = "customKit2AddItemamnt";
             this.customKit2AddItemamnt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -6266,7 +6654,7 @@ namespace RCE_ADMIN
             // 
             // customKit2AddItem
             // 
-            this.customKit2AddItem.Location = new System.Drawing.Point(13, 346);
+            this.customKit2AddItem.Location = new System.Drawing.Point(13, 326);
             this.customKit2AddItem.MenuManager = this.barManager1;
             this.customKit2AddItem.Name = "customKit2AddItem";
             this.customKit2AddItem.Size = new System.Drawing.Size(147, 20);
@@ -6275,7 +6663,7 @@ namespace RCE_ADMIN
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            this.panel2.Location = new System.Drawing.Point(13, 416);
+            this.panel2.Location = new System.Drawing.Point(13, 396);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(224, 10);
             this.panel2.TabIndex = 5;
@@ -6284,7 +6672,7 @@ namespace RCE_ADMIN
             // 
             this.customKit2Box.Location = new System.Drawing.Point(13, 34);
             this.customKit2Box.Name = "customKit2Box";
-            this.customKit2Box.Size = new System.Drawing.Size(224, 290);
+            this.customKit2Box.Size = new System.Drawing.Size(224, 272);
             this.customKit2Box.TabIndex = 1;
             this.customKit2Box.MouseDown += new System.Windows.Forms.MouseEventHandler(this.customKit2Box_MouseDown);
             // 
@@ -6292,7 +6680,7 @@ namespace RCE_ADMIN
             // 
             this.simpleButton5.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
             this.simpleButton5.Appearance.Options.UseFont = true;
-            this.simpleButton5.Location = new System.Drawing.Point(13, 440);
+            this.simpleButton5.Location = new System.Drawing.Point(13, 420);
             this.simpleButton5.Name = "simpleButton5";
             this.simpleButton5.Size = new System.Drawing.Size(224, 26);
             this.simpleButton5.TabIndex = 10;
@@ -6303,7 +6691,7 @@ namespace RCE_ADMIN
             // 
             this.simpleButton6.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
             this.simpleButton6.Appearance.Options.UseFont = true;
-            this.simpleButton6.Location = new System.Drawing.Point(13, 372);
+            this.simpleButton6.Location = new System.Drawing.Point(13, 352);
             this.simpleButton6.Name = "simpleButton6";
             this.simpleButton6.Size = new System.Drawing.Size(224, 26);
             this.simpleButton6.TabIndex = 9;
@@ -6320,7 +6708,7 @@ namespace RCE_ADMIN
             this.groupControl5.Controls.Add(this.simpleButton3);
             this.groupControl5.Location = new System.Drawing.Point(12, 3);
             this.groupControl5.Name = "groupControl5";
-            this.groupControl5.Size = new System.Drawing.Size(248, 475);
+            this.groupControl5.Size = new System.Drawing.Size(248, 462);
             this.groupControl5.TabIndex = 4;
             this.groupControl5.Text = "Custom Kit 1";
             // 
@@ -6331,7 +6719,7 @@ namespace RCE_ADMIN
             0,
             0,
             0});
-            this.customKit1AddItemamnt.Location = new System.Drawing.Point(166, 346);
+            this.customKit1AddItemamnt.Location = new System.Drawing.Point(166, 326);
             this.customKit1AddItemamnt.MenuManager = this.barManager1;
             this.customKit1AddItemamnt.Name = "customKit1AddItemamnt";
             this.customKit1AddItemamnt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -6341,7 +6729,7 @@ namespace RCE_ADMIN
             // 
             // customKit1AddItem
             // 
-            this.customKit1AddItem.Location = new System.Drawing.Point(13, 346);
+            this.customKit1AddItem.Location = new System.Drawing.Point(13, 326);
             this.customKit1AddItem.MenuManager = this.barManager1;
             this.customKit1AddItem.Name = "customKit1AddItem";
             this.customKit1AddItem.Size = new System.Drawing.Size(147, 20);
@@ -6350,7 +6738,7 @@ namespace RCE_ADMIN
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            this.panel1.Location = new System.Drawing.Point(13, 416);
+            this.panel1.Location = new System.Drawing.Point(13, 396);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(224, 10);
             this.panel1.TabIndex = 5;
@@ -6359,7 +6747,7 @@ namespace RCE_ADMIN
             // 
             this.customKit1Box.Location = new System.Drawing.Point(13, 34);
             this.customKit1Box.Name = "customKit1Box";
-            this.customKit1Box.Size = new System.Drawing.Size(224, 290);
+            this.customKit1Box.Size = new System.Drawing.Size(224, 272);
             this.customKit1Box.TabIndex = 1;
             this.customKit1Box.MouseDown += new System.Windows.Forms.MouseEventHandler(this.customKit1Box_MouseDown);
             // 
@@ -6367,7 +6755,7 @@ namespace RCE_ADMIN
             // 
             this.simpleButton4.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
             this.simpleButton4.Appearance.Options.UseFont = true;
-            this.simpleButton4.Location = new System.Drawing.Point(13, 440);
+            this.simpleButton4.Location = new System.Drawing.Point(13, 420);
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(224, 26);
             this.simpleButton4.TabIndex = 10;
@@ -6378,7 +6766,7 @@ namespace RCE_ADMIN
             // 
             this.simpleButton3.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
             this.simpleButton3.Appearance.Options.UseFont = true;
-            this.simpleButton3.Location = new System.Drawing.Point(13, 372);
+            this.simpleButton3.Location = new System.Drawing.Point(13, 352);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(224, 26);
             this.simpleButton3.TabIndex = 9;
@@ -6471,136 +6859,6 @@ namespace RCE_ADMIN
             this.richTextBoxChangelog.TabIndex = 1;
             this.richTextBoxChangelog.Text = "";
             // 
-            // groupControl7
-            // 
-            this.groupControl7.Controls.Add(this.customKit3AddItemamnt);
-            this.groupControl7.Controls.Add(this.customKit3AddItem);
-            this.groupControl7.Controls.Add(this.panel3);
-            this.groupControl7.Controls.Add(this.customKit3Box);
-            this.groupControl7.Controls.Add(this.simpleButton7);
-            this.groupControl7.Controls.Add(this.simpleButton8);
-            this.groupControl7.Location = new System.Drawing.Point(601, 3);
-            this.groupControl7.Name = "groupControl7";
-            this.groupControl7.Size = new System.Drawing.Size(248, 475);
-            this.groupControl7.TabIndex = 14;
-            this.groupControl7.Text = "Custom Kit 33";
-            // 
-            // customKit3AddItemamnt
-            // 
-            this.customKit3AddItemamnt.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.customKit3AddItemamnt.Location = new System.Drawing.Point(166, 346);
-            this.customKit3AddItemamnt.MenuManager = this.barManager1;
-            this.customKit3AddItemamnt.Name = "customKit3AddItemamnt";
-            this.customKit3AddItemamnt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.customKit3AddItemamnt.Size = new System.Drawing.Size(71, 20);
-            this.customKit3AddItemamnt.TabIndex = 12;
-            // 
-            // customKit3AddItem
-            // 
-            this.customKit3AddItem.Location = new System.Drawing.Point(13, 346);
-            this.customKit3AddItem.MenuManager = this.barManager1;
-            this.customKit3AddItem.Name = "customKit3AddItem";
-            this.customKit3AddItem.Size = new System.Drawing.Size(147, 20);
-            this.customKit3AddItem.TabIndex = 11;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            this.panel3.Location = new System.Drawing.Point(13, 416);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(224, 10);
-            this.panel3.TabIndex = 5;
-            // 
-            // customKit3Box
-            // 
-            this.customKit3Box.Location = new System.Drawing.Point(13, 34);
-            this.customKit3Box.Name = "customKit3Box";
-            this.customKit3Box.Size = new System.Drawing.Size(224, 290);
-            this.customKit3Box.TabIndex = 1;
-            this.customKit3Box.MouseDown += new System.Windows.Forms.MouseEventHandler(this.customKit3Box_MouseDown);
-            // 
-            // simpleButton7
-            // 
-            this.simpleButton7.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.simpleButton7.Appearance.Options.UseFont = true;
-            this.simpleButton7.Location = new System.Drawing.Point(13, 440);
-            this.simpleButton7.Name = "simpleButton7";
-            this.simpleButton7.Size = new System.Drawing.Size(224, 26);
-            this.simpleButton7.TabIndex = 10;
-            this.simpleButton7.Text = "Save Kit";
-            this.simpleButton7.Click += new System.EventHandler(this.simpleButton7_Click);
-            // 
-            // simpleButton8
-            // 
-            this.simpleButton8.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.simpleButton8.Appearance.Options.UseFont = true;
-            this.simpleButton8.Location = new System.Drawing.Point(13, 372);
-            this.simpleButton8.Name = "simpleButton8";
-            this.simpleButton8.Size = new System.Drawing.Size(224, 26);
-            this.simpleButton8.TabIndex = 9;
-            this.simpleButton8.Text = "Add Item";
-            this.simpleButton8.Click += new System.EventHandler(this.simpleButton8_Click);
-            // 
-            // kitsToolStripMenuItem
-            // 
-            this.kitsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.customKit1ToolStripMenuItem,
-            this.customKit2ToolStripMenuItem,
-            this.customKit3ToolStripMenuItem});
-            this.kitsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.kitsToolStripMenuItem.Name = "kitsToolStripMenuItem";
-            this.kitsToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
-            this.kitsToolStripMenuItem.Text = "Kits";
-            // 
-            // customKit1ToolStripMenuItem
-            // 
-            this.customKit1ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.customKit1ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.customKit1ToolStripMenuItem.Name = "customKit1ToolStripMenuItem";
-            this.customKit1ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.customKit1ToolStripMenuItem.Text = "Custom Kit 1";
-            this.customKit1ToolStripMenuItem.Click += new System.EventHandler(this.customKit1ToolStripMenuItem_Click_1);
-            // 
-            // customKit2ToolStripMenuItem
-            // 
-            this.customKit2ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.customKit2ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.customKit2ToolStripMenuItem.Name = "customKit2ToolStripMenuItem";
-            this.customKit2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.customKit2ToolStripMenuItem.Text = "Custom Kit 2";
-            this.customKit2ToolStripMenuItem.Click += new System.EventHandler(this.customKit2ToolStripMenuItem_Click);
-            // 
-            // customKit3ToolStripMenuItem
-            // 
-            this.customKit3ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.customKit3ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.customKit3ToolStripMenuItem.Name = "customKit3ToolStripMenuItem";
-            this.customKit3ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.customKit3ToolStripMenuItem.Text = "Custom Kit 3";
-            this.customKit3ToolStripMenuItem.Click += new System.EventHandler(this.customKit3ToolStripMenuItem_Click);
-            // 
-            // chatWebhookUrl
-            // 
-            this.chatWebhookUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chatWebhookUrl.Location = new System.Drawing.Point(136, 172);
-            this.chatWebhookUrl.Name = "chatWebhookUrl";
-            this.chatWebhookUrl.Size = new System.Drawing.Size(515, 20);
-            this.chatWebhookUrl.TabIndex = 13;
-            // 
-            // labelControl12
-            // 
-            this.labelControl12.Location = new System.Drawing.Point(11, 174);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(93, 13);
-            this.labelControl12.TabIndex = 14;
-            this.labelControl12.Text = "Chat Webhook URL";
-            // 
             // Form1
             // 
             this.ActiveGlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
@@ -6631,6 +6889,7 @@ namespace RCE_ADMIN
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).EndInit();
             this.groupBoxCredentials.ResumeLayout(false);
             this.groupBoxCredentials.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chatWebhookUrl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inGameName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.killfeedsWebhookUrl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventsWebhookUrl.Properties)).EndInit();
@@ -6654,7 +6913,15 @@ namespace RCE_ADMIN
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
             this.xtraTabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl8)).EndInit();
+            this.groupControl8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.allPlayersDataTable)).EndInit();
             this.xtraTabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).EndInit();
+            this.groupControl7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customKit3AddItemamnt.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit3AddItem.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customKit3Box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).EndInit();
             this.groupControl6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customKit2AddItemamnt.Properties)).EndInit();
@@ -6671,12 +6938,6 @@ namespace RCE_ADMIN
             this.groupControl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).EndInit();
-            this.groupControl7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.customKit3AddItemamnt.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customKit3AddItem.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customKit3Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chatWebhookUrl.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -7269,5 +7530,20 @@ namespace RCE_ADMIN
         private System.Windows.Forms.ToolStripMenuItem customKit3ToolStripMenuItem;
         private DevExpress.XtraEditors.TextEdit chatWebhookUrl;
         private DevExpress.XtraEditors.LabelControl labelControl12;
+        private DevExpress.XtraEditors.GroupControl groupControl8;
+        private DevExpress.XtraEditors.LabelControl labelControl18;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private DevExpress.XtraEditors.LabelControl labelControl14;
+        private DevExpress.XtraEditors.LabelControl labelControl15;
+        private DevExpress.XtraEditors.LabelControl labelControl16;
+        private DevExpress.XtraEditors.LabelControl labelControl17;
+        private System.Windows.Forms.DataGridView allPlayersDataTable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DevExpress.XtraEditors.SimpleButton simpleButton9;
     }
 }

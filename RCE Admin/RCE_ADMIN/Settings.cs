@@ -31,7 +31,7 @@ namespace RCE_ADMIN
         public string InGameName { get; set; }
 
         [JsonProperty("Version")]
-        public static string Version = "v1.4";
+        public static string Version = "v1.5";
         public Settings(string server_address, string server_port, string server_password, string events_webhook_url, string killfeed_webhook_url, string chat_webhook_url, string in_game_name)
         {
             ServerAddress = server_address;
