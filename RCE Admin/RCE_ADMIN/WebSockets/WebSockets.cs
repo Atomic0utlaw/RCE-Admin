@@ -47,17 +47,18 @@ namespace RCE_ADMIN.WebSockets
             ConnectStatus.SetText("Disconnecting...");
             webSocket.CloseAsync();
         }
-        public static void Send(string message, int identifier = 1)
+        public static string Send(string message, int identifier = 1)
         {
             if (!IsConnected())
             {
                 XtraMessageBox.Show("You Aren't Connected!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return string.Empty;
             }
             var packetObj = new Packet(message, identifier);
             var packetStr = JsonConvert.SerializeObject(packetObj);
             webSocket.SendAsync(packetStr, null);
-            ServerConsole.AddNewEntry($"{packetObj.Message}");
+            ServerConsole.AddNewEntry(packetObj.Message.Replace("\r", "").Replace("\n", "").Replace(Environment.NewLine, ""));
+            return packetObj.Message;
         }
         public static void SendCommand(string command)
         {
@@ -95,7 +96,7 @@ namespace RCE_ADMIN.WebSockets
             using (var client = new WebClient())
             {
                 var data = new NameValueCollection();
-                data["content"] = string.Format("{0}{1}Feeds Provided By [**RCE Admin**](https://github.com/KyleFardy/RCE-Admin/)", message, Environment.NewLine);
+                data["content"] = string.Format("{0}{1}", message, Environment.NewLine);
                 var response = client.UploadValues(killfeed ? Settings.KillFeedWebhookUrl : Settings.EventWebhookUrl, "POST", data);
                 string responseText = Encoding.UTF8.GetString(response);
             }
@@ -266,27 +267,20 @@ namespace RCE_ADMIN.WebSockets
                     string newMessage = match.Groups[3].Value;
                     if (!string.Equals(oldMessage, newMessage) && !string.IsNullOrEmpty(newMessage) && !string.IsNullOrWhiteSpace(newMessage))
                     {
-                        if (!string.IsNullOrEmpty(Settings.ChatWebhookUrl))
+                        if (!string.IsNullOrEmpty(Settings.ChatWebhookUrl) && Settings.DiscordChat)
                         {
                             SendDiscordWebhookChat(string.Format("**{0}** : {1}", username, newMessage));
                         }
-                        SendCommand(string.Format("global.say <color=green>[CHAT]</color> <color=#153eff>{0}</color> : {1}", username, newMessage));
+                        if(Settings.InGameChat)
+                            SendCommand(string.Format("global.say <color=green>[CHAT]</color> <color=#153eff>{0}</color> : {1}", username, newMessage));
 
                     }
-                    else
-                    {
-                        ServerConsole.AddNewEntry("No match found or old and new names are the same.");
-                    }
-                }
-                else
-                {
-                    ServerConsole.AddNewEntry("No match found.");
                 }
             }
 
             //events logging (in game)
             string ievent_ = packet.Message;
-            if (ievent_.Contains("[event]"))
+            if (ievent_.Contains("[event]") && Settings.InGameEventFeed)
             {
                 if (ievent_.Contains("Spawning assets/prefabs/npc/ch47/ch47scientists.entity.prefab for assets/bundled/prefabs/world/event_cargoheli.prefab"))
                 {
@@ -308,7 +302,7 @@ namespace RCE_ADMIN.WebSockets
 
             //kills logging (in game)
             string ikill_ = packet.Message;
-            if (ikill_.Contains("killed") && !ikill_.Contains("cactus"))
+            if (ikill_.Contains("killed") && !ikill_.Contains("cactus") && !ikill_.Contains("Collision") && Settings.InGameKillFeed)
             {
                 string result = GetFirstSixNumbers(ikill_);
                 string result2 = GetFirstSevenNumbers(ikill_);
@@ -338,28 +332,28 @@ namespace RCE_ADMIN.WebSockets
             }
             else if (ikill_.Contains("died"))
             {
-                if (!ikill_.Contains("died (Generic)"))
+                if (!ikill_.Contains("died (Generic)") || !ikill_.Contains("died (Collision)"))
                 {
                     SendCommand("global.say <color=red>[DEATH]</color> " + ikill_.Replace(" died ", " Died"));
                 }
             }
 
-            if (!string.IsNullOrEmpty(Settings.KillFeedWebhookUrl)) {
+            if (!string.IsNullOrEmpty(Settings.KillFeedWebhookUrl) && Settings.DiscordKillFeed) {
                 //kills logging (discord)
                 string kill_ = packet.Message;
                 if (kill_.Contains("killed") && !kill_.Contains("cactus"))
                 {
-                    SendDiscordWebhook(true, string.Format("**{0}**", ReplaceText(kill_, replacements)));
+                    SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(ReplaceText(ikill_.Replace(" was killed by ", " Was Killed By "), replacements), "A Scientist")));
                 }
                 else if (kill_.Contains("died"))
                 {
-                    if (!kill_.Contains("died (Generic)"))
+                    if (!kill_.Contains("died (Generic)") || !kill_.Contains("died (Collision)"))
                     {
                         SendDiscordWebhook(true, string.Format("**{0}**", ReplaceText(kill_, replacements)));
                     }
                 }
             }
-            if (!string.IsNullOrEmpty(Settings.EventWebhookUrl))
+            if (!string.IsNullOrEmpty(Settings.EventWebhookUrl) && Settings.DiscordEventFeed)
             {
                 //events logging (discord)
                 string event_ = packet.Message;
@@ -383,7 +377,7 @@ namespace RCE_ADMIN.WebSockets
                     }
                 }
             }
-            ServerConsole.AddNewEntry(packet.Message);
+            ServerConsole.AddNewEntry(packet.Message.Replace("\r", "").Replace("\n", "").Replace(Environment.NewLine, ""));
         }
         private static void WebSocket_OnError(object sender, ErrorEventArgs e)
         {

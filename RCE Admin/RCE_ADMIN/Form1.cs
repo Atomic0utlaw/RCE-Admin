@@ -23,6 +23,11 @@ using Dapper;
 using DevExpress.Utils.Extensions;
 using System.Data;
 using RCE_ADMIN.Callbacks;
+using DiscordRPC;
+using RCE_ADMIN.WebSockets.CustomPackets;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using WebSocketSharp;
 
 namespace RCE_ADMIN
 {
@@ -33,10 +38,25 @@ namespace RCE_ADMIN
         public static RichTextBox Console;
         public static BarStaticItem Counter;
         public static DataGridView Players;
+        public static DataGridView AllPlayers;
+        private DiscordRpcClient rpcClient;
         public static int selectedPlayer = -1;
         public Form1()
         {
             InitializeComponent();
+
+            rpcClient = new DiscordRpcClient("1199514507932860528");
+            rpcClient.SetPresence(new RichPresence
+            {
+                Details = "Console Admin Tool",
+                State = "Managing The Server",
+                Timestamps = new Timestamps(),
+                Assets = new Assets
+                {
+                    LargeImageKey = "rce",
+                    LargeImageText = "RCE Admin",
+                }
+            });
         }
         private void MainForm_MouseClick(object sender, MouseEventArgs e)
         {
@@ -87,6 +107,7 @@ namespace RCE_ADMIN
             Console = richTextBoxConsole;
             Counter = toolStripStatusLabelCounter;
             Players = dataGridViewPlayers;
+            AllPlayers = allPlayersDataTable;
             textBoxAddress.Text = Settings.ServerAddress;
             textBoxPort.Text = Settings.ServerPort;
             textBoxPassword.Text = Settings.ServerPassword;
@@ -94,6 +115,13 @@ namespace RCE_ADMIN
             killfeedsWebhookUrl.Text = Settings.KillFeedWebhookUrl;
             chatWebhookUrl.Text = Settings.ChatWebhookUrl;
             inGameName.Text = Settings.InGameName;
+            autoMessagesCheck.Checked = Settings.AutoMessages;
+            InGameKillFeedCheck.Checked = Settings.InGameKillFeed;
+            DiscordKillFeedCheck.Checked = Settings.DiscordKillFeed;
+            InGameEventFeedCheck.Checked = Settings.InGameEventFeed;
+            DiscordEventFeedCheck.Checked = Settings.DiscordEventFeed;
+            InGameChatCheck.Checked = Settings.InGameChat;
+            DiscordChatCheck.Checked = Settings.DiscordChat;
             ServerConsole.Disable();
             string[] update_info = await GetLatestReleaseChangelog();
             richTextBoxChangelog.Text = update_info[1];
@@ -103,11 +131,25 @@ namespace RCE_ADMIN
             LoadKit(2);
             LoadKit(3);
             load_players();
+            rpcClient.Initialize();
         }
         public void load_players()
         {
-
             new PlayerDatabase("players.db").GetAllPlayers(allPlayersDataTable);
+        }
+        private void LoadMessages()
+        {
+            string json = string.Format("Settings/auto_messages.json");
+            List<AutoMessage> messages = new List<AutoMessage>();
+            if (File.Exists(json))
+            {
+                messages = JsonConvert.DeserializeObject<List<AutoMessage>>(File.ReadAllText(json));
+            }
+            autoMessages.Items.Clear();
+            foreach (var message in messages)
+            {
+                autoMessages.Items.Add($"{message.Message}");
+            }
         }
         private void LoadKit(int kit)
         {
@@ -163,6 +205,24 @@ namespace RCE_ADMIN
                 XtraMessageBox.Show("Refresh The List To Obtain The Clients Information!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
+        public void CopyFromODT(int i)
+        {
+            try
+            {
+                if (AllPlayers.Rows[AllPlayers.CurrentRow.Index].Cells[i].Value.ToString() != "")
+                {
+                    Clipboard.SetText(AllPlayers.Rows[AllPlayers.CurrentRow.Index].Cells[i].Value.ToString());
+                }
+                else
+                {
+                    throw new NullReferenceException();
+                }
+            }
+            catch (NullReferenceException)
+            {
+                XtraMessageBox.Show("Refresh The List To Obtain The Clients Information!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            }
+        }
         public static string GetFromDT(int i)
         {
             try
@@ -170,6 +230,26 @@ namespace RCE_ADMIN
                 if (Players.Rows[Players.CurrentRow.Index].Cells[i].Value.ToString() != "")
                 {
                     return Players.Rows[Players.CurrentRow.Index].Cells[i].Value.ToString();
+                }
+                else
+                {
+                    XtraMessageBox.Show("Refresh The List To Obtain The Clients Information!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    return null;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                XtraMessageBox.Show("Refresh The List To Obtain The Clients Information!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return null;
+            }
+        }
+        public static string GetFromODT(int i)
+        {
+            try
+            {
+                if (AllPlayers.Rows[AllPlayers.CurrentRow.Index].Cells[i].Value.ToString() != "")
+                {
+                    return AllPlayers.Rows[AllPlayers.CurrentRow.Index].Cells[i].Value.ToString();
                 }
                 else
                 {
@@ -202,7 +282,22 @@ namespace RCE_ADMIN
         }
         public void save_settings()
         {
-            Settings.Write(new Settings(textBoxAddress.Text, textBoxPort.Text, textBoxPassword.Text, eventsWebhookUrl.Text, killfeedsWebhookUrl.Text, chatWebhookUrl.Text, inGameName.Text));
+            Settings.Write(new Settings(
+                textBoxAddress.Text, 
+                textBoxPort.Text, 
+                textBoxPassword.Text, 
+                eventsWebhookUrl.Text, 
+                killfeedsWebhookUrl.Text, 
+                chatWebhookUrl.Text, 
+                inGameName.Text, 
+                autoMessagesCheck.Checked, 
+                InGameKillFeedCheck.Checked, 
+                DiscordKillFeedCheck.Checked, 
+                InGameEventFeedCheck.Checked, 
+                DiscordEventFeedCheck.Checked,
+                InGameChatCheck.Checked,
+                DiscordChatCheck.Checked
+             ));
             Settings = Settings.Read();
         }
         private void buttonSave_Click(object sender, EventArgs e)
@@ -213,9 +308,34 @@ namespace RCE_ADMIN
         {
             WebSocketsWrapper.Connect();
             await Task.Delay(3000);
-            SetInfo();
+            if (WebSocketsWrapper.IsConnected())
+            {
+                SetInfo();
+                await SendAutoMessages();
+                await SendFeedMessage();
+            }
         }
-
+        async Task SendFeedMessage()
+        {
+            while (true)
+            {
+                WebSocketsWrapper.Send(string.Format("global.say {0}", "Feeds Provided By <color=red>RCE Admin</color>"));
+                await Task.Delay(10 * 60 * 1000);
+            }
+        }
+        async Task SendAutoMessages()
+        {
+            while (Settings.AutoMessages)
+            {
+                foreach (var item in autoMessages.Items)
+                {
+                    string message = item.ToString();
+                    ServerConsole.AddNewEntry("Auto Message: " + message);
+                    WebSocketsWrapper.Send(string.Format("global.say <color=green>[AUTO MESSAGE]</color> {0}", message));
+                    await Task.Delay(5 * 60 * 1000);
+                }
+            }
+        }
         private void buttonDisconnect_Click(object sender, EventArgs e)
         {
             WebSocketsWrapper.Disconnect();
@@ -245,6 +365,7 @@ namespace RCE_ADMIN
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            rpcClient.Dispose();
             Environment.Exit(0);
         }
 
@@ -348,7 +469,7 @@ namespace RCE_ADMIN
         }
         public static void teleport_here(string player)
         {
-            WebSocketsWrapper.Send(string.Format("global.teleport2me {0} (0,0,0)", player));
+            WebSocketsWrapper.Send(string.Format("global.teleport2me {0}", player));
         }
         public static void give_item_to_all(string item)
         {
@@ -2662,6 +2783,25 @@ namespace RCE_ADMIN
                     XtraMessageBox.Show("There Was An Error Fetching The Rust Item List!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void autoMessages_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int selectedIndex = autoMessages.IndexFromPoint(e.Location);
+                if (selectedIndex != ListBox.NoMatches)
+                {
+                    autoMessages.Items.RemoveAt(selectedIndex);
+
+                    List<AutoMessage> messageData = new List<AutoMessage>();
+                    foreach (var listBoxItem in autoMessages.Items)
+                    {
+                        messageData.Add(new AutoMessage { Message = listBoxItem.ToString() });
+                    }
+                    string jsonContent = JsonConvert.SerializeObject(messageData, Formatting.Indented);
+                    File.WriteAllText("Settings/auto_messages.json", jsonContent);
+                }
+            }
+        }
 
         private void customKit1Box_MouseDown(object sender, MouseEventArgs e)
         {
@@ -2755,6 +2895,10 @@ namespace RCE_ADMIN
         {
             public string Item { get; set; }
             public int Amount { get; set; }
+        }
+        public class AutoMessage
+        {
+            public string Message { get; set; }
         }
         private void simpleButton4_Click(object sender, EventArgs e)
         {
@@ -2898,6 +3042,192 @@ namespace RCE_ADMIN
         private void simpleButton9_Click(object sender, EventArgs e)
         {
             load_players();
+        }
+
+        private void simpleButton10_Click(object sender, EventArgs e)
+        {
+            ServerConsole.Clear();
+        }
+
+        private void simpleButton12_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send("heli.call");
+        }
+        public void spawn_heli(string name)
+        {
+            WebSocketsWrapper.Send(string.Format("heli.drop {0}", name));
+        }
+        private void simpleButton11_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(Settings.InGameName))
+            {
+                spawn_heli(Settings.InGameName);
+            }
+            else
+                XtraMessageBox.Show("Cant Spawn Attack Helicopter On You As You Have Not Set Your In Game Name!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void spawnHeliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            spawn_heli(GetFromDT(1));
+        }
+
+        private void simpleButton14_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send("triggerevent event_cargoship");
+        }
+
+        private void simpleButton13_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send("stopevent event_cargoship");
+        }
+
+        private void simpleButton16_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send("triggerevent event_airdrop");
+        }
+
+        private void simpleButton15_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send("stopevent event_airdrop");
+        }
+
+        private void simpleButton18_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send("triggerevent event_cargoheli");
+        }
+
+        private void simpleButton17_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send("stopevent event_cargoheli");
+        }
+
+        private void simpleButton19_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(addAutoMessage.Text))
+            {
+                autoMessages.Items.Add(addAutoMessage.Text);
+                addAutoMessage.Text = string.Empty;
+            }
+            else
+                XtraMessageBox.Show("Enter A Message To Add!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void simpleButton21_Click(object sender, EventArgs e)
+        {
+            List<AutoMessage> messageData = new List<AutoMessage>();
+            foreach (var listBoxItem in autoMessages.Items)
+            {
+                messageData.Add(new AutoMessage { Message = listBoxItem.ToString() });
+            }
+            string jsonContent = JsonConvert.SerializeObject(messageData, Formatting.Indented);
+            File.WriteAllText("Settings/auto_messages.json", jsonContent);
+            XtraMessageBox.Show("Auto Messages Have Been Saved!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void autoMessagesCheck_Click(object sender, EventArgs e)
+        {
+            autoMessagesCheck.Checked = !autoMessagesCheck.Checked;
+            Settings.AutoMessages = autoMessagesCheck.Checked;
+            save_settings();
+        }
+
+        private void InGameKillFeedCheck_Click(object sender, EventArgs e)
+        {
+            InGameKillFeedCheck.Checked = !InGameKillFeedCheck.Checked;
+            Settings.InGameKillFeed = InGameKillFeedCheck.Checked;
+            save_settings();
+        }
+
+        private void DiscordKillFeedCheck_Click(object sender, EventArgs e)
+        {
+            DiscordKillFeedCheck.Checked = !DiscordKillFeedCheck.Checked;
+            Settings.DiscordKillFeed = DiscordKillFeedCheck.Checked;
+            save_settings();
+        }
+
+        private void InGameEventFeedCheck_Click(object sender, EventArgs e)
+        {
+            InGameEventFeedCheck.Checked = !InGameEventFeedCheck.Checked;
+            Settings.InGameEventFeed = InGameEventFeedCheck.Checked;
+            save_settings();
+        }
+
+        private void DiscordEventFeedCheck_Click(object sender, EventArgs e)
+        {
+            DiscordEventFeedCheck.Checked = !DiscordEventFeedCheck.Checked;
+            Settings.DiscordEventFeed = DiscordEventFeedCheck.Checked;
+            save_settings();
+        }
+
+        private void InGameChatCheck_Click(object sender, EventArgs e)
+        {
+            InGameChatCheck.Checked = !InGameChatCheck.Checked;
+            Settings.InGameChat = InGameChatCheck.Checked;
+            save_settings();
+        }
+
+        private void DiscordChatCheck_Click(object sender, EventArgs e)
+        {
+            DiscordChatCheck.Checked = !DiscordChatCheck.Checked;
+            Settings.DiscordChat = DiscordChatCheck.Checked;
+            save_settings();
+        }
+
+        private void addToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("VIPID {0}", GetFromODT(1)));
+        }
+
+        private void removeToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("RemoveVIP {0}", GetFromODT(1)));
+        }
+
+        private void addToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("ModeratorID {0}", GetFromODT(1)));
+        }
+
+        private void removeToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("RemoveModerator {0}", GetFromODT(1)));
+        }
+
+        private void addToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("AdminID {0}", GetFromODT(1)));
+        }
+
+        private void removeToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("RemoveAdmin {0}", GetFromODT(1)));
+        }
+
+        private void addToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("OwnerID {0}", GetFromODT(1)));
+        }
+
+        private void removeToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("RemoveOwner {0}", GetFromODT(1)));
+        }
+
+        private void banToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("global.banid {0}", GetFromODT(1)));
+        }
+
+        private void uUnbanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("global.unban {0}", GetFromODT(1)));
+        }
+
+        private void copyNameToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            CopyFromODT(1);
+            XtraMessageBox.Show(string.Format("Gamertag {0} Has Been Copied To Your Clipboard!", GetFromODT(1)), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

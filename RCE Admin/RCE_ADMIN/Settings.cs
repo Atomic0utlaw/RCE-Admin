@@ -30,10 +30,31 @@ namespace RCE_ADMIN
         [JsonProperty("InGameName")]
         public string InGameName { get; set; }
 
+        [JsonProperty("AutoMessages")]
+        public bool AutoMessages { get; set; }
+
+        [JsonProperty("InGameKillFeed")]
+        public bool InGameKillFeed { get; set; }
+
+        [JsonProperty("DiscordKillFeed")]
+        public bool DiscordKillFeed { get; set; }
+
+        [JsonProperty("InGameEventFeed")]
+        public bool InGameEventFeed { get; set; }
+
+        [JsonProperty("DiscordEventFeed")]
+        public bool DiscordEventFeed { get; set; }
+
+        [JsonProperty("InGameChat")]
+        public bool InGameChat { get; set; }
+
+        [JsonProperty("DiscordChat")]
+        public bool DiscordChat { get; set; }
+
         [JsonProperty("Version")]
         [JsonIgnore]
-        public static string Version = "v1.5";
-        public Settings(string server_address, string server_port, string server_password, string events_webhook_url, string killfeed_webhook_url, string chat_webhook_url, string in_game_name)
+        public static string Version = "v1.6";
+        public Settings(string server_address, string server_port, string server_password, string events_webhook_url, string killfeed_webhook_url, string chat_webhook_url, string in_game_name, bool auto_messages, bool in_game_kill_feed, bool discord_kill_feed, bool in_game_event_feed, bool discord_event_feed, bool in_game_chat, bool discord_chat)
         {
             ServerAddress = server_address;
             ServerPort = server_port;
@@ -42,10 +63,17 @@ namespace RCE_ADMIN
             KillFeedWebhookUrl = killfeed_webhook_url;
             ChatWebhookUrl = chat_webhook_url;
             InGameName = in_game_name;
+            AutoMessages = auto_messages;
+            InGameKillFeed = in_game_kill_feed;
+            DiscordKillFeed = discord_kill_feed;
+            InGameEventFeed = in_game_event_feed;
+            DiscordEventFeed = discord_event_feed;
+            InGameChat = in_game_chat;
+            DiscordChat = discord_chat;
         }
         public static void Write(Settings settings)
         {
-            Settings.Version = "v1.5";
+            Settings.Version = "v1.6";
 
             if (!File.Exists(FilePath))
                 File.Create(FilePath).Close();
@@ -59,7 +87,7 @@ namespace RCE_ADMIN
             if (!File.Exists(FilePath))
             {
                 XtraMessageBox.Show("Couldn't Find A Configuration File, A New One Will Be Created", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Write(new Settings("localhost", "28016", "password", null, null, null, null));
+                Write(new Settings("ip", "port", "password", null, null, null, null, true, true, true, true, true, true, true));
             }
             var settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(FilePath));
             return settings;
