@@ -593,11 +593,13 @@ namespace RCE_ADMIN
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl8 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.allPlayersDataTable = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyNameToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.banningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1180,7 +1182,7 @@ namespace RCE_ADMIN
             this.addToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.addToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
@@ -1190,7 +1192,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.removeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
@@ -6121,7 +6123,7 @@ namespace RCE_ADMIN
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.toolStripStatusLabelRight,
             this.toolStripStatusLabelCounter});
-            this.barManager1.MaxItemId = 3;
+            this.barManager1.MaxItemId = 6;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar3
@@ -6306,6 +6308,7 @@ namespace RCE_ADMIN
             // 
             // groupControl8
             // 
+            this.groupControl8.Controls.Add(this.labelControl13);
             this.groupControl8.Controls.Add(this.labelControl18);
             this.groupControl8.Controls.Add(this.labelControl17);
             this.groupControl8.Controls.Add(this.allPlayersDataTable);
@@ -6313,9 +6316,26 @@ namespace RCE_ADMIN
             this.groupControl8.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupControl8.Location = new System.Drawing.Point(0, 212);
             this.groupControl8.Name = "groupControl8";
-            this.groupControl8.Size = new System.Drawing.Size(246, 269);
+            this.groupControl8.Size = new System.Drawing.Size(471, 269);
             this.groupControl8.TabIndex = 8;
             this.groupControl8.Text = "All Players (Online/Offline)";
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.labelControl13.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl13.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl13.Appearance.Options.UseBackColor = true;
+            this.labelControl13.Appearance.Options.UseFont = true;
+            this.labelControl13.Appearance.Options.UseForeColor = true;
+            this.labelControl13.Appearance.Options.UseTextOptions = true;
+            this.labelControl13.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl13.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl13.Location = new System.Drawing.Point(236, 27);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(208, 21);
+            this.labelControl13.TabIndex = 13;
+            this.labelControl13.Text = "TOTAL TIME CONNECTED";
             // 
             // labelControl18
             // 
@@ -6347,7 +6367,7 @@ namespace RCE_ADMIN
             this.labelControl17.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl17.Location = new System.Drawing.Point(35, 27);
             this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(184, 21);
+            this.labelControl17.Size = new System.Drawing.Size(208, 21);
             this.labelControl17.TabIndex = 7;
             this.labelControl17.Text = "NAME";
             // 
@@ -6370,7 +6390,8 @@ namespace RCE_ADMIN
             this.allPlayersDataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.allPlayersDataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
+            this.dataGridViewTextBoxColumn2,
+            this.TC});
             this.allPlayersDataTable.ContextMenuStrip = this.contextMenuStrip2;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
@@ -6408,7 +6429,7 @@ namespace RCE_ADMIN
             this.allPlayersDataTable.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.allPlayersDataTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
             this.allPlayersDataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.allPlayersDataTable.Size = new System.Drawing.Size(242, 240);
+            this.allPlayersDataTable.Size = new System.Drawing.Size(467, 240);
             this.allPlayersDataTable.TabIndex = 6;
             // 
             // dataGridViewTextBoxColumn1
@@ -6424,7 +6445,13 @@ namespace RCE_ADMIN
             this.dataGridViewTextBoxColumn2.HeaderText = "Name";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 175;
+            this.dataGridViewTextBoxColumn2.Width = 200;
+            // 
+            // TC
+            // 
+            this.TC.HeaderText = "Total Time Connected";
+            this.TC.Name = "TC";
+            this.TC.Width = 200;
             // 
             // contextMenuStrip2
             // 
@@ -6439,14 +6466,14 @@ namespace RCE_ADMIN
             this.ownerToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.ShowImageMargin = false;
-            this.contextMenuStrip2.Size = new System.Drawing.Size(156, 164);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(113, 142);
             // 
             // copyNameToolStripMenuItem1
             // 
             this.copyNameToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.copyNameToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
             this.copyNameToolStripMenuItem1.Name = "copyNameToolStripMenuItem1";
-            this.copyNameToolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
+            this.copyNameToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
             this.copyNameToolStripMenuItem1.Text = "Copy Name";
             this.copyNameToolStripMenuItem1.Click += new System.EventHandler(this.copyNameToolStripMenuItem1_Click);
             // 
@@ -6458,7 +6485,7 @@ namespace RCE_ADMIN
             this.uUnbanToolStripMenuItem});
             this.banningToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.banningToolStripMenuItem.Name = "banningToolStripMenuItem";
-            this.banningToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.banningToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.banningToolStripMenuItem.Text = "Banning";
             // 
             // banToolStripMenuItem
@@ -6466,7 +6493,7 @@ namespace RCE_ADMIN
             this.banToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.banToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.banToolStripMenuItem.Name = "banToolStripMenuItem";
-            this.banToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.banToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.banToolStripMenuItem.Text = "Ban";
             this.banToolStripMenuItem.Click += new System.EventHandler(this.banToolStripMenuItem_Click);
             // 
@@ -6475,7 +6502,7 @@ namespace RCE_ADMIN
             this.uUnbanToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.uUnbanToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.uUnbanToolStripMenuItem.Name = "uUnbanToolStripMenuItem";
-            this.uUnbanToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uUnbanToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.uUnbanToolStripMenuItem.Text = "Unban";
             this.uUnbanToolStripMenuItem.Click += new System.EventHandler(this.uUnbanToolStripMenuItem_Click);
             // 
@@ -6484,7 +6511,7 @@ namespace RCE_ADMIN
             this.toolStripSeparator4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.toolStripSeparator4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(152, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(109, 6);
             // 
             // vIPToolStripMenuItem
             // 
@@ -6494,7 +6521,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem7});
             this.vIPToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.vIPToolStripMenuItem.Name = "vIPToolStripMenuItem";
-            this.vIPToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.vIPToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.vIPToolStripMenuItem.Text = "VIP";
             // 
             // addToolStripMenuItem7
@@ -6502,7 +6529,7 @@ namespace RCE_ADMIN
             this.addToolStripMenuItem7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.addToolStripMenuItem7.ForeColor = System.Drawing.Color.White;
             this.addToolStripMenuItem7.Name = "addToolStripMenuItem7";
-            this.addToolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem7.Size = new System.Drawing.Size(117, 22);
             this.addToolStripMenuItem7.Text = "Add";
             this.addToolStripMenuItem7.Click += new System.EventHandler(this.addToolStripMenuItem7_Click);
             // 
@@ -6511,7 +6538,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.removeToolStripMenuItem7.ForeColor = System.Drawing.Color.White;
             this.removeToolStripMenuItem7.Name = "removeToolStripMenuItem7";
-            this.removeToolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
+            this.removeToolStripMenuItem7.Size = new System.Drawing.Size(117, 22);
             this.removeToolStripMenuItem7.Text = "Remove";
             this.removeToolStripMenuItem7.Click += new System.EventHandler(this.removeToolStripMenuItem7_Click);
             // 
@@ -6523,7 +6550,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem6});
             this.moderatorToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.moderatorToolStripMenuItem.Name = "moderatorToolStripMenuItem";
-            this.moderatorToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.moderatorToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.moderatorToolStripMenuItem.Text = "Moderator";
             // 
             // addToolStripMenuItem6
@@ -6531,7 +6558,7 @@ namespace RCE_ADMIN
             this.addToolStripMenuItem6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.addToolStripMenuItem6.ForeColor = System.Drawing.Color.White;
             this.addToolStripMenuItem6.Name = "addToolStripMenuItem6";
-            this.addToolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem6.Size = new System.Drawing.Size(117, 22);
             this.addToolStripMenuItem6.Text = "Add";
             this.addToolStripMenuItem6.Click += new System.EventHandler(this.addToolStripMenuItem6_Click);
             // 
@@ -6540,7 +6567,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.removeToolStripMenuItem6.ForeColor = System.Drawing.Color.White;
             this.removeToolStripMenuItem6.Name = "removeToolStripMenuItem6";
-            this.removeToolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.removeToolStripMenuItem6.Size = new System.Drawing.Size(117, 22);
             this.removeToolStripMenuItem6.Text = "Remove";
             this.removeToolStripMenuItem6.Click += new System.EventHandler(this.removeToolStripMenuItem6_Click);
             // 
@@ -6552,7 +6579,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem5});
             this.adminToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.adminToolStripMenuItem.Text = "Admin";
             // 
             // addToolStripMenuItem5
@@ -6560,7 +6587,7 @@ namespace RCE_ADMIN
             this.addToolStripMenuItem5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.addToolStripMenuItem5.ForeColor = System.Drawing.Color.White;
             this.addToolStripMenuItem5.Name = "addToolStripMenuItem5";
-            this.addToolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem5.Size = new System.Drawing.Size(117, 22);
             this.addToolStripMenuItem5.Text = "Add";
             this.addToolStripMenuItem5.Click += new System.EventHandler(this.addToolStripMenuItem5_Click);
             // 
@@ -6569,7 +6596,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.removeToolStripMenuItem5.ForeColor = System.Drawing.Color.White;
             this.removeToolStripMenuItem5.Name = "removeToolStripMenuItem5";
-            this.removeToolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
+            this.removeToolStripMenuItem5.Size = new System.Drawing.Size(117, 22);
             this.removeToolStripMenuItem5.Text = "Remove";
             this.removeToolStripMenuItem5.Click += new System.EventHandler(this.removeToolStripMenuItem5_Click);
             // 
@@ -6581,7 +6608,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem4});
             this.ownerToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.ownerToolStripMenuItem.Name = "ownerToolStripMenuItem";
-            this.ownerToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.ownerToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.ownerToolStripMenuItem.Text = "Owner";
             // 
             // addToolStripMenuItem4
@@ -6589,7 +6616,7 @@ namespace RCE_ADMIN
             this.addToolStripMenuItem4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.addToolStripMenuItem4.ForeColor = System.Drawing.Color.White;
             this.addToolStripMenuItem4.Name = "addToolStripMenuItem4";
-            this.addToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem4.Size = new System.Drawing.Size(117, 22);
             this.addToolStripMenuItem4.Text = "Add";
             this.addToolStripMenuItem4.Click += new System.EventHandler(this.addToolStripMenuItem4_Click);
             // 
@@ -6598,14 +6625,14 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.removeToolStripMenuItem4.ForeColor = System.Drawing.Color.White;
             this.removeToolStripMenuItem4.Name = "removeToolStripMenuItem4";
-            this.removeToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.removeToolStripMenuItem4.Size = new System.Drawing.Size(117, 22);
             this.removeToolStripMenuItem4.Text = "Remove";
             this.removeToolStripMenuItem4.Click += new System.EventHandler(this.removeToolStripMenuItem4_Click);
             // 
             // simpleButton9
             // 
             this.simpleButton9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton9.Location = new System.Drawing.Point(173, 3);
+            this.simpleButton9.Location = new System.Drawing.Point(398, 3);
             this.simpleButton9.Name = "simpleButton9";
             this.simpleButton9.Size = new System.Drawing.Size(69, 20);
             this.simpleButton9.TabIndex = 5;
@@ -8072,8 +8099,6 @@ namespace RCE_ADMIN
         private DevExpress.XtraEditors.SimpleButton simpleButton9;
         private DevExpress.XtraEditors.SimpleButton simpleButton10;
         private DevExpress.XtraEditors.SimpleButton buttonBroadcast;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage6;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem copyNameToolStripMenuItem1;
@@ -8124,5 +8149,9 @@ namespace RCE_ADMIN
         private DevExpress.XtraEditors.TextEdit addAutoMessage;
         private DevExpress.XtraEditors.SimpleButton simpleButton19;
         private DevExpress.XtraEditors.SimpleButton simpleButton21;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TC;
     }
 }

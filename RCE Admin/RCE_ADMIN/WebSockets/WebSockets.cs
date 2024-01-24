@@ -196,10 +196,10 @@ namespace RCE_ADMIN.WebSockets
         }
         static string RemoveColorTags(string input)
         {
-            string pattern = @"<color\s*=\s*#?[0-9A-Fa-f]{6}|[A-Za-z]+>";
-            string result = Regex.Replace(input, pattern, string.Empty);
-            return result.Replace("</color>", "").Replace("</>", "").Replace("</ ", " ").Replace(">", "");
+            string pattern = @"<color\s*=\s*(?:#[0-9A-Fa-f]{6}|[A-Za-z]+)\s*>(.*?)</color>";
+            return Regex.Replace(input, pattern, "$1");
         }
+
         public static double ConvertToDouble(string Value)
         {
             if (Value == null)
@@ -332,7 +332,7 @@ namespace RCE_ADMIN.WebSockets
             }
             else if (ikill_.Contains("died"))
             {
-                if (!ikill_.Contains("died (Generic)") || !ikill_.Contains("died (Collision)"))
+                if (!ikill_.ToLower().Contains("generic") && !ikill_.ToLower().Contains("collision"))
                 {
                     SendCommand("global.say <color=red>[DEATH]</color> " + ikill_.Replace(" died ", " Died"));
                 }

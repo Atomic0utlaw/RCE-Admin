@@ -15,9 +15,9 @@ namespace RCE_ADMIN.Callbacks
     {
         private readonly string connectionString;
 
-        public PlayerDatabase(string dbFilePath)
+        public PlayerDatabase()
         {
-            connectionString = $"Data Source={dbFilePath};Version=3;";
+            connectionString = $"Data Source=players.db;Version=3;";
             InitializeDatabase();
         }
 
@@ -86,13 +86,11 @@ namespace RCE_ADMIN.Callbacks
                     int i = 1;
                     foreach (var player in players)
                     {
+                        TimeSpan timeSpan = TimeSpan.FromSeconds(player.ConnectedSeconds);
                         dataTable.Rows.Add(
                             i,
                             player.DisplayName,
-                            "N/A",
-                            "N/A",
-                            "N/A",
-                            "N/A"
+                            string.Format("{0} Hour(s), {1} Min(s), {2} Sec(s)", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds)
                         );
                         i++;
                     }

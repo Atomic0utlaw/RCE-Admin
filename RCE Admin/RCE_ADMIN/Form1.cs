@@ -28,6 +28,7 @@ using RCE_ADMIN.WebSockets.CustomPackets;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using WebSocketSharp;
+using DevExpress.XtraEditors.Controls;
 
 namespace RCE_ADMIN
 {
@@ -131,11 +132,12 @@ namespace RCE_ADMIN
             LoadKit(2);
             LoadKit(3);
             load_players();
+            LoadMessages();
             rpcClient.Initialize();
         }
         public void load_players()
         {
-            new PlayerDatabase("players.db").GetAllPlayers(allPlayersDataTable);
+            new PlayerDatabase().GetAllPlayers(allPlayersDataTable);
         }
         private void LoadMessages()
         {
@@ -144,6 +146,14 @@ namespace RCE_ADMIN
             if (File.Exists(json))
             {
                 messages = JsonConvert.DeserializeObject<List<AutoMessage>>(File.ReadAllText(json));
+            }
+            else
+            {
+                List<AutoMessage> messageData = new List<AutoMessage>();
+                messageData.Add(new AutoMessage { Message = "Craft A Note With Wood To Chat With Other Players In Game!" });
+                messageData.Add(new AutoMessage { Message = "Report Suspected Cheaters To Admins!" });
+                string jsonContent = JsonConvert.SerializeObject(messageData, Formatting.Indented);
+                File.WriteAllText("Settings/auto_messages.json", jsonContent);
             }
             autoMessages.Items.Clear();
             foreach (var message in messages)
