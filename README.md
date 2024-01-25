@@ -21,9 +21,15 @@ Tool Connects Via RCON,
 _**Features**_
  - Discord Webhook For Kill Feeds / Events
  - In Game Kill/Event Feed
+ - In Game Chat Via Notes
  - Online Players List (With Options To Kick/Ban, Give & Remove VIP/Mod/Admin/Owner)
+ - All Players List
+ - Automated Timed Messages
+ - Events Manager
+ - Custom Kits
  - Message Broadcaster
  - Server Console (And Ability To Use Console Commands)
+ - Plus More
 
 _**How To Find RCON Information**_
  1. Go To Your Servers Console On GPortal
