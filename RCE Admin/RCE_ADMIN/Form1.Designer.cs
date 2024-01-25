@@ -685,6 +685,9 @@ namespace RCE_ADMIN
             this.curVer = new DevExpress.XtraEditors.LabelControl();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.richTextBoxChangelog = new System.Windows.Forms.RichTextBox();
+            this.simpleButton22 = new DevExpress.XtraEditors.SimpleButton();
+            this.AutoMessageTime = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxConnection)).BeginInit();
             this.groupBoxConnection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).BeginInit();
@@ -764,6 +767,7 @@ namespace RCE_ADMIN
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AutoMessageTime.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxConnection
@@ -6992,6 +6996,8 @@ namespace RCE_ADMIN
             // 
             // groupControl17
             // 
+            this.groupControl17.Controls.Add(this.labelControl14);
+            this.groupControl17.Controls.Add(this.AutoMessageTime);
             this.groupControl17.Controls.Add(this.simpleButton21);
             this.groupControl17.Controls.Add(this.addAutoMessage);
             this.groupControl17.Controls.Add(this.simpleButton19);
@@ -7176,9 +7182,11 @@ namespace RCE_ADMIN
             this.simpleButton20.Size = new System.Drawing.Size(157, 34);
             this.simpleButton20.TabIndex = 8;
             this.simpleButton20.Text = "Reset";
+            this.simpleButton20.Click += new System.EventHandler(this.simpleButton20_Click);
             // 
             // groupControl12
             // 
+            this.groupControl12.Controls.Add(this.simpleButton22);
             this.groupControl12.Controls.Add(this.simpleButton17);
             this.groupControl12.Controls.Add(this.simpleButton18);
             this.groupControl12.Location = new System.Drawing.Point(664, 3);
@@ -7200,13 +7208,13 @@ namespace RCE_ADMIN
             // 
             // simpleButton18
             // 
-            this.simpleButton18.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton18.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.simpleButton18.Appearance.Options.UseFont = true;
             this.simpleButton18.Location = new System.Drawing.Point(13, 37);
             this.simpleButton18.Name = "simpleButton18";
-            this.simpleButton18.Size = new System.Drawing.Size(157, 34);
+            this.simpleButton18.Size = new System.Drawing.Size(79, 34);
             this.simpleButton18.TabIndex = 8;
-            this.simpleButton18.Text = "Spawn";
+            this.simpleButton18.Text = "Spawn\r\n(Chinook)";
             this.simpleButton18.Click += new System.EventHandler(this.simpleButton18_Click);
             // 
             // groupControl11
@@ -7391,6 +7399,40 @@ namespace RCE_ADMIN
             this.richTextBoxChangelog.TabIndex = 1;
             this.richTextBoxChangelog.Text = "";
             // 
+            // simpleButton22
+            // 
+            this.simpleButton22.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.simpleButton22.Appearance.Options.UseFont = true;
+            this.simpleButton22.Location = new System.Drawing.Point(98, 37);
+            this.simpleButton22.Name = "simpleButton22";
+            this.simpleButton22.Size = new System.Drawing.Size(72, 34);
+            this.simpleButton22.TabIndex = 10;
+            this.simpleButton22.Text = "Spawn\r\n(On You)";
+            this.simpleButton22.Click += new System.EventHandler(this.simpleButton22_Click);
+            // 
+            // AutoMessageTime
+            // 
+            this.AutoMessageTime.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.AutoMessageTime.Location = new System.Drawing.Point(666, 100);
+            this.AutoMessageTime.MenuManager = this.barManager1;
+            this.AutoMessageTime.Name = "AutoMessageTime";
+            this.AutoMessageTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.AutoMessageTime.Size = new System.Drawing.Size(157, 20);
+            this.AutoMessageTime.TabIndex = 13;
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Location = new System.Drawing.Point(666, 81);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(150, 13);
+            this.labelControl14.TabIndex = 14;
+            this.labelControl14.Text = "Time Between Messages (Mins)";
+            // 
             // Form1
             // 
             this.ActiveGlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
@@ -7406,6 +7448,7 @@ namespace RCE_ADMIN
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Glow;
             this.IconOptions.Image = global::RCE_ADMIN.Properties.Resources.rust_logo;
             this.InactiveGlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
@@ -7470,6 +7513,7 @@ namespace RCE_ADMIN
             this.xtraTabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl17)).EndInit();
             this.groupControl17.ResumeLayout(false);
+            this.groupControl17.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.addAutoMessage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoMessagesCheck.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoMessages)).EndInit();
@@ -7501,6 +7545,7 @@ namespace RCE_ADMIN
             this.groupControl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AutoMessageTime.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -8153,5 +8198,8 @@ namespace RCE_ADMIN
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn TC;
+        private DevExpress.XtraEditors.SimpleButton simpleButton22;
+        private DevExpress.XtraEditors.LabelControl labelControl14;
+        private DevExpress.XtraEditors.SpinEdit AutoMessageTime;
     }
 }

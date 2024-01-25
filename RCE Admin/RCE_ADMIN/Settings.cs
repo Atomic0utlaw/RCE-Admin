@@ -33,6 +33,9 @@ namespace RCE_ADMIN
         [JsonProperty("AutoMessages")]
         public bool AutoMessages { get; set; }
 
+        [JsonProperty("AutoMessagesTime")]
+        public int AutoMessagesTime { get; set; }
+
         [JsonProperty("InGameKillFeed")]
         public bool InGameKillFeed { get; set; }
 
@@ -53,8 +56,8 @@ namespace RCE_ADMIN
 
         [JsonProperty("Version")]
         [JsonIgnore]
-        public static string Version = "v1.7";
-        public Settings(string server_address, string server_port, string server_password, string events_webhook_url, string killfeed_webhook_url, string chat_webhook_url, string in_game_name, bool auto_messages, bool in_game_kill_feed, bool discord_kill_feed, bool in_game_event_feed, bool discord_event_feed, bool in_game_chat, bool discord_chat)
+        public static string Version = "v1.8";
+        public Settings(string server_address, string server_port, string server_password, string events_webhook_url, string killfeed_webhook_url, string chat_webhook_url, string in_game_name, bool auto_messages, int auto_messages_time, bool in_game_kill_feed, bool discord_kill_feed, bool in_game_event_feed, bool discord_event_feed, bool in_game_chat, bool discord_chat)
         {
             ServerAddress = server_address;
             ServerPort = server_port;
@@ -64,6 +67,7 @@ namespace RCE_ADMIN
             ChatWebhookUrl = chat_webhook_url;
             InGameName = in_game_name;
             AutoMessages = auto_messages;
+            AutoMessagesTime = auto_messages_time;
             InGameKillFeed = in_game_kill_feed;
             DiscordKillFeed = discord_kill_feed;
             InGameEventFeed = in_game_event_feed;
@@ -73,7 +77,7 @@ namespace RCE_ADMIN
         }
         public static void Write(Settings settings)
         {
-            Settings.Version = "v1.7";
+            Settings.Version = "v1.8";
 
             if (!File.Exists(FilePath))
                 File.Create(FilePath).Close();
@@ -87,7 +91,7 @@ namespace RCE_ADMIN
             if (!File.Exists(FilePath))
             {
                 XtraMessageBox.Show("Couldn't Find A Configuration File, A New One Will Be Created", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Write(new Settings("ip", "port", "password", null, null, null, null, true, true, true, true, true, true, true));
+                Write(new Settings("ip", "port", "password", null, null, null, null, true, 2, true, true, true, true, true, true));
             }
             var settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(FilePath));
             return settings;

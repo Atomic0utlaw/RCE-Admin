@@ -29,6 +29,7 @@ using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using WebSocketSharp;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraTab;
 
 namespace RCE_ADMIN
 {
@@ -40,6 +41,9 @@ namespace RCE_ADMIN
         public static BarStaticItem Counter;
         public static DataGridView Players;
         public static DataGridView AllPlayers;
+        public static XtraTabPage ConsoleTab;
+        public static XtraTabPage PlayersTab;
+        public static XtraTabPage EventsTab;
         private DiscordRpcClient rpcClient;
         public static int selectedPlayer = -1;
         public Form1()
@@ -106,6 +110,9 @@ namespace RCE_ADMIN
             Settings = Settings.Read();
             Status = toolStripStatusLabelRight;
             Console = richTextBoxConsole;
+            ConsoleTab = xtraTabPage2;
+            PlayersTab = xtraTabPage3;
+            EventsTab = xtraTabPage6;
             Counter = toolStripStatusLabelCounter;
             Players = dataGridViewPlayers;
             AllPlayers = allPlayersDataTable;
@@ -117,6 +124,7 @@ namespace RCE_ADMIN
             chatWebhookUrl.Text = Settings.ChatWebhookUrl;
             inGameName.Text = Settings.InGameName;
             autoMessagesCheck.Checked = Settings.AutoMessages;
+            AutoMessageTime.Value = Settings.AutoMessagesTime;
             InGameKillFeedCheck.Checked = Settings.InGameKillFeed;
             DiscordKillFeedCheck.Checked = Settings.DiscordKillFeed;
             InGameEventFeedCheck.Checked = Settings.InGameEventFeed;
@@ -300,7 +308,8 @@ namespace RCE_ADMIN
                 killfeedsWebhookUrl.Text, 
                 chatWebhookUrl.Text, 
                 inGameName.Text, 
-                autoMessagesCheck.Checked, 
+                autoMessagesCheck.Checked,
+                Convert.ToInt32(AutoMessageTime.Value),
                 InGameKillFeedCheck.Checked, 
                 DiscordKillFeedCheck.Checked, 
                 InGameEventFeedCheck.Checked, 
@@ -339,9 +348,7 @@ namespace RCE_ADMIN
             {
                 foreach (var item in autoMessages.Items)
                 {
-                    string message = item.ToString();
-                    ServerConsole.AddNewEntry("Auto Message: " + message);
-                    WebSocketsWrapper.Send(string.Format("global.say <color=green>[AUTO MESSAGE]</color> {0}", message));
+                    WebSocketsWrapper.Send(string.Format("global.say <color=green>[AUTO MESSAGE]</color> {0}", item.ToString()));
                     await Task.Delay(5 * 60 * 1000);
                 }
             }
@@ -3132,6 +3139,7 @@ namespace RCE_ADMIN
             }
             string jsonContent = JsonConvert.SerializeObject(messageData, Formatting.Indented);
             File.WriteAllText("Settings/auto_messages.json", jsonContent);
+            save_settings();
             XtraMessageBox.Show("Auto Messages Have Been Saved!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -3238,6 +3246,35 @@ namespace RCE_ADMIN
         {
             CopyFromODT(1);
             XtraMessageBox.Show(string.Format("Gamertag {0} Has Been Copied To Your Clipboard!", GetFromODT(1)), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private async void simpleButton22_Click(object sender, EventArgs e)
+        {
+            string origval = simpleButton22.Text;
+            if (string.IsNullOrEmpty(Settings.InGameName))
+            {
+                XtraMessageBox.Show("Can't Spawn A Locked Crate On You As You Have Not Set Your In-Game Name!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            WebSocketsWrapper.Send(string.Format("printpos {0}", Settings.InGameName));
+            simpleButton22.Text = "Spawning";
+            await Task.Delay(1000);
+            string pos = ServerConsole.ReadLastFewLines();
+            if (ServerConsole.IsValidPrintPos(pos))
+            {
+                WebSocketsWrapper.Send(string.Format("spawn codelocked {0}", pos.Replace(" ", "")));
+                simpleButton22.Text = "Spawned!";
+            }
+            else
+            {
+                XtraMessageBox.Show("Failed To Find Your Position, Try Again!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            simpleButton22.Text = origval;
+        }
+
+        private void simpleButton20_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send("puzzlereset");
         }
     }
 }
