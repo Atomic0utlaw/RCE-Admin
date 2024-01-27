@@ -86,11 +86,9 @@ namespace RCE_ADMIN.Callbacks
                     int i = 1;
                     foreach (var player in players)
                     {
-                        TimeSpan timeSpan = TimeSpan.FromSeconds(player.ConnectedSeconds);
                         dataTable.Rows.Add(
                             i,
-                            player.DisplayName,
-                            string.Format("{0} Hour(s), {1} Min(s), {2} Sec(s)", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds)
+                            player.DisplayName
                         );
                         i++;
                     }

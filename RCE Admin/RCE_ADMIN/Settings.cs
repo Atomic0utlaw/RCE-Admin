@@ -27,6 +27,12 @@ namespace RCE_ADMIN
         [JsonProperty("ChatWebhookUrl")]
         public string ChatWebhookUrl { get; set; }
 
+        [JsonProperty("TeamWebhookUrl")]
+        public string TeamWebhookUrl { get; set; }
+
+        [JsonProperty("ItemWebhookUrl")]
+        public string ItemWebhookUrl { get; set; }
+
         [JsonProperty("InGameName")]
         public string InGameName { get; set; }
 
@@ -56,8 +62,8 @@ namespace RCE_ADMIN
 
         [JsonProperty("Version")]
         [JsonIgnore]
-        public static string Version = "v1.8";
-        public Settings(string server_address, string server_port, string server_password, string events_webhook_url, string killfeed_webhook_url, string chat_webhook_url, string in_game_name, bool auto_messages, int auto_messages_time, bool in_game_kill_feed, bool discord_kill_feed, bool in_game_event_feed, bool discord_event_feed, bool in_game_chat, bool discord_chat)
+        public static string Version = "v1.9";
+        public Settings(string server_address, string server_port, string server_password, string events_webhook_url, string killfeed_webhook_url, string chat_webhook_url, string team_webhook_url, string item_webhook_url, string in_game_name, bool auto_messages, int auto_messages_time, bool in_game_kill_feed, bool discord_kill_feed, bool in_game_event_feed, bool discord_event_feed, bool in_game_chat, bool discord_chat)
         {
             ServerAddress = server_address;
             ServerPort = server_port;
@@ -65,6 +71,8 @@ namespace RCE_ADMIN
             EventWebhookUrl = events_webhook_url;
             KillFeedWebhookUrl = killfeed_webhook_url;
             ChatWebhookUrl = chat_webhook_url;
+            TeamWebhookUrl = team_webhook_url;
+            ItemWebhookUrl = item_webhook_url;
             InGameName = in_game_name;
             AutoMessages = auto_messages;
             AutoMessagesTime = auto_messages_time;
@@ -77,7 +85,7 @@ namespace RCE_ADMIN
         }
         public static void Write(Settings settings)
         {
-            Settings.Version = "v1.8";
+            Settings.Version = "v1.9";
 
             if (!File.Exists(FilePath))
                 File.Create(FilePath).Close();
@@ -91,7 +99,7 @@ namespace RCE_ADMIN
             if (!File.Exists(FilePath))
             {
                 XtraMessageBox.Show("Couldn't Find A Configuration File, A New One Will Be Created", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Write(new Settings("ip", "port", "password", null, null, null, null, true, 2, true, true, true, true, true, true));
+                Write(new Settings("ip", "port", "password", null, null, null, null, null, null, true, 2, true, true, true, true, true, true));
             }
             var settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(FilePath));
             return settings;

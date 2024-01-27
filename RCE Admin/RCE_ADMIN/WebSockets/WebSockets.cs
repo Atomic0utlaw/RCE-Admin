@@ -113,6 +113,30 @@ namespace RCE_ADMIN.WebSockets
                 string responseText = Encoding.UTF8.GetString(response);
             }
         }
+        static void SendDiscordWebhookTeam(string message)
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            Settings = Settings.Read();
+            using (var client = new WebClient())
+            {
+                var data = new NameValueCollection();
+                data["content"] = message;
+                var response = client.UploadValues(Settings.TeamWebhookUrl, "POST", data);
+                string responseText = Encoding.UTF8.GetString(response);
+            }
+        }
+        static void SendDiscordWebhookItem(string message)
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            Settings = Settings.Read();
+            using (var client = new WebClient())
+            {
+                var data = new NameValueCollection();
+                data["content"] = message;
+                var response = client.UploadValues(Settings.ItemWebhookUrl, "POST", data);
+                string responseText = Encoding.UTF8.GetString(response);
+            }
+        }
         static string getFirstFiveNumbers(string inputString)
         {
             string firstSixChars = inputString.Substring(0, Math.Min(inputString.Length, 5));
@@ -184,6 +208,7 @@ namespace RCE_ADMIN.WebSockets
             { "sentry.scientist.static", "Sentry Turret" },
             { "patrolhelicopter", "Patrol Helicopter" },
             { "autoturret_deployed", "Auto Turret" },
+            { "bradleyapc", "Bradley APC" },
             { " died ", "** Died **" }
         };
         static string ReplaceText(string input, Dictionary<string, string> replacements)
@@ -254,6 +279,71 @@ namespace RCE_ADMIN.WebSockets
                 Form1.ServerInfo.GameTime = full24HourTime.ToString("HH:mm:ss");
             }
 
+            //item logging
+            string itemmsg = packet.Message;
+            if (itemmsg.Contains("[ServerVar] giving"))
+            {
+                if (!string.IsNullOrEmpty(Settings.ItemWebhookUrl))
+                {
+                    string pattern = @"\[ServerVar\] giving (\w+) (\d+) x (\w+)";
+                    Match match = Regex.Match(itemmsg, pattern);
+
+                    if (match.Success)
+                    {
+                        SendDiscordWebhookItem(string.Format("**{0}** Has Recieved ***{1}*** ({2})", match.Groups[1].Value, match.Groups[3].Value, int.Parse(match.Groups[2].Value)));
+                    }
+                    else
+                    {
+                        string pattern2 = @"\[ServerVar\] giving  (\w+) (\d+) x (.+)";
+
+                        Match match2 = Regex.Match(itemmsg, pattern2);
+                        if (match2.Success)
+                        {
+                            SendDiscordWebhookItem(string.Format("**{0}** Has Recieved ***{1}*** ({2})", match2.Groups[1].Value, match2.Groups[3].Value, int.Parse(match2.Groups[2].Value)));
+                        }
+                    }
+                }
+            }
+
+            //team logging
+            string teammsg = packet.Message;
+            if (teammsg.Contains("team, ID"))
+            {
+                if (!string.IsNullOrEmpty(Settings.TeamWebhookUrl) && Settings.DiscordChat)
+                {
+                    if (teammsg.Contains("created a new team"))
+                    {
+                        string pattern = @"\[(.*?)\]";
+                        MatchCollection matches = Regex.Matches(teammsg, pattern);
+                        if (matches.Count >= 3)
+                        {
+                            SendDiscordWebhookTeam(string.Format("**{0}** Created A Team ({1})", matches[0].Groups[1].Value, int.Parse(matches[1].Groups[1].Value)));
+                        }
+                    }
+                    else if (teammsg.Contains("has joined"))
+                    {
+                        string pattern = @"\[(.*?)\]";
+                        MatchCollection matches = Regex.Matches(teammsg, pattern);
+                        if (matches.Count >= 3)
+                        {
+                            if (matches[0].Groups[1].Value == matches[1].Groups[1].Value)
+                                SendDiscordWebhookTeam(string.Format("**{0}** Created A Team ({1})", matches[0].Groups[1].Value, int.Parse(matches[2].Groups[1].Value)));
+                            else
+                                SendDiscordWebhookTeam(string.Format("**{1}** Invited **{0}** To Their Team ({2})", matches[0].Groups[1].Value, matches[1].Groups[1].Value, int.Parse(matches[2].Groups[1].Value)));
+                        }
+                    }
+                    else if (teammsg.Contains("has left"))
+                    {
+                        string pattern = @"\[(.*?)\]";
+                        MatchCollection matches = Regex.Matches(teammsg, pattern);
+                        if (matches.Count >= 3)
+                        {
+                            SendDiscordWebhookTeam(string.Format("**{0}** Left **{1}'s** Team ({2})", matches[0].Groups[1].Value, matches[1].Groups[1].Value, int.Parse(matches[2].Groups[1].Value)));
+                        }
+                    }
+                }
+            }
+
             //in game chat (via notes)
             string notemsg = packet.Message;
             if (notemsg.Contains("[NOTE PANEL]"))
@@ -271,7 +361,7 @@ namespace RCE_ADMIN.WebSockets
                         {
                             SendDiscordWebhookChat(string.Format("**{0}** : {1}", username, newMessage));
                         }
-                        if(Settings.InGameChat)
+                        if (Settings.InGameChat)
                             SendCommand(string.Format("global.say <color=green>[CHAT]</color> <color=#153eff>{0}</color> : {1}", username, newMessage));
 
                     }

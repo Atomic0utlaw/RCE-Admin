@@ -51,6 +51,7 @@ namespace RCE_ADMIN.Interface
                     Form1.ConsoleTab.Enabled = false;
                     Form1.PlayersTab.Enabled = false;
                     Form1.EventsTab.Enabled = false;
+                    Form1.ServerSettingsTab.Enabled = false;
                 }));
             }
             else
@@ -59,6 +60,7 @@ namespace RCE_ADMIN.Interface
                 Form1.ConsoleTab.Enabled = false;
                 Form1.PlayersTab.Enabled = false;
                 Form1.EventsTab.Enabled = false;
+                Form1.ServerSettingsTab.Enabled = false;
             };
         }
         public static void Enable()
@@ -70,6 +72,7 @@ namespace RCE_ADMIN.Interface
                     Form1.ConsoleTab.Enabled = true;
                     Form1.PlayersTab.Enabled = true;
                     Form1.EventsTab.Enabled = true;
+                    Form1.ServerSettingsTab.Enabled = true;
                 }));
             }
             else
@@ -78,6 +81,7 @@ namespace RCE_ADMIN.Interface
                 Form1.ConsoleTab.Enabled = true;
                 Form1.PlayersTab.Enabled = true;
                 Form1.EventsTab.Enabled = true;
+                Form1.ServerSettingsTab.Enabled = true;
             };
         }
         public static bool IsValidPrintPos(string inputString)

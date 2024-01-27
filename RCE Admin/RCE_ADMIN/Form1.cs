@@ -30,6 +30,10 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using WebSocketSharp;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
+using static DevExpress.XtraBars.Docking2010.Views.BaseRegistrator;
+using Button = DiscordRPC.Button;
+using System.Linq;
+using static Dapper.SqlMapper;
 
 namespace RCE_ADMIN
 {
@@ -44,6 +48,7 @@ namespace RCE_ADMIN
         public static XtraTabPage ConsoleTab;
         public static XtraTabPage PlayersTab;
         public static XtraTabPage EventsTab;
+        public static XtraTabPage ServerSettingsTab;
         private DiscordRpcClient rpcClient;
         public static int selectedPlayer = -1;
         public Form1()
@@ -54,8 +59,12 @@ namespace RCE_ADMIN
             rpcClient.SetPresence(new RichPresence
             {
                 Details = "Console Admin Tool",
-                State = "Managing The Server",
+                State = "Using Version " + Settings.Version,
                 Timestamps = new Timestamps(),
+                Buttons = new Button[]
+                {
+                    new Button() { Label = "RCE Admin (Download)", Url = "https://github.com/KyleFardy/RCE-Admin/releases" }
+                },
                 Assets = new Assets
                 {
                     LargeImageKey = "rce",
@@ -70,7 +79,24 @@ namespace RCE_ADMIN
                 contextMenuStrip1.Show(this, new Point(e.X, e.Y));
             }
         }
-
+        private void DeleteCratePosition(string x, string y, string z)
+        {
+            if (lockedCrateGroupName.SelectedIndex >= 0)
+            {
+                string groupName = lockedCrateGroupName.SelectedItem.ToString();
+                var existingGroup = crateGroups.Find(group => group.Name == groupName);
+                if (existingGroup != null)
+                {
+                    var positionToRemove = existingGroup.Positions.Find(position => position.X == x && position.Y == y && position.Z == z);
+                    if (positionToRemove != null)
+                    {
+                        existingGroup.Positions.Remove(positionToRemove);
+                        string jsonContent = JsonConvert.SerializeObject(crateGroups, Formatting.Indented);
+                        File.WriteAllText("Events/locked_crate_event.json", jsonContent);
+                    }
+                }
+            }
+        }
         static async Task<string[]> GetLatestReleaseChangelog()
         {
             using (var httpClient = new HttpClient())
@@ -113,6 +139,7 @@ namespace RCE_ADMIN
             ConsoleTab = xtraTabPage2;
             PlayersTab = xtraTabPage3;
             EventsTab = xtraTabPage6;
+            ServerSettingsTab = xtraTabPage9;
             Counter = toolStripStatusLabelCounter;
             Players = dataGridViewPlayers;
             AllPlayers = allPlayersDataTable;
@@ -122,6 +149,8 @@ namespace RCE_ADMIN
             eventsWebhookUrl.Text = Settings.EventWebhookUrl;
             killfeedsWebhookUrl.Text = Settings.KillFeedWebhookUrl;
             chatWebhookUrl.Text = Settings.ChatWebhookUrl;
+            teamWebhookUrl.Text = Settings.TeamWebhookUrl;
+            itemWebhookUrl.Text = Settings.ItemWebhookUrl;
             inGameName.Text = Settings.InGameName;
             autoMessagesCheck.Checked = Settings.AutoMessages;
             AutoMessageTime.Value = Settings.AutoMessagesTime;
@@ -140,6 +169,7 @@ namespace RCE_ADMIN
             LoadKit(2);
             LoadKit(3);
             load_players();
+            LoadCrates();
             LoadMessages();
             rpcClient.Initialize();
         }
@@ -168,6 +198,38 @@ namespace RCE_ADMIN
             {
                 autoMessages.Items.Add($"{message.Message}");
             }
+        }
+        private void LoadCrates()
+        {
+            string json = "Events/locked_crate_event.json";
+
+            if (File.Exists(json))
+            {
+                crateGroups = JsonConvert.DeserializeObject<List<LockedCrateGroup>>(File.ReadAllText(json));
+            }
+            else
+            {
+                crateGroups = new List<LockedCrateGroup>
+                {
+                    new LockedCrateGroup
+                    {
+                        Name = "Launch Site",
+                        Positions = new List<LockedCrate>()
+                    }
+                };
+                string jsonContent = JsonConvert.SerializeObject(crateGroups, Formatting.Indented);
+                File.WriteAllText("Events/locked_crate_event.json", jsonContent);
+            }
+            lockedCrateGroupName.Properties.Items.Clear();
+            foreach (var crateGroup in crateGroups)
+            {
+                lockedCrateGroupName.Properties.Items.Add(crateGroup.Name);
+            }
+            if (lockedCrateGroupName.Properties.Items.Count > 0)
+            {
+                lockedCrateGroupName.SelectedIndex = 0;
+            }
+            UpdateLockedCratePositions();
         }
         private void LoadKit(int kit)
         {
@@ -305,8 +367,10 @@ namespace RCE_ADMIN
                 textBoxPort.Text, 
                 textBoxPassword.Text, 
                 eventsWebhookUrl.Text, 
-                killfeedsWebhookUrl.Text, 
-                chatWebhookUrl.Text, 
+                killfeedsWebhookUrl.Text,
+                chatWebhookUrl.Text,
+                teamWebhookUrl.Text,
+                itemWebhookUrl.Text,
                 inGameName.Text, 
                 autoMessagesCheck.Checked,
                 Convert.ToInt32(AutoMessageTime.Value),
@@ -484,9 +548,19 @@ namespace RCE_ADMIN
         {
             WebSocketsWrapper.Send(string.Format("global.teleport {0} {1}", Settings.InGameName, player));
         }
-        public static void teleport_here(string player)
+        public static async Task teleport_here(string player)
         {
-            WebSocketsWrapper.Send(string.Format("global.teleport2me {0}", player));
+            WebSocketsWrapper.Send(string.Format("printpos {0}", Settings.InGameName));
+            await Task.Delay(1000);
+            string pos = ServerConsole.ReadLastFewLines();
+            if (ServerConsole.IsValidPrintPos(pos))
+            {
+                WebSocketsWrapper.Send(string.Format("teleportpos {1} {0}", player, pos.Replace(" ", "").Replace("(", "").Replace(")", "")));
+            }
+            else
+            {
+                XtraMessageBox.Show("Failed To Find Your Position, Try Again!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         public static void give_item_to_all(string item)
         {
@@ -2913,6 +2987,17 @@ namespace RCE_ADMIN
             public string Item { get; set; }
             public int Amount { get; set; }
         }
+        public class LockedCrateGroup
+        {
+            public string Name { get; set; }
+            public List<LockedCrate> Positions { get; set; }
+        }
+        public class LockedCrate
+        {
+            public string X { get; set; }
+            public string Y { get; set; }
+            public string Z { get; set; }
+        }
         public class AutoMessage
         {
             public string Message { get; set; }
@@ -3002,6 +3087,40 @@ namespace RCE_ADMIN
             {
                 XtraMessageBox.Show("Failed To Give Custom Kit 1, Have You Created One?", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+        private void SpawnCrates(string selectedGroupName)
+        {
+            if (TryLoadCrates("Events/locked_crate_event.json", selectedGroupName, out List<LockedCrate> crates))
+            {
+                foreach (var crate in crates)
+                {
+                    WebSocketsWrapper.Send($"spawn codelocked {crate.X},{crate.Y},{crate.Z}");
+                }
+                WebSocketsWrapper.Send(string.Format("global.say Locked Crates Event Has Started At <color=green>{0}</color>!", selectedGroupName));
+            }
+            else
+            {
+                XtraMessageBox.Show("Failed To Load Positions!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private bool TryLoadCrates(string jsonPath, string groupName, out List<LockedCrate> crates)
+        {
+            crates = null;
+
+            if (File.Exists(jsonPath))
+            {
+                var crateGroups = JsonConvert.DeserializeObject<List<LockedCrateGroup>>(File.ReadAllText(jsonPath));
+                var selectedGroup = crateGroups.Find(group => group.Name == groupName);
+
+                if (selectedGroup != null)
+                {
+                    crates = selectedGroup.Positions;
+                    return true;
+                }
+            }
+
+            return false;
         }
         bool TryLoadKit(string filePath, out List<Kit> kits)
         {
@@ -3271,10 +3390,201 @@ namespace RCE_ADMIN
             }
             simpleButton22.Text = origval;
         }
-
         private void simpleButton20_Click(object sender, EventArgs e)
         {
             WebSocketsWrapper.Send("puzzlereset");
+        }
+        private void SaveCratePosition(string jsonPath, string groupName, LockedCrate position)
+        {
+            List<LockedCrateGroup> crateGroups;
+            if (File.Exists(jsonPath))
+            {
+                crateGroups = JsonConvert.DeserializeObject<List<LockedCrateGroup>>(File.ReadAllText(jsonPath));
+            }
+            else
+            {
+                crateGroups = new List<LockedCrateGroup>();
+            }
+            var existingGroup = crateGroups.Find(group => group.Name == groupName);
+            if (existingGroup != null)
+            {
+                existingGroup.Positions.Add(position);
+            }
+            else
+            {
+                var newGroup = new LockedCrateGroup
+                {
+                    Name = groupName,
+                    Positions = new List<LockedCrate> { position }
+                };
+                crateGroups.Add(newGroup);
+            }
+            string jsonContent = JsonConvert.SerializeObject(crateGroups, Formatting.Indented);
+            File.WriteAllText(jsonPath, jsonContent);
+        }
+
+        private void AddCratePosition(string groupName, LockedCrate newPosition)
+        {
+            var existingGroup = crateGroups.Find(group => group.Name == groupName);
+
+            if (existingGroup != null)
+            {
+                existingGroup.Positions.Add(newPosition);
+            }
+            else
+            {
+                var newGroup = new LockedCrateGroup
+                {
+                    Name = groupName,
+                    Positions = new List<LockedCrate> { newPosition }
+                };
+                crateGroups.Add(newGroup);
+            }
+            if (!lockedCrateGroupName.Properties.Items.Contains(groupName))
+            {
+                lockedCrateGroupName.Properties.Items.Add(groupName);
+            }
+            lockedCrateGroupName.SelectedItem = groupName;
+        }
+
+        private void simpleButton24_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(newLocationName.Text) || string.IsNullOrEmpty(lockedCratePos.Text))
+            {
+                XtraMessageBox.Show("Please Fill Out All The Fields!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            string[] parts = lockedCratePos.Text.Replace("(", "").Replace(")", "").Split(',');
+            LockedCrate newPosition = new LockedCrate { X = parts[0], Y = parts[1], Z = parts[2] };
+            SaveCratePosition("Events/locked_crate_event.json", newLocationName.Text, newPosition);
+            AddCratePosition(newLocationName.Text, newPosition);
+            UpdateLockedCratePositions();
+        }
+
+        private void simpleButton25_Click(object sender, EventArgs e)
+        {
+            if (lockedCrateGroupName.SelectedIndex >= 0)
+            {
+                var selectedGroupName = lockedCrateGroupName.SelectedItem.ToString();
+                SpawnCrates(selectedGroupName);
+            }
+            else
+            {
+                XtraMessageBox.Show("Failed To Spawn Crates, Have You Selected A Location?", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void LockedCratePositions_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (LockedCratePositions.SelectedItem != null && lockedCrateGroupName.SelectedItem != null)
+                {
+                    string selectedPosition = LockedCratePositions.SelectedItem.ToString();
+                    string groupName = lockedCrateGroupName.SelectedItem.ToString();
+
+                    var positionParts = selectedPosition.Split(new[] { '(', ')', ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (positionParts.Length == 3)
+                    {
+                        string x = positionParts[0].Trim();
+                        string y = positionParts[1].Trim();
+                        string z = positionParts[2].Trim();
+                        var existingGroup = crateGroups.Find(group => group.Name == groupName);
+                        if (existingGroup != null)
+                        {
+                            var positionToRemove = existingGroup.Positions.FirstOrDefault(position =>
+                                Convert.ToDouble(position.X) == Convert.ToDouble(x) &&
+                                Convert.ToDouble(position.Y) == Convert.ToDouble(y) &&
+                                Convert.ToDouble(position.Z) == Convert.ToDouble(z));
+                            if (positionToRemove != null)
+                            {
+                                existingGroup.Positions.Remove(positionToRemove);
+                                if (existingGroup.Positions.Count == 0)
+                                {
+                                    crateGroups.Remove(existingGroup);
+                                }
+                                string jsonContent = JsonConvert.SerializeObject(crateGroups, Formatting.Indented);
+                                File.WriteAllText("Events/locked_crate_event.json", jsonContent);
+                                LockedCratePositions.Items.Remove(LockedCratePositions.SelectedItem);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private void trackBarControl1_Properties_ValueChanged(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("env.time {0}", trackBarControl1.Value));
+        }
+        private List<LockedCrateGroup> crateGroups;
+        private void UpdateLockedCratePositions()
+        {
+            LockedCratePositions.Items.Clear();
+            if (lockedCrateGroupName.SelectedIndex >= 0)
+            {
+                var selectedGroupName = lockedCrateGroupName.SelectedItem.ToString();
+                var selectedGroup = crateGroups.Find(group => group.Name == selectedGroupName);
+                if (selectedGroup != null)
+                {
+                    foreach (var cratePosition in selectedGroup.Positions)
+                    {
+                        LockedCratePositions.Items.Add($"({cratePosition.X}, {cratePosition.Y}, {cratePosition.Z})");
+                    }
+                }
+            }
+        }
+        private void lockedCrateGroupName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateLockedCratePositions();
+        }
+
+        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("entity.deleteby {0}", GetFromDT(1)));
+        }
+
+        private void deleteAllEntitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("entity.deleteby {0}", GetFromODT(1)));
+        }
+        static string[] FormatXYZString(string input)
+        {
+            string[] values = input.Trim('(', ')').Split(',');
+
+            if (values.Length == 3)
+            {
+                double X = double.Parse(values[0].Trim());
+                double Y = double.Parse(values[1].Trim());
+                double Z = double.Parse(values[2].Trim());
+                return new string[] { X.ToString(), Y.ToString(), Z.ToString() };
+            }
+            else
+            {
+                return null;
+            }
+        }
+        private async void simpleButton23_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(newLocationName.Text))
+            {
+                XtraMessageBox.Show("Please Fill Out All The Fields!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            WebSocketsWrapper.Send(string.Format("printpos {0}", Settings.InGameName));
+            await Task.Delay(1000);
+            string pos = ServerConsole.ReadLastFewLines();
+            if (ServerConsole.IsValidPrintPos(pos))
+            {
+
+                string[] parts = FormatXYZString(pos);
+                LockedCrate newPosition = new LockedCrate { X = parts[0], Y = parts[1], Z = parts[2] };
+                SaveCratePosition("Events/locked_crate_event.json", newLocationName.Text, newPosition);
+                AddCratePosition(newLocationName.Text, newPosition);
+                UpdateLockedCratePositions();
+            }
+            else
+            {
+                XtraMessageBox.Show("Failed To Find Your Position, Try Again!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

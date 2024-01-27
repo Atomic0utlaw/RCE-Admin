@@ -39,6 +39,30 @@ namespace RCE_ADMIN
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel1 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel2 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel3 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel4 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel5 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel6 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel7 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel8 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel9 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel10 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel11 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel12 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel13 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel14 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel15 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel16 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel17 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel18 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel19 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel20 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel21 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel22 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel23 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel24 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
             this.groupBoxConnection = new DevExpress.XtraEditors.GroupControl();
             this.buttonDisconnect = new DevExpress.XtraEditors.SimpleButton();
             this.buttonConnect = new DevExpress.XtraEditors.SimpleButton();
@@ -68,7 +92,6 @@ namespace RCE_ADMIN
             this.PlayerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SteamId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ping = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimeConnected = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -573,6 +596,8 @@ namespace RCE_ADMIN
             this.teleporToThemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.spawnHeliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.toolStripStatusLabelRight = new DevExpress.XtraBars.BarStaticItem();
@@ -593,13 +618,11 @@ namespace RCE_ADMIN
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl8 = new DevExpress.XtraEditors.GroupControl();
-            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.allPlayersDataTable = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyNameToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.banningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -618,9 +641,10 @@ namespace RCE_ADMIN
             this.ownerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteAllEntitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simpleButton9 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -648,35 +672,54 @@ namespace RCE_ADMIN
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage6 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabControl2 = new DevExpress.XtraTab.XtraTabControl();
+            this.xtraTabPage7 = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl10 = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton13 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton14 = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl17 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.AutoMessageTime = new DevExpress.XtraEditors.SpinEdit();
             this.simpleButton21 = new DevExpress.XtraEditors.SimpleButton();
             this.addAutoMessage = new DevExpress.XtraEditors.TextEdit();
             this.simpleButton19 = new DevExpress.XtraEditors.SimpleButton();
             this.autoMessagesCheck = new DevExpress.XtraEditors.CheckEdit();
             this.autoMessages = new DevExpress.XtraEditors.ListBoxControl();
-            this.groupControl16 = new DevExpress.XtraEditors.GroupControl();
-            this.DiscordChatCheck = new DevExpress.XtraEditors.CheckEdit();
-            this.InGameChatCheck = new DevExpress.XtraEditors.CheckEdit();
-            this.groupControl15 = new DevExpress.XtraEditors.GroupControl();
-            this.DiscordEventFeedCheck = new DevExpress.XtraEditors.CheckEdit();
-            this.InGameEventFeedCheck = new DevExpress.XtraEditors.CheckEdit();
-            this.groupControl14 = new DevExpress.XtraEditors.GroupControl();
-            this.DiscordKillFeedCheck = new DevExpress.XtraEditors.CheckEdit();
-            this.InGameKillFeedCheck = new DevExpress.XtraEditors.CheckEdit();
-            this.groupControl13 = new DevExpress.XtraEditors.GroupControl();
-            this.simpleButton20 = new DevExpress.XtraEditors.SimpleButton();
-            this.groupControl12 = new DevExpress.XtraEditors.GroupControl();
-            this.simpleButton17 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton18 = new DevExpress.XtraEditors.SimpleButton();
-            this.groupControl11 = new DevExpress.XtraEditors.GroupControl();
-            this.simpleButton15 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton16 = new DevExpress.XtraEditors.SimpleButton();
-            this.groupControl10 = new DevExpress.XtraEditors.GroupControl();
-            this.simpleButton13 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton14 = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl9 = new DevExpress.XtraEditors.GroupControl();
             this.simpleButton11 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton12 = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl16 = new DevExpress.XtraEditors.GroupControl();
+            this.DiscordChatCheck = new DevExpress.XtraEditors.CheckEdit();
+            this.InGameChatCheck = new DevExpress.XtraEditors.CheckEdit();
+            this.groupControl14 = new DevExpress.XtraEditors.GroupControl();
+            this.DiscordKillFeedCheck = new DevExpress.XtraEditors.CheckEdit();
+            this.InGameKillFeedCheck = new DevExpress.XtraEditors.CheckEdit();
+            this.groupControl12 = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton22 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton17 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton18 = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl15 = new DevExpress.XtraEditors.GroupControl();
+            this.DiscordEventFeedCheck = new DevExpress.XtraEditors.CheckEdit();
+            this.InGameEventFeedCheck = new DevExpress.XtraEditors.CheckEdit();
+            this.groupControl13 = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton20 = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl11 = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton15 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton16 = new DevExpress.XtraEditors.SimpleButton();
+            this.xtraTabPage8 = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl18 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
+            this.lockedCrateGroupName = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
+            this.newLocationName = new DevExpress.XtraEditors.TextEdit();
+            this.simpleButton25 = new DevExpress.XtraEditors.SimpleButton();
+            this.lockedCratePos = new DevExpress.XtraEditors.TextEdit();
+            this.simpleButton24 = new DevExpress.XtraEditors.SimpleButton();
+            this.LockedCratePositions = new DevExpress.XtraEditors.ListBoxControl();
+            this.xtraTabPage9 = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl19 = new DevExpress.XtraEditors.GroupControl();
+            this.trackBarControl1 = new DevExpress.XtraEditors.TrackBarControl();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
@@ -685,9 +728,11 @@ namespace RCE_ADMIN
             this.curVer = new DevExpress.XtraEditors.LabelControl();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.richTextBoxChangelog = new System.Windows.Forms.RichTextBox();
-            this.simpleButton22 = new DevExpress.XtraEditors.SimpleButton();
-            this.AutoMessageTime = new DevExpress.XtraEditors.SpinEdit();
-            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.teamWebhookUrl = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.itemWebhookUrl = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton23 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxConnection)).BeginInit();
             this.groupBoxConnection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).BeginInit();
@@ -735,39 +780,56 @@ namespace RCE_ADMIN
             ((System.ComponentModel.ISupportInitialize)(this.customKit1AddItem.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customKit1Box)).BeginInit();
             this.xtraTabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl2)).BeginInit();
+            this.xtraTabControl2.SuspendLayout();
+            this.xtraTabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl10)).BeginInit();
+            this.groupControl10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl17)).BeginInit();
             this.groupControl17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AutoMessageTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addAutoMessage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoMessagesCheck.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoMessages)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl9)).BeginInit();
+            this.groupControl9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl16)).BeginInit();
             this.groupControl16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DiscordChatCheck.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InGameChatCheck.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl15)).BeginInit();
-            this.groupControl15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DiscordEventFeedCheck.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.InGameEventFeedCheck.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl14)).BeginInit();
             this.groupControl14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DiscordKillFeedCheck.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InGameKillFeedCheck.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl13)).BeginInit();
-            this.groupControl13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl12)).BeginInit();
             this.groupControl12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl15)).BeginInit();
+            this.groupControl15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DiscordEventFeedCheck.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InGameEventFeedCheck.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl13)).BeginInit();
+            this.groupControl13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl11)).BeginInit();
             this.groupControl11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl10)).BeginInit();
-            this.groupControl10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl9)).BeginInit();
-            this.groupControl9.SuspendLayout();
+            this.xtraTabPage8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl18)).BeginInit();
+            this.groupControl18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lockedCrateGroupName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.newLocationName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lockedCratePos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LockedCratePositions)).BeginInit();
+            this.xtraTabPage9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl19)).BeginInit();
+            this.groupControl19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarControl1.Properties)).BeginInit();
             this.xtraTabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AutoMessageTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamWebhookUrl.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemWebhookUrl.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxConnection
@@ -800,6 +862,10 @@ namespace RCE_ADMIN
             // 
             // groupBoxCredentials
             // 
+            this.groupBoxCredentials.Controls.Add(this.itemWebhookUrl);
+            this.groupBoxCredentials.Controls.Add(this.labelControl13);
+            this.groupBoxCredentials.Controls.Add(this.teamWebhookUrl);
+            this.groupBoxCredentials.Controls.Add(this.labelControl7);
             this.groupBoxCredentials.Controls.Add(this.chatWebhookUrl);
             this.groupBoxCredentials.Controls.Add(this.labelControl12);
             this.groupBoxCredentials.Controls.Add(this.inGameName);
@@ -819,7 +885,7 @@ namespace RCE_ADMIN
             this.groupBoxCredentials.Controls.Add(this.textBoxAddress);
             this.groupBoxCredentials.Location = new System.Drawing.Point(11, 3);
             this.groupBoxCredentials.Name = "groupBoxCredentials";
-            this.groupBoxCredentials.Size = new System.Drawing.Size(662, 304);
+            this.groupBoxCredentials.Size = new System.Drawing.Size(662, 322);
             this.groupBoxCredentials.TabIndex = 0;
             this.groupBoxCredentials.Text = "Credentials";
             // 
@@ -844,14 +910,14 @@ namespace RCE_ADMIN
             // 
             this.inGameName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.inGameName.Location = new System.Drawing.Point(136, 198);
+            this.inGameName.Location = new System.Drawing.Point(136, 250);
             this.inGameName.Name = "inGameName";
             this.inGameName.Size = new System.Drawing.Size(515, 20);
             this.inGameName.TabIndex = 11;
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(11, 200);
+            this.labelControl11.Location = new System.Drawing.Point(11, 253);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(96, 13);
             this.labelControl11.TabIndex = 12;
@@ -893,7 +959,7 @@ namespace RCE_ADMIN
             // 
             // HowToButton
             // 
-            this.HowToButton.Location = new System.Drawing.Point(417, 266);
+            this.HowToButton.Location = new System.Drawing.Point(417, 283);
             this.HowToButton.Name = "HowToButton";
             this.HowToButton.Size = new System.Drawing.Size(234, 23);
             this.HowToButton.TabIndex = 8;
@@ -902,7 +968,7 @@ namespace RCE_ADMIN
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(11, 266);
+            this.buttonSave.Location = new System.Drawing.Point(11, 283);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(87, 23);
             this.buttonSave.TabIndex = 7;
@@ -911,7 +977,7 @@ namespace RCE_ADMIN
             // 
             // checkBoxShowPassword
             // 
-            this.checkBoxShowPassword.Location = new System.Drawing.Point(198, 268);
+            this.checkBoxShowPassword.Location = new System.Drawing.Point(198, 285);
             this.checkBoxShowPassword.Name = "checkBoxShowPassword";
             this.checkBoxShowPassword.Properties.Caption = "Show Password";
             this.checkBoxShowPassword.Size = new System.Drawing.Size(101, 20);
@@ -1022,7 +1088,6 @@ namespace RCE_ADMIN
             this.PlayerName,
             this.SteamId,
             this.Ping,
-            this.Address,
             this.TimeConnected});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
@@ -1032,7 +1097,7 @@ namespace RCE_ADMIN
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewPlayers.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewPlayers.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dataGridViewPlayers.Dock = System.Windows.Forms.DockStyle.Left;
             this.dataGridViewPlayers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.dataGridViewPlayers.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewPlayers.MultiSelect = false;
@@ -1060,7 +1125,7 @@ namespace RCE_ADMIN
             this.dataGridViewPlayers.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.dataGridViewPlayers.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
             this.dataGridViewPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPlayers.Size = new System.Drawing.Size(860, 212);
+            this.dataGridViewPlayers.Size = new System.Drawing.Size(585, 481);
             this.dataGridViewPlayers.TabIndex = 0;
             this.dataGridViewPlayers.SelectionChanged += new System.EventHandler(this.dataGridViewPlayers_SelectionChanged);
             this.dataGridViewPlayers.Click += new System.EventHandler(this.dataGridViewPlayers_Click);
@@ -1078,14 +1143,14 @@ namespace RCE_ADMIN
             this.PlayerName.HeaderText = "Name";
             this.PlayerName.Name = "PlayerName";
             this.PlayerName.ReadOnly = true;
-            this.PlayerName.Width = 175;
+            this.PlayerName.Width = 200;
             // 
             // SteamId
             // 
             this.SteamId.HeaderText = "Health";
             this.SteamId.Name = "SteamId";
             this.SteamId.ReadOnly = true;
-            this.SteamId.Width = 175;
+            this.SteamId.Width = 70;
             // 
             // Ping
             // 
@@ -1093,13 +1158,6 @@ namespace RCE_ADMIN
             this.Ping.Name = "Ping";
             this.Ping.ReadOnly = true;
             this.Ping.Width = 50;
-            // 
-            // Address
-            // 
-            this.Address.HeaderText = "IP Address";
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            this.Address.Width = 150;
             // 
             // TimeConnected
             // 
@@ -1128,16 +1186,18 @@ namespace RCE_ADMIN
             this.teleportToYouToolStripMenuItem,
             this.teleporToThemToolStripMenuItem,
             this.toolStripSeparator5,
-            this.spawnHeliToolStripMenuItem});
+            this.spawnHeliToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.toolStripMenuItem8});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(140, 314);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(141, 342);
             // 
             // copyNameToolStripMenuItem
             // 
             this.copyNameToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.copyNameToolStripMenuItem.Name = "copyNameToolStripMenuItem";
-            this.copyNameToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.copyNameToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.copyNameToolStripMenuItem.Text = "Copy Name";
             this.copyNameToolStripMenuItem.Click += new System.EventHandler(this.copyNameToolStripMenuItem_Click);
             // 
@@ -1159,7 +1219,7 @@ namespace RCE_ADMIN
             this.banPlayerToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.banPlayerToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.banPlayerToolStripMenuItem.Name = "banPlayerToolStripMenuItem";
-            this.banPlayerToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.banPlayerToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.banPlayerToolStripMenuItem.Text = "Ban Player";
             this.banPlayerToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.banPlayerToolStripMenuItem.Click += new System.EventHandler(this.banPlayerToolStripMenuItem_Click);
@@ -1168,7 +1228,7 @@ namespace RCE_ADMIN
             // 
             this.toolStripSeparator1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(136, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(137, 6);
             // 
             // toolStripMenuItem1
             // 
@@ -1177,7 +1237,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem});
             this.toolStripMenuItem1.ForeColor = System.Drawing.Color.White;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(139, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(140, 22);
             this.toolStripMenuItem1.Text = "VIP";
             // 
             // addToolStripMenuItem
@@ -1207,7 +1267,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem1});
             this.toolStripMenuItem2.ForeColor = System.Drawing.Color.White;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(139, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(140, 22);
             this.toolStripMenuItem2.Text = "Moderator";
             // 
             // addToolStripMenuItem1
@@ -1235,7 +1295,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem2});
             this.toolStripMenuItem3.ForeColor = System.Drawing.Color.White;
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(139, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(140, 22);
             this.toolStripMenuItem3.Text = "Admin";
             // 
             // addToolStripMenuItem2
@@ -1263,7 +1323,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem3});
             this.toolStripMenuItem4.ForeColor = System.Drawing.Color.White;
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(139, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(140, 22);
             this.toolStripMenuItem4.Text = "Owner";
             // 
             // addToolStripMenuItem3
@@ -1288,7 +1348,7 @@ namespace RCE_ADMIN
             // 
             this.toolStripSeparator2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(136, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(137, 6);
             // 
             // giveItemsToolStripMenuItem
             // 
@@ -1309,7 +1369,7 @@ namespace RCE_ADMIN
             this.moreElectricalToolStripMenuItem});
             this.giveItemsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.giveItemsToolStripMenuItem.Name = "giveItemsToolStripMenuItem";
-            this.giveItemsToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.giveItemsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.giveItemsToolStripMenuItem.Text = "Give Item";
             // 
             // weaponToolStripMenuItem
@@ -6022,7 +6082,7 @@ namespace RCE_ADMIN
             this.customKit3ToolStripMenuItem});
             this.kitsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.kitsToolStripMenuItem.Name = "kitsToolStripMenuItem";
-            this.kitsToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.kitsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.kitsToolStripMenuItem.Text = "Kits";
             // 
             // customKit1ToolStripMenuItem
@@ -6059,7 +6119,7 @@ namespace RCE_ADMIN
             this.fullKitToolStripMenuItem});
             this.toolStripMenuItem7.ForeColor = System.Drawing.Color.White;
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(139, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(140, 22);
             this.toolStripMenuItem7.Text = "Starts";
             // 
             // hazzyMPToolStripMenuItem
@@ -6084,13 +6144,13 @@ namespace RCE_ADMIN
             // 
             this.toolStripSeparator3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(136, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(137, 6);
             // 
             // teleportToYouToolStripMenuItem
             // 
             this.teleportToYouToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.teleportToYouToolStripMenuItem.Name = "teleportToYouToolStripMenuItem";
-            this.teleportToYouToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.teleportToYouToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.teleportToYouToolStripMenuItem.Text = "Teleport To You";
             this.teleportToYouToolStripMenuItem.Click += new System.EventHandler(this.teleportToYouToolStripMenuItem_Click);
             // 
@@ -6098,22 +6158,35 @@ namespace RCE_ADMIN
             // 
             this.teleporToThemToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.teleporToThemToolStripMenuItem.Name = "teleporToThemToolStripMenuItem";
-            this.teleporToThemToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.teleporToThemToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.teleporToThemToolStripMenuItem.Text = "Teleport To Them";
             this.teleporToThemToolStripMenuItem.Click += new System.EventHandler(this.teleporToThemToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(136, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(137, 6);
             // 
             // spawnHeliToolStripMenuItem
             // 
             this.spawnHeliToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.spawnHeliToolStripMenuItem.Name = "spawnHeliToolStripMenuItem";
-            this.spawnHeliToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.spawnHeliToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.spawnHeliToolStripMenuItem.Text = "Spawn Heli";
             this.spawnHeliToolStripMenuItem.Click += new System.EventHandler(this.spawnHeliToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(137, 6);
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.ForeColor = System.Drawing.Color.White;
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(140, 22);
+            this.toolStripMenuItem8.Text = "Delete All Entities";
+            this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
             // 
             // barManager1
             // 
@@ -6209,6 +6282,7 @@ namespace RCE_ADMIN
             this.xtraTabPage3,
             this.xtraTabPage5,
             this.xtraTabPage6,
+            this.xtraTabPage9,
             this.xtraTabPage4});
             // 
             // xtraTabPage1
@@ -6300,7 +6374,6 @@ namespace RCE_ADMIN
             // 
             this.xtraTabPage3.Controls.Add(this.groupControl8);
             this.xtraTabPage3.Controls.Add(this.labelControl8);
-            this.xtraTabPage3.Controls.Add(this.labelControl7);
             this.xtraTabPage3.Controls.Add(this.labelControl6);
             this.xtraTabPage3.Controls.Add(this.labelControl5);
             this.xtraTabPage3.Controls.Add(this.labelControl4);
@@ -6312,34 +6385,16 @@ namespace RCE_ADMIN
             // 
             // groupControl8
             // 
-            this.groupControl8.Controls.Add(this.labelControl13);
             this.groupControl8.Controls.Add(this.labelControl18);
             this.groupControl8.Controls.Add(this.labelControl17);
             this.groupControl8.Controls.Add(this.allPlayersDataTable);
             this.groupControl8.Controls.Add(this.simpleButton9);
-            this.groupControl8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupControl8.Location = new System.Drawing.Point(0, 212);
+            this.groupControl8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupControl8.Location = new System.Drawing.Point(591, 0);
             this.groupControl8.Name = "groupControl8";
-            this.groupControl8.Size = new System.Drawing.Size(471, 269);
+            this.groupControl8.Size = new System.Drawing.Size(269, 481);
             this.groupControl8.TabIndex = 8;
             this.groupControl8.Text = "All Players (Online/Offline)";
-            // 
-            // labelControl13
-            // 
-            this.labelControl13.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            this.labelControl13.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl13.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl13.Appearance.Options.UseBackColor = true;
-            this.labelControl13.Appearance.Options.UseFont = true;
-            this.labelControl13.Appearance.Options.UseForeColor = true;
-            this.labelControl13.Appearance.Options.UseTextOptions = true;
-            this.labelControl13.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.labelControl13.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl13.Location = new System.Drawing.Point(236, 27);
-            this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(208, 21);
-            this.labelControl13.TabIndex = 13;
-            this.labelControl13.Text = "TOTAL TIME CONNECTED";
             // 
             // labelControl18
             // 
@@ -6394,8 +6449,7 @@ namespace RCE_ADMIN
             this.allPlayersDataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.allPlayersDataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.TC});
+            this.dataGridViewTextBoxColumn2});
             this.allPlayersDataTable.ContextMenuStrip = this.contextMenuStrip2;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
@@ -6433,7 +6487,7 @@ namespace RCE_ADMIN
             this.allPlayersDataTable.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.allPlayersDataTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
             this.allPlayersDataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.allPlayersDataTable.Size = new System.Drawing.Size(467, 240);
+            this.allPlayersDataTable.Size = new System.Drawing.Size(265, 452);
             this.allPlayersDataTable.TabIndex = 6;
             // 
             // dataGridViewTextBoxColumn1
@@ -6451,12 +6505,6 @@ namespace RCE_ADMIN
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Width = 200;
             // 
-            // TC
-            // 
-            this.TC.HeaderText = "Total Time Connected";
-            this.TC.Name = "TC";
-            this.TC.Width = 200;
-            // 
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
@@ -6467,17 +6515,19 @@ namespace RCE_ADMIN
             this.vIPToolStripMenuItem,
             this.moderatorToolStripMenuItem,
             this.adminToolStripMenuItem,
-            this.ownerToolStripMenuItem});
+            this.ownerToolStripMenuItem,
+            this.toolStripSeparator7,
+            this.deleteAllEntitiesToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.ShowImageMargin = false;
-            this.contextMenuStrip2.Size = new System.Drawing.Size(113, 142);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(141, 170);
             // 
             // copyNameToolStripMenuItem1
             // 
             this.copyNameToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.copyNameToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
             this.copyNameToolStripMenuItem1.Name = "copyNameToolStripMenuItem1";
-            this.copyNameToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
+            this.copyNameToolStripMenuItem1.Size = new System.Drawing.Size(140, 22);
             this.copyNameToolStripMenuItem1.Text = "Copy Name";
             this.copyNameToolStripMenuItem1.Click += new System.EventHandler(this.copyNameToolStripMenuItem1_Click);
             // 
@@ -6489,7 +6539,7 @@ namespace RCE_ADMIN
             this.uUnbanToolStripMenuItem});
             this.banningToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.banningToolStripMenuItem.Name = "banningToolStripMenuItem";
-            this.banningToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.banningToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.banningToolStripMenuItem.Text = "Banning";
             // 
             // banToolStripMenuItem
@@ -6515,7 +6565,7 @@ namespace RCE_ADMIN
             this.toolStripSeparator4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.toolStripSeparator4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(109, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(137, 6);
             // 
             // vIPToolStripMenuItem
             // 
@@ -6525,7 +6575,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem7});
             this.vIPToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.vIPToolStripMenuItem.Name = "vIPToolStripMenuItem";
-            this.vIPToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.vIPToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.vIPToolStripMenuItem.Text = "VIP";
             // 
             // addToolStripMenuItem7
@@ -6554,7 +6604,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem6});
             this.moderatorToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.moderatorToolStripMenuItem.Name = "moderatorToolStripMenuItem";
-            this.moderatorToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.moderatorToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.moderatorToolStripMenuItem.Text = "Moderator";
             // 
             // addToolStripMenuItem6
@@ -6583,7 +6633,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem5});
             this.adminToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.adminToolStripMenuItem.Text = "Admin";
             // 
             // addToolStripMenuItem5
@@ -6612,7 +6662,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem4});
             this.ownerToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.ownerToolStripMenuItem.Name = "ownerToolStripMenuItem";
-            this.ownerToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.ownerToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.ownerToolStripMenuItem.Text = "Owner";
             // 
             // addToolStripMenuItem4
@@ -6633,10 +6683,23 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem4.Text = "Remove";
             this.removeToolStripMenuItem4.Click += new System.EventHandler(this.removeToolStripMenuItem4_Click);
             // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(137, 6);
+            // 
+            // deleteAllEntitiesToolStripMenuItem
+            // 
+            this.deleteAllEntitiesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.deleteAllEntitiesToolStripMenuItem.Name = "deleteAllEntitiesToolStripMenuItem";
+            this.deleteAllEntitiesToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.deleteAllEntitiesToolStripMenuItem.Text = "Delete All Entities";
+            this.deleteAllEntitiesToolStripMenuItem.Click += new System.EventHandler(this.deleteAllEntitiesToolStripMenuItem_Click);
+            // 
             // simpleButton9
             // 
             this.simpleButton9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton9.Location = new System.Drawing.Point(398, 3);
+            this.simpleButton9.Location = new System.Drawing.Point(189, 2);
             this.simpleButton9.Name = "simpleButton9";
             this.simpleButton9.Size = new System.Drawing.Size(69, 20);
             this.simpleButton9.TabIndex = 5;
@@ -6654,28 +6717,11 @@ namespace RCE_ADMIN
             this.labelControl8.Appearance.Options.UseTextOptions = true;
             this.labelControl8.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl8.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl8.Location = new System.Drawing.Point(590, 0);
+            this.labelControl8.Location = new System.Drawing.Point(358, 0);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(203, 21);
             this.labelControl8.TabIndex = 6;
             this.labelControl8.Text = "TIME CONNECTED";
-            // 
-            // labelControl7
-            // 
-            this.labelControl7.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl7.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl7.Appearance.Options.UseBackColor = true;
-            this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Appearance.Options.UseForeColor = true;
-            this.labelControl7.Appearance.Options.UseTextOptions = true;
-            this.labelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.labelControl7.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl7.Location = new System.Drawing.Point(439, 0);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(151, 21);
-            this.labelControl7.TabIndex = 5;
-            this.labelControl7.Text = "IP ADDRESS";
             // 
             // labelControl6
             // 
@@ -6688,9 +6734,9 @@ namespace RCE_ADMIN
             this.labelControl6.Appearance.Options.UseTextOptions = true;
             this.labelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl6.Location = new System.Drawing.Point(390, 0);
+            this.labelControl6.Location = new System.Drawing.Point(305, 0);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(49, 21);
+            this.labelControl6.Size = new System.Drawing.Size(55, 21);
             this.labelControl6.TabIndex = 4;
             this.labelControl6.Text = "PING";
             // 
@@ -6705,9 +6751,9 @@ namespace RCE_ADMIN
             this.labelControl5.Appearance.Options.UseTextOptions = true;
             this.labelControl5.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl5.Location = new System.Drawing.Point(215, 0);
+            this.labelControl5.Location = new System.Drawing.Point(242, 0);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(175, 21);
+            this.labelControl5.Size = new System.Drawing.Size(63, 21);
             this.labelControl5.TabIndex = 3;
             this.labelControl5.Text = "HEALTH";
             // 
@@ -6724,7 +6770,7 @@ namespace RCE_ADMIN
             this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl4.Location = new System.Drawing.Point(40, 0);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(175, 21);
+            this.labelControl4.Size = new System.Drawing.Size(204, 21);
             this.labelControl4.TabIndex = 2;
             this.labelControl4.Text = "NAME";
             // 
@@ -6981,18 +7027,69 @@ namespace RCE_ADMIN
             // 
             // xtraTabPage6
             // 
-            this.xtraTabPage6.Controls.Add(this.groupControl17);
-            this.xtraTabPage6.Controls.Add(this.groupControl16);
-            this.xtraTabPage6.Controls.Add(this.groupControl15);
-            this.xtraTabPage6.Controls.Add(this.groupControl14);
-            this.xtraTabPage6.Controls.Add(this.groupControl13);
-            this.xtraTabPage6.Controls.Add(this.groupControl12);
-            this.xtraTabPage6.Controls.Add(this.groupControl11);
-            this.xtraTabPage6.Controls.Add(this.groupControl10);
-            this.xtraTabPage6.Controls.Add(this.groupControl9);
+            this.xtraTabPage6.Controls.Add(this.xtraTabControl2);
             this.xtraTabPage6.Name = "xtraTabPage6";
             this.xtraTabPage6.Size = new System.Drawing.Size(860, 481);
             this.xtraTabPage6.Text = "Events";
+            // 
+            // xtraTabControl2
+            // 
+            this.xtraTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl2.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControl2.Name = "xtraTabControl2";
+            this.xtraTabControl2.SelectedTabPage = this.xtraTabPage7;
+            this.xtraTabControl2.Size = new System.Drawing.Size(860, 481);
+            this.xtraTabControl2.TabIndex = 18;
+            this.xtraTabControl2.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPage7,
+            this.xtraTabPage8});
+            // 
+            // xtraTabPage7
+            // 
+            this.xtraTabPage7.Controls.Add(this.groupControl10);
+            this.xtraTabPage7.Controls.Add(this.groupControl17);
+            this.xtraTabPage7.Controls.Add(this.groupControl9);
+            this.xtraTabPage7.Controls.Add(this.groupControl16);
+            this.xtraTabPage7.Controls.Add(this.groupControl14);
+            this.xtraTabPage7.Controls.Add(this.groupControl12);
+            this.xtraTabPage7.Controls.Add(this.groupControl15);
+            this.xtraTabPage7.Controls.Add(this.groupControl13);
+            this.xtraTabPage7.Controls.Add(this.groupControl11);
+            this.xtraTabPage7.Name = "xtraTabPage7";
+            this.xtraTabPage7.Size = new System.Drawing.Size(858, 452);
+            this.xtraTabPage7.Text = "Main Events";
+            // 
+            // groupControl10
+            // 
+            this.groupControl10.Controls.Add(this.simpleButton13);
+            this.groupControl10.Controls.Add(this.simpleButton14);
+            this.groupControl10.Location = new System.Drawing.Point(226, 3);
+            this.groupControl10.Name = "groupControl10";
+            this.groupControl10.Size = new System.Drawing.Size(185, 129);
+            this.groupControl10.TabIndex = 10;
+            this.groupControl10.Text = "Cargoship";
+            // 
+            // simpleButton13
+            // 
+            this.simpleButton13.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton13.Appearance.Options.UseFont = true;
+            this.simpleButton13.Location = new System.Drawing.Point(13, 81);
+            this.simpleButton13.Name = "simpleButton13";
+            this.simpleButton13.Size = new System.Drawing.Size(157, 34);
+            this.simpleButton13.TabIndex = 9;
+            this.simpleButton13.Text = "Despawn";
+            this.simpleButton13.Click += new System.EventHandler(this.simpleButton13_Click);
+            // 
+            // simpleButton14
+            // 
+            this.simpleButton14.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton14.Appearance.Options.UseFont = true;
+            this.simpleButton14.Location = new System.Drawing.Point(13, 37);
+            this.simpleButton14.Name = "simpleButton14";
+            this.simpleButton14.Size = new System.Drawing.Size(157, 34);
+            this.simpleButton14.TabIndex = 8;
+            this.simpleButton14.Text = "Spawn";
+            this.simpleButton14.Click += new System.EventHandler(this.simpleButton14_Click);
             // 
             // groupControl17
             // 
@@ -7003,11 +7100,34 @@ namespace RCE_ADMIN
             this.groupControl17.Controls.Add(this.simpleButton19);
             this.groupControl17.Controls.Add(this.autoMessagesCheck);
             this.groupControl17.Controls.Add(this.autoMessages);
-            this.groupControl17.Location = new System.Drawing.Point(11, 251);
+            this.groupControl17.Location = new System.Drawing.Point(9, 230);
             this.groupControl17.Name = "groupControl17";
             this.groupControl17.Size = new System.Drawing.Size(838, 217);
             this.groupControl17.TabIndex = 17;
             this.groupControl17.Text = "Automated In Game Messages (Right Click The Message To Delete)";
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Location = new System.Drawing.Point(666, 81);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(150, 13);
+            this.labelControl14.TabIndex = 14;
+            this.labelControl14.Text = "Time Between Messages (Mins)";
+            // 
+            // AutoMessageTime
+            // 
+            this.AutoMessageTime.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.AutoMessageTime.Location = new System.Drawing.Point(666, 100);
+            this.AutoMessageTime.MenuManager = this.barManager1;
+            this.AutoMessageTime.Name = "AutoMessageTime";
+            this.AutoMessageTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.AutoMessageTime.Size = new System.Drawing.Size(157, 20);
+            this.AutoMessageTime.TabIndex = 13;
             // 
             // simpleButton21
             // 
@@ -7062,11 +7182,43 @@ namespace RCE_ADMIN
             this.autoMessages.TabIndex = 2;
             this.autoMessages.MouseDown += new System.Windows.Forms.MouseEventHandler(this.autoMessages_MouseDown);
             // 
+            // groupControl9
+            // 
+            this.groupControl9.Controls.Add(this.simpleButton11);
+            this.groupControl9.Controls.Add(this.simpleButton12);
+            this.groupControl9.Location = new System.Drawing.Point(9, 3);
+            this.groupControl9.Name = "groupControl9";
+            this.groupControl9.Size = new System.Drawing.Size(185, 129);
+            this.groupControl9.TabIndex = 4;
+            this.groupControl9.Text = "Attack Helicopter";
+            // 
+            // simpleButton11
+            // 
+            this.simpleButton11.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton11.Appearance.Options.UseFont = true;
+            this.simpleButton11.Location = new System.Drawing.Point(13, 81);
+            this.simpleButton11.Name = "simpleButton11";
+            this.simpleButton11.Size = new System.Drawing.Size(157, 34);
+            this.simpleButton11.TabIndex = 9;
+            this.simpleButton11.Text = "Spawn On You";
+            this.simpleButton11.Click += new System.EventHandler(this.simpleButton11_Click);
+            // 
+            // simpleButton12
+            // 
+            this.simpleButton12.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton12.Appearance.Options.UseFont = true;
+            this.simpleButton12.Location = new System.Drawing.Point(13, 37);
+            this.simpleButton12.Name = "simpleButton12";
+            this.simpleButton12.Size = new System.Drawing.Size(157, 34);
+            this.simpleButton12.TabIndex = 8;
+            this.simpleButton12.Text = "Spawn (Random)";
+            this.simpleButton12.Click += new System.EventHandler(this.simpleButton12_Click);
+            // 
             // groupControl16
             // 
             this.groupControl16.Controls.Add(this.DiscordChatCheck);
             this.groupControl16.Controls.Add(this.InGameChatCheck);
-            this.groupControl16.Location = new System.Drawing.Point(664, 150);
+            this.groupControl16.Location = new System.Drawing.Point(662, 138);
             this.groupControl16.Name = "groupControl16";
             this.groupControl16.Size = new System.Drawing.Size(185, 85);
             this.groupControl16.TabIndex = 16;
@@ -7096,45 +7248,11 @@ namespace RCE_ADMIN
             this.InGameChatCheck.TabIndex = 0;
             this.InGameChatCheck.Click += new System.EventHandler(this.InGameChatCheck_Click);
             // 
-            // groupControl15
-            // 
-            this.groupControl15.Controls.Add(this.DiscordEventFeedCheck);
-            this.groupControl15.Controls.Add(this.InGameEventFeedCheck);
-            this.groupControl15.Location = new System.Drawing.Point(447, 150);
-            this.groupControl15.Name = "groupControl15";
-            this.groupControl15.Size = new System.Drawing.Size(185, 85);
-            this.groupControl15.TabIndex = 15;
-            this.groupControl15.Text = "Events Feed";
-            // 
-            // DiscordEventFeedCheck
-            // 
-            this.DiscordEventFeedCheck.Location = new System.Drawing.Point(13, 58);
-            this.DiscordEventFeedCheck.MenuManager = this.barManager1;
-            this.DiscordEventFeedCheck.Name = "DiscordEventFeedCheck";
-            this.DiscordEventFeedCheck.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.DiscordEventFeedCheck.Properties.Appearance.Options.UseFont = true;
-            this.DiscordEventFeedCheck.Properties.Caption = "Discord Feed";
-            this.DiscordEventFeedCheck.Size = new System.Drawing.Size(157, 20);
-            this.DiscordEventFeedCheck.TabIndex = 1;
-            this.DiscordEventFeedCheck.Click += new System.EventHandler(this.DiscordEventFeedCheck_Click);
-            // 
-            // InGameEventFeedCheck
-            // 
-            this.InGameEventFeedCheck.Location = new System.Drawing.Point(13, 32);
-            this.InGameEventFeedCheck.MenuManager = this.barManager1;
-            this.InGameEventFeedCheck.Name = "InGameEventFeedCheck";
-            this.InGameEventFeedCheck.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.InGameEventFeedCheck.Properties.Appearance.Options.UseFont = true;
-            this.InGameEventFeedCheck.Properties.Caption = "In Game Feed";
-            this.InGameEventFeedCheck.Size = new System.Drawing.Size(157, 20);
-            this.InGameEventFeedCheck.TabIndex = 0;
-            this.InGameEventFeedCheck.Click += new System.EventHandler(this.InGameEventFeedCheck_Click);
-            // 
             // groupControl14
             // 
             this.groupControl14.Controls.Add(this.DiscordKillFeedCheck);
             this.groupControl14.Controls.Add(this.InGameKillFeedCheck);
-            this.groupControl14.Location = new System.Drawing.Point(230, 150);
+            this.groupControl14.Location = new System.Drawing.Point(226, 138);
             this.groupControl14.Name = "groupControl14";
             this.groupControl14.Size = new System.Drawing.Size(185, 85);
             this.groupControl14.TabIndex = 14;
@@ -7164,36 +7282,27 @@ namespace RCE_ADMIN
             this.InGameKillFeedCheck.TabIndex = 0;
             this.InGameKillFeedCheck.Click += new System.EventHandler(this.InGameKillFeedCheck_Click);
             // 
-            // groupControl13
-            // 
-            this.groupControl13.Controls.Add(this.simpleButton20);
-            this.groupControl13.Location = new System.Drawing.Point(11, 150);
-            this.groupControl13.Name = "groupControl13";
-            this.groupControl13.Size = new System.Drawing.Size(185, 85);
-            this.groupControl13.TabIndex = 13;
-            this.groupControl13.Text = "Puzzles";
-            // 
-            // simpleButton20
-            // 
-            this.simpleButton20.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.simpleButton20.Appearance.Options.UseFont = true;
-            this.simpleButton20.Location = new System.Drawing.Point(13, 37);
-            this.simpleButton20.Name = "simpleButton20";
-            this.simpleButton20.Size = new System.Drawing.Size(157, 34);
-            this.simpleButton20.TabIndex = 8;
-            this.simpleButton20.Text = "Reset";
-            this.simpleButton20.Click += new System.EventHandler(this.simpleButton20_Click);
-            // 
             // groupControl12
             // 
             this.groupControl12.Controls.Add(this.simpleButton22);
             this.groupControl12.Controls.Add(this.simpleButton17);
             this.groupControl12.Controls.Add(this.simpleButton18);
-            this.groupControl12.Location = new System.Drawing.Point(664, 3);
+            this.groupControl12.Location = new System.Drawing.Point(662, 3);
             this.groupControl12.Name = "groupControl12";
             this.groupControl12.Size = new System.Drawing.Size(185, 129);
             this.groupControl12.TabIndex = 12;
             this.groupControl12.Text = "Locked Crate";
+            // 
+            // simpleButton22
+            // 
+            this.simpleButton22.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.simpleButton22.Appearance.Options.UseFont = true;
+            this.simpleButton22.Location = new System.Drawing.Point(98, 37);
+            this.simpleButton22.Name = "simpleButton22";
+            this.simpleButton22.Size = new System.Drawing.Size(72, 34);
+            this.simpleButton22.TabIndex = 10;
+            this.simpleButton22.Text = "Spawn\r\n(On You)";
+            this.simpleButton22.Click += new System.EventHandler(this.simpleButton22_Click);
             // 
             // simpleButton17
             // 
@@ -7217,11 +7326,65 @@ namespace RCE_ADMIN
             this.simpleButton18.Text = "Spawn\r\n(Chinook)";
             this.simpleButton18.Click += new System.EventHandler(this.simpleButton18_Click);
             // 
+            // groupControl15
+            // 
+            this.groupControl15.Controls.Add(this.DiscordEventFeedCheck);
+            this.groupControl15.Controls.Add(this.InGameEventFeedCheck);
+            this.groupControl15.Location = new System.Drawing.Point(441, 138);
+            this.groupControl15.Name = "groupControl15";
+            this.groupControl15.Size = new System.Drawing.Size(185, 85);
+            this.groupControl15.TabIndex = 15;
+            this.groupControl15.Text = "Events Feed";
+            // 
+            // DiscordEventFeedCheck
+            // 
+            this.DiscordEventFeedCheck.Location = new System.Drawing.Point(13, 58);
+            this.DiscordEventFeedCheck.MenuManager = this.barManager1;
+            this.DiscordEventFeedCheck.Name = "DiscordEventFeedCheck";
+            this.DiscordEventFeedCheck.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.DiscordEventFeedCheck.Properties.Appearance.Options.UseFont = true;
+            this.DiscordEventFeedCheck.Properties.Caption = "Discord Feed";
+            this.DiscordEventFeedCheck.Size = new System.Drawing.Size(157, 20);
+            this.DiscordEventFeedCheck.TabIndex = 1;
+            this.DiscordEventFeedCheck.Click += new System.EventHandler(this.DiscordEventFeedCheck_Click);
+            // 
+            // InGameEventFeedCheck
+            // 
+            this.InGameEventFeedCheck.Location = new System.Drawing.Point(13, 32);
+            this.InGameEventFeedCheck.MenuManager = this.barManager1;
+            this.InGameEventFeedCheck.Name = "InGameEventFeedCheck";
+            this.InGameEventFeedCheck.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.InGameEventFeedCheck.Properties.Appearance.Options.UseFont = true;
+            this.InGameEventFeedCheck.Properties.Caption = "In Game Feed";
+            this.InGameEventFeedCheck.Size = new System.Drawing.Size(157, 20);
+            this.InGameEventFeedCheck.TabIndex = 0;
+            this.InGameEventFeedCheck.Click += new System.EventHandler(this.InGameEventFeedCheck_Click);
+            // 
+            // groupControl13
+            // 
+            this.groupControl13.Controls.Add(this.simpleButton20);
+            this.groupControl13.Location = new System.Drawing.Point(9, 138);
+            this.groupControl13.Name = "groupControl13";
+            this.groupControl13.Size = new System.Drawing.Size(185, 85);
+            this.groupControl13.TabIndex = 13;
+            this.groupControl13.Text = "Puzzles";
+            // 
+            // simpleButton20
+            // 
+            this.simpleButton20.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton20.Appearance.Options.UseFont = true;
+            this.simpleButton20.Location = new System.Drawing.Point(13, 37);
+            this.simpleButton20.Name = "simpleButton20";
+            this.simpleButton20.Size = new System.Drawing.Size(157, 34);
+            this.simpleButton20.TabIndex = 8;
+            this.simpleButton20.Text = "Reset";
+            this.simpleButton20.Click += new System.EventHandler(this.simpleButton20_Click);
+            // 
             // groupControl11
             // 
             this.groupControl11.Controls.Add(this.simpleButton15);
             this.groupControl11.Controls.Add(this.simpleButton16);
-            this.groupControl11.Location = new System.Drawing.Point(447, 3);
+            this.groupControl11.Location = new System.Drawing.Point(441, 3);
             this.groupControl11.Name = "groupControl11";
             this.groupControl11.Size = new System.Drawing.Size(185, 129);
             this.groupControl11.TabIndex = 11;
@@ -7249,69 +7412,218 @@ namespace RCE_ADMIN
             this.simpleButton16.Text = "Spawn";
             this.simpleButton16.Click += new System.EventHandler(this.simpleButton16_Click);
             // 
-            // groupControl10
+            // xtraTabPage8
             // 
-            this.groupControl10.Controls.Add(this.simpleButton13);
-            this.groupControl10.Controls.Add(this.simpleButton14);
-            this.groupControl10.Location = new System.Drawing.Point(230, 3);
-            this.groupControl10.Name = "groupControl10";
-            this.groupControl10.Size = new System.Drawing.Size(185, 129);
-            this.groupControl10.TabIndex = 10;
-            this.groupControl10.Text = "Cargoship";
+            this.xtraTabPage8.Controls.Add(this.groupControl18);
+            this.xtraTabPage8.Name = "xtraTabPage8";
+            this.xtraTabPage8.Size = new System.Drawing.Size(858, 452);
+            this.xtraTabPage8.Text = "More Events";
             // 
-            // simpleButton13
+            // groupControl18
             // 
-            this.simpleButton13.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.simpleButton13.Appearance.Options.UseFont = true;
-            this.simpleButton13.Location = new System.Drawing.Point(13, 81);
-            this.simpleButton13.Name = "simpleButton13";
-            this.simpleButton13.Size = new System.Drawing.Size(157, 34);
-            this.simpleButton13.TabIndex = 9;
-            this.simpleButton13.Text = "Despawn";
-            this.simpleButton13.Click += new System.EventHandler(this.simpleButton13_Click);
+            this.groupControl18.Controls.Add(this.simpleButton23);
+            this.groupControl18.Controls.Add(this.labelControl20);
+            this.groupControl18.Controls.Add(this.lockedCrateGroupName);
+            this.groupControl18.Controls.Add(this.labelControl19);
+            this.groupControl18.Controls.Add(this.labelControl16);
+            this.groupControl18.Controls.Add(this.newLocationName);
+            this.groupControl18.Controls.Add(this.simpleButton25);
+            this.groupControl18.Controls.Add(this.lockedCratePos);
+            this.groupControl18.Controls.Add(this.simpleButton24);
+            this.groupControl18.Controls.Add(this.LockedCratePositions);
+            this.groupControl18.Location = new System.Drawing.Point(10, 11);
+            this.groupControl18.Name = "groupControl18";
+            this.groupControl18.Size = new System.Drawing.Size(345, 348);
+            this.groupControl18.TabIndex = 18;
+            this.groupControl18.Text = "Locked Crates Event (Right Click To Delete)";
             // 
-            // simpleButton14
+            // labelControl20
             // 
-            this.simpleButton14.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.simpleButton14.Appearance.Options.UseFont = true;
-            this.simpleButton14.Location = new System.Drawing.Point(13, 37);
-            this.simpleButton14.Name = "simpleButton14";
-            this.simpleButton14.Size = new System.Drawing.Size(157, 34);
-            this.simpleButton14.TabIndex = 8;
-            this.simpleButton14.Text = "Spawn";
-            this.simpleButton14.Click += new System.EventHandler(this.simpleButton14_Click);
+            this.labelControl20.Location = new System.Drawing.Point(13, 266);
+            this.labelControl20.Name = "labelControl20";
+            this.labelControl20.Size = new System.Drawing.Size(41, 13);
+            this.labelControl20.TabIndex = 15;
+            this.labelControl20.Text = "Locaiton";
             // 
-            // groupControl9
+            // lockedCrateGroupName
             // 
-            this.groupControl9.Controls.Add(this.simpleButton11);
-            this.groupControl9.Controls.Add(this.simpleButton12);
-            this.groupControl9.Location = new System.Drawing.Point(11, 3);
-            this.groupControl9.Name = "groupControl9";
-            this.groupControl9.Size = new System.Drawing.Size(185, 129);
-            this.groupControl9.TabIndex = 4;
-            this.groupControl9.Text = "Attack Helicopter";
+            this.lockedCrateGroupName.Location = new System.Drawing.Point(13, 285);
+            this.lockedCrateGroupName.MenuManager = this.barManager1;
+            this.lockedCrateGroupName.Name = "lockedCrateGroupName";
+            this.lockedCrateGroupName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lockedCrateGroupName.Size = new System.Drawing.Size(320, 20);
+            this.lockedCrateGroupName.TabIndex = 14;
+            this.lockedCrateGroupName.SelectedIndexChanged += new System.EventHandler(this.lockedCrateGroupName_SelectedIndexChanged);
             // 
-            // simpleButton11
+            // labelControl19
             // 
-            this.simpleButton11.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.simpleButton11.Appearance.Options.UseFont = true;
-            this.simpleButton11.Location = new System.Drawing.Point(13, 81);
-            this.simpleButton11.Name = "simpleButton11";
-            this.simpleButton11.Size = new System.Drawing.Size(157, 34);
-            this.simpleButton11.TabIndex = 9;
-            this.simpleButton11.Text = "Spawn On You";
-            this.simpleButton11.Click += new System.EventHandler(this.simpleButton11_Click);
+            this.labelControl19.Location = new System.Drawing.Point(181, 180);
+            this.labelControl19.Name = "labelControl19";
+            this.labelControl19.Size = new System.Drawing.Size(69, 13);
+            this.labelControl19.TabIndex = 13;
+            this.labelControl19.Text = "X, Y, Z Coords";
             // 
-            // simpleButton12
+            // labelControl16
             // 
-            this.simpleButton12.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.simpleButton12.Appearance.Options.UseFont = true;
-            this.simpleButton12.Location = new System.Drawing.Point(13, 37);
-            this.simpleButton12.Name = "simpleButton12";
-            this.simpleButton12.Size = new System.Drawing.Size(157, 34);
-            this.simpleButton12.TabIndex = 8;
-            this.simpleButton12.Text = "Spawn (Random)";
-            this.simpleButton12.Click += new System.EventHandler(this.simpleButton12_Click);
+            this.labelControl16.Location = new System.Drawing.Point(13, 180);
+            this.labelControl16.Name = "labelControl16";
+            this.labelControl16.Size = new System.Drawing.Size(72, 13);
+            this.labelControl16.TabIndex = 12;
+            this.labelControl16.Text = "Location Name";
+            // 
+            // newLocationName
+            // 
+            this.newLocationName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.newLocationName.Location = new System.Drawing.Point(13, 199);
+            this.newLocationName.Name = "newLocationName";
+            this.newLocationName.Properties.MaxLength = 10000;
+            this.newLocationName.Size = new System.Drawing.Size(152, 20);
+            this.newLocationName.TabIndex = 11;
+            // 
+            // simpleButton25
+            // 
+            this.simpleButton25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton25.Location = new System.Drawing.Point(13, 314);
+            this.simpleButton25.Name = "simpleButton25";
+            this.simpleButton25.Size = new System.Drawing.Size(320, 23);
+            this.simpleButton25.TabIndex = 9;
+            this.simpleButton25.Text = "Spawn Crates";
+            this.simpleButton25.Click += new System.EventHandler(this.simpleButton25_Click);
+            // 
+            // lockedCratePos
+            // 
+            this.lockedCratePos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lockedCratePos.Location = new System.Drawing.Point(181, 199);
+            this.lockedCratePos.Name = "lockedCratePos";
+            this.lockedCratePos.Properties.MaxLength = 10000;
+            this.lockedCratePos.Size = new System.Drawing.Size(152, 20);
+            this.lockedCratePos.TabIndex = 6;
+            // 
+            // simpleButton24
+            // 
+            this.simpleButton24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton24.Location = new System.Drawing.Point(13, 225);
+            this.simpleButton24.Name = "simpleButton24";
+            this.simpleButton24.Size = new System.Drawing.Size(152, 23);
+            this.simpleButton24.TabIndex = 7;
+            this.simpleButton24.Text = "Add Crate Position";
+            this.simpleButton24.Click += new System.EventHandler(this.simpleButton24_Click);
+            // 
+            // LockedCratePositions
+            // 
+            this.LockedCratePositions.Items.AddRange(new object[] {
+            "(x,y,z)"});
+            this.LockedCratePositions.Location = new System.Drawing.Point(13, 38);
+            this.LockedCratePositions.Name = "LockedCratePositions";
+            this.LockedCratePositions.Size = new System.Drawing.Size(320, 136);
+            this.LockedCratePositions.TabIndex = 2;
+            this.LockedCratePositions.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LockedCratePositions_MouseDown);
+            // 
+            // xtraTabPage9
+            // 
+            this.xtraTabPage9.Controls.Add(this.groupControl19);
+            this.xtraTabPage9.Name = "xtraTabPage9";
+            this.xtraTabPage9.Size = new System.Drawing.Size(860, 481);
+            this.xtraTabPage9.Text = "Server Settings";
+            // 
+            // groupControl19
+            // 
+            this.groupControl19.Controls.Add(this.trackBarControl1);
+            this.groupControl19.Location = new System.Drawing.Point(11, 3);
+            this.groupControl19.Name = "groupControl19";
+            this.groupControl19.Size = new System.Drawing.Size(838, 79);
+            this.groupControl19.TabIndex = 2;
+            this.groupControl19.Text = "Server Time";
+            // 
+            // trackBarControl1
+            // 
+            this.trackBarControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trackBarControl1.EditValue = null;
+            this.trackBarControl1.Location = new System.Drawing.Point(2, 27);
+            this.trackBarControl1.MenuManager = this.barManager1;
+            this.trackBarControl1.Name = "trackBarControl1";
+            this.trackBarControl1.Properties.LabelAppearance.Options.UseTextOptions = true;
+            this.trackBarControl1.Properties.LabelAppearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            trackBarLabel1.Label = "0";
+            trackBarLabel2.Label = "1";
+            trackBarLabel2.Value = 1;
+            trackBarLabel3.Label = "2";
+            trackBarLabel3.Value = 2;
+            trackBarLabel4.Label = "3";
+            trackBarLabel4.Value = 3;
+            trackBarLabel5.Label = "4";
+            trackBarLabel5.Value = 4;
+            trackBarLabel6.Label = "5";
+            trackBarLabel6.Value = 5;
+            trackBarLabel7.Label = "6";
+            trackBarLabel7.Value = 6;
+            trackBarLabel8.Label = "7";
+            trackBarLabel8.Value = 7;
+            trackBarLabel9.Label = "8";
+            trackBarLabel9.Value = 8;
+            trackBarLabel10.Label = "9";
+            trackBarLabel10.Value = 9;
+            trackBarLabel11.Label = "10";
+            trackBarLabel11.Value = 10;
+            trackBarLabel12.Label = "11";
+            trackBarLabel12.Value = 11;
+            trackBarLabel13.Label = "12";
+            trackBarLabel13.Value = 12;
+            trackBarLabel14.Label = "13";
+            trackBarLabel14.Value = 13;
+            trackBarLabel15.Label = "14";
+            trackBarLabel15.Value = 14;
+            trackBarLabel16.Label = "15";
+            trackBarLabel16.Value = 15;
+            trackBarLabel17.Label = "16";
+            trackBarLabel17.Value = 16;
+            trackBarLabel18.Label = "17";
+            trackBarLabel18.Value = 17;
+            trackBarLabel19.Label = "18";
+            trackBarLabel19.Value = 18;
+            trackBarLabel20.Label = "19";
+            trackBarLabel20.Value = 19;
+            trackBarLabel21.Label = "20";
+            trackBarLabel21.Value = 20;
+            trackBarLabel22.Label = "21";
+            trackBarLabel22.Value = 21;
+            trackBarLabel23.Label = "22";
+            trackBarLabel23.Value = 22;
+            trackBarLabel24.Label = "23";
+            trackBarLabel24.Value = 23;
+            this.trackBarControl1.Properties.Labels.AddRange(new DevExpress.XtraEditors.Repository.TrackBarLabel[] {
+            trackBarLabel1,
+            trackBarLabel2,
+            trackBarLabel3,
+            trackBarLabel4,
+            trackBarLabel5,
+            trackBarLabel6,
+            trackBarLabel7,
+            trackBarLabel8,
+            trackBarLabel9,
+            trackBarLabel10,
+            trackBarLabel11,
+            trackBarLabel12,
+            trackBarLabel13,
+            trackBarLabel14,
+            trackBarLabel15,
+            trackBarLabel16,
+            trackBarLabel17,
+            trackBarLabel18,
+            trackBarLabel19,
+            trackBarLabel20,
+            trackBarLabel21,
+            trackBarLabel22,
+            trackBarLabel23,
+            trackBarLabel24});
+            this.trackBarControl1.Properties.Maximum = 23;
+            this.trackBarControl1.Properties.ShowLabels = true;
+            this.trackBarControl1.Properties.ValueChanged += new System.EventHandler(this.trackBarControl1_Properties_ValueChanged);
+            this.trackBarControl1.Size = new System.Drawing.Size(834, 50);
+            this.trackBarControl1.TabIndex = 0;
             // 
             // xtraTabPage4
             // 
@@ -7399,39 +7711,49 @@ namespace RCE_ADMIN
             this.richTextBoxChangelog.TabIndex = 1;
             this.richTextBoxChangelog.Text = "";
             // 
-            // simpleButton22
+            // teamWebhookUrl
             // 
-            this.simpleButton22.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.simpleButton22.Appearance.Options.UseFont = true;
-            this.simpleButton22.Location = new System.Drawing.Point(98, 37);
-            this.simpleButton22.Name = "simpleButton22";
-            this.simpleButton22.Size = new System.Drawing.Size(72, 34);
-            this.simpleButton22.TabIndex = 10;
-            this.simpleButton22.Text = "Spawn\r\n(On You)";
-            this.simpleButton22.Click += new System.EventHandler(this.simpleButton22_Click);
+            this.teamWebhookUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.teamWebhookUrl.Location = new System.Drawing.Point(136, 198);
+            this.teamWebhookUrl.Name = "teamWebhookUrl";
+            this.teamWebhookUrl.Size = new System.Drawing.Size(515, 20);
+            this.teamWebhookUrl.TabIndex = 15;
             // 
-            // AutoMessageTime
+            // labelControl7
             // 
-            this.AutoMessageTime.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.AutoMessageTime.Location = new System.Drawing.Point(666, 100);
-            this.AutoMessageTime.MenuManager = this.barManager1;
-            this.AutoMessageTime.Name = "AutoMessageTime";
-            this.AutoMessageTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.AutoMessageTime.Size = new System.Drawing.Size(157, 20);
-            this.AutoMessageTime.TabIndex = 13;
+            this.labelControl7.Location = new System.Drawing.Point(11, 200);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(102, 13);
+            this.labelControl7.TabIndex = 16;
+            this.labelControl7.Text = "Team Webhook URL";
             // 
-            // labelControl14
+            // itemWebhookUrl
             // 
-            this.labelControl14.Location = new System.Drawing.Point(666, 81);
-            this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(150, 13);
-            this.labelControl14.TabIndex = 14;
-            this.labelControl14.Text = "Time Between Messages (Mins)";
+            this.itemWebhookUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.itemWebhookUrl.Location = new System.Drawing.Point(136, 224);
+            this.itemWebhookUrl.Name = "itemWebhookUrl";
+            this.itemWebhookUrl.Size = new System.Drawing.Size(515, 20);
+            this.itemWebhookUrl.TabIndex = 17;
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Location = new System.Drawing.Point(11, 226);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(95, 13);
+            this.labelControl13.TabIndex = 18;
+            this.labelControl13.Text = "Item Webhook URL";
+            // 
+            // simpleButton23
+            // 
+            this.simpleButton23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton23.Location = new System.Drawing.Point(181, 225);
+            this.simpleButton23.Name = "simpleButton23";
+            this.simpleButton23.Size = new System.Drawing.Size(152, 23);
+            this.simpleButton23.TabIndex = 16;
+            this.simpleButton23.Text = "Add Your Position";
+            this.simpleButton23.Click += new System.EventHandler(this.simpleButton23_Click);
             // 
             // Form1
             // 
@@ -7511,41 +7833,60 @@ namespace RCE_ADMIN
             ((System.ComponentModel.ISupportInitialize)(this.customKit1AddItem.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customKit1Box)).EndInit();
             this.xtraTabPage6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl2)).EndInit();
+            this.xtraTabControl2.ResumeLayout(false);
+            this.xtraTabPage7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl10)).EndInit();
+            this.groupControl10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl17)).EndInit();
             this.groupControl17.ResumeLayout(false);
             this.groupControl17.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AutoMessageTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addAutoMessage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoMessagesCheck.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoMessages)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl9)).EndInit();
+            this.groupControl9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl16)).EndInit();
             this.groupControl16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DiscordChatCheck.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InGameChatCheck.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl15)).EndInit();
-            this.groupControl15.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DiscordEventFeedCheck.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.InGameEventFeedCheck.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl14)).EndInit();
             this.groupControl14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DiscordKillFeedCheck.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InGameKillFeedCheck.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl13)).EndInit();
-            this.groupControl13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl12)).EndInit();
             this.groupControl12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl15)).EndInit();
+            this.groupControl15.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DiscordEventFeedCheck.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InGameEventFeedCheck.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl13)).EndInit();
+            this.groupControl13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl11)).EndInit();
             this.groupControl11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl10)).EndInit();
-            this.groupControl10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl9)).EndInit();
-            this.groupControl9.ResumeLayout(false);
+            this.xtraTabPage8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl18)).EndInit();
+            this.groupControl18.ResumeLayout(false);
+            this.groupControl18.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lockedCrateGroupName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.newLocationName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lockedCratePos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LockedCratePositions)).EndInit();
+            this.xtraTabPage9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl19)).EndInit();
+            this.groupControl19.ResumeLayout(false);
+            this.groupControl19.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarControl1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarControl1)).EndInit();
             this.xtraTabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             this.groupControl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.AutoMessageTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamWebhookUrl.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemWebhookUrl.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -7586,7 +7927,6 @@ namespace RCE_ADMIN
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl4;
@@ -8103,12 +8443,6 @@ namespace RCE_ADMIN
         private DevExpress.XtraEditors.LabelControl latestVer;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Number;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PlayerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SteamId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ping;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeConnected;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage5;
         private DevExpress.XtraEditors.GroupControl groupControl5;
         private System.Windows.Forms.Panel panel1;
@@ -8194,12 +8528,40 @@ namespace RCE_ADMIN
         private DevExpress.XtraEditors.TextEdit addAutoMessage;
         private DevExpress.XtraEditors.SimpleButton simpleButton19;
         private DevExpress.XtraEditors.SimpleButton simpleButton21;
-        private DevExpress.XtraEditors.LabelControl labelControl13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TC;
         private DevExpress.XtraEditors.SimpleButton simpleButton22;
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.SpinEdit AutoMessageTime;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl2;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage7;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage8;
+        private DevExpress.XtraEditors.GroupControl groupControl18;
+        private DevExpress.XtraEditors.TextEdit lockedCratePos;
+        private DevExpress.XtraEditors.SimpleButton simpleButton24;
+        private DevExpress.XtraEditors.ListBoxControl LockedCratePositions;
+        private DevExpress.XtraEditors.SimpleButton simpleButton25;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage9;
+        private DevExpress.XtraEditors.GroupControl groupControl19;
+        private DevExpress.XtraEditors.TrackBarControl trackBarControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl16;
+        private DevExpress.XtraEditors.TextEdit newLocationName;
+        private DevExpress.XtraEditors.LabelControl labelControl20;
+        private DevExpress.XtraEditors.ComboBoxEdit lockedCrateGroupName;
+        private DevExpress.XtraEditors.LabelControl labelControl19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PlayerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SteamId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ping;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeConnected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem deleteAllEntitiesToolStripMenuItem;
+        private DevExpress.XtraEditors.TextEdit teamWebhookUrl;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.TextEdit itemWebhookUrl;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private DevExpress.XtraEditors.SimpleButton simpleButton23;
     }
 }

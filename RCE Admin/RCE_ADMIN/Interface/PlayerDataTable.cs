@@ -37,12 +37,12 @@ namespace RCE_ADMIN.Interface
                 if (rowIndex == -1)
                 {
                     TimeSpan timeSpan = TimeSpan.FromSeconds(player.ConnectedSeconds);
-                    AddNewEntry(Form1.Players.Rows.Count + 1, player.DisplayName, (int)player.Health, player.Address, player.Ping, string.Format("{0} Hour(s), {1} Min(s), {2} Sec(s)", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds));
+                    AddNewEntry(Form1.Players.Rows.Count + 1, player.DisplayName, (int)player.Health, player.Ping, string.Format("{0} Hour(s), {1} Min(s), {2} Sec(s)", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds));
                 }
                 else
                 {
                     TimeSpan timeSpan = TimeSpan.FromSeconds(player.ConnectedSeconds);
-                    UpdateRow(rowIndex, player.DisplayName, (int)player.Health, player.Address, player.Ping, string.Format("{0} Hour(s), {1} Min(s), {2} Sec(s)", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds));
+                    UpdateRow(rowIndex, player.DisplayName, (int)player.Health, player.Ping, string.Format("{0} Hour(s), {1} Min(s), {2} Sec(s)", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds));
                 }
             }
             if (Form1.Players.Rows.Count > 0)
@@ -113,23 +113,23 @@ namespace RCE_ADMIN.Interface
             }
             return -1;
         }
-        private static void UpdateRow(int rowIndex, string displayName, int health, string address, int ping, string formattedTime)
+        private static void UpdateRow(int rowIndex, string displayName, int health, int ping, string formattedTime)
         {
             if (Form1.Players.InvokeRequired)
             {
                 Form1.Players.Invoke(new MethodInvoker(delegate {
-                    Form1.Players.Rows[rowIndex].SetValues(rowIndex + 1, displayName, health + "/100", ping + " ms", (string.IsNullOrEmpty(address) ? "N/A" : address), formattedTime);
+                    Form1.Players.Rows[rowIndex].SetValues(rowIndex + 1, displayName, health + "/100", ping + " ms", formattedTime);
                 }));
             }
             else
             {
-                Form1.Players.Rows[rowIndex].SetValues(rowIndex + 1, displayName, health + "/100", ping + " ms", (string.IsNullOrEmpty(address) ? "N/A" : address), formattedTime);
+                Form1.Players.Rows[rowIndex].SetValues(rowIndex + 1, displayName, health + "/100", ping + " ms", formattedTime);
             }
         }
-        public static void AddNewEntry(int number,  string playerName, int health, string address, int ping, string timeConnected)
+        public static void AddNewEntry(int number,  string playerName, int health, int ping, string timeConnected)
         {
             var row = new DataGridViewRow();
-            row.CreateCells(Form1.Players, number, playerName, health+"/100", ping+" ms", (string.IsNullOrEmpty(address) ? "N/A" : address), timeConnected);
+            row.CreateCells(Form1.Players, number, playerName, health+"/100", ping+" ms", timeConnected);
             if (Form1.Players.InvokeRequired)
             {
                 Form1.Players.Invoke(new MethodInvoker(delegate {
