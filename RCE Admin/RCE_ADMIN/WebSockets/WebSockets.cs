@@ -14,6 +14,8 @@ using System.Net;
 using System.Collections.Specialized;
 using System.Collections.Generic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Linq;
+using RCE_ADMIN.Callbacks;
 
 namespace RCE_ADMIN.WebSockets
 {
@@ -207,11 +209,19 @@ namespace RCE_ADMIN.WebSockets
             { " was killed by ", "** Was Killed By **" },
             { "sentry.scientist.static", "Sentry Turret" },
             { "patrolhelicopter", "Patrol Helicopter" },
-            { "autoturret_deployed", "Auto Turret" },
+            { "autoturret_deployed", "An Auto Turret" },
             { "bradleyapc", "Bradley APC" },
+            { "barricade", "A Metal Barricade" },
+            { "wall", "A High External Wall" },
+            { "ch47scientists", "Chinook" },
+            { "bear", "A Bear" },
+            { "boar", "A Pig" },
+            { "wolf", "A Wolf" },
+            { "stag", "A Deer" },
+            { "fall", "Falling To Their Death" },
             { " died ", "** Died **" }
         };
-        static string ReplaceText(string input, Dictionary<string, string> replacements)
+        static string ReplaceDeathText(string input, Dictionary<string, string> replacements)
         {
             foreach (var replacement in replacements)
             {
@@ -224,7 +234,45 @@ namespace RCE_ADMIN.WebSockets
             string pattern = @"<color\s*=\s*(?:#[0-9A-Fa-f]{6}|[A-Za-z]+)\s*>(.*?)</color>";
             return Regex.Replace(input, pattern, "$1");
         }
+        static string[] ParseAndFilterKill(string input)
+        {
+            string pattern = @"(?<victim>[\w\s_-]+) was killed by (?<killer>[\w\s_-]+)";
+            Match match = Regex.Match(input, pattern);
+            if (match.Success)
+            {
+                string victim = match.Groups["victim"].Value;
+                string killer = match.Groups["killer"].Value;
+                if (IsAllNumbers(victim))
+                {
+                    victim = "A Scientist";
+                }
+                return new string[] { victim, killer };
+            }
+            else
+            {
+                return new string[] { input, null };
+            }
+        }
+        static string[] ParseDeath(string input)
+        {
+            string pattern = @"(\S+)\sdied\s\(([^)]+)\)";
+            Match match = Regex.Match(input, pattern);
+            if (match.Success)
+            {
+                string victim = match.Groups[1].Value;
+                string reason = match.Groups[2].Value;
+                return new string[] { victim, reason };
+            }
+            else
+            {
+                return new string[] { input, null };
+            }
+        }
 
+        static bool IsAllNumbers(string input)
+        {
+            return input.All(char.IsDigit);
+        }
         public static double ConvertToDouble(string Value)
         {
             if (Value == null)
@@ -256,6 +304,13 @@ namespace RCE_ADMIN.WebSockets
 
             Settings = Settings.Read();
 
+
+            //player joined
+            string pinfo = packet.Message;
+            if (pinfo.Contains("has entered the game"))
+            {
+               
+            }
             //server info
             string sinfo = packet.Message;
             if (sinfo.Contains("Hostname"))
@@ -362,7 +417,7 @@ namespace RCE_ADMIN.WebSockets
                             SendDiscordWebhookChat(string.Format("**{0}** : {1}", username, newMessage));
                         }
                         if (Settings.InGameChat)
-                            SendCommand(string.Format("global.say <color=green>[CHAT]</color> <color=#153eff>{0}</color> : {1}", username, newMessage));
+                            SendCommand(string.Format("global.say <color=green>[CHAT]</color> <color=#153eff><b>{0}</b></color> : {1}", username, newMessage));
 
                     }
                 }
@@ -394,52 +449,56 @@ namespace RCE_ADMIN.WebSockets
             string ikill_ = packet.Message;
             if (ikill_.Contains("killed") && !ikill_.Contains("cactus") && !ikill_.Contains("Collision") && Settings.InGameKillFeed)
             {
-                string result = GetFirstSixNumbers(ikill_);
-                string result2 = GetFirstSevenNumbers(ikill_);
-                string result3 = getFirstEightNumbers(ikill_);
-                string result4 = getFirstFiveNumbers(ikill_);
-                string k = ikill_.Replace(" was killed by ", " Was Killed By ");
-                if (result != null)
+                string[] kill_info = ParseAndFilterKill(ikill_);
+                if (kill_info[0] != "A Scientist")
                 {
-                    SendCommand("global.say <color=orange>[KILL]</color> " + ReplaceWholeNumbers(k, "A Scientist"));
-                }
-                else if (result2 != null)
-                {
-                    SendCommand("global.say <color=orange>[KILL]</color> " + ReplaceWholeNumbers(k, "A Scientist"));
-                }
-                else if (result3 != null)
-                {
-                    SendCommand("global.say <color=orange>[KILL]</color> " + ReplaceWholeNumbers(k, "A Scientist"));
-                }
-                else if (result4 != null)
-                {
-                    SendCommand("global.say <color=orange>[KILL]</color> " + ReplaceWholeNumbers(k, "A Scientist"));
+                    new PlayerDatabase().AddDeath(kill_info[0]);
+                    if (IsAllNumbers(kill_info[1]))
+                        kill_info[1] = "A Scientist";
+                    else
+                        new PlayerDatabase().AddKill(kill_info[1]);
+                    SendCommand(string.Format("global.say <color=orange>[KILL]</color> <color=green><b>{0}</b></color> Was Killed By <color=red><b>{1}</b></color> And Now Has <color=orange><b>{2}</b></color> Death(s)!", kill_info[0], ReplaceDeathText(kill_info[1], replacements), new PlayerDatabase().GetDeathsByDisplayName(kill_info[0])));
                 }
                 else
-                {
-                    SendCommand("global.say <color=orange>[KILL]</color> " + ReplaceWholeNumbers(k, "A Scientist"));
-                }
+                    SendCommand(string.Format("global.say <color=orange>[KILL]</color> <color=green><b>{0}</b></color> Was Killed By <color=red><b>{1}</b></color>", kill_info[0], kill_info[1]));
             }
             else if (ikill_.Contains("died"))
             {
                 if (!ikill_.ToLower().Contains("generic") && !ikill_.ToLower().Contains("collision"))
                 {
-                    SendCommand("global.say <color=red>[DEATH]</color> " + ikill_.Replace(" died ", " Died"));
+                    string[] death_info = ParseDeath(ikill_);
+                    if (!death_info[1].ToLower().Contains("collision") || !death_info[1].ToLower().Contains("generic"))
+                    {
+                        new PlayerDatabase().AddDeath(death_info[0]);
+                        SendCommand(string.Format("global.say <color=red>[DEATH]</color> <color=green><b>{0}</b></color> Died By <color=red><b>{1}</b></color> And Now Has <color=orange><b>{2}</b></color> Death(s)!", death_info[0], ReplaceDeathText(death_info[1], replacements), new PlayerDatabase().GetDeathsByDisplayName(death_info[0])));
+                    }
                 }
             }
 
             if (!string.IsNullOrEmpty(Settings.KillFeedWebhookUrl) && Settings.DiscordKillFeed) {
                 //kills logging (discord)
                 string kill_ = packet.Message;
-                if (kill_.Contains("killed") && !kill_.Contains("cactus"))
+                if (ikill_.Contains("killed") && !ikill_.Contains("cactus") && !ikill_.Contains("Collision"))
                 {
-                    SendDiscordWebhook(true, string.Format("**{0}**", ReplaceWholeNumbers(ReplaceText(ikill_.Replace(" was killed by ", " Was Killed By "), replacements), "A Scientist")));
+                    string[] kill_info = ParseAndFilterKill(ikill_);
+                    if (kill_info[0] != "A Scientist")
+                    {
+                        if (IsAllNumbers(kill_info[1]))
+                            kill_info[1] = "A Scientist";
+                        SendDiscordWebhook(true, string.Format("**{0}** Was Killed By **{1}** And Now Has **{2}** Death(s)!", kill_info[0], ReplaceDeathText(kill_info[1], replacements), new PlayerDatabase().GetDeathsByDisplayName(kill_info[0])));
+                    }
+                    else
+                        SendDiscordWebhook(true, string.Format("**{0}** Was Killed By **{1}**", kill_info[0], ReplaceDeathText(kill_info[1], replacements)));
                 }
                 else if (kill_.Contains("died"))
                 {
                     if (!kill_.Contains("died (Generic)") || !kill_.Contains("died (Collision)"))
                     {
-                        SendDiscordWebhook(true, string.Format("**{0}**", ReplaceText(kill_, replacements)));
+                        string[] death_info = ParseDeath(ikill_);
+                        if (!death_info[1].ToLower().Contains("collision") || !death_info[1].ToLower().Contains("generic"))
+                        {
+                            SendDiscordWebhook(true, string.Format("**{0}** Died By **{1}** And Now Has **{2}** Deaths!", death_info[0], ReplaceDeathText(death_info[1], replacements), new PlayerDatabase().GetDeathsByDisplayName(death_info[0])));
+                        }
                     }
                 }
             }
@@ -467,11 +526,11 @@ namespace RCE_ADMIN.WebSockets
                     }
                 }
             }
-            ServerConsole.AddNewEntry(packet.Message.Replace("\r", "").Replace("\n", "").Replace(Environment.NewLine, ""));
+            ServerConsole.AddNewEntry(packet.Message = string.Join("", packet.Message.Split('\r', '\n')));
         }
         private static void WebSocket_OnError(object sender, ErrorEventArgs e)
         {
-            XtraMessageBox.Show($"An Error Occurred:\n\n{e.Message}");
+            ServerConsole.AddNewEntry($"An Error Occurred: {e.Message}");
         }
         private static void WebSocket_OnClose(object sender, CloseEventArgs e)
         {

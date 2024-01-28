@@ -34,6 +34,8 @@ using static DevExpress.XtraBars.Docking2010.Views.BaseRegistrator;
 using Button = DiscordRPC.Button;
 using System.Linq;
 using static Dapper.SqlMapper;
+using System.Media;
+using System.Runtime.InteropServices;
 
 namespace RCE_ADMIN
 {
@@ -458,12 +460,12 @@ namespace RCE_ADMIN
 
         private void kickPlayerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("kick {0}", GetFromDT(1)));
+            WebSocketsWrapper.Send(string.Format("kick \"{0}\"", GetFromDT(1)));
         }
 
         private void banPlayerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("banid {0}", GetFromDT(1)));
+            WebSocketsWrapper.Send(string.Format("banid \"{0}\"", GetFromDT(1)));
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -494,42 +496,42 @@ namespace RCE_ADMIN
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("VIPID {0}", GetFromDT(1)));
+            WebSocketsWrapper.Send(string.Format("VIPID \"{0}\"", GetFromDT(1)));
         }
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("RemoveVIP {0}", GetFromDT(1)));
+            WebSocketsWrapper.Send(string.Format("RemoveVIP \"{0}\"", GetFromDT(1)));
         }
 
         private void addToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("ModeratorID {0}", GetFromDT(1)));
+            WebSocketsWrapper.Send(string.Format("ModeratorID \"{0}\"", GetFromDT(1)));
         }
 
         private void removeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("RemoveModerator {0}", GetFromDT(1)));
+            WebSocketsWrapper.Send(string.Format("RemoveModerator \"{0}\"", GetFromDT(1)));
         }
 
         private void addToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("AdminID {0}", GetFromDT(1)));
+            WebSocketsWrapper.Send(string.Format("AdminID \"{0}\"", GetFromDT(1)));
         }
 
         private void removeToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("RemoveAdmin {0}", GetFromDT(1)));
+            WebSocketsWrapper.Send(string.Format("RemoveAdmin \"{0}\"", GetFromDT(1)));
         }
 
         private void addToolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("OwnerID {0}", GetFromDT(1)));
+            WebSocketsWrapper.Send(string.Format("OwnerID \"{0}\"", GetFromDT(1)));
         }
 
         private void removeToolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("RemoveOwner {0}", GetFromDT(1)));
+            WebSocketsWrapper.Send(string.Format("RemoveOwner \"{0}\"", GetFromDT(1)));
         }
 
         private void broadcastMessageBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -542,20 +544,20 @@ namespace RCE_ADMIN
         }
         public static void give_item_to_player(string player, string item, int amount = 1)
         {
-            WebSocketsWrapper.Send(string.Format("inventory.giveto {0} {1} {2}", player, item, amount));
+            WebSocketsWrapper.Send(string.Format("inventory.giveto \"{0}\" \"{1}\" \"{2}\"", player, item, amount));
         }
         public static void teleport_to(string player)
         {
-            WebSocketsWrapper.Send(string.Format("global.teleport {0} {1}", Settings.InGameName, player));
+            WebSocketsWrapper.Send(string.Format("global.teleport \"{0}\" \"{1}\"", Settings.InGameName, player));
         }
-        public static async Task teleport_here(string player)
+        public static async void teleport_here(string player)
         {
-            WebSocketsWrapper.Send(string.Format("printpos {0}", Settings.InGameName));
+            WebSocketsWrapper.Send(string.Format("printpos \"{0}\"", Settings.InGameName));
             await Task.Delay(1000);
             string pos = ServerConsole.ReadLastFewLines();
             if (ServerConsole.IsValidPrintPos(pos))
             {
-                WebSocketsWrapper.Send(string.Format("teleportpos {1} {0}", player, pos.Replace(" ", "").Replace("(", "").Replace(")", "")));
+                WebSocketsWrapper.Send(string.Format("teleportpos \"{1}\" \"{0}\"", player, pos.Replace(" ", "").Replace("(", "").Replace(")", "")));
             }
             else
             {
@@ -564,7 +566,7 @@ namespace RCE_ADMIN
         }
         public static void give_item_to_all(string item)
         {
-            WebSocketsWrapper.Send(string.Format("inventory.giveall {0}", item));
+            WebSocketsWrapper.Send(string.Format("inventory.giveall \"{0}\"", item));
         }
 
         private void boneClubToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2697,20 +2699,30 @@ namespace RCE_ADMIN
         {
             if (!string.IsNullOrEmpty(Settings.InGameName))
             {
-                teleport_here(GetFromDT(1));
+                string name = GetFromDT(1);
+                DialogResult tp = XtraMessageBox.Show(string.Format("Are You Sure You Want To Teleport {0} To You?", name), "RCE Admin - Teleportation", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+                if (tp == DialogResult.Yes)
+                {
+                    teleport_here(name);
+                }
             }
             else
-                XtraMessageBox.Show(string.Format("Cant Teleport To {0} As You Have Not Set Your In Game Name!", GetFromDT(1)), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(string.Format("Can't Teleport To {0} As You Have Not Set Your In Game Name!", GetFromDT(1)), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void teleporToThemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(Settings.InGameName))
             {
-                teleport_to(GetFromDT(1));
+                string name = GetFromDT(1);
+                DialogResult tp = XtraMessageBox.Show(string.Format("Are You Sure You Want To Teleport To {0}?", name), "RCE Admin - Teleportation", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+                if (tp == DialogResult.Yes)
+                {
+                    teleport_to(name);
+                }
             }
             else
-                XtraMessageBox.Show(string.Format("Cant Teleport To {0} As You Have Not Set Your In Game Name!", GetFromDT(1)), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(string.Format("Can't Teleport To {0} As You Have Not Set Your In Game Name!", GetFromDT(1)), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         class PSNRequest
         {
@@ -3191,7 +3203,7 @@ namespace RCE_ADMIN
         }
         public void spawn_heli(string name)
         {
-            WebSocketsWrapper.Send(string.Format("heli.drop {0}", name));
+            WebSocketsWrapper.Send(string.Format("heli.drop \"{0}\"", name));
         }
         private void simpleButton11_Click(object sender, EventArgs e)
         {
@@ -3313,52 +3325,52 @@ namespace RCE_ADMIN
 
         private void addToolStripMenuItem7_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("VIPID {0}", GetFromODT(1)));
+            WebSocketsWrapper.Send(string.Format("VIPID \"{0}\"", GetFromODT(1)));
         }
 
         private void removeToolStripMenuItem7_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("RemoveVIP {0}", GetFromODT(1)));
+            WebSocketsWrapper.Send(string.Format("RemoveVIP \"{0}\"", GetFromODT(1)));
         }
 
         private void addToolStripMenuItem6_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("ModeratorID {0}", GetFromODT(1)));
+            WebSocketsWrapper.Send(string.Format("ModeratorID \"{0}\"", GetFromODT(1)));
         }
 
         private void removeToolStripMenuItem6_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("RemoveModerator {0}", GetFromODT(1)));
+            WebSocketsWrapper.Send(string.Format("RemoveModerator \"{0}\"", GetFromODT(1)));
         }
 
         private void addToolStripMenuItem5_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("AdminID {0}", GetFromODT(1)));
+            WebSocketsWrapper.Send(string.Format("AdminID \"{0}\"", GetFromODT(1)));
         }
 
         private void removeToolStripMenuItem5_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("RemoveAdmin {0}", GetFromODT(1)));
+            WebSocketsWrapper.Send(string.Format("RemoveAdmin \"{0}\"", GetFromODT(1)));
         }
 
         private void addToolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("OwnerID {0}", GetFromODT(1)));
+            WebSocketsWrapper.Send(string.Format("OwnerID \"{0}\"", GetFromODT(1)));
         }
 
         private void removeToolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("RemoveOwner {0}", GetFromODT(1)));
+            WebSocketsWrapper.Send(string.Format("RemoveOwner \"{0}\"", GetFromODT(1)));
         }
 
         private void banToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("global.banid {0}", GetFromODT(1)));
+            WebSocketsWrapper.Send(string.Format("global.banid \"{0}\"", GetFromODT(1)));
         }
 
         private void uUnbanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("global.unban {0}", GetFromODT(1)));
+            WebSocketsWrapper.Send(string.Format("global.unban \"{0}\"", GetFromODT(1)));
         }
 
         private void copyNameToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -3375,13 +3387,13 @@ namespace RCE_ADMIN
                 XtraMessageBox.Show("Can't Spawn A Locked Crate On You As You Have Not Set Your In-Game Name!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            WebSocketsWrapper.Send(string.Format("printpos {0}", Settings.InGameName));
+            WebSocketsWrapper.Send(string.Format("printpos \"{0}\"", Settings.InGameName));
             simpleButton22.Text = "Spawning";
             await Task.Delay(1000);
             string pos = ServerConsole.ReadLastFewLines();
             if (ServerConsole.IsValidPrintPos(pos))
             {
-                WebSocketsWrapper.Send(string.Format("spawn codelocked {0}", pos.Replace(" ", "")));
+                WebSocketsWrapper.Send(string.Format("spawn codelocked \"{0}\"", pos.Replace(" ", "")));
                 simpleButton22.Text = "Spawned!";
             }
             else
@@ -3513,7 +3525,7 @@ namespace RCE_ADMIN
         }
         private void trackBarControl1_Properties_ValueChanged(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("env.time {0}", trackBarControl1.Value));
+            WebSocketsWrapper.Send(string.Format("env.time \"{0}\"", trackBarControl1.Value));
         }
         private List<LockedCrateGroup> crateGroups;
         private void UpdateLockedCratePositions()
@@ -3539,12 +3551,12 @@ namespace RCE_ADMIN
 
         private void toolStripMenuItem8_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("entity.deleteby {0}", GetFromDT(1)));
+            WebSocketsWrapper.Send(string.Format("entity.deleteby \"{0}\"", GetFromDT(1)));
         }
 
         private void deleteAllEntitiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Send(string.Format("entity.deleteby {0}", GetFromODT(1)));
+            WebSocketsWrapper.Send(string.Format("entity.deleteby \"{0}\"", GetFromODT(1)));
         }
         static string[] FormatXYZString(string input)
         {
@@ -3569,7 +3581,7 @@ namespace RCE_ADMIN
                 XtraMessageBox.Show("Please Fill Out All The Fields!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            WebSocketsWrapper.Send(string.Format("printpos {0}", Settings.InGameName));
+            WebSocketsWrapper.Send(string.Format("printpos \"{0}\"", Settings.InGameName));
             await Task.Delay(1000);
             string pos = ServerConsole.ReadLastFewLines();
             if (ServerConsole.IsValidPrintPos(pos))
@@ -3585,6 +3597,11 @@ namespace RCE_ADMIN
             {
                 XtraMessageBox.Show("Failed To Find Your Position, Try Again!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void killPlayerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("global.injure \"{0}\"", GetFromDT(1)));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace RCE_ADMIN
 {
@@ -67,6 +68,10 @@ namespace RCE_ADMIN
             this.buttonDisconnect = new DevExpress.XtraEditors.SimpleButton();
             this.buttonConnect = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxCredentials = new DevExpress.XtraEditors.GroupControl();
+            this.itemWebhookUrl = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.teamWebhookUrl = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.chatWebhookUrl = new DevExpress.XtraEditors.TextEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.inGameName = new DevExpress.XtraEditors.TextEdit();
@@ -598,6 +603,8 @@ namespace RCE_ADMIN
             this.spawnHeliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.killPlayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.toolStripStatusLabelRight = new DevExpress.XtraBars.BarStaticItem();
@@ -708,6 +715,7 @@ namespace RCE_ADMIN
             this.simpleButton16 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage8 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl18 = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton23 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.lockedCrateGroupName = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
@@ -728,15 +736,12 @@ namespace RCE_ADMIN
             this.curVer = new DevExpress.XtraEditors.LabelControl();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.richTextBoxChangelog = new System.Windows.Forms.RichTextBox();
-            this.teamWebhookUrl = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.itemWebhookUrl = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton23 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxConnection)).BeginInit();
             this.groupBoxConnection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).BeginInit();
             this.groupBoxCredentials.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.itemWebhookUrl.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamWebhookUrl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chatWebhookUrl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inGameName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.killfeedsWebhookUrl.Properties)).BeginInit();
@@ -828,8 +833,6 @@ namespace RCE_ADMIN
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.teamWebhookUrl.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemWebhookUrl.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxConnection
@@ -888,6 +891,40 @@ namespace RCE_ADMIN
             this.groupBoxCredentials.Size = new System.Drawing.Size(662, 322);
             this.groupBoxCredentials.TabIndex = 0;
             this.groupBoxCredentials.Text = "Credentials";
+            // 
+            // itemWebhookUrl
+            // 
+            this.itemWebhookUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.itemWebhookUrl.Location = new System.Drawing.Point(136, 224);
+            this.itemWebhookUrl.Name = "itemWebhookUrl";
+            this.itemWebhookUrl.Size = new System.Drawing.Size(515, 20);
+            this.itemWebhookUrl.TabIndex = 17;
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Location = new System.Drawing.Point(11, 226);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(95, 13);
+            this.labelControl13.TabIndex = 18;
+            this.labelControl13.Text = "Item Webhook URL";
+            // 
+            // teamWebhookUrl
+            // 
+            this.teamWebhookUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.teamWebhookUrl.Location = new System.Drawing.Point(136, 198);
+            this.teamWebhookUrl.Name = "teamWebhookUrl";
+            this.teamWebhookUrl.Size = new System.Drawing.Size(515, 20);
+            this.teamWebhookUrl.TabIndex = 15;
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Location = new System.Drawing.Point(11, 200);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(102, 13);
+            this.labelControl7.TabIndex = 16;
+            this.labelControl7.Text = "Team Webhook URL";
             // 
             // chatWebhookUrl
             // 
@@ -1188,10 +1225,12 @@ namespace RCE_ADMIN
             this.toolStripSeparator5,
             this.spawnHeliToolStripMenuItem,
             this.toolStripSeparator6,
-            this.toolStripMenuItem8});
+            this.toolStripMenuItem8,
+            this.toolStripSeparator8,
+            this.killPlayerToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(141, 342);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(141, 370);
             // 
             // copyNameToolStripMenuItem
             // 
@@ -6076,21 +6115,26 @@ namespace RCE_ADMIN
             // 
             // kitsToolStripMenuItem
             // 
+            this.kitsToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.kitsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customKit1ToolStripMenuItem,
             this.customKit2ToolStripMenuItem,
             this.customKit3ToolStripMenuItem});
             this.kitsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.kitsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.kitsToolStripMenuItem.Name = "kitsToolStripMenuItem";
             this.kitsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.kitsToolStripMenuItem.Text = "Kits";
+            this.kitsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.kitsToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.kitsToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // customKit1ToolStripMenuItem
             // 
             this.customKit1ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.customKit1ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.customKit1ToolStripMenuItem.Name = "customKit1ToolStripMenuItem";
-            this.customKit1ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.customKit1ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.customKit1ToolStripMenuItem.Text = "Custom Kit 1";
             this.customKit1ToolStripMenuItem.Click += new System.EventHandler(this.customKit1ToolStripMenuItem_Click_1);
             // 
@@ -6099,7 +6143,7 @@ namespace RCE_ADMIN
             this.customKit2ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.customKit2ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.customKit2ToolStripMenuItem.Name = "customKit2ToolStripMenuItem";
-            this.customKit2ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.customKit2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.customKit2ToolStripMenuItem.Text = "Custom Kit 2";
             this.customKit2ToolStripMenuItem.Click += new System.EventHandler(this.customKit2ToolStripMenuItem_Click);
             // 
@@ -6108,7 +6152,7 @@ namespace RCE_ADMIN
             this.customKit3ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.customKit3ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.customKit3ToolStripMenuItem.Name = "customKit3ToolStripMenuItem";
-            this.customKit3ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.customKit3ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.customKit3ToolStripMenuItem.Text = "Custom Kit 3";
             this.customKit3ToolStripMenuItem.Click += new System.EventHandler(this.customKit3ToolStripMenuItem_Click);
             // 
@@ -6187,6 +6231,19 @@ namespace RCE_ADMIN
             this.toolStripMenuItem8.Size = new System.Drawing.Size(140, 22);
             this.toolStripMenuItem8.Text = "Delete All Entities";
             this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(137, 6);
+            // 
+            // killPlayerToolStripMenuItem
+            // 
+            this.killPlayerToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.killPlayerToolStripMenuItem.Name = "killPlayerToolStripMenuItem";
+            this.killPlayerToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.killPlayerToolStripMenuItem.Text = "Kill Player";
+            this.killPlayerToolStripMenuItem.Click += new System.EventHandler(this.killPlayerToolStripMenuItem_Click);
             // 
             // barManager1
             // 
@@ -7437,6 +7494,16 @@ namespace RCE_ADMIN
             this.groupControl18.TabIndex = 18;
             this.groupControl18.Text = "Locked Crates Event (Right Click To Delete)";
             // 
+            // simpleButton23
+            // 
+            this.simpleButton23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton23.Location = new System.Drawing.Point(181, 225);
+            this.simpleButton23.Name = "simpleButton23";
+            this.simpleButton23.Size = new System.Drawing.Size(152, 23);
+            this.simpleButton23.TabIndex = 16;
+            this.simpleButton23.Text = "Add Your Position";
+            this.simpleButton23.Click += new System.EventHandler(this.simpleButton23_Click);
+            // 
             // labelControl20
             // 
             this.labelControl20.Location = new System.Drawing.Point(13, 266);
@@ -7711,50 +7778,6 @@ namespace RCE_ADMIN
             this.richTextBoxChangelog.TabIndex = 1;
             this.richTextBoxChangelog.Text = "";
             // 
-            // teamWebhookUrl
-            // 
-            this.teamWebhookUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.teamWebhookUrl.Location = new System.Drawing.Point(136, 198);
-            this.teamWebhookUrl.Name = "teamWebhookUrl";
-            this.teamWebhookUrl.Size = new System.Drawing.Size(515, 20);
-            this.teamWebhookUrl.TabIndex = 15;
-            // 
-            // labelControl7
-            // 
-            this.labelControl7.Location = new System.Drawing.Point(11, 200);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(102, 13);
-            this.labelControl7.TabIndex = 16;
-            this.labelControl7.Text = "Team Webhook URL";
-            // 
-            // itemWebhookUrl
-            // 
-            this.itemWebhookUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.itemWebhookUrl.Location = new System.Drawing.Point(136, 224);
-            this.itemWebhookUrl.Name = "itemWebhookUrl";
-            this.itemWebhookUrl.Size = new System.Drawing.Size(515, 20);
-            this.itemWebhookUrl.TabIndex = 17;
-            // 
-            // labelControl13
-            // 
-            this.labelControl13.Location = new System.Drawing.Point(11, 226);
-            this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(95, 13);
-            this.labelControl13.TabIndex = 18;
-            this.labelControl13.Text = "Item Webhook URL";
-            // 
-            // simpleButton23
-            // 
-            this.simpleButton23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton23.Location = new System.Drawing.Point(181, 225);
-            this.simpleButton23.Name = "simpleButton23";
-            this.simpleButton23.Size = new System.Drawing.Size(152, 23);
-            this.simpleButton23.TabIndex = 16;
-            this.simpleButton23.Text = "Add Your Position";
-            this.simpleButton23.Click += new System.EventHandler(this.simpleButton23_Click);
-            // 
             // Form1
             // 
             this.ActiveGlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
@@ -7788,6 +7811,8 @@ namespace RCE_ADMIN
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).EndInit();
             this.groupBoxCredentials.ResumeLayout(false);
             this.groupBoxCredentials.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.itemWebhookUrl.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamWebhookUrl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chatWebhookUrl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inGameName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.killfeedsWebhookUrl.Properties)).EndInit();
@@ -7885,8 +7910,6 @@ namespace RCE_ADMIN
             this.groupControl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.teamWebhookUrl.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemWebhookUrl.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -8563,5 +8586,7 @@ namespace RCE_ADMIN
         private DevExpress.XtraEditors.TextEdit itemWebhookUrl;
         private DevExpress.XtraEditors.LabelControl labelControl13;
         private DevExpress.XtraEditors.SimpleButton simpleButton23;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem killPlayerToolStripMenuItem;
     }
 }
