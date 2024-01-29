@@ -736,6 +736,7 @@ namespace RCE_ADMIN
             this.curVer = new DevExpress.XtraEditors.LabelControl();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.richTextBoxChangelog = new System.Windows.Forms.RichTextBox();
+            this.simpleButton26 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxConnection)).BeginInit();
             this.groupBoxConnection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).BeginInit();
@@ -7702,13 +7703,14 @@ namespace RCE_ADMIN
             // 
             // groupControl4
             // 
+            this.groupControl4.Controls.Add(this.simpleButton26);
             this.groupControl4.Controls.Add(this.simpleButton2);
             this.groupControl4.Controls.Add(this.latestVer);
             this.groupControl4.Controls.Add(this.simpleButton1);
             this.groupControl4.Controls.Add(this.curVer);
             this.groupControl4.Location = new System.Drawing.Point(12, 3);
             this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(248, 206);
+            this.groupControl4.Size = new System.Drawing.Size(248, 245);
             this.groupControl4.TabIndex = 3;
             this.groupControl4.Text = "Version";
             // 
@@ -7777,6 +7779,17 @@ namespace RCE_ADMIN
             this.richTextBoxChangelog.Size = new System.Drawing.Size(587, 444);
             this.richTextBoxChangelog.TabIndex = 1;
             this.richTextBoxChangelog.Text = "";
+            // 
+            // simpleButton26
+            // 
+            this.simpleButton26.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton26.Appearance.Options.UseFont = true;
+            this.simpleButton26.Location = new System.Drawing.Point(13, 199);
+            this.simpleButton26.Name = "simpleButton26";
+            this.simpleButton26.Size = new System.Drawing.Size(224, 34);
+            this.simpleButton26.TabIndex = 10;
+            this.simpleButton26.Text = "Check For Update";
+            this.simpleButton26.Click += new System.EventHandler(this.simpleButton26_Click);
             // 
             // Form1
             // 
@@ -8588,5 +8601,6 @@ namespace RCE_ADMIN
         private DevExpress.XtraEditors.SimpleButton simpleButton23;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem killPlayerToolStripMenuItem;
+        private DevExpress.XtraEditors.SimpleButton simpleButton26;
     }
 }
