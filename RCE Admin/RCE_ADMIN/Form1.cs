@@ -368,28 +368,50 @@ namespace RCE_ADMIN
         {
             textBoxPassword.Properties.UseSystemPasswordChar = !checkBoxShowPassword.Checked;
         }
+        static bool IsValidIPv4(string ipAddress)
+        {
+            IPAddress result;
+            return IPAddress.TryParse(ipAddress, out result) && result.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork;
+        }
+
+        static bool IsValidPort(string port)
+        {
+            int portNumber;
+            return int.TryParse(port, out portNumber) && portNumber > 0 && portNumber <= 65535;
+        }
         public void save_settings()
         {
-            Settings.Write(new Settings(
-                textBoxAddress.Text, 
-                textBoxPort.Text, 
-                textBoxPassword.Text, 
-                eventsWebhookUrl.Text, 
-                killfeedsWebhookUrl.Text,
-                chatWebhookUrl.Text,
-                teamWebhookUrl.Text,
-                itemWebhookUrl.Text,
-                inGameName.Text, 
-                autoMessagesCheck.Checked,
-                Convert.ToInt32(AutoMessageTime.Value),
-                InGameKillFeedCheck.Checked, 
-                DiscordKillFeedCheck.Checked, 
-                InGameEventFeedCheck.Checked, 
-                DiscordEventFeedCheck.Checked,
-                InGameChatCheck.Checked,
-                DiscordChatCheck.Checked
-             ));
-            Settings = Settings.Read();
+            if (!IsValidIPv4(textBoxAddress.Text))
+            {
+                XtraMessageBox.Show("Please Enter A Valid IP Address!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else if (!IsValidPort(textBoxPort.Text))
+            {
+                XtraMessageBox.Show("Please Enter A Valid Port!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else
+            {
+                Settings.Write(new Settings(
+                    textBoxAddress.Text,
+                    textBoxPort.Text,
+                    textBoxPassword.Text,
+                    eventsWebhookUrl.Text,
+                    killfeedsWebhookUrl.Text,
+                    chatWebhookUrl.Text,
+                    teamWebhookUrl.Text,
+                    itemWebhookUrl.Text,
+                    inGameName.Text,
+                    autoMessagesCheck.Checked,
+                    Convert.ToInt32(AutoMessageTime.Value),
+                    InGameKillFeedCheck.Checked,
+                    DiscordKillFeedCheck.Checked,
+                    InGameEventFeedCheck.Checked,
+                    DiscordEventFeedCheck.Checked,
+                    InGameChatCheck.Checked,
+                    DiscordChatCheck.Checked
+                 ));
+                Settings = Settings.Read();
+            }
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
@@ -397,13 +419,18 @@ namespace RCE_ADMIN
         }
         private async void buttonConnect_Click(object sender, EventArgs e)
         {
-            WebSocketsWrapper.Connect();
-            await Task.Delay(3000);
-            if (WebSocketsWrapper.IsConnected())
+            if (string.IsNullOrEmpty(Settings.ServerAddress) || string.IsNullOrEmpty(Settings.ServerPort) || string.IsNullOrEmpty(Settings.ServerPassword))
+                XtraMessageBox.Show("Seems Like Your Trying To Connect Using The Default Config, Did You Save The Information Before Trying To Connect?", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            else
             {
-                SetInfo();
-                await SendAutoMessages();
-                await SendFeedMessage();
+                WebSocketsWrapper.Connect();
+                await Task.Delay(3000);
+                if (WebSocketsWrapper.IsConnected())
+                {
+                    SetInfo();
+                    await SendAutoMessages();
+                    await SendFeedMessage();
+                }
             }
         }
         async Task SendFeedMessage()
