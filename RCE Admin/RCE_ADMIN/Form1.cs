@@ -3652,6 +3652,49 @@ namespace RCE_ADMIN
                         }
                     }
                 }
+            }
+        }
+        private async void simpleButton26_Click(object sender, EventArgs e)
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "AutoUpdateApp");
+            HttpResponseMessage response = await client.GetAsync($"https://api.github.com/repos/KyleFardy/RCE-Admin/releases/latest");
+
+            if (response.IsSuccessStatusCode)
+            {
+                JObject releaseInfo = JObject.Parse(await response.Content.ReadAsStringAsync());
+                string latestVersion = releaseInfo["tag_name"].ToString();
+                if (latestVersion != Settings.Version)
+                {
+                    XtraMessageBox.Show($"There Is An Update Available\n\nCurrent Version : {Settings.Version}\nNew Version : {latestVersion}\n\nStarting Download Now!", "RCE Admin - Updater", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    using (var downloadClient = new HttpClient())
+                    {
+
+                        string downloadUrl = releaseInfo["assets"][0]["browser_download_url"].ToString();
+                        var downloadResponse = await downloadClient.GetAsync(downloadUrl);
+                        if (downloadResponse.IsSuccessStatusCode)
+                        {
+                            string filePath = "RCE Admin Setup.exe";
+                            using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                            {
+                                await downloadResponse.Content.CopyToAsync(fileStream);
+                            }
+                            XtraMessageBox.Show("Update Successfully Downloaded, Please Follow The Setup Installer!", "RCE Admin - Updater", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Process.Start(new ProcessStartInfo
+                            {
+                                FileName = filePath,
+                                UseShellExecute = true
+                            });
+                            Process.GetCurrentProcess().Kill();
+                        }
+                        else
+                        {
+                            XtraMessageBox.Show("Failed To Download Update, Please Download From Github!", "RCE Admin - Updater", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Process.Start(downloadUrl);
+                        }
+                    }
+                }
                 else
                 {
                     XtraMessageBox.Show("You Are Using The Latest Version!", "RCE Admin - Updater", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -3661,10 +3704,6 @@ namespace RCE_ADMIN
             {
                 XtraMessageBox.Show("Failed To Check If There Is Update Available!", "RCE Admin - Updater", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
-        }
-        private async void simpleButton26_Click(object sender, EventArgs e)
-        {
-            await check_update();
         }
     }
 }
