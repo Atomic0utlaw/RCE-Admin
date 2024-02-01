@@ -10,6 +10,7 @@ namespace RCE_ADMIN.Threading
     {
         public static Thread PlayerThread;
         public static Thread InfoThread;
+        public static Thread BansThread;
         public static void StartThreads()
         {
             if (PlayerThread == null || !PlayerThread.IsAlive)
@@ -21,6 +22,11 @@ namespace RCE_ADMIN.Threading
             {
                 InfoThread = new Thread(new ThreadStart(UpdateInfo));
                 InfoThread.Start();
+            }
+            if (BansThread == null || !BansThread.IsAlive)
+            {
+                BansThread = new Thread(new ThreadStart(UpdateBans));
+                BansThread.Start();
             }
         }
         public static void StopThreads()
@@ -47,6 +53,14 @@ namespace RCE_ADMIN.Threading
             while (WebSocketsWrapper.IsConnected())
             {
                 WebSocketsWrapper.SendCommand("serverinfo");
+                Thread.Sleep(TimeSpan.FromSeconds(10));
+            }
+        }
+        public static void UpdateBans()
+        {
+            while (WebSocketsWrapper.IsConnected())
+            {
+                WebSocketsWrapper.SendCommand("banlist");
                 Thread.Sleep(TimeSpan.FromSeconds(10));
             }
         }

@@ -40,6 +40,10 @@ namespace RCE_ADMIN
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel1 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
             DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel2 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
             DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel3 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
@@ -624,6 +628,17 @@ namespace RCE_ADMIN
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl22 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
+            this.bansDataTable = new System.Windows.Forms.DataGridView();
+            this.BanID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BanPlayerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem25 = new System.Windows.Forms.ToolStripMenuItem();
+            this.simpleButton29 = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl8 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
@@ -714,6 +729,16 @@ namespace RCE_ADMIN
             this.simpleButton15 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton16 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage8 = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl24 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
+            this.spawnAnimalType = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.checkedListBoxControl2 = new DevExpress.XtraEditors.CheckedListBoxControl();
+            this.simpleButton30 = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl23 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
+            this.spawnCrateType = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.checkedListBoxControl1 = new DevExpress.XtraEditors.CheckedListBoxControl();
+            this.simpleButton31 = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl18 = new DevExpress.XtraEditors.GroupControl();
             this.simpleButton23 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
@@ -730,13 +755,19 @@ namespace RCE_ADMIN
             this.trackBarControl1 = new DevExpress.XtraEditors.TrackBarControl();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton26 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.latestVer = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.curVer = new DevExpress.XtraEditors.LabelControl();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.richTextBoxChangelog = new System.Windows.Forms.RichTextBox();
-            this.simpleButton26 = new DevExpress.XtraEditors.SimpleButton();
+            this.xtraTabPage10 = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl21 = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton28 = new DevExpress.XtraEditors.SimpleButton();
+            this.colorPickEdit1 = new DevExpress.XtraEditors.ColorPickEdit();
+            this.groupControl20 = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton27 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxConnection)).BeginInit();
             this.groupBoxConnection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).BeginInit();
@@ -765,6 +796,10 @@ namespace RCE_ADMIN
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl22)).BeginInit();
+            this.groupControl22.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bansDataTable)).BeginInit();
+            this.contextMenuStrip3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl8)).BeginInit();
             this.groupControl8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.allPlayersDataTable)).BeginInit();
@@ -818,6 +853,14 @@ namespace RCE_ADMIN
             ((System.ComponentModel.ISupportInitialize)(this.groupControl11)).BeginInit();
             this.groupControl11.SuspendLayout();
             this.xtraTabPage8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl24)).BeginInit();
+            this.groupControl24.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spawnAnimalType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl23)).BeginInit();
+            this.groupControl23.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spawnCrateType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl18)).BeginInit();
             this.groupControl18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lockedCrateGroupName.Properties)).BeginInit();
@@ -834,6 +877,12 @@ namespace RCE_ADMIN
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
+            this.xtraTabPage10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl21)).BeginInit();
+            this.groupControl21.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl20)).BeginInit();
+            this.groupControl20.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxConnection
@@ -866,6 +915,8 @@ namespace RCE_ADMIN
             // 
             // groupBoxCredentials
             // 
+            this.groupBoxCredentials.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.groupBoxCredentials.Appearance.Options.UseBackColor = true;
             this.groupBoxCredentials.Controls.Add(this.itemWebhookUrl);
             this.groupBoxCredentials.Controls.Add(this.labelControl13);
             this.groupBoxCredentials.Controls.Add(this.teamWebhookUrl);
@@ -1232,6 +1283,7 @@ namespace RCE_ADMIN
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
             this.contextMenuStrip1.Size = new System.Drawing.Size(141, 370);
+            this.contextMenuStrip1.Opened += new System.EventHandler(this.contextMenuStrip1_Opened);
             // 
             // copyNameToolStripMenuItem
             // 
@@ -6135,7 +6187,7 @@ namespace RCE_ADMIN
             this.customKit1ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.customKit1ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.customKit1ToolStripMenuItem.Name = "customKit1ToolStripMenuItem";
-            this.customKit1ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customKit1ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.customKit1ToolStripMenuItem.Text = "Custom Kit 1";
             this.customKit1ToolStripMenuItem.Click += new System.EventHandler(this.customKit1ToolStripMenuItem_Click_1);
             // 
@@ -6144,7 +6196,7 @@ namespace RCE_ADMIN
             this.customKit2ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.customKit2ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.customKit2ToolStripMenuItem.Name = "customKit2ToolStripMenuItem";
-            this.customKit2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customKit2ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.customKit2ToolStripMenuItem.Text = "Custom Kit 2";
             this.customKit2ToolStripMenuItem.Click += new System.EventHandler(this.customKit2ToolStripMenuItem_Click);
             // 
@@ -6153,7 +6205,7 @@ namespace RCE_ADMIN
             this.customKit3ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.customKit3ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.customKit3ToolStripMenuItem.Name = "customKit3ToolStripMenuItem";
-            this.customKit3ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customKit3ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.customKit3ToolStripMenuItem.Text = "Custom Kit 3";
             this.customKit3ToolStripMenuItem.Click += new System.EventHandler(this.customKit3ToolStripMenuItem_Click);
             // 
@@ -6341,7 +6393,8 @@ namespace RCE_ADMIN
             this.xtraTabPage5,
             this.xtraTabPage6,
             this.xtraTabPage9,
-            this.xtraTabPage4});
+            this.xtraTabPage4,
+            this.xtraTabPage10});
             // 
             // xtraTabPage1
             // 
@@ -6430,6 +6483,7 @@ namespace RCE_ADMIN
             // 
             // xtraTabPage3
             // 
+            this.xtraTabPage3.Controls.Add(this.groupControl22);
             this.xtraTabPage3.Controls.Add(this.groupControl8);
             this.xtraTabPage3.Controls.Add(this.labelControl8);
             this.xtraTabPage3.Controls.Add(this.labelControl6);
@@ -6441,16 +6495,184 @@ namespace RCE_ADMIN
             this.xtraTabPage3.Size = new System.Drawing.Size(860, 481);
             this.xtraTabPage3.Text = "Players";
             // 
+            // groupControl22
+            // 
+            this.groupControl22.Controls.Add(this.labelControl15);
+            this.groupControl22.Controls.Add(this.labelControl21);
+            this.groupControl22.Controls.Add(this.bansDataTable);
+            this.groupControl22.Controls.Add(this.simpleButton29);
+            this.groupControl22.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupControl22.Location = new System.Drawing.Point(585, 241);
+            this.groupControl22.Name = "groupControl22";
+            this.groupControl22.Size = new System.Drawing.Size(275, 240);
+            this.groupControl22.TabIndex = 13;
+            this.groupControl22.Text = "Bans";
+            // 
+            // labelControl15
+            // 
+            this.labelControl15.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.labelControl15.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl15.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl15.Appearance.Options.UseBackColor = true;
+            this.labelControl15.Appearance.Options.UseFont = true;
+            this.labelControl15.Appearance.Options.UseForeColor = true;
+            this.labelControl15.Appearance.Options.UseTextOptions = true;
+            this.labelControl15.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl15.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl15.Location = new System.Drawing.Point(0, 27);
+            this.labelControl15.Name = "labelControl15";
+            this.labelControl15.Size = new System.Drawing.Size(40, 21);
+            this.labelControl15.TabIndex = 12;
+            this.labelControl15.Text = "#";
+            // 
+            // labelControl21
+            // 
+            this.labelControl21.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.labelControl21.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl21.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl21.Appearance.Options.UseBackColor = true;
+            this.labelControl21.Appearance.Options.UseFont = true;
+            this.labelControl21.Appearance.Options.UseForeColor = true;
+            this.labelControl21.Appearance.Options.UseTextOptions = true;
+            this.labelControl21.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl21.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl21.Location = new System.Drawing.Point(35, 27);
+            this.labelControl21.Name = "labelControl21";
+            this.labelControl21.Size = new System.Drawing.Size(208, 21);
+            this.labelControl21.TabIndex = 7;
+            this.labelControl21.Text = "NAME";
+            // 
+            // bansDataTable
+            // 
+            this.bansDataTable.AllowUserToDeleteRows = false;
+            this.bansDataTable.AllowUserToOrderColumns = true;
+            this.bansDataTable.AllowUserToResizeColumns = false;
+            this.bansDataTable.AllowUserToResizeRows = false;
+            this.bansDataTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.bansDataTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.bansDataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.bansDataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.bansDataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BanID,
+            this.BanPlayerName});
+            this.bansDataTable.ContextMenuStrip = this.contextMenuStrip3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.bansDataTable.DefaultCellStyle = dataGridViewCellStyle6;
+            this.bansDataTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bansDataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.bansDataTable.Location = new System.Drawing.Point(2, 27);
+            this.bansDataTable.MultiSelect = false;
+            this.bansDataTable.Name = "bansDataTable";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.bansDataTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.bansDataTable.RowHeadersVisible = false;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            this.bansDataTable.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.bansDataTable.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.bansDataTable.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.bansDataTable.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bansDataTable.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
+            this.bansDataTable.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.bansDataTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.bansDataTable.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.bansDataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.bansDataTable.Size = new System.Drawing.Size(271, 211);
+            this.bansDataTable.TabIndex = 6;
+            // 
+            // BanID
+            // 
+            this.BanID.FillWeight = 40F;
+            this.BanID.HeaderText = "#";
+            this.BanID.Name = "BanID";
+            this.BanID.ReadOnly = true;
+            this.BanID.Width = 40;
+            // 
+            // BanPlayerName
+            // 
+            this.BanPlayerName.HeaderText = "Name";
+            this.BanPlayerName.Name = "BanPlayerName";
+            this.BanPlayerName.ReadOnly = true;
+            this.BanPlayerName.Width = 200;
+            // 
+            // contextMenuStrip3
+            // 
+            this.contextMenuStrip3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem10,
+            this.toolStripSeparator9,
+            this.toolStripMenuItem25});
+            this.contextMenuStrip3.Name = "contextMenuStrip2";
+            this.contextMenuStrip3.ShowImageMargin = false;
+            this.contextMenuStrip3.Size = new System.Drawing.Size(141, 54);
+            this.contextMenuStrip3.Opened += new System.EventHandler(this.contextMenuStrip3_Opened);
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.toolStripMenuItem10.ForeColor = System.Drawing.Color.White;
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(140, 22);
+            this.toolStripMenuItem10.Text = "Unban";
+            this.toolStripMenuItem10.Click += new System.EventHandler(this.toolStripMenuItem10_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.toolStripSeparator9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(137, 6);
+            // 
+            // toolStripMenuItem25
+            // 
+            this.toolStripMenuItem25.ForeColor = System.Drawing.Color.White;
+            this.toolStripMenuItem25.Name = "toolStripMenuItem25";
+            this.toolStripMenuItem25.Size = new System.Drawing.Size(140, 22);
+            this.toolStripMenuItem25.Text = "Delete All Entities";
+            this.toolStripMenuItem25.Click += new System.EventHandler(this.toolStripMenuItem25_Click);
+            // 
+            // simpleButton29
+            // 
+            this.simpleButton29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton29.Location = new System.Drawing.Point(195, -239);
+            this.simpleButton29.Name = "simpleButton29";
+            this.simpleButton29.Size = new System.Drawing.Size(69, 20);
+            this.simpleButton29.TabIndex = 5;
+            this.simpleButton29.Text = "Refresh";
+            // 
             // groupControl8
             // 
             this.groupControl8.Controls.Add(this.labelControl18);
             this.groupControl8.Controls.Add(this.labelControl17);
             this.groupControl8.Controls.Add(this.allPlayersDataTable);
             this.groupControl8.Controls.Add(this.simpleButton9);
-            this.groupControl8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupControl8.Location = new System.Drawing.Point(591, 0);
+            this.groupControl8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupControl8.Location = new System.Drawing.Point(585, 0);
             this.groupControl8.Name = "groupControl8";
-            this.groupControl8.Size = new System.Drawing.Size(269, 481);
+            this.groupControl8.Size = new System.Drawing.Size(275, 240);
             this.groupControl8.TabIndex = 8;
             this.groupControl8.Text = "All Players (Online/Offline)";
             // 
@@ -6496,56 +6718,57 @@ namespace RCE_ADMIN
             this.allPlayersDataTable.AllowUserToResizeRows = false;
             this.allPlayersDataTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.allPlayersDataTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.allPlayersDataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.allPlayersDataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.allPlayersDataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.allPlayersDataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
             this.allPlayersDataTable.ContextMenuStrip = this.contextMenuStrip2;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.allPlayersDataTable.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.allPlayersDataTable.DefaultCellStyle = dataGridViewCellStyle10;
             this.allPlayersDataTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.allPlayersDataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.allPlayersDataTable.Location = new System.Drawing.Point(2, 27);
             this.allPlayersDataTable.MultiSelect = false;
             this.allPlayersDataTable.Name = "allPlayersDataTable";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.allPlayersDataTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.allPlayersDataTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.allPlayersDataTable.RowHeadersVisible = false;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            this.allPlayersDataTable.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            this.allPlayersDataTable.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.allPlayersDataTable.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.allPlayersDataTable.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.allPlayersDataTable.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.allPlayersDataTable.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
             this.allPlayersDataTable.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
             this.allPlayersDataTable.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.allPlayersDataTable.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.allPlayersDataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.allPlayersDataTable.Size = new System.Drawing.Size(265, 452);
+            this.allPlayersDataTable.Size = new System.Drawing.Size(271, 211);
             this.allPlayersDataTable.TabIndex = 6;
             // 
             // dataGridViewTextBoxColumn1
@@ -6579,6 +6802,7 @@ namespace RCE_ADMIN
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.ShowImageMargin = false;
             this.contextMenuStrip2.Size = new System.Drawing.Size(141, 170);
+            this.contextMenuStrip2.Opened += new System.EventHandler(this.contextMenuStrip2_Opened);
             // 
             // copyNameToolStripMenuItem1
             // 
@@ -6757,7 +6981,7 @@ namespace RCE_ADMIN
             // simpleButton9
             // 
             this.simpleButton9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton9.Location = new System.Drawing.Point(189, 2);
+            this.simpleButton9.Location = new System.Drawing.Point(195, -239);
             this.simpleButton9.Name = "simpleButton9";
             this.simpleButton9.Size = new System.Drawing.Size(69, 20);
             this.simpleButton9.TabIndex = 5;
@@ -7472,10 +7696,133 @@ namespace RCE_ADMIN
             // 
             // xtraTabPage8
             // 
+            this.xtraTabPage8.Controls.Add(this.groupControl24);
+            this.xtraTabPage8.Controls.Add(this.groupControl23);
             this.xtraTabPage8.Controls.Add(this.groupControl18);
             this.xtraTabPage8.Name = "xtraTabPage8";
             this.xtraTabPage8.Size = new System.Drawing.Size(858, 452);
             this.xtraTabPage8.Text = "More Events";
+            // 
+            // groupControl24
+            // 
+            this.groupControl24.Controls.Add(this.labelControl23);
+            this.groupControl24.Controls.Add(this.spawnAnimalType);
+            this.groupControl24.Controls.Add(this.checkedListBoxControl2);
+            this.groupControl24.Controls.Add(this.simpleButton30);
+            this.groupControl24.Location = new System.Drawing.Point(610, 11);
+            this.groupControl24.Name = "groupControl24";
+            this.groupControl24.Size = new System.Drawing.Size(238, 348);
+            this.groupControl24.TabIndex = 20;
+            this.groupControl24.Text = "Spawn Animal On Player";
+            // 
+            // labelControl23
+            // 
+            this.labelControl23.Location = new System.Drawing.Point(13, 266);
+            this.labelControl23.Name = "labelControl23";
+            this.labelControl23.Size = new System.Drawing.Size(31, 13);
+            this.labelControl23.TabIndex = 17;
+            this.labelControl23.Text = "Animal";
+            // 
+            // spawnAnimalType
+            // 
+            this.spawnAnimalType.EditValue = "Select An Animal";
+            this.spawnAnimalType.Location = new System.Drawing.Point(13, 285);
+            this.spawnAnimalType.MenuManager = this.barManager1;
+            this.spawnAnimalType.Name = "spawnAnimalType";
+            this.spawnAnimalType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spawnAnimalType.Properties.Items.AddRange(new object[] {
+            "Pig",
+            "Horse",
+            "Deer",
+            "Bear",
+            "Wolf",
+            "Chicken",
+            "Shark"});
+            this.spawnAnimalType.Size = new System.Drawing.Size(211, 20);
+            this.spawnAnimalType.TabIndex = 16;
+            // 
+            // checkedListBoxControl2
+            // 
+            this.checkedListBoxControl2.Location = new System.Drawing.Point(13, 38);
+            this.checkedListBoxControl2.Name = "checkedListBoxControl2";
+            this.checkedListBoxControl2.Size = new System.Drawing.Size(211, 222);
+            this.checkedListBoxControl2.TabIndex = 10;
+            // 
+            // simpleButton30
+            // 
+            this.simpleButton30.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton30.Location = new System.Drawing.Point(13, 314);
+            this.simpleButton30.Name = "simpleButton30";
+            this.simpleButton30.Size = new System.Drawing.Size(211, 23);
+            this.simpleButton30.TabIndex = 9;
+            this.simpleButton30.Text = "Spawn Animal";
+            this.simpleButton30.Click += new System.EventHandler(this.simpleButton30_Click);
+            // 
+            // groupControl23
+            // 
+            this.groupControl23.Controls.Add(this.labelControl22);
+            this.groupControl23.Controls.Add(this.spawnCrateType);
+            this.groupControl23.Controls.Add(this.checkedListBoxControl1);
+            this.groupControl23.Controls.Add(this.simpleButton31);
+            this.groupControl23.Location = new System.Drawing.Point(364, 11);
+            this.groupControl23.Name = "groupControl23";
+            this.groupControl23.Size = new System.Drawing.Size(238, 348);
+            this.groupControl23.TabIndex = 19;
+            this.groupControl23.Text = "Spawn Crate On Players";
+            // 
+            // labelControl22
+            // 
+            this.labelControl22.Location = new System.Drawing.Point(13, 266);
+            this.labelControl22.Name = "labelControl22";
+            this.labelControl22.Size = new System.Drawing.Size(52, 13);
+            this.labelControl22.TabIndex = 17;
+            this.labelControl22.Text = "Crate Type";
+            // 
+            // spawnCrateType
+            // 
+            this.spawnCrateType.EditValue = "Select A Crate Type";
+            this.spawnCrateType.Location = new System.Drawing.Point(13, 285);
+            this.spawnCrateType.MenuManager = this.barManager1;
+            this.spawnCrateType.Name = "spawnCrateType";
+            this.spawnCrateType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spawnCrateType.Properties.Items.AddRange(new object[] {
+            "Locked Crate",
+            "Elite Crate",
+            "Heli Crate",
+            "Brad Crate",
+            "Basic Crate",
+            "Normal Crate",
+            "Normal Crate 2",
+            "Normal Crate 2 Food",
+            "Normal Crate 2 Medical",
+            "Tool Crate",
+            "Advanced Underwater Crate",
+            "Basic Underwater Crate",
+            "Loot Barrel 1",
+            "Loot Barrel Alt 1",
+            "Loot Barrel 2",
+            "Loot Barrel Alt 2"});
+            this.spawnCrateType.Size = new System.Drawing.Size(211, 20);
+            this.spawnCrateType.TabIndex = 16;
+            // 
+            // checkedListBoxControl1
+            // 
+            this.checkedListBoxControl1.Location = new System.Drawing.Point(13, 38);
+            this.checkedListBoxControl1.Name = "checkedListBoxControl1";
+            this.checkedListBoxControl1.Size = new System.Drawing.Size(211, 222);
+            this.checkedListBoxControl1.TabIndex = 10;
+            // 
+            // simpleButton31
+            // 
+            this.simpleButton31.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton31.Location = new System.Drawing.Point(13, 314);
+            this.simpleButton31.Name = "simpleButton31";
+            this.simpleButton31.Size = new System.Drawing.Size(211, 23);
+            this.simpleButton31.TabIndex = 9;
+            this.simpleButton31.Text = "Spawn Crate";
+            this.simpleButton31.Click += new System.EventHandler(this.simpleButton31_Click);
             // 
             // groupControl18
             // 
@@ -7714,6 +8061,17 @@ namespace RCE_ADMIN
             this.groupControl4.TabIndex = 3;
             this.groupControl4.Text = "Version";
             // 
+            // simpleButton26
+            // 
+            this.simpleButton26.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton26.Appearance.Options.UseFont = true;
+            this.simpleButton26.Location = new System.Drawing.Point(13, 199);
+            this.simpleButton26.Name = "simpleButton26";
+            this.simpleButton26.Size = new System.Drawing.Size(224, 34);
+            this.simpleButton26.TabIndex = 10;
+            this.simpleButton26.Text = "Check For Update";
+            this.simpleButton26.Click += new System.EventHandler(this.simpleButton26_Click);
+            // 
             // simpleButton2
             // 
             this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
@@ -7780,16 +8138,72 @@ namespace RCE_ADMIN
             this.richTextBoxChangelog.TabIndex = 1;
             this.richTextBoxChangelog.Text = "";
             // 
-            // simpleButton26
+            // xtraTabPage10
             // 
-            this.simpleButton26.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.simpleButton26.Appearance.Options.UseFont = true;
-            this.simpleButton26.Location = new System.Drawing.Point(13, 199);
-            this.simpleButton26.Name = "simpleButton26";
-            this.simpleButton26.Size = new System.Drawing.Size(224, 34);
-            this.simpleButton26.TabIndex = 10;
-            this.simpleButton26.Text = "Check For Update";
-            this.simpleButton26.Click += new System.EventHandler(this.simpleButton26_Click);
+            this.xtraTabPage10.Controls.Add(this.groupControl21);
+            this.xtraTabPage10.Controls.Add(this.groupControl20);
+            this.xtraTabPage10.Name = "xtraTabPage10";
+            this.xtraTabPage10.Size = new System.Drawing.Size(860, 481);
+            this.xtraTabPage10.Text = "Thememing";
+            // 
+            // groupControl21
+            // 
+            this.groupControl21.Controls.Add(this.simpleButton28);
+            this.groupControl21.Controls.Add(this.colorPickEdit1);
+            this.groupControl21.Location = new System.Drawing.Point(202, 3);
+            this.groupControl21.Name = "groupControl21";
+            this.groupControl21.Size = new System.Drawing.Size(185, 111);
+            this.groupControl21.TabIndex = 15;
+            this.groupControl21.Text = "Select A Colour";
+            // 
+            // simpleButton28
+            // 
+            this.simpleButton28.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton28.Appearance.Options.UseFont = true;
+            this.simpleButton28.Location = new System.Drawing.Point(13, 65);
+            this.simpleButton28.Name = "simpleButton28";
+            this.simpleButton28.Size = new System.Drawing.Size(157, 34);
+            this.simpleButton28.TabIndex = 9;
+            this.simpleButton28.Text = "Save";
+            this.simpleButton28.Click += new System.EventHandler(this.simpleButton28_Click);
+            // 
+            // colorPickEdit1
+            // 
+            this.colorPickEdit1.EditValue = System.Drawing.Color.Empty;
+            this.colorPickEdit1.Location = new System.Drawing.Point(13, 37);
+            this.colorPickEdit1.MenuManager = this.barManager1;
+            this.colorPickEdit1.Name = "colorPickEdit1";
+            this.colorPickEdit1.Properties.AutoHeight = false;
+            this.colorPickEdit1.Properties.AutomaticColor = System.Drawing.Color.Black;
+            this.colorPickEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.colorPickEdit1.Properties.ColorAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colorPickEdit1.Properties.ColorText = DevExpress.XtraEditors.Controls.ColorText.Integer;
+            this.colorPickEdit1.Properties.ShowSystemColors = false;
+            this.colorPickEdit1.Properties.ShowWebSafeColors = true;
+            this.colorPickEdit1.Size = new System.Drawing.Size(157, 22);
+            this.colorPickEdit1.TabIndex = 0;
+            this.colorPickEdit1.EditValueChanged += new System.EventHandler(this.colorPickEdit1_EditValueChanged);
+            // 
+            // groupControl20
+            // 
+            this.groupControl20.Controls.Add(this.simpleButton27);
+            this.groupControl20.Location = new System.Drawing.Point(11, 3);
+            this.groupControl20.Name = "groupControl20";
+            this.groupControl20.Size = new System.Drawing.Size(185, 85);
+            this.groupControl20.TabIndex = 14;
+            this.groupControl20.Text = "Reset Theme";
+            // 
+            // simpleButton27
+            // 
+            this.simpleButton27.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton27.Appearance.Options.UseFont = true;
+            this.simpleButton27.Location = new System.Drawing.Point(13, 37);
+            this.simpleButton27.Name = "simpleButton27";
+            this.simpleButton27.Size = new System.Drawing.Size(157, 34);
+            this.simpleButton27.TabIndex = 8;
+            this.simpleButton27.Text = "Reset";
+            this.simpleButton27.Click += new System.EventHandler(this.simpleButton27_Click);
             // 
             // Form1
             // 
@@ -7814,7 +8228,7 @@ namespace RCE_ADMIN
             this.MinimumSize = new System.Drawing.Size(862, 562);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.SurfaceMaterial = DevExpress.XtraEditors.SurfaceMaterial.Acrylic;
+            this.SurfaceMaterial = DevExpress.XtraEditors.SurfaceMaterial.None;
             this.Text = "RCE Admin";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
@@ -7850,6 +8264,10 @@ namespace RCE_ADMIN
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
             this.xtraTabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl22)).EndInit();
+            this.groupControl22.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bansDataTable)).EndInit();
+            this.contextMenuStrip3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl8)).EndInit();
             this.groupControl8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.allPlayersDataTable)).EndInit();
@@ -7904,6 +8322,16 @@ namespace RCE_ADMIN
             ((System.ComponentModel.ISupportInitialize)(this.groupControl11)).EndInit();
             this.groupControl11.ResumeLayout(false);
             this.xtraTabPage8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl24)).EndInit();
+            this.groupControl24.ResumeLayout(false);
+            this.groupControl24.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spawnAnimalType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl23)).EndInit();
+            this.groupControl23.ResumeLayout(false);
+            this.groupControl23.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spawnCrateType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl18)).EndInit();
             this.groupControl18.ResumeLayout(false);
             this.groupControl18.PerformLayout();
@@ -7923,6 +8351,12 @@ namespace RCE_ADMIN
             this.groupControl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
+            this.xtraTabPage10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl21)).EndInit();
+            this.groupControl21.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl20)).EndInit();
+            this.groupControl20.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -8602,5 +9036,32 @@ namespace RCE_ADMIN
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem killPlayerToolStripMenuItem;
         private DevExpress.XtraEditors.SimpleButton simpleButton26;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage10;
+        private DevExpress.XtraEditors.GroupControl groupControl20;
+        private DevExpress.XtraEditors.SimpleButton simpleButton27;
+        private DevExpress.XtraEditors.GroupControl groupControl21;
+        private DevExpress.XtraEditors.ColorPickEdit colorPickEdit1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton28;
+        private DevExpress.XtraEditors.GroupControl groupControl22;
+        private DevExpress.XtraEditors.LabelControl labelControl15;
+        private DevExpress.XtraEditors.LabelControl labelControl21;
+        private DataGridView bansDataTable;
+        private DevExpress.XtraEditors.SimpleButton simpleButton29;
+        private DataGridViewTextBoxColumn BanID;
+        private DataGridViewTextBoxColumn BanPlayerName;
+        private ContextMenuStrip contextMenuStrip3;
+        private ToolStripMenuItem toolStripMenuItem10;
+        private ToolStripSeparator toolStripSeparator9;
+        private ToolStripMenuItem toolStripMenuItem25;
+        private DevExpress.XtraEditors.GroupControl groupControl23;
+        private DevExpress.XtraEditors.SimpleButton simpleButton31;
+        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControl1;
+        private DevExpress.XtraEditors.GroupControl groupControl24;
+        private DevExpress.XtraEditors.LabelControl labelControl23;
+        private DevExpress.XtraEditors.ComboBoxEdit spawnAnimalType;
+        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControl2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton30;
+        private DevExpress.XtraEditors.LabelControl labelControl22;
+        private DevExpress.XtraEditors.ComboBoxEdit spawnCrateType;
     }
 }

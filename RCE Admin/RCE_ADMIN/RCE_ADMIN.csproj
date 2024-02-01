@@ -92,8 +92,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Callbacks\BanList.cs" />
     <Compile Include="Callbacks\PlayerDatabase.cs" />
     <Compile Include="Callbacks\PlayerList.cs" />
+    <Compile Include="Interface\BanDataTable.cs" />
     <Compile Include="Interface\PlayerCounter.cs" />
     <Compile Include="Interface\PlayerDataTable.cs" />
     <Compile Include="Interface\ServerConsole.cs" />
@@ -105,6 +107,7 @@
     </Compile>
     <Compile Include="Interface\ConnectStatus.cs" />
     <Compile Include="Threading\Update.cs" />
+    <Compile Include="WebSockets\CustomPackets\Ban.cs" />
     <Compile Include="WebSockets\CustomPackets\Player.cs" />
     <Compile Include="WebSockets\Listener.cs" />
     <Compile Include="WebSockets\Packet.cs" />

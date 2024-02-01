@@ -10,7 +10,7 @@ namespace RCE_ADMIN.Interface
     {
         public static void AddNewEntry(string text)
         {
-            if (text == "playerlist" || text.Contains("NOTE PANEL") || text.Contains("[CHAT]") || text.Contains("[ SAVE ]") || text.Contains("Hostname") || text.Contains("serverinfo")) { return; }
+            if (text == "playerlist" || text == "banlist" || text.Contains("NOTE PANEL") || text.Contains("[CHAT]") || text.Contains("[ SAVE ]") || text.Contains("Hostname") || text.Contains("serverinfo")) { return; }
             
             if (Form1.Console.InvokeRequired)
             {

@@ -37,6 +37,13 @@ using static Dapper.SqlMapper;
 using System.Media;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
+using DevExpress.LookAndFeel.Design;
+using DevExpress.LookAndFeel.Helpers;
+using DevExpress.XtraBars.Commands;
+using DevExpress.XtraBars.Customization.Helpers;
+using DevExpress.XtraBars.Ribbon;
+using System.Reflection.Emit;
+using System.Xml;
 
 namespace RCE_ADMIN
 {
@@ -48,6 +55,9 @@ namespace RCE_ADMIN
         public static BarStaticItem Counter;
         public static DataGridView Players;
         public static DataGridView AllPlayers;
+        public static DataGridView Bans;
+        public static CheckedListBoxControl CratePlayers;
+        public static CheckedListBoxControl AnimalPlayers;
         public static XtraTabPage ConsoleTab;
         public static XtraTabPage PlayersTab;
         public static XtraTabPage EventsTab;
@@ -94,7 +104,7 @@ namespace RCE_ADMIN
                     if (positionToRemove != null)
                     {
                         existingGroup.Positions.Remove(positionToRemove);
-                        string jsonContent = JsonConvert.SerializeObject(crateGroups, Formatting.Indented);
+                        string jsonContent = JsonConvert.SerializeObject(crateGroups, Newtonsoft.Json.Formatting.Indented);
                         File.WriteAllText("Events/locked_crate_event.json", jsonContent);
                     }
                 }
@@ -146,6 +156,9 @@ namespace RCE_ADMIN
             Counter = toolStripStatusLabelCounter;
             Players = dataGridViewPlayers;
             AllPlayers = allPlayersDataTable;
+            Bans = bansDataTable;
+            CratePlayers = checkedListBoxControl1;
+            AnimalPlayers = checkedListBoxControl2;
             textBoxAddress.Text = Settings.ServerAddress;
             textBoxPort.Text = Settings.ServerPort;
             textBoxPassword.Text = Settings.ServerPassword;
@@ -163,6 +176,9 @@ namespace RCE_ADMIN
             DiscordEventFeedCheck.Checked = Settings.DiscordEventFeed;
             InGameChatCheck.Checked = Settings.InGameChat;
             DiscordChatCheck.Checked = Settings.DiscordChat;
+            CheckTheme(HexToColor(Settings.Theme));
+            color_change(HexToColor(Settings.Theme));
+            colorPickEdit1.EditValue = ColorTranslator.FromHtml(Settings.Theme);
             ServerConsole.Disable();
             string[] update_info = await GetLatestReleaseChangelog();
             richTextBoxChangelog.Text = update_info[1];
@@ -177,8 +193,169 @@ namespace RCE_ADMIN
             rpcClient.Initialize();
             while (true)
             {
-                await check_update();
+               // await check_update();
                 await Task.Delay(TimeSpan.FromMinutes(10));
+            }
+
+        }
+        public string ColorToRGB(Color color)
+        {
+            return $"{color.R}, {color.G}, {color.B}".Replace(" ", "");
+        }
+        static string ColorToHex(Color color)
+        {
+            return $"#{color.R:X2}{color.G:X2}{color.B:X2}";
+        }
+        private void CheckTheme(Color colour)
+        {
+            string xmlFilePath = AppDomain.CurrentDomain.BaseDirectory + "//RCE Admin.exe.config";
+            try
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(xmlFilePath);
+                XmlNode customPaletteNode = xmlDoc.SelectSingleNode("//CustomPaletteCollection/Skin/SvgPalette");
+                if (customPaletteNode != null)
+                {
+                    XmlNode keyPaintNode = customPaletteNode.SelectSingleNode("SvgColor[@Name='Key Paint']");
+                    if (keyPaintNode != null)
+                    {
+                        if (keyPaintNode.Attributes["Value"].Value.Replace(" ", "") != ColorToRGB(colour)) {
+                            ChangeAccentPaintColor(colour);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        private void ChangeAccentPaintColor(Color newKeyPaintColor)
+        {
+            string xmlFilePath = AppDomain.CurrentDomain.BaseDirectory + "//RCE Admin.exe.config";
+
+            try
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(xmlFilePath);
+                XmlNode customPaletteNode = xmlDoc.SelectSingleNode("//CustomPaletteCollection/Skin/SvgPalette");
+                if (customPaletteNode != null)
+                {
+                    XmlNode keyPaintNode = customPaletteNode.SelectSingleNode("SvgColor[@Name='Key Paint']");
+                    if (keyPaintNode != null)
+                    {
+                        keyPaintNode.Attributes["Value"].Value = ColorToRGB(newKeyPaintColor);
+                    }
+                    XmlNode paintShadowNode = customPaletteNode.SelectSingleNode("SvgColor[@Name='Paint Shadow']");
+                    if (paintShadowNode != null)
+                    {
+                        paintShadowNode.Attributes["Value"].Value = ColorToRGB(newKeyPaintColor);
+                    }
+                    XmlNode paintDeepShadowNode = customPaletteNode.SelectSingleNode("SvgColor[@Name='Paint Deep Shadow']");
+                    if (paintDeepShadowNode != null)
+                    {
+                        paintDeepShadowNode.Attributes["Value"].Value = ColorToRGB(newKeyPaintColor);
+                    }
+                    XmlNode accentPaintNode = customPaletteNode.SelectSingleNode("SvgColor[@Name='Accent Paint']");
+                    if (accentPaintNode != null)
+                    {
+                        accentPaintNode.Attributes["Value"].Value = ColorToRGB(newKeyPaintColor);
+                    }
+                    XmlNode accentPaintLightNode = customPaletteNode.SelectSingleNode("SvgColor[@Name='Accent Paint Light']");
+                    if (accentPaintLightNode != null)
+                    {
+                        accentPaintLightNode.Attributes["Value"].Value = ColorToRGB(newKeyPaintColor);
+                    }
+                    XmlNode accentBrushMajorNode = customPaletteNode.SelectSingleNode("SvgColor[@Name='Brush Major']");
+                    if (accentBrushMajorNode != null)
+                    {
+                        accentBrushMajorNode.Attributes["Value"].Value = ColorToRGB(newKeyPaintColor);
+                    }
+                    XmlNode accentBrushMinorNode = customPaletteNode.SelectSingleNode("SvgColor[@Name='Brush Minor']");
+                    if (accentBrushMinorNode != null)
+                    {
+                        accentBrushMinorNode.Attributes["Value"].Value = ColorToRGB(newKeyPaintColor);
+                    }
+                }
+                xmlDoc.Save(xmlFilePath);
+                XtraMessageBox.Show("New Theme Detected, Restarting To Apply New Theme!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RestartApplication();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        private void RestartApplication()
+        {
+            System.Diagnostics.Process.Start(Application.ExecutablePath);
+            Application.Exit();
+        }
+
+        public void color_change(Color COL)
+        {
+            ActiveGlowColor = COL;
+            InactiveGlowColor = COL;
+            DefaultAppearance.BorderColor = COL;
+            UserLookAndFeelDefault.Default.UseDefaultLookAndFeel = true;
+            Players.AlternatingRowsDefaultCellStyle.SelectionBackColor = COL;
+            Players.ColumnHeadersDefaultCellStyle.SelectionBackColor = COL;
+            Players.DefaultCellStyle.SelectionBackColor = COL;
+            Players.RowHeadersDefaultCellStyle.SelectionBackColor = COL;
+            Players.RowsDefaultCellStyle.SelectionBackColor = COL;
+            Players.RowTemplate.DefaultCellStyle.SelectionBackColor = COL;
+            Players.GridColor = COL;
+            AllPlayers.AlternatingRowsDefaultCellStyle.SelectionBackColor = COL;
+            AllPlayers.ColumnHeadersDefaultCellStyle.SelectionBackColor = COL;
+            AllPlayers.DefaultCellStyle.SelectionBackColor = COL;
+            AllPlayers.RowHeadersDefaultCellStyle.SelectionBackColor = COL;
+            AllPlayers.RowsDefaultCellStyle.SelectionBackColor = COL;
+            AllPlayers.RowTemplate.DefaultCellStyle.SelectionBackColor = COL;
+            AllPlayers.GridColor = COL;
+            bar3.BarAppearance.Normal.BackColor = COL;
+            bar3.BarAppearance.Hovered.BackColor = COL;
+            bar3.BarAppearance.Pressed.BackColor = COL;
+            bar3.BarAppearance.Disabled.BackColor = COL;
+            groupControl6.AppearanceCaption.ForeColor = COL;
+            panel1.BackColor = COL;
+            panel2.BackColor = COL;
+            panel3.BackColor = COL;
+            barManager1.StatusBar.Appearance.BackColor = COL;
+            barManager1.StatusBar.Appearance.BorderColor = COL;
+            barManager1.StatusBar.BarAppearance.Normal.BackColor = COL;
+            barManager1.StatusBar.BarAppearance.Hovered.BackColor = COL;
+            barManager1.StatusBar.BarAppearance.Pressed.BackColor = COL;
+            barManager1.StatusBar.BarAppearance.Disabled.BackColor = COL;
+            barManager1.Form.BackColor = COL;
+            labelControl3.BackColor = COL;
+            labelControl4.BackColor = COL;
+            labelControl5.BackColor = COL;
+            labelControl6.BackColor = COL;
+            labelControl8.BackColor = COL;
+            labelControl17.BackColor = COL;
+            labelControl18.BackColor = COL;
+            this.Refresh();
+            this.ForceRefresh();
+        }
+        public static Color HexToColor(string hex)
+        {
+            hex = hex.TrimStart('#');
+
+            if (hex.Length != 6)
+            {
+                throw new ArgumentException("Invalid hex string. Hex string must be 6 characters long (excluding #). " + hex);
+            }
+
+            try
+            {
+                int red = Convert.ToInt32(hex.Substring(0, 2), 16);
+                int green = Convert.ToInt32(hex.Substring(2, 2), 16);
+                int blue = Convert.ToInt32(hex.Substring(4, 2), 16);
+                return Color.FromArgb(red, green, blue);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Invalid hex string. " + ex.Message, ex);
             }
         }
         public void load_players()
@@ -198,7 +375,7 @@ namespace RCE_ADMIN
                 List<AutoMessage> messageData = new List<AutoMessage>();
                 messageData.Add(new AutoMessage { Message = "Craft A Note With Wood To Chat With Other Players In Game!" });
                 messageData.Add(new AutoMessage { Message = "Report Suspected Cheaters To Admins!" });
-                string jsonContent = JsonConvert.SerializeObject(messageData, Formatting.Indented);
+                string jsonContent = JsonConvert.SerializeObject(messageData, Newtonsoft.Json.Formatting.Indented);
                 File.WriteAllText("Settings/auto_messages.json", jsonContent);
             }
             autoMessages.Items.Clear();
@@ -225,7 +402,7 @@ namespace RCE_ADMIN
                         Positions = new List<LockedCrate>()
                     }
                 };
-                string jsonContent = JsonConvert.SerializeObject(crateGroups, Formatting.Indented);
+                string jsonContent = JsonConvert.SerializeObject(crateGroups, Newtonsoft.Json.Formatting.Indented);
                 File.WriteAllText("Events/locked_crate_event.json", jsonContent);
             }
             lockedCrateGroupName.Properties.Items.Clear();
@@ -351,6 +528,26 @@ namespace RCE_ADMIN
                 return null;
             }
         }
+        public static string GetFromBDT(int i)
+        {
+            try
+            {
+                if (Bans.Rows[Bans.CurrentRow.Index].Cells[i].Value.ToString() != "")
+                {
+                    return Bans.Rows[Bans.CurrentRow.Index].Cells[i].Value.ToString();
+                }
+                else
+                {
+                    XtraMessageBox.Show("Refresh The List To Obtain The Clients Information!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    return null;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                XtraMessageBox.Show("Refresh The List To Obtain The Clients Information!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return null;
+            }
+        }
 
         public void SetInfo()
         {
@@ -379,7 +576,7 @@ namespace RCE_ADMIN
             int portNumber;
             return int.TryParse(port, out portNumber) && portNumber > 0 && portNumber <= 65535;
         }
-        public void save_settings()
+        public void save_settings(string theme = "")
         {
             if (!IsValidIPv4(textBoxAddress.Text))
             {
@@ -391,6 +588,7 @@ namespace RCE_ADMIN
             }
             else
             {
+                Color theme_ = string.IsNullOrEmpty(theme) ? HexToColor("#cc402a") : HexToColor(theme);
                 Settings.Write(new Settings(
                     textBoxAddress.Text,
                     textBoxPort.Text,
@@ -408,7 +606,8 @@ namespace RCE_ADMIN
                     InGameEventFeedCheck.Checked,
                     DiscordEventFeedCheck.Checked,
                     InGameChatCheck.Checked,
-                    DiscordChatCheck.Checked
+                    DiscordChatCheck.Checked,
+                    ColorToHex(theme_)
                  ));
                 Settings = Settings.Read();
             }
@@ -2934,7 +3133,7 @@ namespace RCE_ADMIN
                     {
                         messageData.Add(new AutoMessage { Message = listBoxItem.ToString() });
                     }
-                    string jsonContent = JsonConvert.SerializeObject(messageData, Formatting.Indented);
+                    string jsonContent = JsonConvert.SerializeObject(messageData, Newtonsoft.Json.Formatting.Indented);
                     File.WriteAllText("Settings/auto_messages.json", jsonContent);
                 }
             }
@@ -3024,7 +3223,7 @@ namespace RCE_ADMIN
                     }
                 }
             }
-            string jsonContent = JsonConvert.SerializeObject(itemsData, Formatting.Indented);
+            string jsonContent = JsonConvert.SerializeObject(itemsData, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText("Kits/custom_kit3.json", jsonContent);
             XtraMessageBox.Show("Custom Kit 3 Has Been Saved!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -3062,7 +3261,7 @@ namespace RCE_ADMIN
                     }
                 }
             }
-            string jsonContent = JsonConvert.SerializeObject(itemsData, Formatting.Indented);
+            string jsonContent = JsonConvert.SerializeObject(itemsData, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText("Kits/custom_kit1.json", jsonContent);
             XtraMessageBox.Show("Custom Kit 1 Has Been Saved!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -3081,7 +3280,7 @@ namespace RCE_ADMIN
                     }
                 }
             }
-            string jsonContent = JsonConvert.SerializeObject(itemsData, Formatting.Indented);
+            string jsonContent = JsonConvert.SerializeObject(itemsData, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText("Kits/custom_kit2.json", jsonContent);
             XtraMessageBox.Show("Custom Kit 2 Has Been Saved!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -3302,7 +3501,7 @@ namespace RCE_ADMIN
             {
                 messageData.Add(new AutoMessage { Message = listBoxItem.ToString() });
             }
-            string jsonContent = JsonConvert.SerializeObject(messageData, Formatting.Indented);
+            string jsonContent = JsonConvert.SerializeObject(messageData, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText("Settings/auto_messages.json", jsonContent);
             save_settings();
             XtraMessageBox.Show("Auto Messages Have Been Saved!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -3466,7 +3665,7 @@ namespace RCE_ADMIN
                 };
                 crateGroups.Add(newGroup);
             }
-            string jsonContent = JsonConvert.SerializeObject(crateGroups, Formatting.Indented);
+            string jsonContent = JsonConvert.SerializeObject(crateGroups, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText(jsonPath, jsonContent);
         }
 
@@ -3549,7 +3748,7 @@ namespace RCE_ADMIN
                                 {
                                     crateGroups.Remove(existingGroup);
                                 }
-                                string jsonContent = JsonConvert.SerializeObject(crateGroups, Formatting.Indented);
+                                string jsonContent = JsonConvert.SerializeObject(crateGroups, Newtonsoft.Json.Formatting.Indented);
                                 File.WriteAllText("Events/locked_crate_event.json", jsonContent);
                                 LockedCratePositions.Items.Remove(LockedCratePositions.SelectedItem);
                             }
@@ -3731,6 +3930,224 @@ namespace RCE_ADMIN
             {
                 XtraMessageBox.Show("Failed To Check If There Is Update Available!", "RCE Admin - Updater", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
+        }
+
+        private void simpleButton27_Click(object sender, EventArgs e)
+        {
+            save_settings("#cc402a");
+            ChangeAccentPaintColor(HexToColor("#cc402a"));
+        }
+        private void colorPickEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            Color new_theme = HexToColor(ColorTranslator.ToHtml((Color)colorPickEdit1.EditValue));
+            groupControl21.AppearanceCaption.BorderColor = new_theme;
+        }
+
+        private void simpleButton28_Click(object sender, EventArgs e)
+        {
+            save_settings(ColorTranslator.ToHtml((Color)colorPickEdit1.EditValue));
+            ChangeAccentPaintColor(HexToColor(ColorTranslator.ToHtml((Color)colorPickEdit1.EditValue)));
+        }
+        private class MyRenderer : ToolStripProfessionalRenderer
+        {
+            private Color hoverColor = HexToColor(Settings.Theme);
+
+            protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
+            {
+                if (e.Item.Selected)
+                {
+                    using (SolidBrush brush = new SolidBrush(hoverColor))
+                    {
+                        e.Graphics.FillRectangle(brush, e.Item.ContentRectangle);
+                    }
+                }
+                else
+                {
+                    base.OnRenderMenuItemBackground(e);
+                }
+            }
+            protected override void OnRenderItemCheck(ToolStripItemImageRenderEventArgs e)
+            {
+                if (e.Item.Selected)
+                {
+                    using (SolidBrush brush = new SolidBrush(hoverColor))
+                    {
+                        e.Graphics.FillRectangle(brush, e.ImageRectangle);
+                    }
+                }
+                else
+                {
+                    base.OnRenderItemCheck(e);
+                }
+            }
+        }
+        private void contextMenuStrip1_Opened(object sender, EventArgs e)
+        {
+            contextMenuStrip1.Renderer = new MyRenderer();
+        }
+
+        private void contextMenuStrip2_Opened(object sender, EventArgs e)
+        {
+            contextMenuStrip2.Renderer = new MyRenderer();
+        }
+        private void toolStripMenuItem10_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("global.unban \"{0}\"", GetFromBDT(1)));
+        }
+
+        private void toolStripMenuItem25_Click(object sender, EventArgs e)
+        {
+            WebSocketsWrapper.Send(string.Format("entity.deleteby \"{0}\"", GetFromBDT(1)));
+        }
+
+        private void contextMenuStrip3_Opened(object sender, EventArgs e)
+        {
+            contextMenuStrip3.Renderer = new MyRenderer();
+        }
+
+        private async void simpleButton31_Click(object sender, EventArgs e)
+        {
+            var selectedPlayers = new List<CheckedListBoxItem>(Form1.CratePlayers.CheckedItems.Cast<CheckedListBoxItem>());
+            if (selectedPlayers.Count == 0)
+            {
+                XtraMessageBox.Show("Select A Player First!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string crate_type;
+            switch (spawnCrateType.SelectedItem)
+            {
+                case "Locked Crate":
+                    crate_type = "codelocked";
+                    break;
+                case "Elite Crate":
+                    crate_type = "crate_elite";
+                    break;
+                case "Heli Crate":
+                    crate_type = "heli_crate";
+                    break;
+                case "Brad Crate":
+                    crate_type = "bradley_crate";
+                    break;
+                case "Basic Crate":
+                    crate_type = "crate_basic";
+                    break;
+                case "Normal Crate":
+                    crate_type = "crate_normal";
+                    break;
+                case "Normal Crate 2":
+                    crate_type = "crate_normal2";
+                    break;
+                case "Normal Crate 2 Food":
+                    crate_type = "crate_normal2_food";
+                    break;
+                case "Normal Crate 2 Medical":
+                    crate_type = "crate_normal2_medical";
+                    break;
+                case "Tool Crate":
+                    crate_type = "crate_tools";
+                    break;
+                case "Advanced Underwater Crate":
+                    crate_type = "crate_underwater_advanced";
+                    break;
+                case "Basic Underwater Crate":
+                    crate_type = "crate_underwater_basic";
+                    break;
+                case "Loot Barrel 1":
+                    crate_type = "loot-barrel-1";
+                    break;
+                case "Loot Barrel Alt 1":
+                    crate_type = "loot_barrel_1";
+                    break;
+                case "Loot Barrel 2":
+                    crate_type = "loot-barrel-2";
+                    break;
+                case "Loot Barrel Alt 2":
+                    crate_type = "loot_barrel_2";
+                    break;
+                case "":
+                case "Select A Crate":
+                default:
+                    XtraMessageBox.Show("Please Select A Crate Type!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+            }
+            foreach (CheckedListBoxItem player in selectedPlayers)
+            {
+                WebSocketsWrapper.Send(string.Format("printpos \"{0}\"", player.Value.ToString()));
+                await Task.Delay(1000);
+                string pos = ServerConsole.ReadLastFewLines();
+
+                if (ServerConsole.IsValidPrintPos(pos))
+                {
+                    string[] position = FormatXYZString(pos);
+                    WebSocketsWrapper.Send($"spawn {crate_type} {position[0]},{position[1]},{position[2]}");
+                    Form1.CratePlayers.SetItemChecked(Form1.CratePlayers.Items.IndexOf(player), false);
+                    spawnAnimalType.Text = "Select A Crate Type";
+                }
+                else
+                {
+                    XtraMessageBox.Show(string.Format("Failed To Find {0}'s Position, Try Again!", player.Value.ToString()), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            XtraMessageBox.Show("All Crates Have Been Spawned!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private async void simpleButton30_Click(object sender, EventArgs e)
+        {
+            var selectedPlayers = new List<CheckedListBoxItem>(Form1.AnimalPlayers.CheckedItems.Cast<CheckedListBoxItem>());
+            if (selectedPlayers.Count == 0)
+            {
+                XtraMessageBox.Show("Select A Player First!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string animal_type;
+            switch (spawnAnimalType.SelectedItem)
+            {
+                case "Pig":
+                    animal_type = "boar";
+                    break;
+                case "Bear":
+                    animal_type = "bear";
+                    break;
+                case "Horse":
+                    animal_type = "testridablehorse";
+                    break;
+                case "Shark":
+                    animal_type = "simpleshark";
+                    break;
+                case "Chicken":
+                    animal_type = "chicken";
+                    break;
+                case "Deer":
+                    animal_type = "stag";
+                    break;
+                case "Wolf":
+                    animal_type = "wolf";
+                    break;
+                case "":
+                case "Select An Animal":
+                default:
+                    XtraMessageBox.Show("Please Select An Animal!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+            }
+            foreach (CheckedListBoxItem player in selectedPlayers)
+            {
+                WebSocketsWrapper.Send(string.Format("printpos \"{0}\"", player.Value.ToString()));
+                await Task.Delay(1000);
+                string pos = ServerConsole.ReadLastFewLines();
+
+                if (ServerConsole.IsValidPrintPos(pos))
+                {
+                    string[] position = FormatXYZString(pos);
+                    WebSocketsWrapper.Send($"spawn {animal_type} {position[0]},{position[1]},{position[2]}");
+                    Form1.AnimalPlayers.SetItemChecked(Form1.AnimalPlayers.Items.IndexOf(player), false);
+                    spawnAnimalType.Text = "Select An Animal";
+                }
+                else
+                {
+                    XtraMessageBox.Show(string.Format("Failed To Find {0}'s Position, Try Again!", player.Value.ToString()), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            XtraMessageBox.Show("All Crates Have Been Spawned!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
