@@ -4109,28 +4109,36 @@ namespace RCE_ADMIN
                 return;
             }
             string animal_type;
+            string animal_type_;
             switch (spawnAnimalType.SelectedItem)
             {
                 case "Pig":
                     animal_type = "boar";
+                    animal_type_ = "Pig";
                     break;
                 case "Bear":
                     animal_type = "bear";
+                    animal_type_ = "Bear";
                     break;
                 case "Horse":
                     animal_type = "testridablehorse";
+                    animal_type_ = "Horse";
                     break;
                 case "Shark":
                     animal_type = "simpleshark";
+                    animal_type_ = "Shark";
                     break;
                 case "Chicken":
                     animal_type = "chicken";
+                    animal_type_ = "Chicken";
                     break;
                 case "Deer":
                     animal_type = "stag";
+                    animal_type_ = "Deer";
                     break;
                 case "Wolf":
                     animal_type = "wolf";
+                    animal_type_ = "Wolf";
                     break;
                 case "":
                 case "Select An Animal":
@@ -4156,7 +4164,7 @@ namespace RCE_ADMIN
                     XtraMessageBox.Show(string.Format("Failed To Find {0}'s Position, Try Again!", player.Value.ToString()), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            XtraMessageBox.Show("All Crates Have Been Spawned!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            XtraMessageBox.Show($@"A {animal_type_} Have Been Spawned!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
