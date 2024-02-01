@@ -14,3 +14,10 @@ RCE Admin/RCE_ADMIN/obj/Debug/RCE_ADMIN.Form1.resources
 RCE Admin/RCE_ADMIN/obj/Debug/RCE_ADMIN.Properties.Resources.resources
 RCE Admin/RCE_ADMIN/obj/Debug/TempPE/Properties.Resources.Designer.cs.dll
 RCE Admin/RCE_ADMIN/setup.iss
+*.dll
+*.xml
+*.json
+*.db
+*.pdb
+*.exe
+*.config
