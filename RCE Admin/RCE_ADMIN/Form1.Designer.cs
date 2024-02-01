@@ -6500,7 +6500,6 @@ namespace RCE_ADMIN
             this.groupControl22.Controls.Add(this.labelControl15);
             this.groupControl22.Controls.Add(this.labelControl21);
             this.groupControl22.Controls.Add(this.bansDataTable);
-            this.groupControl22.Controls.Add(this.simpleButton29);
             this.groupControl22.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupControl22.Location = new System.Drawing.Point(585, 241);
             this.groupControl22.Name = "groupControl22";
@@ -6657,7 +6656,7 @@ namespace RCE_ADMIN
             // simpleButton29
             // 
             this.simpleButton29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton29.Location = new System.Drawing.Point(195, -239);
+            this.simpleButton29.Location = new System.Drawing.Point(204, 2);
             this.simpleButton29.Name = "simpleButton29";
             this.simpleButton29.Size = new System.Drawing.Size(69, 20);
             this.simpleButton29.TabIndex = 5;
@@ -6668,6 +6667,7 @@ namespace RCE_ADMIN
             this.groupControl8.Controls.Add(this.labelControl18);
             this.groupControl8.Controls.Add(this.labelControl17);
             this.groupControl8.Controls.Add(this.allPlayersDataTable);
+            this.groupControl8.Controls.Add(this.simpleButton29);
             this.groupControl8.Controls.Add(this.simpleButton9);
             this.groupControl8.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl8.Location = new System.Drawing.Point(585, 0);
