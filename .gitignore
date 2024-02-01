@@ -21,3 +21,5 @@ RCE Admin/RCE_ADMIN/setup.iss
 *.pdb
 *.exe
 *.config
+*.vsidx
+RCE Admin/.vs/RCE_ADMIN/v17/.suo

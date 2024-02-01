@@ -312,6 +312,13 @@ namespace RCE_ADMIN
             AllPlayers.RowsDefaultCellStyle.SelectionBackColor = COL;
             AllPlayers.RowTemplate.DefaultCellStyle.SelectionBackColor = COL;
             AllPlayers.GridColor = COL;
+            Bans.AlternatingRowsDefaultCellStyle.SelectionBackColor = COL;
+            Bans.ColumnHeadersDefaultCellStyle.SelectionBackColor = COL;
+            Bans.DefaultCellStyle.SelectionBackColor = COL;
+            Bans.RowHeadersDefaultCellStyle.SelectionBackColor = COL;
+            Bans.RowsDefaultCellStyle.SelectionBackColor = COL;
+            Bans.RowTemplate.DefaultCellStyle.SelectionBackColor = COL;
+            Bans.GridColor = COL;
             bar3.BarAppearance.Normal.BackColor = COL;
             bar3.BarAppearance.Hovered.BackColor = COL;
             bar3.BarAppearance.Pressed.BackColor = COL;
@@ -332,8 +339,10 @@ namespace RCE_ADMIN
             labelControl5.BackColor = COL;
             labelControl6.BackColor = COL;
             labelControl8.BackColor = COL;
+            labelControl15.BackColor = COL;
             labelControl17.BackColor = COL;
             labelControl18.BackColor = COL;
+            labelControl21.BackColor = COL;
             this.Refresh();
             this.ForceRefresh();
         }
