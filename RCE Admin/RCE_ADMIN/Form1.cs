@@ -193,7 +193,7 @@ namespace RCE_ADMIN
             rpcClient.Initialize();
             while (true)
             {
-               // await check_update();
+                await check_update();
                 await Task.Delay(TimeSpan.FromMinutes(10));
             }
 
