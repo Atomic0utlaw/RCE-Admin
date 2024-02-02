@@ -638,7 +638,6 @@ namespace RCE_ADMIN
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem25 = new System.Windows.Forms.ToolStripMenuItem();
-            this.simpleButton29 = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl8 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
@@ -665,6 +664,7 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteAllEntitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simpleButton29 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton9 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -6653,15 +6653,6 @@ namespace RCE_ADMIN
             this.toolStripMenuItem25.Text = "Delete All Entities";
             this.toolStripMenuItem25.Click += new System.EventHandler(this.toolStripMenuItem25_Click);
             // 
-            // simpleButton29
-            // 
-            this.simpleButton29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton29.Location = new System.Drawing.Point(204, 2);
-            this.simpleButton29.Name = "simpleButton29";
-            this.simpleButton29.Size = new System.Drawing.Size(69, 20);
-            this.simpleButton29.TabIndex = 5;
-            this.simpleButton29.Text = "Refresh";
-            // 
             // groupControl8
             // 
             this.groupControl8.Controls.Add(this.labelControl18);
@@ -6977,6 +6968,15 @@ namespace RCE_ADMIN
             this.deleteAllEntitiesToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.deleteAllEntitiesToolStripMenuItem.Text = "Delete All Entities";
             this.deleteAllEntitiesToolStripMenuItem.Click += new System.EventHandler(this.deleteAllEntitiesToolStripMenuItem_Click);
+            // 
+            // simpleButton29
+            // 
+            this.simpleButton29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton29.Location = new System.Drawing.Point(204, 2);
+            this.simpleButton29.Name = "simpleButton29";
+            this.simpleButton29.Size = new System.Drawing.Size(69, 20);
+            this.simpleButton29.TabIndex = 5;
+            this.simpleButton29.Text = "Refresh";
             // 
             // simpleButton9
             // 

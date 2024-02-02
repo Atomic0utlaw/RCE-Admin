@@ -59,7 +59,7 @@ namespace RCE_ADMIN.WebSockets
             var packetObj = new Packet(message, identifier);
             var packetStr = JsonConvert.SerializeObject(packetObj);
             webSocket.SendAsync(packetStr, null);
-            ServerConsole.AddNewEntry(packetObj.Message.Replace("\r", "").Replace("\n", "").Replace(Environment.NewLine, ""));
+            ServerConsole.AddNewEntry(packetObj.Message);
             return packetObj.Message;
         }
         public static void SendCommand(string command)
@@ -526,7 +526,7 @@ namespace RCE_ADMIN.WebSockets
                     }
                 }
             }
-            ServerConsole.AddNewEntry(packet.Message = string.Join("", packet.Message.Split('\r', '\n')));
+            ServerConsole.AddNewEntry(packet.Message);
         }
         private static void WebSocket_OnError(object sender, ErrorEventArgs e)
         {

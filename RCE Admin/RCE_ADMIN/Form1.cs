@@ -323,7 +323,6 @@ namespace RCE_ADMIN
             bar3.BarAppearance.Hovered.BackColor = COL;
             bar3.BarAppearance.Pressed.BackColor = COL;
             bar3.BarAppearance.Disabled.BackColor = COL;
-            groupControl6.AppearanceCaption.ForeColor = COL;
             panel1.BackColor = COL;
             panel2.BackColor = COL;
             panel3.BackColor = COL;
