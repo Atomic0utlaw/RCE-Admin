@@ -76,7 +76,8 @@ namespace RCE_ADMIN
                 Timestamps = new Timestamps(),
                 Buttons = new Button[]
                 {
-                    new Button() { Label = "RCE Admin (Download)", Url = "https://github.com/KyleFardy/RCE-Admin/releases" }
+                    new Button() { Label = "RCE Admin (Github)", Url = "https://github.com/KyleFardy/RCE-Admin/releases/latest" },
+                    new Button() { Label = "RCE Admin (Website)", Url = "https://void-dev.c/rce-admin" },
                 },
                 Assets = new Assets
                 {
