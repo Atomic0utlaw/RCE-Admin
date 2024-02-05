@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
@@ -8,7 +9,10 @@ namespace RCE_ADMIN
 {
     public class Settings
     {
-        private static readonly string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "Settings/config.json");
+        private static readonly string SettingsPath = Path.Combine(Environment.CurrentDirectory, "Settings");
+        private static readonly string KitsPath = Path.Combine(Environment.CurrentDirectory, "Kits");
+        private static readonly string EventsPath = Path.Combine(Environment.CurrentDirectory, "Events");
+        private static readonly string ConfigFile = Path.Combine(Directory.GetCurrentDirectory(), "Settings/config.json");
 
         [JsonProperty("ServerAddress")]
         public string ServerAddress { get; set; }
@@ -66,7 +70,7 @@ namespace RCE_ADMIN
 
         [JsonProperty("Version")]
         [JsonIgnore]
-        public static string Version = "v1.15";
+        public static string Version = "v1.16";
         public Settings(string server_address, string server_port, string server_password, string events_webhook_url, string killfeed_webhook_url, string chat_webhook_url, string team_webhook_url, string item_webhook_url, string in_game_name, bool auto_messages, int auto_messages_time, bool in_game_kill_feed, bool discord_kill_feed, bool in_game_event_feed, bool discord_event_feed, bool in_game_chat, bool discord_chat, string theme)
         {
             ServerAddress = server_address;
@@ -90,22 +94,34 @@ namespace RCE_ADMIN
         }
         public static void Write(Settings settings)
         {
-            Settings.Version = "v1.15";
+            Settings.Version = "v1.16";
 
-            if (!File.Exists(FilePath))
-                File.Create(FilePath).Close();
+            if (!File.Exists(ConfigFile))
+                File.Create(ConfigFile).Close();
 
-            File.WriteAllText(FilePath, JsonConvert.SerializeObject(settings, Formatting.Indented));
+            File.WriteAllText(ConfigFile, JsonConvert.SerializeObject(settings, Formatting.Indented));
             XtraMessageBox.Show("Successfully Saved Settings!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         public static Settings Read()
         {
-            if (!File.Exists(FilePath))
+            if (!Directory.Exists(SettingsPath))
+            {
+                Directory.CreateDirectory(SettingsPath);
+            }
+            if (!Directory.Exists(KitsPath))
+            {
+                Directory.CreateDirectory(KitsPath);
+            }
+            if (!Directory.Exists(EventsPath))
+            {
+                Directory.CreateDirectory(EventsPath);
+            }
+            if (!File.Exists(ConfigFile))
             {
                 XtraMessageBox.Show("Couldn't Find A Configuration File, A New One Will Be Created", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Write(new Settings("ip", "port", "password", null, null, null, null, null, null, true, 2, true, true, true, true, true, true, "#cc402a"));
             }
-            var settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(FilePath));
+            var settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(ConfigFile));
             return settings;
         }
     }

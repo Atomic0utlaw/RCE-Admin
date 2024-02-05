@@ -31,9 +31,7 @@ namespace RCE_ADMIN.WebSockets
 
                 if (line.StartsWith("[") && line.EndsWith("]"))
                 {
-                    // Use a regular expression to extract information
                     Match match = Regex.Match(line, @"\[(\d+)\] User \[([^\]]+)\] Expiry \[([^\]]+)\]");
-
                     if (match.Success)
                     {
                         int id = int.Parse(match.Groups[1].Value);

@@ -16,6 +16,9 @@ using System.Collections.Generic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Linq;
 using RCE_ADMIN.Callbacks;
+using DevExpress.Utils.Text;
+using System.IO;
+using static RCE_ADMIN.Form1;
 
 namespace RCE_ADMIN.WebSockets
 {
@@ -91,6 +94,86 @@ namespace RCE_ADMIN.WebSockets
             ServerConsole.Enable();
             Update.StartThreads();
         }
+        class Embed
+        {
+            [JsonProperty("title")]
+            public string Title { get; set; }
+
+            [JsonProperty("description")]
+            public string Description { get; set; }
+
+            [JsonProperty("color")]
+            public int Color { get; set; }
+
+            [JsonProperty("fields")]
+            public List<Field> Fields { get; set; }
+        }
+
+        class Field
+        {
+            public string Name { get; set; }
+            public string Value { get; set; }
+            public bool Inline { get; set; }
+        }
+        public static async Task SendEmbedToWebhook(string webhookUrl, string ititle, string content, Dictionary<string, string> fields, string image = "https://i.ibb.co/rZRvGDV/rust-logo.png")
+        {
+            try
+            {
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    string jsonPayload;
+                    if (fields == null)
+                    {
+                        var payload = new
+                        {
+                            embeds = new[]
+                            {
+                            new
+                            {
+                                type = "rich",
+                                color =  0xcd402a,
+                                title = ititle,
+                                description = content,
+                                thumbnail = new { url = image },
+                                timestamp = DateTime.Now,
+                                footer = new { text =  "RCE Admin • " + Settings.Version },
+                            }
+                        }
+                        };
+                        jsonPayload = JsonConvert.SerializeObject(payload);
+                    }
+                    else
+                    {
+                        var payload = new
+                        {
+                            embeds = new[]
+                            {
+                            new
+                            {
+                                type = "rich",
+                                color =  0xcd402a,
+                                title = ititle,
+                                description = content,
+                                thumbnail = new { url = image },
+                                timestamp = DateTime.Now,
+                                footer = new { text =  "RCE Admin • " + Settings.Version },
+                                fields = fields.Select(f => new { name = f.Key, value = f.Value, inline = true }).ToArray()
+                            }
+                        }
+                        };
+                        jsonPayload = JsonConvert.SerializeObject(payload);
+                    }
+                    using (var contentData = new StringContent(jsonPayload, Encoding.UTF8, "application/json"))
+                    {
+                        await httpClient.PostAsync(webhookUrl, contentData);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                XtraMessageBox.Show("SendEmbedToWebhook Error : " + ex.Message);
+            }
+        }
         static void SendDiscordWebhook(bool killfeed, string message)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
@@ -100,42 +183,6 @@ namespace RCE_ADMIN.WebSockets
                 var data = new NameValueCollection();
                 data["content"] = string.Format("{0}{1}", message, Environment.NewLine);
                 var response = client.UploadValues(killfeed ? Settings.KillFeedWebhookUrl : Settings.EventWebhookUrl, "POST", data);
-                string responseText = Encoding.UTF8.GetString(response);
-            }
-        }
-        static void SendDiscordWebhookChat(string message)
-        {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-            Settings = Settings.Read();
-            using (var client = new WebClient())
-            {
-                var data = new NameValueCollection();
-                data["content"] = message;
-                var response = client.UploadValues(Settings.ChatWebhookUrl, "POST", data);
-                string responseText = Encoding.UTF8.GetString(response);
-            }
-        }
-        static void SendDiscordWebhookTeam(string message)
-        {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-            Settings = Settings.Read();
-            using (var client = new WebClient())
-            {
-                var data = new NameValueCollection();
-                data["content"] = message;
-                var response = client.UploadValues(Settings.TeamWebhookUrl, "POST", data);
-                string responseText = Encoding.UTF8.GetString(response);
-            }
-        }
-        static void SendDiscordWebhookItem(string message)
-        {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-            Settings = Settings.Read();
-            using (var client = new WebClient())
-            {
-                var data = new NameValueCollection();
-                data["content"] = message;
-                var response = client.UploadValues(Settings.ItemWebhookUrl, "POST", data);
                 string responseText = Encoding.UTF8.GetString(response);
             }
         }
@@ -219,6 +266,10 @@ namespace RCE_ADMIN.WebSockets
             { "wolf", "A Wolf" },
             { "stag", "A Deer" },
             { "fall", "Falling To Their Death" },
+            { "radiation", "Radiation" },
+            { "Radiation", "Radiation" },
+            { "collision", "Suicide" },
+            { "Collision", "Suicide" },
             { " died ", "** Died **" }
         };
         static string ReplaceDeathText(string input, Dictionary<string, string> replacements)
@@ -291,7 +342,24 @@ namespace RCE_ADMIN.WebSockets
                 return OutVal;
             }
         }
-        private static void WebSocket_OnMessage(object sender, MessageEventArgs e)
+        public static string GetItemImageUrl(string displayName)
+        {
+            string apiUrl = $"https://void-dev.co/item_image?display_name={Uri.EscapeDataString(displayName).Replace("%00", "").Replace("&00", "")}";
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    string result = client.DownloadString(apiUrl);
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Error: " + ex.Message);
+                return "https://cdn.void-dev.co/eutopia.png";
+            }
+        }
+        private static async void WebSocket_OnMessage(object sender, MessageEventArgs e)
         {
             var packet = JsonConvert.DeserializeObject<Packet>(e.Data);
             if (Listener.Listeners.ContainsKey(packet.Identifier))
@@ -340,22 +408,17 @@ namespace RCE_ADMIN.WebSockets
             {
                 if (!string.IsNullOrEmpty(Settings.ItemWebhookUrl))
                 {
-                    string pattern = @"\[ServerVar\] giving (\w+) (\d+) x (\w+)";
+                    string pattern = @"\[([^\]]+)\]\s+giving\s+([^\d]+)\s+(\d+)\s+x\s+([^\n]+)";
                     Match match = Regex.Match(itemmsg, pattern);
 
                     if (match.Success)
                     {
-                        SendDiscordWebhookItem(string.Format("**{0}** Has Recieved ***{1}*** ({2})", match.Groups[1].Value, match.Groups[3].Value, int.Parse(match.Groups[2].Value)));
-                    }
-                    else
-                    {
-                        string pattern2 = @"\[ServerVar\] giving  (\w+) (\d+) x (.+)";
-
-                        Match match2 = Regex.Match(itemmsg, pattern2);
-                        if (match2.Success)
-                        {
-                            SendDiscordWebhookItem(string.Format("**{0}** Has Recieved ***{1}*** ({2})", match2.Groups[1].Value, match2.Groups[3].Value, int.Parse(match2.Groups[2].Value)));
-                        }
+                        string serverVar = match.Groups[1].Value;
+                        string player_name = match.Groups[2].Value;
+                        string quantity = match.Groups[3].Value;
+                        string item = match.Groups[4].Value; 
+                        string imageUrl = GetItemImageUrl(item);
+                        await SendEmbedToWebhook(Settings.ItemWebhookUrl, "Item Recieved", string.Format("**{0}** Has Recieved ***{1}*** ({2})", player_name, item, int.Parse(quantity)), null, imageUrl);
                     }
                 }
             }
@@ -372,7 +435,7 @@ namespace RCE_ADMIN.WebSockets
                         MatchCollection matches = Regex.Matches(teammsg, pattern);
                         if (matches.Count >= 3)
                         {
-                            SendDiscordWebhookTeam(string.Format("**{0}** Created A Team ({1})", matches[0].Groups[1].Value, int.Parse(matches[1].Groups[1].Value)));
+                            await SendEmbedToWebhook(Settings.TeamWebhookUrl, "Team Created", string.Format("**{0}** Created A Team ({1})", matches[0].Groups[1].Value, int.Parse(matches[1].Groups[1].Value)), null, "https://cdn.void-dev.co/team_created.png");
                         }
                     }
                     else if (teammsg.Contains("has joined"))
@@ -382,9 +445,9 @@ namespace RCE_ADMIN.WebSockets
                         if (matches.Count >= 3)
                         {
                             if (matches[0].Groups[1].Value == matches[1].Groups[1].Value)
-                                SendDiscordWebhookTeam(string.Format("**{0}** Created A Team ({1})", matches[0].Groups[1].Value, int.Parse(matches[2].Groups[1].Value)));
+                                await SendEmbedToWebhook(Settings.TeamWebhookUrl, "Team Created", string.Format("**{0}** Created A Team ({1})", matches[0].Groups[1].Value, int.Parse(matches[1].Groups[1].Value)), null, "https://cdn.void-dev.co/team_created.png");
                             else
-                                SendDiscordWebhookTeam(string.Format("**{1}** Invited **{0}** To Their Team ({2})", matches[0].Groups[1].Value, matches[1].Groups[1].Value, int.Parse(matches[2].Groups[1].Value)));
+                                await SendEmbedToWebhook(Settings.TeamWebhookUrl, "Team Invite", string.Format("**{1}** Invited **{0}** To Their Team ({2})", matches[0].Groups[1].Value, matches[1].Groups[1].Value, int.Parse(matches[2].Groups[1].Value)), null, "https://cdn.void-dev.co/team_joined.png");
                         }
                     }
                     else if (teammsg.Contains("has left"))
@@ -393,7 +456,7 @@ namespace RCE_ADMIN.WebSockets
                         MatchCollection matches = Regex.Matches(teammsg, pattern);
                         if (matches.Count >= 3)
                         {
-                            SendDiscordWebhookTeam(string.Format("**{0}** Left **{1}'s** Team ({2})", matches[0].Groups[1].Value, matches[1].Groups[1].Value, int.Parse(matches[2].Groups[1].Value)));
+                            await SendEmbedToWebhook(Settings.TeamWebhookUrl, "Team Leave", string.Format("**{0}** Left **{1}'s** Team ({2})", matches[0].Groups[1].Value, matches[1].Groups[1].Value, int.Parse(matches[2].Groups[1].Value)), null, "https://cdn.void-dev.co/team_left.png");
                         }
                     }
                 }
@@ -414,7 +477,7 @@ namespace RCE_ADMIN.WebSockets
                     {
                         if (!string.IsNullOrEmpty(Settings.ChatWebhookUrl) && Settings.DiscordChat)
                         {
-                            SendDiscordWebhookChat(string.Format("**{0}** : {1}", username, newMessage));
+                            await SendEmbedToWebhook(Settings.ChatWebhookUrl, "New Message", string.Format("**{0}** : {1}", username, newMessage), null, "https://cdn.void-dev.co/chat.png");
                         }
                         if (Settings.InGameChat)
                             SendCommand(string.Format("global.say <color=green>[CHAT]</color> <color=#153eff><b>{0}</b></color> : {1}", username, newMessage));
@@ -429,19 +492,19 @@ namespace RCE_ADMIN.WebSockets
             {
                 if (ievent_.Contains("Spawning assets/prefabs/npc/ch47/ch47scientists.entity.prefab for assets/bundled/prefabs/world/event_cargoheli.prefab"))
                 {
-                    SendCommand("global.say <color=green>[EVENT]</color> Chinook Is Dropping A Crate");
+                    SendCommand("global.say <color=green>[EVENT]</color> <b>Chinook</b> Is Looking For A Monument To Drop A Crate!");
                 }
                 else if (ievent_.Contains("Spawning assets/content/vehicles/boats/cargoship/cargoshipdynamic2.prefab for assets/bundled/prefabs/world/event_cargoship.prefab") || ievent_.Contains("Spawning assets/content/vehicles/boats/cargoship/cargoshipdynamic1.prefab for assets/bundled/prefabs/world/event_cargoship.prefab") || ievent_.Contains("Spawning assets/content/vehicles/boats/cargoship/cargoshipdynamic.prefab for assets/bundled/prefabs/world/event_cargoship.prefab"))
                 {
-                    SendCommand("global.say <color=green>[EVENT]</color> Cargo Is Inbound, Ready To Board?");
+                    SendCommand("global.say <color=green>[EVENT]</color> <b>Cargo Ship</b> Is Sailing The Seas Around The Island");
                 }
                 else if (ievent_.Contains("Spawning assets/prefabs/npc/cargo plane/cargo_plane.prefab for assets/bundled/prefabs/world/event_airdrop.prefab"))
                 {
-                    SendCommand("global.say <color=green>[EVENT]</color> An Air Drop Is Inbound, Keep An Eye Out!");
+                    SendCommand("global.say <color=green>[EVENT]</color> An <b>Air Drop</b> Is Falling From The Sky, Can You Find It?");
                 }
                 else if (ievent_.Contains("Spawning assets/prefabs/npc/patrol helicopter/patrolhelicopter.prefab for assets/bundled/prefabs/world/event_helicopter.prefab"))
                 {
-                    SendCommand("global.say <color=green>[EVENT]</color> Patrol Helicopter Is Inbound, Run!");
+                    SendCommand("global.say <color=green>[EVENT]</color> A <b>Patrol Helicopter</b> Is Circling The Map, Ready To Take It Down?");
                 }
             }
 
@@ -484,11 +547,101 @@ namespace RCE_ADMIN.WebSockets
                     if (kill_info[0] != "A Scientist")
                     {
                         if (IsAllNumbers(kill_info[1]))
+                        {
                             kill_info[1] = "A Scientist";
-                        SendDiscordWebhook(true, string.Format("**{0}** Was Killed By **{1}** And Now Has **{2}** Death(s)!", kill_info[0], ReplaceDeathText(kill_info[1], replacements), new PlayerDatabase().GetDeathsByDisplayName(kill_info[0])));
+                            string[] victim_stats = new PlayerDatabase().GetKillStatsByName(kill_info[0]);
+                            Dictionary<string, string> fields = new Dictionary<string, string>
+                            {
+                                { 
+                                    "AI Type",  
+                                    string.Format("**{0}**", ReplaceDeathText(kill_info[1], replacements)) 
+                                },
+                                { 
+                                    "Victim", 
+                                    string.Format("Name : **{0}**\nKills : **{1}**\nDeaths : **{2}**\nK/D Ratio : **{3}**",
+                                        kill_info[0],
+                                        victim_stats[0],
+                                        victim_stats[1],
+                                        Math.Round(Convert.ToDouble(victim_stats[2]), 2)
+                                    ) 
+                                },
+                            };
+                            await SendEmbedToWebhook(Settings.KillFeedWebhookUrl, "New AI Death", "", fields, "https://cdn.void-dev.co/death.png");
+                        }
+                        else
+                        {
+                            string[] killer_stats = new PlayerDatabase().GetKillStatsByName(kill_info[1]);
+                            string[] victim_stats = new PlayerDatabase().GetKillStatsByName(kill_info[0]);
+                            if (replacements.Keys.Any(key => kill_info[1].Contains(key)))
+                            {
+                                Dictionary<string, string> fields = new Dictionary<string, string>
+                                {
+                                    { 
+                                        "Died By", 
+                                        string.Format("**{0}**", ReplaceDeathText(kill_info[1], replacements)) 
+                                    },
+                                    { 
+                                        "Victim", 
+                                        string.Format("Name : **{0}**\nKills : **{1}**\nDeaths : **{2}**\nK/D Ratio : **{3}**",
+                                            kill_info[0],
+                                            victim_stats[0],
+                                            victim_stats[1],
+                                            Math.Round(Convert.ToDouble(victim_stats[2]), 2)
+                                        )
+                                    },
+                                };
+                                await SendEmbedToWebhook(Settings.KillFeedWebhookUrl, "New Death", "", fields, "https://cdn.void-dev.co/death.png");
+                            }
+                            else
+                            {
+                                Dictionary<string, string> fields = new Dictionary<string, string>
+                                {
+                                    { 
+                                        "Killer",  
+                                        string.Format("Name : **{0}**\nKills : **{1}**\nDeaths : **{2}**\nK/D Ratio : **{3}**",
+                                            kill_info[1],
+                                            killer_stats[0],
+                                            killer_stats[1],
+                                            Math.Round(Convert.ToDouble(killer_stats[2]), 2)
+                                        ) 
+                                    },
+                                    { 
+                                        "Victim", 
+                                        string.Format("Name : **{0}**\nKills : **{1}**\nDeaths : **{2}**\nK/D Ratio : **{3}**",
+                                            kill_info[0],
+                                            victim_stats[0],
+                                            victim_stats[1],
+                                            Math.Round(Convert.ToDouble(victim_stats[2]), 2)
+                                        )
+                                    },
+                                };
+                                await SendEmbedToWebhook(Settings.KillFeedWebhookUrl, "New Kill", "", fields, "https://cdn.void-dev.co/death.png");
+                            }
+                        }
                     }
                     else
-                        SendDiscordWebhook(true, string.Format("**{0}** Was Killed By **{1}**", kill_info[0], ReplaceDeathText(kill_info[1], replacements)));
+                    {
+                        string[] killer_stats = new PlayerDatabase().GetKillStatsByName(kill_info[1]);
+                        Dictionary<string, string> fields = new Dictionary<string, string>
+                        {
+                            { 
+                                "Killer",  
+                                string.Format("Name : **{0}**\nKills : **{1}**\nDeaths : **{2}**\nK/D Ratio : **{3}**",
+                                    kill_info[1],
+                                    killer_stats[0],
+                                    killer_stats[1],
+                                    Math.Round(Convert.ToDouble(killer_stats[2]), 2)
+                                ) 
+                            },
+                            { 
+                                "AI Type", 
+                                string.Format("**{0}**",
+                                    ReplaceDeathText(kill_info[0], replacements)
+                                )
+                            },
+                        };
+                        await SendEmbedToWebhook(Settings.KillFeedWebhookUrl, "New AI Kill", "", fields, "https://cdn.void-dev.co/death.png");
+                    }
                 }
                 else if (kill_.Contains("died"))
                 {
@@ -497,7 +650,24 @@ namespace RCE_ADMIN.WebSockets
                         string[] death_info = ParseDeath(ikill_);
                         if (!death_info[1].ToLower().Contains("collision") || !death_info[1].ToLower().Contains("generic"))
                         {
-                            SendDiscordWebhook(true, string.Format("**{0}** Died By **{1}** And Now Has **{2}** Deaths!", death_info[0], ReplaceDeathText(death_info[1], replacements), new PlayerDatabase().GetDeathsByDisplayName(death_info[0])));
+                            string[] death_stats = new PlayerDatabase().GetKillStatsByName(death_info[0]);
+                            Dictionary<string, string> fields = new Dictionary<string, string>
+                            {
+                                {
+                                    "Died By",  
+                                    string.Format("**{0}**", ReplaceDeathText(death_info[1], replacements)) 
+                                },
+                                {
+                                    "Victim",
+                                    string.Format("Name : **{0}**\nKills : **{1}**\nDeaths : **{2}**\nK/D Ratio : **{3}**",
+                                        death_info[0],
+                                        death_stats[0],
+                                        death_stats[1],
+                                        Math.Round(Convert.ToDouble(death_stats[2]), 2)
+                                    )
+                                },
+                            };
+                            await SendEmbedToWebhook(Settings.KillFeedWebhookUrl, "New Death", "", fields, "https://cdn.void-dev.co/death.png");
                         }
                     }
                 }
@@ -510,25 +680,25 @@ namespace RCE_ADMIN.WebSockets
                 {
                     if (event_.Contains("Spawning assets/prefabs/npc/ch47/ch47scientists.entity.prefab for assets/bundled/prefabs/world/event_cargoheli.prefab"))
                     {
-                        SendDiscordWebhook(false, "**Chinook** Is Dropping A Crate");
+                        await SendEmbedToWebhook(Settings.EventWebhookUrl, "Chinook", "**Chinook** Is Looking For A Monument To Drop A Crate!", null, "https://rustlabs.com/img/screenshots/codelockedhackablecrate.png");
                     }
                     else if (event_.Contains("Spawning assets/content/vehicles/boats/cargoship/cargoshipdynamic2.prefab for assets/bundled/prefabs/world/event_cargoship.prefab") || event_.Contains("Spawning assets/content/vehicles/boats/cargoship/cargoshipdynamic1.prefab for assets/bundled/prefabs/world/event_cargoship.prefab") || event_.Contains("Spawning assets/content/vehicles/boats/cargoship/cargoshipdynamic.prefab for assets/bundled/prefabs/world/event_cargoship.prefab"))
                     {
-                        SendDiscordWebhook(false, "**Cargo** Is Inbound!");
+                        await SendEmbedToWebhook(Settings.EventWebhookUrl, "Cargo", "**Cargo Ship** Is Sailing The Seas Around The Island!", null, "https://rustlabs.com/img/screenshots/cargo-ship-scientist.png");
                     }
                     else if (event_.Contains("Spawning assets/prefabs/npc/cargo plane/cargo_plane.prefab for assets/bundled/prefabs/world/event_airdrop.prefab"))
                     {
-                        SendDiscordWebhook(false, "An **Air Drop** Is Inbound!");
+                        await SendEmbedToWebhook(Settings.EventWebhookUrl, "Air Drop", "An **Air Drop** Is Falling From The Sky, Can You Find It?", null, "https://rustlabs.com/img/screenshots/supply-drop.png");
                     }
                     else if (event_.Contains("Spawning assets/prefabs/npc/patrol helicopter/patrolhelicopter.prefab for assets/bundled/prefabs/world/event_helicopter.prefab"))
                     {
-                        SendDiscordWebhook(false, "**Patrol Helicopter** Is Inbound!");
+                        await SendEmbedToWebhook(Settings.EventWebhookUrl, "Patrol Helicopter", "A **Patrol Helicopter** Is Circling The Map, Ready To Take It Down?", null, "https://rustlabs.com/img/screenshots/helicopter.png");
                     }
                 }
             }
             ServerConsole.AddNewEntry(packet.Message);
         }
-        private static void WebSocket_OnError(object sender, ErrorEventArgs e)
+        private static void WebSocket_OnError(object sender, WebSocketSharp.ErrorEventArgs e)
         {
             ServerConsole.AddNewEntry($"An Error Occurred: {e.Message}");
         }

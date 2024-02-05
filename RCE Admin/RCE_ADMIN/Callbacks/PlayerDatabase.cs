@@ -8,6 +8,9 @@ using Dapper;
 using RCE_ADMIN.WebSockets.CustomPackets;
 using System.Data;
 using System.Windows.Forms;
+using DevExpress.Xpo.DB.Helpers;
+using DiscordRPC;
+using static RCE_ADMIN.Form1;
 
 namespace RCE_ADMIN.Callbacks
 {
@@ -44,18 +47,22 @@ namespace RCE_ADMIN.Callbacks
             }
             bool killsColumnExists;
             bool deathsColumnExists;
+            bool kitsColumnExists;
+            bool lastRedeemedColumnExists;
+            bool limitColumnExists;
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-
                 using (SQLiteCommand command = new SQLiteCommand(connection))
                 {
-                    // Check if Kills and Deaths columns exist
                     command.CommandText = "PRAGMA table_info('Player')";
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         killsColumnExists = false;
                         deathsColumnExists = false;
+                        kitsColumnExists = false;
+                        lastRedeemedColumnExists = false;
+                        limitColumnExists = false;
 
                         while (reader.Read())
                         {
@@ -68,6 +75,18 @@ namespace RCE_ADMIN.Callbacks
                             {
                                 deathsColumnExists = true;
                             }
+                            else if (columnName.Equals("Kits", StringComparison.OrdinalIgnoreCase))
+                            {
+                                kitsColumnExists = true;
+                            }
+                            else if (columnName.Equals("LastRedeemed", StringComparison.OrdinalIgnoreCase))
+                            {
+                                lastRedeemedColumnExists = true;
+                            }
+                            else if (columnName.Equals("KitLimit", StringComparison.OrdinalIgnoreCase))
+                            {
+                                limitColumnExists = true;
+                            }
                         }
                     }
                     if (!killsColumnExists)
@@ -75,10 +94,24 @@ namespace RCE_ADMIN.Callbacks
                         command.CommandText = "ALTER TABLE Player ADD COLUMN Kills INTEGER DEFAULT 0";
                         command.ExecuteNonQuery();
                     }
-
                     if (!deathsColumnExists)
                     {
                         command.CommandText = "ALTER TABLE Player ADD COLUMN Deaths INTEGER DEFAULT 0";
+                        command.ExecuteNonQuery();
+                    }
+                    if (!kitsColumnExists)
+                    {
+                        command.CommandText = "ALTER TABLE Player ADD COLUMN Kits INTEGER DEFAULT 0";
+                        command.ExecuteNonQuery();
+                    }
+                    if (!lastRedeemedColumnExists)
+                    {
+                        command.CommandText = "ALTER TABLE Player ADD COLUMN LastRedeemed TIMESTAMP DEFAULT '1970-01-01 00:00:00';";
+                        command.ExecuteNonQuery();
+                    }
+                    if (!limitColumnExists)
+                    {
+                        command.CommandText = "ALTER TABLE Player ADD COLUMN KitLimit INTEGER DEFAULT 1";
                         command.ExecuteNonQuery();
                     }
                 }
@@ -90,31 +123,45 @@ namespace RCE_ADMIN.Callbacks
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-
                 using (SQLiteCommand command = new SQLiteCommand(connection))
                 {
                     command.CommandText = "UPDATE Player SET Kills = Kills + 1 WHERE DisplayName = @DisplayName";
                     command.Parameters.AddWithValue("@DisplayName", player_name);
                     command.ExecuteNonQuery();
                 }
-
                 connection.Close();
             }
         }
+        public void UpdateKitInfo(string player_name, bool aloud, int limit)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(connection))
+                {
+                    command.CommandText = "UPDATE Player SET Kits = @Kits, LastRedeemed = @LastRedeemed, KitLimit = KitLimit + @KitLimit WHERE DisplayName = @DisplayName";
+                    command.Parameters.AddWithValue("@DisplayName", player_name);
+                    command.Parameters.AddWithValue("@Kits", aloud ? "1" : "0");
+                    command.Parameters.AddWithValue("@LastRedeemed", DateTime.Now);
+                    command.Parameters.AddWithValue("@KitLimit", limit);
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
 
         public void AddDeath(string player_name)
         {
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-
                 using (SQLiteCommand command = new SQLiteCommand(connection))
                 {
                     command.CommandText = "UPDATE Player SET Deaths = Deaths + 1 WHERE DisplayName = @DisplayName";
                     command.Parameters.AddWithValue("@DisplayName", player_name);
                     command.ExecuteNonQuery();
                 }
-
                 connection.Close();
             }
         }
@@ -123,16 +170,12 @@ namespace RCE_ADMIN.Callbacks
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-
                 using (SQLiteCommand command = new SQLiteCommand(connection))
                 {
                     command.CommandText = "SELECT Kills FROM Player WHERE DisplayName = @DisplayName";
                     command.Parameters.AddWithValue("@DisplayName", displayName);
-
                     object result = command.ExecuteScalar();
-
                     connection.Close();
-
                     if (result != null && result != DBNull.Value)
                     {
                         return Convert.ToInt32(result);
@@ -144,22 +187,76 @@ namespace RCE_ADMIN.Callbacks
                 }
             }
         }
+        public string[] GetPlayerKitsInfo(string displayName)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(connection))
+                {
+                    command.CommandText = "SELECT Kits, LastRedeemed, KitLimit FROM Player WHERE DisplayName = @DisplayName";
+                    command.Parameters.AddWithValue("@DisplayName", displayName);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int kits = Convert.ToInt32(reader["Kits"]);
+                            DateTime lastRedeemed = Convert.ToDateTime(reader["LastRedeemed"]);
+                            int kitLimit = Convert.ToInt32(reader["KitLimit"]);
+                            return new string[] { kits.ToString(), lastRedeemed.Date.ToString(), kitLimit.ToString() };
+                        }
+                        else
+                        {
+                            return new string[] { string.Empty, string.Empty, string.Empty };
+                        }
+                    }
+                }
+            }
+        }
+        public string[] GetKillStatsByName(string displayName)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand("SELECT Kills, Deaths FROM Player WHERE DisplayName = @DisplayName", connection))
+                {
+                    command.Parameters.AddWithValue("@DisplayName", displayName);
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int kills = Convert.ToInt32(reader["Kills"]);
+                            int deaths = Convert.ToInt32(reader["Deaths"]);
+                            if (deaths != 0)
+                            {
+                                return new string[] { string.Format("{0}", kills), string.Format("{0}", deaths), string.Format("{0}", (double)kills / deaths) };
+                            }
+                            else
+                            {
+                                return new string[] { string.Format("{0}", kills), string.Format("{0}", deaths), "0.0" };
+                            }
+
+                        }
+                        else
+                        {
+                            return new string[] { "", "", "" };
+                        }
+                    }
+                }
+            }
+        }
 
         public int GetDeathsByDisplayName(string displayName)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-
                 using (SQLiteCommand command = new SQLiteCommand(connection))
                 {
                     command.CommandText = "SELECT Deaths FROM Player WHERE DisplayName = @DisplayName";
                     command.Parameters.AddWithValue("@DisplayName", displayName);
-
                     object result = command.ExecuteScalar();
-
                     connection.Close();
-
                     if (result != null && result != DBNull.Value)
                     {
                         return Convert.ToInt32(result);
@@ -190,13 +287,12 @@ namespace RCE_ADMIN.Callbacks
             {
                 connection.Open();
                 var existingPlayer = connection.QueryFirstOrDefault<Player>("SELECT * FROM Player WHERE DisplayName = @DisplayName", new { player.DisplayName });
-
                 if (existingPlayer == null)
                 {
                      connection.Execute(@"
                         INSERT INTO Player VALUES (
                             @SteamId, @OwnerSteamId, @DisplayName, @Ping, @Address,
-                            @ConnectedSeconds, @ViolationLevel, @CurrentLevel, @UnspentXp, @Health, 0, 0
+                            @ConnectedSeconds, @ViolationLevel, @CurrentLevel, @UnspentXp, @Health, 0, 0, 0, NULL, 1
                         )", player);
                 }
                 else
