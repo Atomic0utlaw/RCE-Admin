@@ -355,7 +355,7 @@ namespace RCE_ADMIN.WebSockets
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex.Message);
+                XtraMessageBox.Show("GetItemImageUrl Error: " + ex.Message);
                 return "https://cdn.void-dev.co/eutopia.png";
             }
         }

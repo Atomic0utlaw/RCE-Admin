@@ -228,7 +228,7 @@ namespace RCE_ADMIN
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex.Message);
+                XtraMessageBox.Show("CheckTheme Error: " + ex.Message);
             }
         }
         private void ChangeAccentPaintColor(Color newKeyPaintColor)
@@ -284,7 +284,7 @@ namespace RCE_ADMIN
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex.Message);
+                XtraMessageBox.Show("ChangeAccentPaintColor Error: " + ex.Message);
             }
         }
         private void RestartApplication()
