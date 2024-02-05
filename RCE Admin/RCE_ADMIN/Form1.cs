@@ -3342,7 +3342,7 @@ namespace RCE_ADMIN
                 XtraMessageBox.Show("Failed To Give Custom Kit 1, Have You Created One?", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        private async void SpawnCrates(string selectedGroupName)
+        private void SpawnCrates(string selectedGroupName)
         {
             if (TryLoadCrates("Events/locked_crate_event.json", selectedGroupName, out List<LockedCrate> crates))
             {
@@ -3351,7 +3351,7 @@ namespace RCE_ADMIN
                     WebSocketsWrapper.Send($"spawn codelocked {crate.X},{crate.Y},{crate.Z}");
                 }
                 WebSocketsWrapper.Send(string.Format("global.say Locked Crates Event Has Started At <color=green>{0}</color>!", selectedGroupName));
-                await WebSocketsWrapper.SendEmbedToWebhook(Settings.EventWebhookUrl, "Locked Crates Event", string.Format("A Locked Crates Event Has Started At **{0}**!", selectedGroupName), null, "https://rustlabs.com/img/screenshots/codelockedhackablecrate.png");
+                WebSocketsWrapper.SendEmbedToWebhook(Settings.EventWebhookUrl, "Locked Crates Event", string.Format("A Locked Crates Event Has Started At **{0}**!", selectedGroupName), null, "https://rustlabs.com/img/screenshots/codelockedhackablecrate.png");
             }
             else
             {
