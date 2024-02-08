@@ -227,14 +227,7 @@ namespace RCE_ADMIN.Callbacks
                         {
                             int kills = Convert.ToInt32(reader["Kills"]);
                             int deaths = Convert.ToInt32(reader["Deaths"]);
-                            if (deaths != 0)
-                            {
-                                return new string[] { string.Format("{0}", kills), string.Format("{0}", deaths), string.Format("{0}", (double)kills / deaths) };
-                            }
-                            else
-                            {
-                                return new string[] { string.Format("{0}", kills), string.Format("{0}", deaths), "0.0" };
-                            }
+                            return new string[] { string.Format("{0}", kills), string.Format("{0}", deaths), string.Format("{0}", (double)kills / deaths) };
 
                         }
                         else

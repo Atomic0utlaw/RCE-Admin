@@ -274,6 +274,7 @@ namespace RCE_ADMIN.WebSockets
             { "Radiation", "Radiation" },
             { "collision", "Suicide" },
             { "Collision", "Suicide" },
+            { "guntrap", "Shotgun Trap" },
             { " died ", "** Died **" }
         };
         static string ReplaceDeathText(string input, Dictionary<string, string> replacements)
@@ -433,34 +434,34 @@ namespace RCE_ADMIN.WebSockets
             {
                 if (!string.IsNullOrEmpty(Settings.TeamWebhookUrl) && Settings.DiscordChat)
                 {
-                    if (teammsg.Contains("created a new team"))
+                    if (teammsg.Contains("has joined"))
                     {
-                        string pattern = @"\[(.*?)\]";
-                        MatchCollection matches = Regex.Matches(teammsg, pattern);
-                        if (matches.Count >= 3)
+                        string pattern = @"\[([^\]]+)\] has joined \[([^\]]+)\]s team, ID: \[([^\]]+)\].";
+                        Match match = Regex.Match(teammsg, pattern);
+                        if (match.Success)
                         {
-                            SendEmbedToWebhook(Settings.TeamWebhookUrl, "Team Created", string.Format("**{0}** Created A Team ({1})", matches[0].Groups[1].Value, int.Parse(matches[1].Groups[1].Value)), null, "https://cdn.void-dev.co/team_created.png");
-                        }
-                    }
-                    else if (teammsg.Contains("has joined"))
-                    {
-                        string pattern = @"\[(.*?)\]";
-                        MatchCollection matches = Regex.Matches(teammsg, pattern);
-                        if (matches.Count >= 3)
-                        {
-                            if (matches[0].Groups[1].Value == matches[1].Groups[1].Value)
-                                SendEmbedToWebhook(Settings.TeamWebhookUrl, "Team Created", string.Format("**{0}** Created A Team ({1})", matches[0].Groups[1].Value, int.Parse(matches[1].Groups[1].Value)), null, "https://cdn.void-dev.co/team_created.png");
+                            string playerName1 = match.Groups[1].Value;
+                            string playerName2 = match.Groups[2].Value;
+                            int teamId = int.Parse(match.Groups[3].Value);
+                            if (playerName1 == playerName2)
+                                SendEmbedToWebhook(Settings.TeamWebhookUrl, "Team Created", string.Format("**{0}** Created A Team ({1})", playerName1, teamId.ToString()), null, "https://cdn.void-dev.co/team_created.png");
                             else
-                                SendEmbedToWebhook(Settings.TeamWebhookUrl, "Team Invite", string.Format("**{1}** Invited **{0}** To Their Team ({2})", matches[0].Groups[1].Value, matches[1].Groups[1].Value, int.Parse(matches[2].Groups[1].Value)), null, "https://cdn.void-dev.co/team_joined.png");
+                                SendEmbedToWebhook(Settings.TeamWebhookUrl, "Team Invite", string.Format("**{1}** Invited **{0}** To Their Team ({2})", playerName1, playerName2, teamId.ToString()), null, "https://cdn.void-dev.co/team_joined.png");
                         }
                     }
                     else if (teammsg.Contains("has left"))
                     {
-                        string pattern = @"\[(.*?)\]";
-                        MatchCollection matches = Regex.Matches(teammsg, pattern);
-                        if (matches.Count >= 3)
+                        string pattern = @"\[([^\]]+)\] has left \[([^\]]+)\]s team, ID: \[([^\]]+)\].";
+                        Match match = Regex.Match(teammsg, pattern);
+                        if (match.Success)
                         {
-                          SendEmbedToWebhook(Settings.TeamWebhookUrl, "Team Leave", string.Format("**{0}** Left **{1}'s** Team ({2})", matches[0].Groups[1].Value, matches[1].Groups[1].Value, int.Parse(matches[2].Groups[1].Value)), null, "https://cdn.void-dev.co/team_left.png");
+                            string playerName = match.Groups[1].Value;
+                            string teamLeader = match.Groups[2].Value;
+                            int teamId = int.Parse(match.Groups[3].Value);
+                            if (playerName != teamLeader)
+                                SendEmbedToWebhook(Settings.TeamWebhookUrl, "Team Leave", string.Format("**{0}** Left **{1}'s** Team ({2})", playerName, teamLeader, teamId.ToString()), null, "https://cdn.void-dev.co/team_left.png");
+                            else
+                                SendEmbedToWebhook(Settings.TeamWebhookUrl, "Team Deleted", string.Format("**{0}** Deleted Their Team ({1})", playerName, teamId.ToString()), null, "https://cdn.void-dev.co/team_deleted.png");
                         }
                     }
                 }
@@ -556,6 +557,8 @@ namespace RCE_ADMIN.WebSockets
                             {
                                 kill_info[1] = "A Scientist";
                                 string[] victim_stats = new PlayerDatabase().GetKillStatsByName(kill_info[0]);
+                                double victim_ratio;
+                                double.TryParse(victim_stats[2], out victim_ratio);
                                 Dictionary<string, string> fields = new Dictionary<string, string>
                                 {
                                     {
@@ -568,7 +571,7 @@ namespace RCE_ADMIN.WebSockets
                                             kill_info[0],
                                             victim_stats[0],
                                             victim_stats[1],
-                                            Math.Round(Convert.ToDouble(victim_stats[2]), 2)
+                                            Math.Round(victim_ratio, 2)
                                         )
                                     },
                                 };
@@ -586,6 +589,10 @@ namespace RCE_ADMIN.WebSockets
                             {
                                 string[] killer_stats = new PlayerDatabase().GetKillStatsByName(kill_info[1]);
                                 string[] victim_stats = new PlayerDatabase().GetKillStatsByName(kill_info[0]);
+                                double killer_ratio;
+                                double.TryParse(killer_stats[2], out killer_ratio);
+                                double victim_ratio;
+                                double.TryParse(victim_stats[2], out victim_ratio);
                                 if (replacements.Keys.Any(key => kill_info[1].Contains(key)))
                                 {
                                     Dictionary<string, string> fields = new Dictionary<string, string>
@@ -600,7 +607,7 @@ namespace RCE_ADMIN.WebSockets
                                                 kill_info[0],
                                                 victim_stats[0],
                                                 victim_stats[1],
-                                                Math.Round(Convert.ToDouble(victim_stats[2]), 2)
+                                                Math.Round(victim_ratio, 2)
                                             )
                                         },
                                     };
@@ -608,6 +615,7 @@ namespace RCE_ADMIN.WebSockets
                                 }
                                 else
                                 {
+
                                     Dictionary<string, string> fields = new Dictionary<string, string>
                                     {
                                         {
@@ -616,7 +624,7 @@ namespace RCE_ADMIN.WebSockets
                                                 kill_info[1],
                                                 killer_stats[0],
                                                 killer_stats[1],
-                                                Math.Round(Convert.ToDouble(killer_stats[2]), 2)
+                                                Math.Round(killer_ratio, 2)
                                             )
                                         },
                                         {
@@ -625,7 +633,7 @@ namespace RCE_ADMIN.WebSockets
                                                 kill_info[0],
                                                 victim_stats[0],
                                                 victim_stats[1],
-                                                Math.Round(Convert.ToDouble(victim_stats[2]), 2)
+                                                Math.Round(victim_ratio, 2)
                                             )
                                         },
                                     };
@@ -634,7 +642,7 @@ namespace RCE_ADMIN.WebSockets
                             }
                             catch (Exception E)
                             {
-                                XtraMessageBox.Show("Kill Error : " + E.Message);
+                                XtraMessageBox.Show("Kill Error : " + E.ToString());
                             }
                         }
                     }
@@ -643,6 +651,8 @@ namespace RCE_ADMIN.WebSockets
                         try
                         {
                             string[] killer_stats = new PlayerDatabase().GetKillStatsByName(kill_info[1]);
+                            double killer_ratio;
+                            double.TryParse(killer_stats[2], out killer_ratio);
                             Dictionary<string, string> fields = new Dictionary<string, string>
                             {
                                 {
@@ -651,7 +661,7 @@ namespace RCE_ADMIN.WebSockets
                                         kill_info[1],
                                         killer_stats[0],
                                         killer_stats[1],
-                                        Math.Round(Convert.ToDouble(killer_stats[2]), 2)
+                                        Math.Round(killer_ratio, 2)
                                     )
                                 },
                                 {
@@ -677,6 +687,8 @@ namespace RCE_ADMIN.WebSockets
                         if (!death_info[1].ToLower().Contains("collision") || !death_info[1].ToLower().Contains("generic"))
                         {
                             string[] death_stats = new PlayerDatabase().GetKillStatsByName(death_info[0]);
+                            double victim_ratio;
+                            double.TryParse(death_stats[2], out victim_ratio);
                             Dictionary<string, string> fields = new Dictionary<string, string>
                             {
                                 {
@@ -689,7 +701,7 @@ namespace RCE_ADMIN.WebSockets
                                         death_info[0],
                                         death_stats[0],
                                         death_stats[1],
-                                        Math.Round(Convert.ToDouble(death_stats[2]), 2)
+                                        Math.Round(victim_ratio, 2)
                                     )
                                 },
                             };

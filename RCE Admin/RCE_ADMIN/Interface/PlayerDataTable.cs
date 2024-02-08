@@ -243,7 +243,7 @@ namespace RCE_ADMIN.Interface
                 Form1.Players.Rows[rowIndex].SetValues(rowIndex + 1, displayName, health + "/100", ping + " ms", formattedTime);
             }
         }
-        public static void AddNewEntry(int number,  string playerName, int health, int ping, string timeConnected)
+        public static void AddNewEntry(int number, string playerName, int health, int ping, string timeConnected)
         {
             var row = new DataGridViewRow();
             row.CreateCells(Form1.Players, number, playerName, health+"/100", ping+" ms", timeConnected);

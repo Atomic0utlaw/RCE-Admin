@@ -664,7 +664,6 @@ namespace RCE_ADMIN
             this.removeToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteAllEntitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.simpleButton29 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton9 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -6658,7 +6657,6 @@ namespace RCE_ADMIN
             this.groupControl8.Controls.Add(this.labelControl18);
             this.groupControl8.Controls.Add(this.labelControl17);
             this.groupControl8.Controls.Add(this.allPlayersDataTable);
-            this.groupControl8.Controls.Add(this.simpleButton29);
             this.groupControl8.Controls.Add(this.simpleButton9);
             this.groupControl8.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl8.Location = new System.Drawing.Point(585, 0);
@@ -6969,19 +6967,10 @@ namespace RCE_ADMIN
             this.deleteAllEntitiesToolStripMenuItem.Text = "Delete All Entities";
             this.deleteAllEntitiesToolStripMenuItem.Click += new System.EventHandler(this.deleteAllEntitiesToolStripMenuItem_Click);
             // 
-            // simpleButton29
-            // 
-            this.simpleButton29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton29.Location = new System.Drawing.Point(204, 2);
-            this.simpleButton29.Name = "simpleButton29";
-            this.simpleButton29.Size = new System.Drawing.Size(69, 20);
-            this.simpleButton29.TabIndex = 5;
-            this.simpleButton29.Text = "Refresh";
-            // 
             // simpleButton9
             // 
             this.simpleButton9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton9.Location = new System.Drawing.Point(195, -239);
+            this.simpleButton9.Location = new System.Drawing.Point(204, 2);
             this.simpleButton9.Name = "simpleButton9";
             this.simpleButton9.Size = new System.Drawing.Size(69, 20);
             this.simpleButton9.TabIndex = 5;
@@ -9046,7 +9035,6 @@ namespace RCE_ADMIN
         private DevExpress.XtraEditors.LabelControl labelControl15;
         private DevExpress.XtraEditors.LabelControl labelControl21;
         private DataGridView bansDataTable;
-        private DevExpress.XtraEditors.SimpleButton simpleButton29;
         private DataGridViewTextBoxColumn BanID;
         private DataGridViewTextBoxColumn BanPlayerName;
         private ContextMenuStrip contextMenuStrip3;
