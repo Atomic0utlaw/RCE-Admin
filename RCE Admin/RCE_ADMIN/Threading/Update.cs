@@ -11,6 +11,8 @@ namespace RCE_ADMIN.Threading
         public static Thread PlayerThread;
         public static Thread InfoThread;
         public static Thread BansThread;
+        public static Thread BradThread;
+        public static Thread HeliThread;
         public static void StartThreads()
         {
             if (PlayerThread == null || !PlayerThread.IsAlive)
@@ -28,6 +30,16 @@ namespace RCE_ADMIN.Threading
                 BansThread = new Thread(new ThreadStart(UpdateBans));
                 BansThread.Start();
             }
+            if (BradThread == null || !BradThread.IsAlive)
+            {
+                BradThread = new Thread(new ThreadStart(CheckBrad));
+                BradThread.Start();
+            }
+            if (HeliThread == null || !HeliThread.IsAlive)
+            {
+                HeliThread = new Thread(new ThreadStart(CheckHeli));
+                HeliThread.Start();
+            }
         }
         public static void StopThreads()
         {
@@ -39,6 +51,21 @@ namespace RCE_ADMIN.Threading
             if (InfoThread == null)
                 return;
             InfoThread.Abort();
+
+
+            if (BansThread == null)
+                return;
+            BansThread.Abort();
+
+
+            if (BradThread == null)
+                return;
+            BradThread.Abort();
+
+
+            if (HeliThread == null)
+                return;
+            HeliThread.Abort();
         }
         public static void UpdatePlayers()
         {
@@ -62,6 +89,22 @@ namespace RCE_ADMIN.Threading
             {
                 WebSocketsWrapper.SendCommand("banlist");
                 Thread.Sleep(TimeSpan.FromSeconds(10));
+            }
+        }
+        public static void CheckBrad()
+        {
+            while (WebSocketsWrapper.IsConnected())
+            {
+                WebSocketsWrapper.SendCommand("find_entity bradley");
+                Thread.Sleep(TimeSpan.FromSeconds(2));
+            }
+        }
+        public static void CheckHeli()
+        {
+            while (WebSocketsWrapper.IsConnected())
+            {
+                WebSocketsWrapper.SendCommand("find_entity heli");
+                Thread.Sleep(TimeSpan.FromSeconds(2));
             }
         }
     }

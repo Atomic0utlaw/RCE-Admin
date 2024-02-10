@@ -44,6 +44,10 @@ using DevExpress.XtraBars.Customization.Helpers;
 using DevExpress.XtraBars.Ribbon;
 using System.Reflection.Emit;
 using System.Xml;
+using System.Configuration;
+using System.Security.Policy;
+using WebSocketSharp.Net;
+using System.Net.Sockets;
 
 namespace RCE_ADMIN
 {
@@ -67,7 +71,6 @@ namespace RCE_ADMIN
         public Form1()
         {
             InitializeComponent();
-
             rpcClient = new DiscordRpcClient("1199514507932860528");
             rpcClient.SetPresence(new RichPresence
             {
@@ -77,7 +80,7 @@ namespace RCE_ADMIN
                 Buttons = new Button[]
                 {
                     new Button() { Label = "RCE Admin (Github)", Url = "https://github.com/KyleFardy/RCE-Admin/releases/latest" },
-                    new Button() { Label = "RCE Admin (Website)", Url = "https://void-dev.c/rce-admin" },
+                    new Button() { Label = "RCE Admin (Website)", Url = "https://void-dev.co/rce-admin" },
                 },
                 Assets = new Assets
                 {
@@ -116,8 +119,28 @@ namespace RCE_ADMIN
             using (var httpClient = new HttpClient())
             {
                 httpClient.DefaultRequestHeaders.Add("User-Agent", "RCE Admin");
-                var releaseResponse = await httpClient.GetStringAsync("https://api.github.com/repos/KyleFardy/RCE-Admin/releases/latest");
-                var releaseData = JsonConvert.DeserializeObject<ReleaseData>(releaseResponse);
+                var releaseResponse = await httpClient.GetAsync("https://api.github.com/repos/KyleFardy/RCE-Admin/releases/latest");
+                if (releaseResponse.Headers.TryGetValues("X-RateLimit-Limit", out var limitValues) &&
+                    releaseResponse.Headers.TryGetValues("X-RateLimit-Remaining", out var remainingValues) &&
+                    releaseResponse.Headers.TryGetValues("X-RateLimit-Reset", out var resetValues))
+                {
+                    int limit = int.Parse(limitValues.First());
+                    int remaining = int.Parse(remainingValues.First());
+                    long reset = long.Parse(resetValues.First());
+                    if (remaining == 0)
+                    {
+                        var currentTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+                        var delaySeconds = reset - currentTime;
+                        if (delaySeconds > 0)
+                        {
+                            var delay = TimeSpan.FromSeconds(delaySeconds);
+                            await Task.Delay(delay);
+                        }
+                    }
+                }
+                releaseResponse = await httpClient.GetAsync("https://api.github.com/repos/KyleFardy/RCE-Admin/releases/latest");
+                releaseResponse.EnsureSuccessStatusCode();
+                var releaseData = JsonConvert.DeserializeObject<ReleaseData>(await releaseResponse.Content.ReadAsStringAsync());
                 return new string[] { releaseData.Version, releaseData.Body };
             }
         }
@@ -177,6 +200,22 @@ namespace RCE_ADMIN
             DiscordEventFeedCheck.Checked = Settings.DiscordEventFeed;
             InGameChatCheck.Checked = Settings.InGameChat;
             DiscordChatCheck.Checked = Settings.DiscordChat;
+            switch (Settings.SQLType)
+            {
+                case "mysql":
+                    sqlCheck.Checked = true;
+                    sqliteCheck.Checked = false;
+                    break;
+                case "sqlite":
+                    sqlCheck.Checked = false;
+                    sqliteCheck.Checked = true;
+                    break;
+            }
+            mysqlHost.Text = Settings.MySQLHost;
+            mysqlPort.Text = Settings.MySQLPort;
+            mysqlUsername.Text = Settings.MySQLUsername;
+            mysqlPassword.Text = Settings.MySQLPassword;
+            mysqlDbName.Text = Settings.MySQLDatabaseName;
             CheckTheme(HexToColor(Settings.Theme));
             color_change(HexToColor(Settings.Theme));
             colorPickEdit1.EditValue = ColorTranslator.FromHtml(Settings.Theme);
@@ -246,6 +285,11 @@ namespace RCE_ADMIN
                     if (keyPaintNode != null)
                     {
                         keyPaintNode.Attributes["Value"].Value = ColorToRGB(newKeyPaintColor);
+                    }
+                    XmlNode keyBruushLightNode = customPaletteNode.SelectSingleNode("SvgColor[@Name='Key Brush Light']");
+                    if (keyBruushLightNode != null)
+                    {
+                        keyBruushLightNode.Attributes["Value"].Value = ColorToRGB(newKeyPaintColor);
                     }
                     XmlNode paintShadowNode = customPaletteNode.SelectSingleNode("SvgColor[@Name='Paint Shadow']");
                     if (paintShadowNode != null)
@@ -467,7 +511,14 @@ namespace RCE_ADMIN
             {
                 if (Players.Rows[Players.CurrentRow.Index].Cells[i].Value.ToString() != "")
                 {
-                    Clipboard.SetText(Players.Rows[Players.CurrentRow.Index].Cells[i].Value.ToString());
+                    if (InvokeRequired)
+                    {
+                        Invoke(new Action(() => Clipboard.SetText(Players.Rows[Players.CurrentRow.Index].Cells[i].Value.ToString())));
+                    }
+                    else
+                    {
+                        Clipboard.SetText(Players.Rows[Players.CurrentRow.Index].Cells[i].Value.ToString());
+                    }
                 }
                 else
                 {
@@ -479,13 +530,21 @@ namespace RCE_ADMIN
                 XtraMessageBox.Show("Refresh The List To Obtain The Clients Information!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
+        [STAThread]
         public void CopyFromODT(int i)
         {
             try
             {
                 if (AllPlayers.Rows[AllPlayers.CurrentRow.Index].Cells[i].Value.ToString() != "")
                 {
-                    Clipboard.SetText(AllPlayers.Rows[AllPlayers.CurrentRow.Index].Cells[i].Value.ToString());
+                    if (InvokeRequired)
+                    {
+                        Invoke(new Action(() => Clipboard.SetText(AllPlayers.Rows[AllPlayers.CurrentRow.Index].Cells[i].Value.ToString())));
+                    }
+                    else
+                    {
+                        Clipboard.SetText(AllPlayers.Rows[AllPlayers.CurrentRow.Index].Cells[i].Value.ToString());
+                    }
                 }
                 else
                 {
@@ -616,7 +675,13 @@ namespace RCE_ADMIN
                     DiscordEventFeedCheck.Checked,
                     InGameChatCheck.Checked,
                     DiscordChatCheck.Checked,
-                    ColorToHex(theme_)
+                    ColorToHex(theme_),
+                    sqlCheck.Checked ? "mysql" : "sqlite",
+                    mysqlHost.Text,
+                    mysqlPort.Text,
+                    mysqlUsername.Text,
+                    mysqlPassword.Text,
+                    mysqlDbName.Text
                  ));
                 Settings = Settings.Read();
             }
@@ -636,30 +701,26 @@ namespace RCE_ADMIN
                 if (WebSocketsWrapper.IsConnected())
                 {
                     SetInfo();
+                    playerDBWorker.RunWorkerAsync();
                     await SendAutoMessages();
-                    await SendFeedMessage();
                 }
-            }
-        }
-        async Task SendFeedMessage()
-        {
-            while (true)
-            {
-                WebSocketsWrapper.Send(string.Format("global.say {0}", "Feeds Provided By <color=red>RCE Admin</color>"));
-                await Task.Delay(10 * 60 * 1000);
             }
         }
         async Task SendAutoMessages()
         {
             while (Settings.AutoMessages)
             {
-                foreach (var item in autoMessages.Items)
+                var itemsCopy = autoMessages.Items.Cast<object>().ToList();
+
+                foreach (var item in itemsCopy)
                 {
                     WebSocketsWrapper.Send(string.Format("global.say <color=green>[AUTO MESSAGE]</color> {0}", item.ToString()));
-                    await Task.Delay(5 * 60 * 1000);
+                    await Task.Delay(Settings.AutoMessagesTime * 60 * 1000);
                 }
             }
         }
+
+
         private void buttonDisconnect_Click(object sender, EventArgs e)
         {
             WebSocketsWrapper.Disconnect();
@@ -696,7 +757,14 @@ namespace RCE_ADMIN
         [STAThread]
         private void copyNameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CopyFromDT(1);
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => CopyFromDT(1)));
+            }
+            else
+            {
+                CopyFromDT(1);
+            }
             XtraMessageBox.Show(string.Format("Gamertag {0} Has Been Copied To Your Clipboard!", GetFromDT(1)), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -3362,12 +3430,10 @@ namespace RCE_ADMIN
         private bool TryLoadCrates(string jsonPath, string groupName, out List<LockedCrate> crates)
         {
             crates = null;
-
             if (File.Exists(jsonPath))
             {
                 var crateGroups = JsonConvert.DeserializeObject<List<LockedCrateGroup>>(File.ReadAllText(jsonPath));
                 var selectedGroup = crateGroups.Find(group => group.Name == groupName);
-
                 if (selectedGroup != null)
                 {
                     crates = selectedGroup.Positions;
@@ -3380,17 +3446,14 @@ namespace RCE_ADMIN
         bool TryLoadKit(string filePath, out List<Kit> kits)
         {
             kits = new List<Kit>();
-
             try
             {
                 if (!File.Exists(filePath))
                 {
                     return false;
                 }
-
                 string jsonContent = File.ReadAllText(filePath);
                 kits = JsonConvert.DeserializeObject<List<Kit>>(jsonContent);
-
                 return kits != null && kits.Count > 0;
             }
             catch (Exception ex)
@@ -3619,7 +3682,14 @@ namespace RCE_ADMIN
         [STAThread]
         private void copyNameToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            CopyFromODT(1);
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => CopyFromODT(1)));
+            }
+            else
+            {
+                CopyFromODT(1);
+            }
             XtraMessageBox.Show(string.Format("Gamertag {0} Has Been Copied To Your Clipboard!", GetFromODT(1)), "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -4166,6 +4236,86 @@ namespace RCE_ADMIN
                 }
             }
             XtraMessageBox.Show($@"A {animal_type_} Have Been Spawned!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        static async Task<string> GetExternalIpAsync()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string response = await client.GetStringAsync("https://httpbin.org/ip");
+                int startIndex = response.IndexOf('"') + 1;
+                return response.Substring(startIndex, response.LastIndexOf('"') - startIndex);
+            }
+        }
+
+        private void sqlCheck_Click(object sender, EventArgs e)
+        {
+            sqlCheck.Checked = !sqlCheck.Checked;
+            if (sqlCheck.Checked)
+            {
+                sqliteCheck.Checked = false;
+                Settings.SQLType = "mysql";
+            }
+            else
+            {
+                sqliteCheck.Checked = true;
+                Settings.SQLType = "sqlite";
+            }
+            save_settings();
+        }
+
+        private void sqliteCheck_Click(object sender, EventArgs e)
+        {
+            sqliteCheck.Checked = !sqliteCheck.Checked;
+            if (sqliteCheck.Checked)
+            {
+                sqlCheck.Checked = false;
+                Settings.SQLType = "sqlite";
+            }
+            else
+            {
+                sqlCheck.Checked = true;
+                Settings.SQLType = "mysql";
+            }
+            save_settings();
+        }
+
+        private void simpleButton29_Click(object sender, EventArgs e)
+        {
+            if (!IsValidIPv4(mysqlHost.Text))
+            {
+                XtraMessageBox.Show("Please Enter A Valid IP Address!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else if (!IsValidPort(mysqlPort.Text))
+            {
+                XtraMessageBox.Show("Please Enter A Valid Port!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else if (string.IsNullOrEmpty(mysqlDbName.Text))
+            {
+                XtraMessageBox.Show("Please Enter A Valid MySQL Database Name!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else if (string.IsNullOrEmpty(mysqlUsername.Text))
+            {
+                XtraMessageBox.Show("Please Enter A Valid MySQL Username!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else
+                save_settings();
+        }
+
+        private void checkBoxShowSqlPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            mysqlPassword.Properties.UseSystemPasswordChar = !checkBoxShowSqlPassword.Checked;
+        }
+
+        private void simpleButton29_Click_1(object sender, EventArgs e)
+        {
+            if (Settings.SQLType == "mysql")
+            {
+                new PlayerDatabase().MigrateData();
+            }
+            else
+            {
+                XtraMessageBox.Show("You Are Not Using MySQL So This Function Is Not Going To Do Anything For You!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
         }
     }
 }

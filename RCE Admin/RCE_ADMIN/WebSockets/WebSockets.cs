@@ -19,13 +19,13 @@ using RCE_ADMIN.Callbacks;
 using DevExpress.Utils.Text;
 using System.IO;
 using static RCE_ADMIN.Form1;
+using Newtonsoft.Json.Linq;
 
 namespace RCE_ADMIN.WebSockets
 {
     public static class WebSocketsWrapper
     {
         private static WebSocket webSocket;
-        private static Random random;
         public static Settings Settings;
         public static void Connect()
         {
@@ -65,20 +65,21 @@ namespace RCE_ADMIN.WebSockets
             ServerConsole.AddNewEntry(packetObj.Message);
             return packetObj.Message;
         }
+        private static readonly Random random = new Random();
         public static void SendCommand(string command)
         {
-            var identifier = 1;
+            int identifier = random.Next(0, int.MaxValue);
             if (Listener.NeedListener.Contains(command))
             {
-                if (random == null)
-                    random = new Random(DateTime.Now.Millisecond);
-                identifier = random.Next(0, int.MaxValue);
-                if (Listener.Listeners.ContainsKey(identifier))
+                lock (Listener.Listeners)
                 {
-                    XtraMessageBox.Show("Duplicate Identifier Found!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    if (!Listener.Listeners.ContainsKey(identifier))
+                    {
+                        Listener.Listeners.Add(identifier, command);
+                    }
+                    else
+                        return;
                 }
-                Listener.Listeners.Add(identifier, command);
             }
             Send(command, identifier);
         }
@@ -556,9 +557,12 @@ namespace RCE_ADMIN.WebSockets
                             try
                             {
                                 kill_info[1] = "A Scientist";
+                                new PlayerDatabase().AddNPCDeath(kill_info[0]);
                                 string[] victim_stats = new PlayerDatabase().GetKillStatsByName(kill_info[0]);
                                 double victim_ratio;
                                 double.TryParse(victim_stats[2], out victim_ratio);
+                                double npc_ratio;
+                                double.TryParse(victim_stats[5], out npc_ratio);
                                 Dictionary<string, string> fields = new Dictionary<string, string>
                                 {
                                     {
@@ -567,11 +571,11 @@ namespace RCE_ADMIN.WebSockets
                                     },
                                     {
                                         "Victim",
-                                        string.Format("Name : **{0}**\nKills : **{1}**\nDeaths : **{2}**\nK/D Ratio : **{3}**",
+                                        string.Format("Name : **{0}**\nNPC Kills : **{1}**\nNPC Deaths : **{2}**\nNPC K/D Ratio : **{3}**",
                                             kill_info[0],
-                                            victim_stats[0],
-                                            victim_stats[1],
-                                            Math.Round(victim_ratio, 2)
+                                            victim_stats[3],
+                                            victim_stats[4],
+                                            double.IsNaN(Math.Round(npc_ratio, 2)) ? 0 : Math.Round(npc_ratio, 2)
                                         )
                                     },
                                 };
@@ -607,7 +611,7 @@ namespace RCE_ADMIN.WebSockets
                                                 kill_info[0],
                                                 victim_stats[0],
                                                 victim_stats[1],
-                                                Math.Round(victim_ratio, 2)
+                                                double.IsNaN(Math.Round(victim_ratio, 2)) ? 0 : Math.Round(victim_ratio, 2)
                                             )
                                         },
                                     };
@@ -624,7 +628,7 @@ namespace RCE_ADMIN.WebSockets
                                                 kill_info[1],
                                                 killer_stats[0],
                                                 killer_stats[1],
-                                                Math.Round(killer_ratio, 2)
+                                                double.IsNaN(Math.Round(killer_ratio, 2)) ? 0 : Math.Round(killer_ratio, 2)
                                             )
                                         },
                                         {
@@ -633,7 +637,7 @@ namespace RCE_ADMIN.WebSockets
                                                 kill_info[0],
                                                 victim_stats[0],
                                                 victim_stats[1],
-                                                Math.Round(victim_ratio, 2)
+                                                double.IsNaN(Math.Round(victim_ratio, 2)) ? 0 : Math.Round(victim_ratio, 2)
                                             )
                                         },
                                     };
@@ -650,18 +654,19 @@ namespace RCE_ADMIN.WebSockets
                     {
                         try
                         {
+                            new PlayerDatabase().AddNPCKill(kill_info[1]);
                             string[] killer_stats = new PlayerDatabase().GetKillStatsByName(kill_info[1]);
-                            double killer_ratio;
-                            double.TryParse(killer_stats[2], out killer_ratio);
+                            double npc_ratio;
+                            double.TryParse(killer_stats[5], out npc_ratio);
                             Dictionary<string, string> fields = new Dictionary<string, string>
                             {
                                 {
                                     "Killer",
-                                    string.Format("Name : **{0}**\nKills : **{1}**\nDeaths : **{2}**\nK/D Ratio : **{3}**",
+                                    string.Format("Name : **{0}**\nNPC Kills : **{1}**\nNPC Deaths : **{2}**\nNPC K/D Ratio : **{3}**",
                                         kill_info[1],
-                                        killer_stats[0],
-                                        killer_stats[1],
-                                        Math.Round(killer_ratio, 2)
+                                        killer_stats[3],
+                                        killer_stats[4],
+                                        double.IsNaN(Math.Round(npc_ratio, 2)) ? 0 : Math.Round(npc_ratio, 2)
                                     )
                                 },
                                 {
@@ -701,7 +706,7 @@ namespace RCE_ADMIN.WebSockets
                                         death_info[0],
                                         death_stats[0],
                                         death_stats[1],
-                                        Math.Round(victim_ratio, 2)
+                                        double.IsNaN(Math.Round(victim_ratio, 2)) ? 0 : Math.Round(victim_ratio, 2)
                                     )
                                 },
                             };

@@ -10,9 +10,12 @@ namespace RCE_ADMIN.Callbacks
         public static List<Player> CurrentPlayers;
         public static void UpdatePlayers(string list)
         {
-            CurrentPlayers = JsonConvert.DeserializeObject<List<Player>>(list);
-            PlayerCounter.SetText(CurrentPlayers.Count);
-            PlayerDataTable.Update(CurrentPlayers);
+            if (!list.Contains("realm"))
+            {
+                CurrentPlayers = JsonConvert.DeserializeObject<List<Player>>(list);
+                PlayerCounter.SetText(CurrentPlayers.Count);
+                PlayerDataTable.Update(CurrentPlayers);
+            }
         }
     }
 }

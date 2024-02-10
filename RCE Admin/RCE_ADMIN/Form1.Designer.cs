@@ -767,6 +767,26 @@ namespace RCE_ADMIN
             this.colorPickEdit1 = new DevExpress.XtraEditors.ColorPickEdit();
             this.groupControl20 = new DevExpress.XtraEditors.GroupControl();
             this.simpleButton27 = new DevExpress.XtraEditors.SimpleButton();
+            this.xtraTabPage11 = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl26 = new DevExpress.XtraEditors.GroupControl();
+            this.checkBoxShowSqlPassword = new DevExpress.XtraEditors.CheckEdit();
+            this.mysqlPort = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl28 = new DevExpress.XtraEditors.LabelControl();
+            this.mysqlDbName = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl27 = new DevExpress.XtraEditors.LabelControl();
+            this.mysqlPassword = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
+            this.mysqlUsername = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
+            this.saveMysql = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
+            this.mysqlHost = new DevExpress.XtraEditors.TextEdit();
+            this.groupControl25 = new DevExpress.XtraEditors.GroupControl();
+            this.sqlCheck = new DevExpress.XtraEditors.CheckEdit();
+            this.sqliteCheck = new DevExpress.XtraEditors.CheckEdit();
+            this.playerDBWorker = new System.ComponentModel.BackgroundWorker();
+            this.groupControl27 = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton29 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxConnection)).BeginInit();
             this.groupBoxConnection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupBoxCredentials)).BeginInit();
@@ -882,6 +902,21 @@ namespace RCE_ADMIN
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl20)).BeginInit();
             this.groupControl20.SuspendLayout();
+            this.xtraTabPage11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl26)).BeginInit();
+            this.groupControl26.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxShowSqlPassword.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mysqlPort.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mysqlDbName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mysqlPassword.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mysqlUsername.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mysqlHost.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl25)).BeginInit();
+            this.groupControl25.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sqlCheck.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sqliteCheck.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl27)).BeginInit();
+            this.groupControl27.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxConnection
@@ -6393,7 +6428,8 @@ namespace RCE_ADMIN
             this.xtraTabPage6,
             this.xtraTabPage9,
             this.xtraTabPage4,
-            this.xtraTabPage10});
+            this.xtraTabPage10,
+            this.xtraTabPage11});
             // 
             // xtraTabPage1
             // 
@@ -8194,6 +8230,209 @@ namespace RCE_ADMIN
             this.simpleButton27.Text = "Reset";
             this.simpleButton27.Click += new System.EventHandler(this.simpleButton27_Click);
             // 
+            // xtraTabPage11
+            // 
+            this.xtraTabPage11.Controls.Add(this.groupControl27);
+            this.xtraTabPage11.Controls.Add(this.groupControl26);
+            this.xtraTabPage11.Controls.Add(this.groupControl25);
+            this.xtraTabPage11.Name = "xtraTabPage11";
+            this.xtraTabPage11.Size = new System.Drawing.Size(860, 481);
+            this.xtraTabPage11.Text = "Player Database";
+            // 
+            // groupControl26
+            // 
+            this.groupControl26.Controls.Add(this.checkBoxShowSqlPassword);
+            this.groupControl26.Controls.Add(this.mysqlPort);
+            this.groupControl26.Controls.Add(this.labelControl28);
+            this.groupControl26.Controls.Add(this.mysqlDbName);
+            this.groupControl26.Controls.Add(this.labelControl27);
+            this.groupControl26.Controls.Add(this.mysqlPassword);
+            this.groupControl26.Controls.Add(this.labelControl26);
+            this.groupControl26.Controls.Add(this.mysqlUsername);
+            this.groupControl26.Controls.Add(this.labelControl25);
+            this.groupControl26.Controls.Add(this.saveMysql);
+            this.groupControl26.Controls.Add(this.labelControl24);
+            this.groupControl26.Controls.Add(this.mysqlHost);
+            this.groupControl26.Location = new System.Drawing.Point(11, 94);
+            this.groupControl26.Name = "groupControl26";
+            this.groupControl26.Size = new System.Drawing.Size(244, 330);
+            this.groupControl26.TabIndex = 16;
+            this.groupControl26.Text = "SQL Type";
+            // 
+            // checkBoxShowSqlPassword
+            // 
+            this.checkBoxShowSqlPassword.Location = new System.Drawing.Point(19, 295);
+            this.checkBoxShowSqlPassword.Name = "checkBoxShowSqlPassword";
+            this.checkBoxShowSqlPassword.Properties.Caption = "Show Password";
+            this.checkBoxShowSqlPassword.Size = new System.Drawing.Size(101, 20);
+            this.checkBoxShowSqlPassword.TabIndex = 29;
+            this.checkBoxShowSqlPassword.CheckedChanged += new System.EventHandler(this.checkBoxShowSqlPassword_CheckedChanged);
+            // 
+            // mysqlPort
+            // 
+            this.mysqlPort.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.mysqlPort.Location = new System.Drawing.Point(19, 110);
+            this.mysqlPort.MenuManager = this.barManager1;
+            this.mysqlPort.Name = "mysqlPort";
+            this.mysqlPort.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.mysqlPort.Properties.MaxValue = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.mysqlPort.Size = new System.Drawing.Size(211, 20);
+            this.mysqlPort.TabIndex = 28;
+            // 
+            // labelControl28
+            // 
+            this.labelControl28.Location = new System.Drawing.Point(19, 241);
+            this.labelControl28.Name = "labelControl28";
+            this.labelControl28.Size = new System.Drawing.Size(115, 13);
+            this.labelControl28.TabIndex = 27;
+            this.labelControl28.Text = "MySQL Database Name";
+            // 
+            // mysqlDbName
+            // 
+            this.mysqlDbName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mysqlDbName.Location = new System.Drawing.Point(19, 260);
+            this.mysqlDbName.Name = "mysqlDbName";
+            this.mysqlDbName.Properties.MaxLength = 10000;
+            this.mysqlDbName.Size = new System.Drawing.Size(211, 20);
+            this.mysqlDbName.TabIndex = 26;
+            // 
+            // labelControl27
+            // 
+            this.labelControl27.Location = new System.Drawing.Point(19, 191);
+            this.labelControl27.Name = "labelControl27";
+            this.labelControl27.Size = new System.Drawing.Size(84, 13);
+            this.labelControl27.TabIndex = 25;
+            this.labelControl27.Text = "MySQL Password";
+            // 
+            // mysqlPassword
+            // 
+            this.mysqlPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mysqlPassword.Location = new System.Drawing.Point(19, 210);
+            this.mysqlPassword.Name = "mysqlPassword";
+            this.mysqlPassword.Properties.MaxLength = 10000;
+            this.mysqlPassword.Properties.UseSystemPasswordChar = true;
+            this.mysqlPassword.Size = new System.Drawing.Size(211, 20);
+            this.mysqlPassword.TabIndex = 24;
+            // 
+            // labelControl26
+            // 
+            this.labelControl26.Location = new System.Drawing.Point(19, 140);
+            this.labelControl26.Name = "labelControl26";
+            this.labelControl26.Size = new System.Drawing.Size(86, 13);
+            this.labelControl26.TabIndex = 23;
+            this.labelControl26.Text = "MySQL Username";
+            // 
+            // mysqlUsername
+            // 
+            this.mysqlUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mysqlUsername.Location = new System.Drawing.Point(19, 159);
+            this.mysqlUsername.Name = "mysqlUsername";
+            this.mysqlUsername.Properties.MaxLength = 10000;
+            this.mysqlUsername.Size = new System.Drawing.Size(211, 20);
+            this.mysqlUsername.TabIndex = 22;
+            // 
+            // labelControl25
+            // 
+            this.labelControl25.Location = new System.Drawing.Point(19, 90);
+            this.labelControl25.Name = "labelControl25";
+            this.labelControl25.Size = new System.Drawing.Size(57, 13);
+            this.labelControl25.TabIndex = 21;
+            this.labelControl25.Text = "MySQL Port";
+            // 
+            // saveMysql
+            // 
+            this.saveMysql.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveMysql.Location = new System.Drawing.Point(126, 293);
+            this.saveMysql.Name = "saveMysql";
+            this.saveMysql.Size = new System.Drawing.Size(104, 23);
+            this.saveMysql.TabIndex = 19;
+            this.saveMysql.Text = "Save";
+            this.saveMysql.Click += new System.EventHandler(this.simpleButton29_Click);
+            // 
+            // labelControl24
+            // 
+            this.labelControl24.Location = new System.Drawing.Point(19, 41);
+            this.labelControl24.Name = "labelControl24";
+            this.labelControl24.Size = new System.Drawing.Size(60, 13);
+            this.labelControl24.TabIndex = 18;
+            this.labelControl24.Text = "MySQL Host";
+            // 
+            // mysqlHost
+            // 
+            this.mysqlHost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mysqlHost.Location = new System.Drawing.Point(19, 60);
+            this.mysqlHost.Name = "mysqlHost";
+            this.mysqlHost.Properties.MaxLength = 10000;
+            this.mysqlHost.Size = new System.Drawing.Size(211, 20);
+            this.mysqlHost.TabIndex = 17;
+            // 
+            // groupControl25
+            // 
+            this.groupControl25.Controls.Add(this.sqlCheck);
+            this.groupControl25.Controls.Add(this.sqliteCheck);
+            this.groupControl25.Location = new System.Drawing.Point(11, 3);
+            this.groupControl25.Name = "groupControl25";
+            this.groupControl25.Size = new System.Drawing.Size(244, 85);
+            this.groupControl25.TabIndex = 15;
+            this.groupControl25.Text = "SQL Type";
+            // 
+            // sqlCheck
+            // 
+            this.sqlCheck.Location = new System.Drawing.Point(19, 58);
+            this.sqlCheck.MenuManager = this.barManager1;
+            this.sqlCheck.Name = "sqlCheck";
+            this.sqlCheck.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.sqlCheck.Properties.Appearance.Options.UseFont = true;
+            this.sqlCheck.Properties.Caption = "MySQL (Your Own Server)";
+            this.sqlCheck.Size = new System.Drawing.Size(211, 20);
+            this.sqlCheck.TabIndex = 1;
+            this.sqlCheck.Click += new System.EventHandler(this.sqlCheck_Click);
+            // 
+            // sqliteCheck
+            // 
+            this.sqliteCheck.Location = new System.Drawing.Point(19, 32);
+            this.sqliteCheck.MenuManager = this.barManager1;
+            this.sqliteCheck.Name = "sqliteCheck";
+            this.sqliteCheck.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.sqliteCheck.Properties.Appearance.Options.UseFont = true;
+            this.sqliteCheck.Properties.Caption = "SQLite (Default)";
+            this.sqliteCheck.Size = new System.Drawing.Size(211, 20);
+            this.sqliteCheck.TabIndex = 0;
+            this.sqliteCheck.Click += new System.EventHandler(this.sqliteCheck_Click);
+            // 
+            // groupControl27
+            // 
+            this.groupControl27.Controls.Add(this.simpleButton29);
+            this.groupControl27.Location = new System.Drawing.Point(261, 3);
+            this.groupControl27.Name = "groupControl27";
+            this.groupControl27.Size = new System.Drawing.Size(244, 85);
+            this.groupControl27.TabIndex = 16;
+            this.groupControl27.Text = "Data Migration";
+            // 
+            // simpleButton29
+            // 
+            this.simpleButton29.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.simpleButton29.Appearance.Options.UseFont = true;
+            this.simpleButton29.Location = new System.Drawing.Point(15, 41);
+            this.simpleButton29.Name = "simpleButton29";
+            this.simpleButton29.Size = new System.Drawing.Size(215, 26);
+            this.simpleButton29.TabIndex = 10;
+            this.simpleButton29.Text = "Migrate SQLite To MySQL";
+            this.simpleButton29.Click += new System.EventHandler(this.simpleButton29_Click_1);
+            // 
             // Form1
             // 
             this.ActiveGlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(64)))), ((int)(((byte)(42)))));
@@ -8346,6 +8585,22 @@ namespace RCE_ADMIN
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl20)).EndInit();
             this.groupControl20.ResumeLayout(false);
+            this.xtraTabPage11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl26)).EndInit();
+            this.groupControl26.ResumeLayout(false);
+            this.groupControl26.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxShowSqlPassword.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mysqlPort.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mysqlDbName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mysqlPassword.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mysqlUsername.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mysqlHost.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl25)).EndInit();
+            this.groupControl25.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.sqlCheck.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sqliteCheck.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl27)).EndInit();
+            this.groupControl27.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -9051,5 +9306,25 @@ namespace RCE_ADMIN
         private DevExpress.XtraEditors.SimpleButton simpleButton30;
         private DevExpress.XtraEditors.LabelControl labelControl22;
         private DevExpress.XtraEditors.ComboBoxEdit spawnCrateType;
+        private System.ComponentModel.BackgroundWorker playerDBWorker;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage11;
+        private DevExpress.XtraEditors.GroupControl groupControl25;
+        private DevExpress.XtraEditors.CheckEdit sqlCheck;
+        private DevExpress.XtraEditors.CheckEdit sqliteCheck;
+        private DevExpress.XtraEditors.GroupControl groupControl26;
+        private DevExpress.XtraEditors.SimpleButton saveMysql;
+        private DevExpress.XtraEditors.LabelControl labelControl24;
+        private DevExpress.XtraEditors.TextEdit mysqlHost;
+        private DevExpress.XtraEditors.LabelControl labelControl28;
+        private DevExpress.XtraEditors.TextEdit mysqlDbName;
+        private DevExpress.XtraEditors.LabelControl labelControl27;
+        private DevExpress.XtraEditors.TextEdit mysqlPassword;
+        private DevExpress.XtraEditors.LabelControl labelControl26;
+        private DevExpress.XtraEditors.TextEdit mysqlUsername;
+        private DevExpress.XtraEditors.LabelControl labelControl25;
+        private DevExpress.XtraEditors.SpinEdit mysqlPort;
+        private DevExpress.XtraEditors.CheckEdit checkBoxShowSqlPassword;
+        private DevExpress.XtraEditors.GroupControl groupControl27;
+        private DevExpress.XtraEditors.SimpleButton simpleButton29;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace RCE_ADMIN.WebSockets.CustomPackets
 {
@@ -21,6 +22,24 @@ namespace RCE_ADMIN.WebSockets.CustomPackets
 
         [JsonProperty("ConnectedSeconds")]
         public int ConnectedSeconds { get; set; }
+
+        [JsonProperty("Kills")]
+        public int Kills { get; set; }
+
+        [JsonProperty("NPCKills")]
+        public int NPCKills { get; set; }
+
+        [JsonProperty("NPCDeaths")]
+        public int NPCDeaths { get; set; }
+
+        [JsonProperty("Deaths")]
+        public int Deaths { get; set; }
+
+        [JsonProperty("Kits")]
+        public int Kits { get; set; }
+
+        [JsonProperty("KitLimit")]
+        public int KitLimit { get; set; }
 
         [JsonProperty("VoiationLevel")]
         public float ViolationLevel { get; set; }
