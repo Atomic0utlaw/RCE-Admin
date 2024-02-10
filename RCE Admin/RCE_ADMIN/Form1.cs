@@ -4281,7 +4281,7 @@ namespace RCE_ADMIN
 
         private void simpleButton29_Click(object sender, EventArgs e)
         {
-            if (!IsValidIPv4(mysqlHost.Text))
+            if (!IsValidIPv4(mysqlHost.Text) || mysqlHost.Text != "localhost")
             {
                 XtraMessageBox.Show("Please Enter A Valid IP Address!", "RCE Admin", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
