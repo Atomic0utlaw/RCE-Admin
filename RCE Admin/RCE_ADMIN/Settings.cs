@@ -93,7 +93,7 @@ namespace RCE_ADMIN
 
         [JsonProperty("Version")]
         [JsonIgnore]
-        public static string Version = "v1.19";
+        public static string Version = "v1.20";
         public Settings(string server_address, string server_port, string server_password, string events_webhook_url, string killfeed_webhook_url, string chat_webhook_url, string team_webhook_url, string item_webhook_url, string in_game_name, bool auto_messages, int auto_messages_time, bool in_game_kill_feed, bool discord_kill_feed, bool in_game_event_feed, bool discord_event_feed, bool in_game_chat, bool discord_chat, string theme, string sql_type, string sql_host, string sql_port, string sql_usermame, string sql_password, string sql_dbname)
         {
             ServerAddress = server_address;
@@ -123,7 +123,7 @@ namespace RCE_ADMIN
         }
         public static void Write(Settings settings)
         {
-            Settings.Version = "v1.19";
+            Settings.Version = "v1.20";
 
             if (!File.Exists(ConfigFile))
                 File.Create(ConfigFile).Close();

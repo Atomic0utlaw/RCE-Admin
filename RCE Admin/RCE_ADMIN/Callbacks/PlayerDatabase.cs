@@ -615,118 +615,90 @@ namespace RCE_ADMIN.Callbacks
             using (var connection = CreateConnection())
             {
                 connection.Open();
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText = "SELECT Kills FROM Player WHERE DisplayName = @DisplayName";
-                    AddParameter(command, "@DisplayName", displayName);
-                    object result = command.ExecuteScalar();
-                    connection.Close();
 
-                    if (result != null && result != DBNull.Value)
-                    {
-                        return Convert.ToInt32(result);
-                    }
-                    else
-                    {
-                        return 0;
-                    }
+                var result = connection.QueryFirstOrDefault("SELECT Kills FROM Player WHERE DisplayName = @DisplayName", new { DisplayName = displayName });
+
+                if (result != null)
+                {
+                    return result.Kills;
+                }
+                else
+                {
+                    return 0;
                 }
             }
         }
+
 
         public string[] GetPlayerKitsInfo(string displayName)
         {
             using (var connection = CreateConnection())
             {
                 connection.Open();
-                using (var command = connection.CreateCommand())
+
+                var result = connection.QueryFirstOrDefault("SELECT Kits, LastRedeemed, KitLimit FROM Player WHERE DisplayName = @DisplayName", new { DisplayName = displayName });
+
+                if (result != null)
                 {
-                    command.CommandText = "SELECT Kits, LastRedeemed, KitLimit FROM Player WHERE DisplayName = @DisplayName";
-                    AddParameter(command, "@DisplayName", displayName);
+                    int kits = Convert.ToInt32(result.Kits);
+                    DateTime lastRedeemed = Convert.ToDateTime(result.LastRedeemed);
+                    int kitLimit = Convert.ToInt32(result.KitLimit);
 
-                    using (var reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            int kits = Convert.ToInt32(reader["Kits"]);
-                            DateTime lastRedeemed = Convert.ToDateTime(reader["LastRedeemed"]);
-                            int kitLimit = Convert.ToInt32(reader["KitLimit"]);
-
-                            return new string[] { kits.ToString(), lastRedeemed.Date.ToString(), kitLimit.ToString() };
-                        }
-                        else
-                        {
-                            return new string[] { string.Empty, string.Empty, string.Empty };
-                        }
-                    }
+                    return new string[] { kits.ToString(), lastRedeemed.Date.ToString(), kitLimit.ToString() };
+                }
+                else
+                {
+                    return new string[] { string.Empty, string.Empty, string.Empty };
                 }
             }
         }
+
 
         public string[] GetKillStatsByName(string displayName)
         {
             using (var connection = CreateConnection())
             {
                 connection.Open();
-                using (var command = connection.CreateCommand())
+
+                var result = connection.QueryFirstOrDefault("SELECT NPCKills, NPCDeaths, Kills, Deaths FROM Player WHERE DisplayName = @DisplayName", new { DisplayName = displayName });
+
+                if (result != null)
                 {
-                    command.CommandText = "SELECT NPCKills, NPCDeaths, Kills, Deaths FROM Player WHERE DisplayName = @DisplayName";
-                    AddParameter(command, "@DisplayName", displayName);
+                    int kills = result.Kills != null ? Convert.ToInt32(result.Kills) : 0;
+                    int deaths = result.Deaths != null ? Convert.ToInt32(result.Deaths) : 0;
+                    int npc_kills = result.NPCKills != null ? Convert.ToInt32(result.NPCKills) : 0;
+                    int npc_deaths = result.NPCDeaths != null ? Convert.ToInt32(result.NPCDeaths) : 0;
 
-                    using (var reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            int kills, deaths, npc_kills, npc_deaths;
+                    double killDeathRatio = deaths != 0 ? (double)kills / deaths : 0.0;
+                    double npcKillDeathRatio = npc_deaths != 0 ? (double)npc_kills / npc_deaths : 0.0;
 
-                            if (int.TryParse(reader["Kills"].ToString(), out kills) &&
-                                int.TryParse(reader["Deaths"].ToString(), out deaths) &&
-                                int.TryParse(reader["NPCKills"].ToString(), out npc_kills) &&
-                                int.TryParse(reader["NPCDeaths"].ToString(), out npc_deaths))
-                            {
-                                double killDeathRatio = deaths != 0 ? (double)kills / deaths : 0.0;
-                                double npcKillDeathRatio = npc_deaths != 0 ? (double)npc_kills / npc_deaths : 0.0;
-
-                                return new string[] { kills.ToString(), deaths.ToString(), killDeathRatio.ToString(), npc_kills.ToString(), npc_deaths.ToString(), npcKillDeathRatio.ToString() };
-                            }
-                            else
-                            {
-                                return new string[] { "", "", "", "", "", "" };
-                            }
-                        }
-                        else
-                        {
-                            return new string[] { "", "", "", "", "", "" };
-                        }
-                    }
+                    return new string[] { kills.ToString(), deaths.ToString(), killDeathRatio.ToString(), npc_kills.ToString(), npc_deaths.ToString(), npcKillDeathRatio.ToString() };
+                }
+                else
+                {
+                    return new string[] { "", "", "", "", "", "" };
                 }
             }
         }
-
-
         public int GetDeathsByDisplayName(string displayName)
         {
             using (var connection = CreateConnection())
             {
                 connection.Open();
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText = "SELECT Deaths FROM Player WHERE DisplayName = @DisplayName";
-                    AddParameter(command, "@DisplayName", displayName);
-                    object result = command.ExecuteScalar();
-                    connection.Close();
 
-                    if (result != null && result != DBNull.Value)
-                    {
-                        return Convert.ToInt32(result);
-                    }
-                    else
-                    {
-                        return 0;
-                    }
+                var result = connection.QueryFirstOrDefault<int?>("SELECT Deaths FROM Player WHERE DisplayName = @DisplayName", new { DisplayName = displayName });
+
+                if (result != null)
+                {
+                    return result.Value;
+                }
+                else
+                {
+                    return 0;
                 }
             }
         }
+
 
         public double GetKillDeathRatioByDisplayName(string displayName)
         {
@@ -764,27 +736,27 @@ namespace RCE_ADMIN.Callbacks
             if (existingPlayer == null)
             {
                 connection.Execute(@"
-        INSERT INTO Player (SteamId, OwnerSteamId, DisplayName, Ping, Address, ConnectedSeconds, ViolationLevel, CurrentLevel, UnspentXp, Health, Kills, NPCKills, NPCDeaths, Deaths)
-        VALUES (@SteamId, @OwnerSteamId, @DisplayName, @Ping, @Address, @ConnectedSeconds, @ViolationLevel, @CurrentLevel, @UnspentXp, @Health, @Kills, @NPCKills, @NPCDeaths, @Deaths)", player);
+                    INSERT INTO Player (SteamId, OwnerSteamId, DisplayName, Ping, Address, ConnectedSeconds, ViolationLevel, CurrentLevel, UnspentXp, Health, Kills, NPCKills, NPCDeaths, Deaths)
+                    VALUES (@SteamId, @OwnerSteamId, @DisplayName, @Ping, @Address, @ConnectedSeconds, @ViolationLevel, @CurrentLevel, @UnspentXp, @Health, @Kills, @NPCKills, @NPCDeaths, @Deaths)", player);
             }
             else
             {
                 connection.Execute(@"
-        UPDATE Player 
-        SET OwnerSteamId = @OwnerSteamId,
-            DisplayName = @DisplayName,
-            Ping = @Ping,
-            Address = @Address,
-            ConnectedSeconds = @ConnectedSeconds,
-            ViolationLevel = @ViolationLevel,
-            CurrentLevel = @CurrentLevel,
-            UnspentXp = @UnspentXp,
-            Health = @Health,
-            Kills = @Kills,
-            NPCKills = @NPCKills,
-            NPCDeaths = @NPCDeaths,
-            Deaths = @Deaths
-        WHERE DisplayName = @DisplayName", player);
+                UPDATE Player 
+                SET OwnerSteamId = @OwnerSteamId,
+                    DisplayName = @DisplayName,
+                    Ping = @Ping,
+                    Address = @Address,
+                    ConnectedSeconds = @ConnectedSeconds,
+                    ViolationLevel = @ViolationLevel,
+                    CurrentLevel = @CurrentLevel,
+                    UnspentXp = @UnspentXp,
+                    Health = @Health,
+                    Kills = @Kills,
+                    NPCKills = @NPCKills,
+                    NPCDeaths = @NPCDeaths,
+                    Deaths = @Deaths
+                WHERE DisplayName = @DisplayName", player);
             }
         }
 
@@ -797,30 +769,28 @@ namespace RCE_ADMIN.Callbacks
                 if (existingPlayer == null)
                 {
                     connection.Execute(@"
-                    INSERT INTO Player VALUES (
-                        NULL, @SteamId, @OwnerSteamId, @DisplayName, @Ping, @Address,
-                        @ConnectedSeconds, @ViolationLevel, @CurrentLevel, @UnspentXp, @Health, 0, 0, 0, 0, 0, NULL, 1
-                    )", player);
+                        INSERT INTO Player (SteamId, OwnerSteamId, DisplayName, Ping, Address, ConnectedSeconds, ViolationLevel, CurrentLevel, UnspentXp, Health, Kills, NPCKills, NPCDeaths, Deaths) VALUES (@SteamId, @OwnerSteamId, @DisplayName, @Ping, @Address, @ConnectedSeconds, @ViolationLevel, @CurrentLevel, @UnspentXp, @Health, 0, 0, 0, 0)", player);
                 }
                 else
                 {
                     connection.Execute(@"
-                    UPDATE Player SET
-                        SteamId = @SteamId,
-                        OwnerSteamId = @OwnerSteamId,
-                        DisplayName = @DisplayName,
-                        Ping = @Ping,
-                        Address = @Address,
-                        ConnectedSeconds = ConnectedSeconds + 1,
-                        ViolationLevel = @ViolationLevel,
-                        CurrentLevel = @CurrentLevel,
-                        UnspentXp = @UnspentXp,
-                        Health = @Health
-                    WHERE DisplayName = @DisplayName", player);
+                        UPDATE Player SET
+                            SteamId = @SteamId,
+                            OwnerSteamId = @OwnerSteamId,
+                            DisplayName = @DisplayName,
+                            Ping = @Ping,
+                            Address = @Address,
+                            ConnectedSeconds = ConnectedSeconds + 1,
+                            ViolationLevel = @ViolationLevel,
+                            CurrentLevel = @CurrentLevel,
+                            UnspentXp = @UnspentXp,
+                            Health = @Health
+                        WHERE DisplayName = @DisplayName", player);
                 }
                 connection.Close();
             }
         }
+
         public void GetAllPlayers(DataGridView dataTable)
         {
             dataTable.Rows.Clear();
