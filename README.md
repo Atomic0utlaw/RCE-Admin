@@ -37,3 +37,18 @@ _**How To Find RCON Information**_
  3. Click On The ngapi/ Requests Until You Find The One With The Same Output At The Screenshot Below
  4. Follow The Screenshot For The RCON Password!
 ![2](https://img001.prntscr.com/file/img001/1sAZwC33RLSvDs5fFGrY4A.jpeg)
+
+_**How to Build/Compile**_
+Here’s how you can build and run a .NET solution on Windows:
+
+Step 1: Install .NET SDK
+If you haven't already installed the .NET SDK, you can do so by following these steps:
+
+Download the .NET SDK:
+Go to the official [.NET download page]([https://dotnet.microsoft.com/download](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net47)).
+
+Install the .NET SDK:
+Run the downloaded installer and follow the prompts.
+
+
+1. [Download Visual Studio](https://visualstudio.microsoft.com/downloads/) 
